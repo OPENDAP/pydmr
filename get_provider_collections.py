@@ -59,10 +59,10 @@ def main():
             assert False, "unhandled option"
 
     if granules:
-        json_resp = cmr_get_collection_granules_json(collection, pretty)
-        print_collection_granules(json_resp)
+        entries = cmr_get_collection_granules_json(collection, pretty)
+        print(f'Total entries: {entries}')
     elif collection:
-        json_resp = cmr_get_collection_entry_json(collection, pretty)
+        cmr_get_collection_entry_json(collection, pretty)
     else:
         # Providers: ORNL_CLOUD, LPDAAC_ECS, PODAAC, GES_DISC
         entries = cmr_get_provider_collections_json(provider, opendap, pretty)
@@ -85,24 +85,26 @@ def print_provider_collections(json_resp):
         print(f'ID: {entry["id"]} - {entry["title"]}')
 
 
-def cmr_process_request(cmr_query_url, response_processor, page_size=10):
+def cmr_process_request(cmr_query_url, response_processor, page_size=10, page_num=0):
     """
-    The generic part of a CMR request. Make the request, optionally print some stuff
-    and return the resulting JSON. The page parameter is there so that paged responses
+    The generic part of a CMR request. Make the request, print some stuff
+    and return the number of entries. The page_size parameter is there so that paged responses
     can be handled. By default, CMR returns 10 entry items per page.
     :param cmr_query_url The whole URL, query params and all
     :param response_processor A function that will process the returned json response
     :param page_size The number of entries per page from CMR. The default is the CMR
     default value.
-    :return The number of entries and the JSON response
+    :param page_num Return an explicit page of the query response. If not given, gets all
+    the pages
+    :return The number of entries
     """
-    page = 1
+    page = 1 if page_num == 0 else page_num
     total_entries = 0
     while True:
         # By default, requests uses cookies, supports OAuth2 and reads username and password
         # from a ~/.netrc file.
         r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
-        page += 1
+        page += 1   # if page_num was explicitly set, this is not needed
 
         if verbose > 0:
             print(f'CMR Query URL: {cmr_query_url}')
@@ -117,7 +119,7 @@ def cmr_process_request(cmr_query_url, response_processor, page_size=10):
         if entries > 0:
             response_processor(json_resp)   # The response_processor is passed in
             total_entries += entries
-        if entries < page_size:
+        if page_num != 0 or entries < page_size:
             break
     return total_entries
 
@@ -148,7 +150,8 @@ def cmr_get_collection_entry_json(concept_id, pretty=False, service='cmr.earthda
     """
     pretty = '&pretty=true' if pretty > 0 else ''
     cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{pretty}'
-    return cmr_process_request(cmr_query_url)
+    return cmr_process_request(cmr_query_url, print_provider_collections, page_num=1)
+    # return cmr_process_request(cmr_query_url)
 
 
 def cmr_get_collection_granules_json(concept_id, pretty=False, service='cmr.earthdata.nasa.gov'):
@@ -161,7 +164,7 @@ def cmr_get_collection_granules_json(concept_id, pretty=False, service='cmr.eart
     """
     pretty = '&pretty=true' if pretty > 0 else ''
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}'
-    return cmr_process_request(cmr_query_url)
+    return cmr_process_request(cmr_query_url, print_collection_granules, page_size=50)
 
 
 if __name__ == "__main__":
