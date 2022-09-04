@@ -61,15 +61,18 @@ def main():
         else:
             assert False, "unhandled option"
 
-    if granules:
-        entries = cmr_get_collection_granules_json(collection, pretty)
-        print(f'Total entries: {entries}')
-    elif collection:
-        cmr_get_collection_entry_json(collection, pretty)
-    else:
-        # Providers: ORNL_CLOUD, LPDAAC_ECS, PODAAC, GES_DISC
-        entries = cmr_get_provider_collections_json(provider, opendap, pretty)
-        print(f'Total entries: {entries}')
+    try:
+        if granules:
+            entries = cmr_get_collection_granules_json(collection, pretty)
+            print(f'Total entries: {entries}')
+        elif collection:
+            cmr_get_collection_entry_json(collection, pretty)
+        else:
+            # Providers: ORNL_CLOUD, LPDAAC_ECS, PODAAC, GES_DISC
+            entries = cmr_get_provider_collections_json(provider, opendap, pretty)
+            print(f'Total entries: {entries}')
+    except CMRException as e:
+        print(e)
 
 
 def print_collection_granules(json_resp):
