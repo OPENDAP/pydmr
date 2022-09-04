@@ -13,14 +13,17 @@ from datetime import datetime
 global verbose
 
 
-def usage(argv0):
-    print(f'{argv0}: [hv c <collection> | p <provider>]')
-
-
 class CMRException(Exception):
     """When CMR returns an error"""
     def __init__(self, status):
-        self.status
+        self.status = status
+
+    def __str__(self):
+        return f'CMR Exception HTTP status: {self.status}'
+
+
+def usage(argv0):
+    print(f'{argv0}: [hv c <collection> | p <provider>]')
 
 
 def main():
