@@ -27,49 +27,34 @@ def usage(argv0):
 
 
 def main():
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "hvPgoc:p:",
-                                   ["help", "verbose", "Pretty", "granules", "opendap", "collection=", "provider="])
-    except getopt.GetoptError as err:
-        # print help information and exit:
-        print(err)  # will print something like "option -a not recognized"
-        usage(sys.argv[0])
-        sys.exit(2)
-    collection = None
-    provider = None
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
+    parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true")
+
+    parser.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
+    parser.add_argument("-o", "--opendap", help="for a provider, only collections with opendap URLS", action="store_true")
+
+    parser.add_argument("-c", "--collection", help="a collection id, by itself, print some info")
+    parser.add_argument("-g", "--granules", help="for a collection, get the granules", action="store_true")
+
+    args = parser.parse_args()
+
     global verbose
-    verbose = False
-    pretty = False
-    granules = False
-    opendap = False
-    for o, a in opts:
-        if o in ("-v", "--verbose"):
-            verbose = True
-        elif o in ("-h", "--help"):
-            usage()
-            sys.exit()
-        elif o in ("-c", "--collection"):
-            collection = a
-        elif o in ("-p", "--provider"):
-            provider = a
-        elif o in ("-g", "--granules"):
-            granules = True
-        elif o in ("-P", "--Pretty"):
-            pretty = True
-        elif o in ("-o", "--opendap"):
-            opendap = True
-        else:
-            assert False, "unhandled option"
+    verbose = True if args.verbose else False
+    pretty = True if args.pretty else False
+    opendap = True if args.opendap else False
+    granules = True if args.granules else False
 
     try:
-        if granules:
-            entries = cmr_get_collection_granules_json(collection, pretty)
+        if args.collection and granules:
+            entries = cmr_get_collection_granules_json(args.collection, pretty)
             print(f'Total entries: {entries}')
-        elif collection:
-            cmr_get_collection_entry_json(collection, pretty)
+        elif args.collection:
+            cmr_get_collection_entry_json(args.collection, pretty)
         else:
             # Providers: ORNL_CLOUD, LPDAAC_ECS, PODAAC, GES_DISC
-            entries = cmr_get_provider_collections_json(provider, opendap, pretty)
+            entries = cmr_get_provider_collections_json(args.provider, opendap, pretty)
             print(f'Total entries: {entries}')
     except CMRException as e:
         print(e)
