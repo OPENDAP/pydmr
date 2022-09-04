@@ -1,14 +1,10 @@
+#!/usr/bin/env python3
 
 """
 Get all the collections for a given provider (e.g., ORNL_CLOUD).
 """
 
 import requests
-import json
-import argparse
-import getopt
-import sys
-from datetime import datetime
 
 global verbose
 
@@ -22,20 +18,17 @@ class CMRException(Exception):
         return f'CMR Exception HTTP status: {self.status}'
 
 
-def usage(argv0):
-    print(f'{argv0}: [hv c <collection> | p <provider>]')
-
-
 def main():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true")
 
-    parser.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
-    parser.add_argument("-o", "--opendap", help="for a provider, only collections with opendap URLS", action="store_true")
+    group = parser.add_mutually_exclusive_group() # only one option in 'group' is allowed at a time
+    group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
+    parser.add_argument("-o", "--opendap", help="for a provider, show only collections with opendap URLS", action="store_true")
 
-    parser.add_argument("-c", "--collection", help="a collection id, by itself, print some info")
+    group.add_argument("-c", "--collection", help="a collection id, by itself, print some info")
     parser.add_argument("-g", "--granules", help="for a collection, get the granules", action="store_true")
 
     args = parser.parse_args()
