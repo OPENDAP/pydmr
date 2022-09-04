@@ -119,7 +119,7 @@ function cmr_get_granule_entry_json_umm_v1_4_from_resty_path() {
 
 
 
-export netrc_file="/Users/ndp/.netrc"
+export netrc_file="/Users/ndp/.netrc
 
 ####################################################################
 #

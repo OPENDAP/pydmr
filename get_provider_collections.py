@@ -65,7 +65,7 @@ def main():
         json_resp = cmr_get_collection_entry_json(collection, pretty)
     else:
         # Providers: ORNL_CLOUD, LPDAAC_ECS, PODAAC, GES_DISC
-        entries = cmr_get_provider_collections_json(provider, pretty, opendap)
+        entries = cmr_get_provider_collections_json(provider, opendap, pretty)
         print(f'Total entries: {entries}')
 
 
@@ -85,37 +85,48 @@ def print_provider_collections(json_resp):
         print(f'ID: {entry["id"]} - {entry["title"]}')
 
 
-def cmr_process_request(cmr_query_url, page=1, page_size=10):
+def cmr_process_request(cmr_query_url, response_processor, page_size=10):
     """
     The generic part of a CMR request. Make the request, optionally print some stuff
     and return the resulting JSON. The page parameter is there so that paged responses
     can be handled. By default, CMR returns 10 entry items per page.
     :param cmr_query_url The whole URL, query params and all
-    :param page The page number to request
+    :param response_processor A function that will process the returned json response
     :param page_size The number of entries per page from CMR. The default is the CMR
     default value.
     :return The number of entries and the JSON response
     """
-    # By default, requests uses cookies, supports OAuth2 and reads username and password
-    # from a ~/.netrc file.
-    r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
+    page = 1
+    total_entries = 0
+    while True:
+        # By default, requests uses cookies, supports OAuth2 and reads username and password
+        # from a ~/.netrc file.
+        r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
+        page += 1
 
-    if verbose > 0:
-        print(f'CMR Query URL: {cmr_query_url}')
-        print(f'Status code: {r.status_code}')
-        print(f'text: {r.text}')
+        if verbose > 0:
+            print(f'CMR Query URL: {cmr_query_url}')
+            print(f'Status code: {r.status_code}')
+            print(f'text: {r.text}')
 
-    if r.status_code == 200:
+        if r.status_code != 200:
+            raise CMRException(r.status_code)
+
         json_resp = r.json()
-        return len(json_resp["feed"]["entry"]), json_resp
-    else:
-        raise CMRException(r.status_code)
+        entries = len(json_resp["feed"]["entry"])
+        if entries > 0:
+            response_processor(json_resp)   # The response_processor is passed in
+            total_entries += entries
+        if entries < page_size:
+            break
+    return total_entries
 
 
-def cmr_get_provider_collections_json(provider_id, pretty=False, opendap=False, service='cmr.earthdata.nasa.gov'):
+def cmr_get_provider_collections_json(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Get all the collections for a given provider.
     :param provider_id The string ID for a given EDC provider (e.g., ORNL_CLOUD)
+    :param opendap If true, return only the collections with OPeNDAP URLS
     :param pretty request a 'pretty' version of the response from the service. default False
     :param service The URL of the service to query (default cmr.earthdata.nasa.gov)
     :return The total number of entries
@@ -124,15 +135,7 @@ def cmr_get_provider_collections_json(provider_id, pretty=False, opendap=False, 
     pretty = '&pretty=true' if pretty else ''
     opendap = '&has_opendap_url=true' if opendap else ''
     cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
-    page = 1
-    total_entries = 0
-    entries, json_response = cmr_process_request(cmr_query_url, page, page_size=50)
-    while entries > 0:
-        print_provider_collections(json_response)
-        total_entries += entries
-        page += 1
-        entries, json_response = cmr_process_request(cmr_query_url, page, page_size=50)
-    return total_entries
+    return cmr_process_request(cmr_query_url, print_provider_collections, page_size=50)
 
 
 def cmr_get_collection_entry_json(concept_id, pretty=False, service='cmr.earthdata.nasa.gov'):
