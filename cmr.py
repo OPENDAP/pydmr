@@ -5,13 +5,11 @@ CMR Web API.
 """
 
 import requests
-import time
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
 """
-global verbose
-verbose = False
+verbose: bool = False
 
 
 class CMRException(Exception):
@@ -31,15 +29,26 @@ class CMRException(Exception):
 def print_collection_granules(json_resp):
     """
     Print the granule ID, the producer id and the title for each granule
-    :deprecated Not used
+    Deprecated; Not used
     """
     for entry in json_resp["feed"]["entry"]:
         print(f'ID: {entry["id"]} - {entry["producer_granule_id"]} - {entry["title"]}')
 
 
+def print_provider_collections(json_resp):
+    """
+    Print the provider collection IDs based in the json response
+    Deprecated
+    """
+    for entry in json_resp["feed"]["entry"]:
+        print(f'ID: {entry["id"]} - {entry["title"]}')
+
+
 def collection_granules_dict(json_resp):
     """
-    :return A dictionary with the Granule id indexing the producer granule id and granule title
+    :param json_resp: CMR JSON response
+    :return: A dictionary with the Granule id indexing the producer granule id and granule title
+    :rtype: dict
     """
     dict_resp = {}
     for entry in json_resp["feed"]["entry"]:
@@ -50,18 +59,13 @@ def collection_granules_dict(json_resp):
     return dict_resp
 
 
-def print_provider_collections(json_resp):
-    """
-    Print the provider collection IDs based in the json response
-    :deprecated Not used
-    """
-    for entry in json_resp["feed"]["entry"]:
-        print(f'ID: {entry["id"]} - {entry["title"]}')
-
-
 def provider_collections_dict(json_resp):
     """
-    :return The provider collection IDs and title in a dictionary
+    Extract collection IDs and Titles from CMR JSON
+
+    :param json_resp: CMR JSON response
+    :return: The provider collection IDs and title in a dictionary
+    :rtype: dict
     """
     dict_resp = {}
     for entry in json_resp["feed"]["entry"]:
@@ -71,7 +75,12 @@ def provider_collections_dict(json_resp):
 
 def granule_ur_dict(json_resp):
     """
-    :return The granule UR related URL info in a dictionary
+    Extract Related URLs from CMR JSON UMM
+
+    :param json_resp: CMR JSON UMM response
+    :return: The granule UR related URL info in a dictionary. Only 'GET DATA' and 'USE SERVICE API'
+        type URLs are included. Each is indexed using 'URL1', ..., 'URLn.'
+    :rtype: dict
     """
     dict_resp = {}
     i = 1
@@ -85,11 +94,13 @@ def granule_ur_dict(json_resp):
 
 def merge(dict1, dict2):
     """
-    merge dictionaries, preserve key order
-    :param dict1
-    :param dict2
-    :return The dict1, modified so the entries in dict2 have been appended
-    :see https://www.geeksforgeeks.org/python-merging-two-dictionaries/
+    Merge dictionaries, preserve key order
+    See https://www.geeksforgeeks.org/python-merging-two-dictionaries/
+
+    :param dict1:
+    :param dict2:
+    :returns: The dict1, modified so the entries in dict2 have been appended
+    :rtype: dict
     """
     for i in dict2.keys():
         dict1[i] = dict2[i]
@@ -99,9 +110,11 @@ def merge(dict1, dict2):
 def convert(a):
     """
     Convert and array of 2N things to a dictionary of N entries
-    :see https://www.geeksforgeeks.org/python-convert-a-list-to-dictionary/
-    :param a The Array to convert
-    :return The resulting dictionary
+    See https://www.geeksforgeeks.org/python-convert-a-list-to-dictionary/
+
+    :param: a: The Array to convert
+    :return: The resulting dictionary
+    :rtype: dict
     """
     it = iter(a)
     res_dct = dict(zip(it, it))
@@ -113,13 +126,14 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
     The generic part of a CMR request. Make the request, print some stuff
     and return the number of entries. The page_size parameter is there so that paged responses
     can be handled. By default, CMR returns 10 entry items per page.
-    :param cmr_query_url The whole URL, query params and all
-    :param response_processor A function that will process the returned json response
-    :param page_size The number of entries per page from CMR. The default is the CMR
-    default value.
-    :param page_num Return an explicit page of the query response. If not given, gets all
-    the pages
-    :return A dictionary of entries
+
+    :param cmr_query_url: The whole URL, query params and all
+    :param response_processor: A function that will process the returned json response
+    :param page_size: The number of entries per page from CMR. The default is the CMR
+        default value.
+    :param page_num: Return an explicit page of the query response. If not given, gets all
+        the pages
+    :returns: A dictionary of entries
     """
     page = 1 if page_num == 0 else page_num
     entries_dict = {}
@@ -129,7 +143,6 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
         r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
         page += 1   # if page_num was explicitly set, this is not needed
 
-        global verbose
         if verbose > 0:
             print(f'CMR Query URL: {cmr_query_url}')
             print(f'Status code: {r.status_code}')
@@ -158,11 +171,12 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
 def get_provider_collections(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Get all the collections for a given provider.
-    :param provider_id The string ID for a given EDC provider (e.g., ORNL_CLOUD)
-    :param opendap If true, return only the collections with OPeNDAP URLS
-    :param pretty request a 'pretty' version of the response from the service. default False
-    :param service The URL of the service to query (default cmr.earthdata.nasa.gov)
-    :return The total number of entries
+
+    :param provider_id: The string ID for a given EDC provider (e.g., ORNL_CLOUD)
+    :param opendap: If true, return only the collections with OPeNDAP URLS
+    :param pretty: request a 'pretty' version of the response from the service. default False
+    :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
+    :returns: The total number of entries
     """
 
     pretty = '&pretty=true' if pretty else ''
@@ -174,10 +188,11 @@ def get_provider_collections(provider_id, opendap=False, pretty=False, service='
 def get_collection_entry(concept_id, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Get the collection entry given a concept id.
-    :param concept_id The string Collection (Concept) Id
-    :param pretty request a 'pretty' version of the response from the service. default False
-    :param service The URL of the service to query (default cmr.earthdata.nasa.gov)
-    :return The collection JSON object
+
+    :param concept_id: The string Collection (Concept) Id
+    :param pretty: request a 'pretty' version of the response from the service. default False
+    :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
+    :returns:The collection JSON object
     """
     pretty = '&pretty=true' if pretty > 0 else ''
     cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{pretty}'
@@ -191,8 +206,9 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
     This provides a way to go from the REST form of a URL that the OPeNDAP server typically
     receives and the URLs that can be used to directly access data (and thus the DMR++
     if the data are in S3 and OPeNDAP-enabled).
-    :return A dictionary that holds all the RelatedUrls that have Type 'GET DATA' or
-    'USE SERVICE DATA.'
+
+    :returns: A dictionary that holds all the RelatedUrls that have Type 'GET DATA' or
+        'USE SERVICE DATA.'
     """
     pretty = '&pretty=true' if pretty > 0 else ''
     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={concept_id}&granule_ur={granule_ur}{pretty}'
@@ -202,10 +218,11 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
 def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Get granules for a collection
-    :param concept_id The string Collection (Concept) Id
-    :param pretty request a 'pretty' version of the response from the service. default False
-    :param service The URL of the service to query (default cmr.earthdata.nasa.gov)
-    :return The collection JSON object
+
+    :param concept_id: The string Collection (Concept) Id
+    :param pretty: request a 'pretty' version of the response from the service. default False
+    :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
+    :returns: The collection JSON object
     """
     pretty = '&pretty=true' if pretty > 0 else ''
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}'
@@ -218,8 +235,10 @@ def decompose_resty_url(url, pretty=False):
     get the actual URLs that lead to the data. If a 'provider - collection name'
     URL is used, this will result in an error stating that the collection
     concept id does not exist.
-    :param url The URL to parse
-    :pretty Ask CMR to return a JSON UMM document for humans
+
+    :param url: The URL to parse
+    :param pretty: Ask CMR to return a JSON UMM document for humans
+    :returns: A dictionary of the URLs, indexed as 'URL1', ..., 'URLn.'
     """
     url_pieces = url.split('/')[3:]
     url_dict = convert(url_pieces)          # convert the array to a dictionary
