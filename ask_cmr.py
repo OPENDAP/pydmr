@@ -16,7 +16,8 @@ import cmr
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Query CMR and get information about Collections and Granules, "
-                                                 "especially as that information relates to OPeNDAP")
+                                                 "especially as that information relates to OPeNDAP. EDC credentials "
+                                                 "stored in ~/.netrc are needed. See the requests package for details.")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true")
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
@@ -25,7 +26,9 @@ def main():
     group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
     group.add_argument("-c", "--collection", help="a collection id, by itself, print some info")
     group.add_argument("-r", "--resty-path", help="get the data URL for an OPeNDAP EDC REST URL")
-    group.add_argument("-R", "--collection-and-title", help="get the data URL for a CMR collection concept id and granule title")
+    group.add_argument("-R", "--collection-and-title", help="get the data URL for a CMR collection concept id and granule title."
+                                                            "The format for this is 'CCID:title,' for example:"
+                                                            "C2205105895-POCLOUD:20220902120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1")
 
     parser.add_argument("-o", "--opendap", help="for a provider, show only collections with opendap URLS", action="store_true")
     parser.add_argument("-g", "--granules", help="for a collection, get info about all the granules", action="store_true")
