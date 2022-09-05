@@ -66,13 +66,12 @@ def clean_chunk_elements(root):
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="Build the invariant DMR++ using a complete DMR++")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("dmrpp_document", help="Build the DMR++ invariant from this DMR++ document ")
 
     args = parser.parse_args()
 
-    # 19980101120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1.nc.dmrpp
     with open(args.dmrpp_document) as dmrpp:
         root = xml.dom.minidom.parse(dmrpp)
         remove_all_attributes(root)

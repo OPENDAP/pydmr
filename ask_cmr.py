@@ -15,7 +15,8 @@ import cmr
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="Query CMR and get information about Collections and Granules, "
+                                                 "especially as that information relates to OPeNDAP")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true")
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
