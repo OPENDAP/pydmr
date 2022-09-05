@@ -43,7 +43,10 @@ def collection_granules_dict(json_resp):
     """
     dict_resp = {}
     for entry in json_resp["feed"]["entry"]:
-        dict_resp[entry["id"]] = (entry["title"], entry["producer_granule_id"])
+        if "producer_granule_id" in dict_resp:  # some granule records lack "producer_granule_id". jhrg 9/4/22
+            dict_resp[entry["id"]] = (entry["title"], entry["producer_granule_id"])
+        else:
+            dict_resp[entry["id"]] = entry["title"]
     return dict_resp
 
 
