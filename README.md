@@ -28,9 +28,9 @@ so here are some to start with.
 Providers: PODAAC, GES_DISC, POCLOUD
 
 Using ask_cmr:
-* `./ask_cmr.py -p PODAAC`: Get all the collections
-* `./ask_cmr.py -p PODAAC -o`: Get all the collections with OPeNDAP enabled
-* `./ask_cmr.py-c C1339230298-GES_DISC -g -t`: All the granules in the collection, with timing info (-t)
+* `./ask_cmr.py -p POCLOUD`: Get all the collections
+* `./ask_cmr.py -p POCLOUD -o`: Get all the collections with OPeNDAP enabled
+* `./ask_cmr.py -c C2036882064-POCLOUD -g -t`: All the granules in the collection, with timing info (-t)
 * `./ask_cmr.py -t -r https://opendap.earthdata.nasa.gov/collections/C2205105895-POCLOUD/granules/19980101120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1` 
     Get the Related URLs for this 'resty URL'
 * `./ask_cmr.py -t -R "C2205105895-POCLOUD:19980101120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1"`: 
@@ -48,3 +48,6 @@ Building the invariant:
     builder version
 * `mk_invariant_dmrpp -l 19980101120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1.nc.dmrpp`: Print the 
     builder version, but in a form that is easier to parse
+
+NB: THis: ./ask_cmr.py -t -R "G2100400959-POCLOUD:cyg.ddmi.s20210228-003000-e20210228-233000.l3.grid-wind-cdr.a10.d10" 
+should return a URL to data but does not.
