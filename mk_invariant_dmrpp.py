@@ -30,6 +30,25 @@ def remove_attribute(root, attr_name, attr_type):
             element.parentNode.removeChild(element)
 
 
+def get_builder_version(root):
+    """
+    Remove a specific attribute by name and type."build_dmrpp", "build_dmrpp_metadata"
+
+    :param root: The DOM tree root
+    :returns: The version of the DMR++ builder that made this document, as a string
+    :rtype: string
+    """
+    for element in root.getElementsByTagName("Attribute"):
+        if element.getAttribute("name") == "build_dmrpp_metadata":
+            for attr in element.getElementsByTagName("Attribute"):
+                if attr.getAttribute("name") == "build_dmrpp":
+                    value = attr.getElementsByTagName("Value")
+                    if len(value) and value[0].firstChild.nodeType == xml.dom.minidom.Node.TEXT_NODE:
+                        return value[0].firstChild.data
+                    else:
+                        raise Exception("Expected a single Value element, but found many.")
+
+
 def remove_all_attributes(root):
     """
     Remove all the elements named 'Attribute'
@@ -67,16 +86,27 @@ def clean_chunk_elements(root):
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Build the invariant DMR++ using a complete DMR++")
-    parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
+    parser.add_argument("-v", "--version", help="Instead of building the invariant, extract the DMR++ builder version",
+                        action="store_true")
+    parser.add_argument("-l", "--list", help="Instead of building the invariant, extract the DMR++ builder version. "
+                                             "Unlike --version/-v, return a list of the four version numbers.",
+                        action="store_true")
     parser.add_argument("dmrpp_document", help="Build the DMR++ invariant from this DMR++ document ")
 
     args = parser.parse_args()
 
     with open(args.dmrpp_document) as dmrpp:
         root = xml.dom.minidom.parse(dmrpp)
-        remove_all_attributes(root)
-        clean_chunk_elements(root)
-        print(root.toxml())
+        if args.version:
+            print(f'DMR++ Builder Version: {get_builder_version(root)}')
+        elif args.list:
+            for number in get_builder_version(root).replace("-", ".").split("."):
+                print(number, end=" ")
+            print('')
+        else:
+            remove_all_attributes(root)
+            clean_chunk_elements(root)
+            print(root.toxml())
 
 
 if __name__ == "__main__":
