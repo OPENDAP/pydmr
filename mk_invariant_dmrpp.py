@@ -74,13 +74,39 @@ def clean_chunk_element(element):
 
 def clean_chunk_elements(root):
     """
-    For each <chunk> element, remove the 'offset' and 'nbytes' attribute values.
+    Remove each <chunk> element.
+
+    Note: This used to remove only two attributes but there is a case where
+    different granules can have a different number of chunks for the same
+    variable. This happens when the values differ and the variable uses HDF5
+    fill values. In that case, chunks in one file that have only fill values
+    will not be written to disk. In a different file with different values,
+    if those same chunks don't contain only fill values, they will be written
+    to disk. Thus, the number of chunk elements may differ.
 
     :param: root: The root of the DMR++ XML document
     :returns: Nothing; the DOM tree is modified
     """
     for element in root.getElementsByTagName("dmrpp:chunk"):
-        clean_chunk_element(element)
+        # clean_chunk_element(element) - the old way, just remove two attributes
+        cleanup_extra_spaces(element)
+        element.parentNode.removeChild(element)
+
+
+def clean_dataset_element(root):
+    """
+    For the <Dataset> element, remove the attributes: name, dapVersion, dmrVersion,
+    dmrpp:href, and dmrpp:version.
+
+    :param: root: The root of the DMR++ XML document
+    :returns: Nothing; the DOM tree is modified
+    """
+    for dataset in root.getElementsByTagName("Dataset"):
+        dataset.removeAttribute("name")
+        dataset.removeAttribute("dapVersion")
+        dataset.removeAttribute("dmrVersion")
+        dataset.removeAttribute("dmrpp:href")
+        dataset.removeAttribute("dmrpp:version")
 
 
 def main():
@@ -106,6 +132,7 @@ def main():
         else:
             remove_all_attributes(root)
             clean_chunk_elements(root)
+            clean_dataset_element(root)
             print(root.toxml())
 
 

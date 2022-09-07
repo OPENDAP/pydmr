@@ -32,8 +32,8 @@ Using ask_cmr:
 * `./ask_cmr.py -p POCLOUD -o`: Get all the collections with OPeNDAP enabled
 * `./ask_cmr.py -c C2036882064-POCLOUD -g -t`: All the granules in the collection, with timing info (-t)
 * `./ask_cmr.py -t -r https://opendap.earthdata.nasa.gov/collections/C2205105895-POCLOUD/granules/19980101120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1` 
-    Get the Related URLs for this 'resty URL'
-* `./ask_cmr.py -t -R "C2205105895-POCLOUD:19980101120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1"`: 
+    Get the Related URLs for this pseudo 'resty URL'
+* `./ask_cmr.py -t -R C2205105895-POCLOUD:19980101120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1`: 
     Get the Related URLs for the resty URL that would have the CCID and title that are listed here separated
     by a colon (:)
 
@@ -51,3 +51,4 @@ Building the invariant:
 
 NB: THis: ./ask_cmr.py -t -R "G2100400959-POCLOUD:cyg.ddmi.s20210228-003000-e20210228-233000.l3.grid-wind-cdr.a10.d10" 
 should return a URL to data but does not.
+
