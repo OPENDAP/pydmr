@@ -14,11 +14,7 @@ verbose: bool = False
 
 class CMRException(Exception):
     """When CMR returns an error"""
-    def __init__(self, status):
-        self.status = status
-        self.message = "No error message given"
-
-    def __init__(self, status, message):
+    def __init__(self, status, message="No error message given"):
         self.status = status
         self.message = message
 

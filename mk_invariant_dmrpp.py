@@ -18,7 +18,7 @@ def cleanup_extra_spaces(tag):
 
 def remove_attribute(root, attr_name, attr_type):
     """
-    Remove a specific attribute by name and type.
+    Remove a specific DAP Attribute element by name and type.
 
     :param root: The DOM tree root
     :param attr_name: The name of the attribute to remove
@@ -49,27 +49,17 @@ def get_builder_version(root):
                         raise Exception("Expected a single Value element, but found many.")
 
 
-def remove_all_attributes(root):
+def remove_elements_by_name(root, elem_name):
     """
     Remove all the elements named 'Attribute'
 
     :param root: The root of the DOM tree
+    :param elem_name: The name of the element(s) to remove
     :returns: Nothing; the DOM tree is modified
     """
-    for element in root.getElementsByTagName("Attribute"):
+    for element in root.getElementsByTagName(elem_name):
         cleanup_extra_spaces(element)
         element.parentNode.removeChild(element)
-
-
-def clean_chunk_element(element):
-    """
-    for a given <chunk> element, remove the 'offset' and 'nbytes' attribute values.
-
-    :param: element: An XML element from the DMR++ document
-    :returns: None; the element value is modified
-    """
-    element.removeAttribute("offset")
-    element.removeAttribute("nBytes")
 
 
 def clean_chunk_elements(root):
@@ -88,28 +78,52 @@ def clean_chunk_elements(root):
     :returns: Nothing; the DOM tree is modified
     """
     for element in root.getElementsByTagName("dmrpp:chunk"):
-        # clean_chunk_element(element) - the old way, just remove two attributes
         cleanup_extra_spaces(element)
         element.parentNode.removeChild(element)
 
 
-def clean_dataset_element(root):
+# FIXME Refactor to one helper and two interface methods. jhrg 9/7/22
+def clean_element_except(root, elem_name, attrs_to_keep):
     """
+    FIXME rewrite comment
     For the <Dataset> element, remove all the attributes except "xmlns" and "xmlns:dmrpp"
 
     :param: root: The root of the DMR++ XML document
+    :param: elem_name: The name of element to clean. Cleans all that match
+    :param: attrs_to_keep: A Tuple of attributes (i.e., their names) to keep
     :returns: Nothing; the DOM tree is modified
     """
-    for dataset in root.getElementsByTagName("Dataset"):
+    for dataset in root.getElementsByTagName(elem_name):
         named_node_map = dataset.attributes
-        for attr in named_node_map.items(): # each attr is a tuple (name, value)
-            if attr[0] not in ("xmlns", "xmlns:dmrpp"):
+        for attr in named_node_map.items():
+            if attr[0] not in attrs_to_keep:
+                dataset.removeAttribute(attr[0])
+
+
+def clean_element(root, elem_name, attrs_to_remove):
+    """
+    FIXME rewrite comment
+    For the <Dataset> element, remove all the attributes except "xmlns" and "xmlns:dmrpp"
+
+    :param: root: The root of the DMR++ XML document
+    :param: elem_name: The name of element to clean. Cleans all that match
+    :param: attrs_to_keep: A Tuple of attributes (i.e., their names) to keep
+    :returns: Nothing; the DOM tree is modified
+    """
+    for dataset in root.getElementsByTagName(elem_name):
+        named_node_map = dataset.attributes
+        for attr in named_node_map.items():
+            if attr[0] in attrs_to_remove:
                 dataset.removeAttribute(attr[0])
 
 
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Build the invariant DMR++ using a complete DMR++")
+    parser.add_argument("-d", "--dimensions", help="Some collections (e.g., level 1 and 2 data) have varying dimension "
+                                                   "sizes. This option removes the 'size' attribute from the invariant "
+                                                   "and the 'chunkDimensionSize' element.", action="store_true")
+
     parser.add_argument("-v", "--version", help="Instead of building the invariant, extract the DMR++ builder version",
                         action="store_true")
     parser.add_argument("-l", "--list", help="Instead of building the invariant, extract the DMR++ builder version. "
@@ -128,9 +142,12 @@ def main():
                 print(number, end=" ")
             print('')
         else:
-            remove_all_attributes(root)
-            clean_chunk_elements(root)
-            clean_dataset_element(root)
+            remove_elements_by_name(root, "Attribute")
+            remove_elements_by_name(root, "dmrpp:chunk")
+            clean_element_except(root, "Dataset", ("xmlns", "xmlns:dmrpp"))
+            if args.dimensions:
+                remove_elements_by_name(root, "dmrpp:chunkDimensionSizes")
+                clean_element(root, "Dimension", ("size"))
             print(root.toxml())
 
 
