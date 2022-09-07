@@ -26,8 +26,17 @@ for these data, the new DMR++ builder produces something with significant differ
 What about differences within a collection - will there be false positives (i.e., datasets
 that look different but are not)?
 
+Use `bash get_dmrpp_and_inv.sh` which read from `C2152045877-POCLOUD-10.txt` to get granule 
+names to sample a 17,000 granule collection, getting the DMR++ and building its invariant.
+Use diff to examine them.
 
-We can look at the version information and see they were clearly built by different DMR++ builders:
+NB: I have moved the old and new DMR++ files along with their invariants to the directory
+'old_and_new_files' and the ten DMR++ and associated invariant files to 'single_ccid_files'
+to reduce clutter here.
+
+-----------------------------
+
+We can also look at the version information and see they were clearly built by different DMR++ builders:
 pydmr/invariant_demo % ../mk_invariant_dmrpp.py -v SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125105_DG10_01.nc.dmrpp
 DMR++ Builder Version: 3.20.13
 pydmr/invariant_demo % ../mk_invariant_dmrpp.py -v SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125105_DG10_01.nc.dmrpp.old
