@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import xml.dom.minidom
-
+import xml.dom
 
 def cleanup_extra_spaces(tag):
     """
@@ -95,18 +95,16 @@ def clean_chunk_elements(root):
 
 def clean_dataset_element(root):
     """
-    For the <Dataset> element, remove the attributes: name, dapVersion, dmrVersion,
-    dmrpp:href, and dmrpp:version.
+    For the <Dataset> element, remove all the attributes except "xmlns" and "xmlns:dmrpp"
 
     :param: root: The root of the DMR++ XML document
     :returns: Nothing; the DOM tree is modified
     """
     for dataset in root.getElementsByTagName("Dataset"):
-        dataset.removeAttribute("name")
-        dataset.removeAttribute("dapVersion")
-        dataset.removeAttribute("dmrVersion")
-        dataset.removeAttribute("dmrpp:href")
-        dataset.removeAttribute("dmrpp:version")
+        named_node_map = dataset.attributes
+        for attr in named_node_map.items(): # each attr is a tuple (name, value)
+            if attr[0] not in ("xmlns", "xmlns:dmrpp"):
+                dataset.removeAttribute(attr[0])
 
 
 def main():

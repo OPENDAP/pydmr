@@ -15,6 +15,18 @@ SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01
 
 The last two are part of two different CCIDs: C2152045877-POCLOUD and C2152046451-POCLOUD
 
+Build the DMR++ invariant files and for the old and the new DMR++ and look for differences.
+The command looks like ./mk_invariant_dmrpp SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125105_DG10_01.nc.dmrpp
+In this directory, `bash make_inv.sh old_and_new_dmrpp.txt` will do this for the two sets of 
+old and new DMR++ files. Use `diff` to examine the differences between the two. Note that for
+these two sets of files there are differences. Differences that can be seen: the new DMR++
+has support for fill values, string arrays and also lacks three variables. It's clear that 
+for these data, the new DMR++ builder produces something with significant differences.
+
+What about differences within a collection - will there be false positives (i.e., datasets
+that look different but are not)?
+
+
 We can look at the version information and see they were clearly built by different DMR++ builders:
 pydmr/invariant_demo % ../mk_invariant_dmrpp.py -v SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125105_DG10_01.nc.dmrpp
 DMR++ Builder Version: 3.20.13
