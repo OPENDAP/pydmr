@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Dataset xmlns="http://xml.opendap.org/ns/DAP/4.0#" xmlns:dmrpp="http://xml.opendap.org/dap/dmrpp/1.0.0#" dapVersion="4.0" dmrVersion="1.0" name="20160213120000-REMSS-L4_GHRSST-SSTfnd-MW_IR_OI-GLOB-v02.0-fv05.1.nc" dmrpp:href="OPeNDAP_DMRpp_DATA_ACCESS_URL" dmrpp:version="3.20.9-91">
+    <Dimension name="lat" size="2048"/>
+    <Dimension name="lon" size="4096"/>
+    <Dimension name="time" size="1"/>
+    <Float32 name="lat">
+        <Dim name="/lat"/>
+        <Attribute name="units" type="String">
+            <Value>degrees_north</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>latitude</Value>
+        </Attribute>
+        <Attribute name="axis" type="String">
+            <Value>Y</Value>
+        </Attribute>
+        <Attribute name="coverage_content_type" type="String">
+            <Value>coordinate</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>-90.</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>90.</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>geographical coordinates, WGS84 datum</Value>
+        </Attribute>
+        <dmrpp:chunks byteOrder="LE">
+            <dmrpp:chunk offset="34507" nBytes="8192"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Float32 name="lon">
+        <Dim name="/lon"/>
+        <Attribute name="units" type="String">
+            <Value>degrees_east</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>longitude</Value>
+        </Attribute>
+        <Attribute name="axis" type="String">
+            <Value>X</Value>
+        </Attribute>
+        <Attribute name="coverage_content_type" type="String">
+            <Value>coordinate</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>-180.</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>180.</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>geographical coordinates, WGS84 datum</Value>
+        </Attribute>
+        <dmrpp:chunks byteOrder="LE">
+            <dmrpp:chunk offset="42699" nBytes="16384"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Int32 name="time">
+        <Dim name="/time"/>
+        <Attribute name="units" type="String">
+            <Value>seconds since 1981-01-01 00:00:00</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>time</Value>
+        </Attribute>
+        <Attribute name="axis" type="String">
+            <Value>T</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>nominal time of L4 analysis</Value>
+        </Attribute>
+        <Attribute name="coverage_content_type" type="String">
+            <Value>coordinate</Value>
+        </Attribute>
+        <dmrpp:chunks byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>4</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3320542" nBytes="16" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="analysed_sst">
+        <Dim name="/time"/>
+        <Dim name="/lat"/>
+        <Dim name="/lon"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>-32768</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>K</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>analysed sea surface temperature</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea_surface_foundation_temperature</Value>
+        </Attribute>
+        <Attribute name="coverage_content_type" type="String">
+            <Value>physicalMeasurement</Value>
+        </Attribute>
+        <Attribute name="add_offset" type="Float32">
+            <Value>295.6499939</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float32">
+            <Value>0.0008392590098</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-32767</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>OBPG-L3C-MODIS_Aqua,OBPG-L3C-MODIS_Terra,REMSS-L3C-AMSR2,REMSS-L3C-GMI,REMSS-L3C-WindSat,STAR-L3C-VIIRS_NPP</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="shuffle deflate" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>1 683 1366</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="754218" nBytes="768599" chunkPositionInArray="[0,0,0]"/>
+            <dmrpp:chunk offset="3320558" nBytes="732652" chunkPositionInArray="[0,0,1366]"/>
+            <dmrpp:chunk offset="64315" nBytes="689903" chunkPositionInArray="[0,0,2732]"/>
+            <dmrpp:chunk offset="4053210" nBytes="976734" chunkPositionInArray="[0,683,0]"/>
+            <dmrpp:chunk offset="5029944" nBytes="622805" chunkPositionInArray="[0,683,1366]"/>
+            <dmrpp:chunk offset="5652749" nBytes="903618" chunkPositionInArray="[0,683,2732]"/>
+            <dmrpp:chunk offset="6556367" nBytes="328813" chunkPositionInArray="[0,1366,0]"/>
+            <dmrpp:chunk offset="6885180" nBytes="518881" chunkPositionInArray="[0,1366,1366]"/>
+            <dmrpp:chunk offset="7404061" nBytes="225438" chunkPositionInArray="[0,1366,2732]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int16 name="analysis_error">
+        <Dim name="/time"/>
+        <Dim name="/lat"/>
+        <Dim name="/lon"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>-32768</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>K</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>estimated error standard deviation of analysed_sst</Value>
+        </Attribute>
+        <Attribute name="coverage_content_type" type="String">
+            <Value>qualityInformation</Value>
+        </Attribute>
+        <Attribute name="add_offset" type="Float32">
+            <Value>0.5</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float32">
+            <Value>1.525925472e-05</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-32767</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="shuffle deflate" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>1 683 1366</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="2370838" nBytes="943432" chunkPositionInArray="[0,0,0]"/>
+            <dmrpp:chunk offset="7629499" nBytes="868968" chunkPositionInArray="[0,0,1366]"/>
+            <dmrpp:chunk offset="1525953" nBytes="844885" chunkPositionInArray="[0,0,2732]"/>
+            <dmrpp:chunk offset="8498467" nBytes="1206879" chunkPositionInArray="[0,683,0]"/>
+            <dmrpp:chunk offset="9705346" nBytes="759709" chunkPositionInArray="[0,683,1366]"/>
+            <dmrpp:chunk offset="10465055" nBytes="1149351" chunkPositionInArray="[0,683,2732]"/>
+            <dmrpp:chunk offset="11614406" nBytes="389646" chunkPositionInArray="[0,1366,0]"/>
+            <dmrpp:chunk offset="12004052" nBytes="632522" chunkPositionInArray="[0,1366,1366]"/>
+            <dmrpp:chunk offset="12636574" nBytes="268867" chunkPositionInArray="[0,1366,2732]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int8 name="sea_ice_fraction">
+        <Dim name="/time"/>
+        <Dim name="/lat"/>
+        <Dim name="/lon"/>
+        <Attribute name="_FillValue" type="Int8">
+            <Value>-128</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea_ice_area_fraction</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea ice area fraction</Value>
+        </Attribute>
+        <Attribute name="coverage_content_type" type="String">
+            <Value>auxiliaryInformation</Value>
+        </Attribute>
+        <Attribute name="add_offset" type="Float32">
+            <Value>0.</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float32">
+            <Value>0.009999999776</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int8">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int8">
+            <Value>100</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>EUMETSAT OSI-SAF OSI_430b</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="shuffle deflate" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>1 1024 2048</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="12905441" nBytes="24585" chunkPositionInArray="[0,0,0]"/>
+            <dmrpp:chunk offset="12930026" nBytes="13368" chunkPositionInArray="[0,0,2048]"/>
+            <dmrpp:chunk offset="12943394" nBytes="49660" chunkPositionInArray="[0,1024,0]"/>
+            <dmrpp:chunk offset="12993054" nBytes="48474" chunkPositionInArray="[0,1024,2048]"/>
+        </dmrpp:chunks>
+    </Int8>
+    <Int8 name="mask">
+        <Dim name="/time"/>
+        <Dim name="/lat"/>
+        <Dim name="/lon"/>
+        <Attribute name="_FillValue" type="Int8">
+            <Value>-128</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>land sea ice lake bit mask</Value>
+        </Attribute>
+        <Attribute name="coverage_content_type" type="String">
+            <Value>referenceInformation</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int8">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int8">
+            <Value>127</Value>
+        </Attribute>
+        <Attribute name="flag_masks" type="Int8">
+            <Value>1</Value>
+            <Value>2</Value>
+            <Value>4</Value>
+            <Value>8</Value>
+            <Value>16</Value>
+            <Value>32</Value>
+            <Value>64</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>water land optional_lake_surface sea_ice optional_river_surface IR_data MW_data</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="shuffle deflate" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>1 1024 2048</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="13041528" nBytes="69276" chunkPositionInArray="[0,0,0]"/>
+            <dmrpp:chunk offset="13110804" nBytes="66395" chunkPositionInArray="[0,0,2048]"/>
+            <dmrpp:chunk offset="13177199" nBytes="64398" chunkPositionInArray="[0,1024,0]"/>
+            <dmrpp:chunk offset="13241597" nBytes="55355" chunkPositionInArray="[0,1024,2048]"/>
+        </dmrpp:chunks>
+    </Int8>
+    <Attribute name="Conventions" type="String">
+        <Value>CF-1.8,ACDD-1.3</Value>
+    </Attribute>
+    <Attribute name="title" type="String">
+        <Value>Analysed foundation sea surface temperature over the global ocean</Value>
+    </Attribute>
+    <Attribute name="summary" type="String">
+        <Value>A merged, multi-sensor L4 foundation SST product from Remote Sensing Systems</Value>
+    </Attribute>
+    <Attribute name="references" type="String">
+        <Value>http://www.remss.com/measurements/sea-surface-temperature/oisst-description</Value>
+    </Attribute>
+    <Attribute name="institution" type="String">
+        <Value>REMSS</Value>
+    </Attribute>
+    <Attribute name="history" type="String">
+        <Value>2022-06-22 01:15:37+0000 created by sst_fusion_proc v0.1</Value>
+    </Attribute>
+    <Attribute name="comment" type="String">
+        <Value>This research was supported by the NASA Physical Oceanography Program</Value>
+    </Attribute>
+    <Attribute name="license" type="String">
+        <Value>GHRSST protocol describes data use as free and open</Value>
+    </Attribute>
+    <Attribute name="id" type="String">
+        <Value>MW_IR_OI-REMSS-L4-GLOB-v5.1</Value>
+    </Attribute>
+    <Attribute name="naming_authority" type="String">
+        <Value>org.ghrsst</Value>
+    </Attribute>
+    <Attribute name="product_version" type="String">
+        <Value>v05.1</Value>
+    </Attribute>
+    <Attribute name="uuid" type="String">
+        <Value>d8ef69b3-ef5b-452c-96b1-86c6ffbb2edc</Value>
+    </Attribute>
+    <Attribute name="gds_version_id" type="String">
+        <Value>2.0</Value>
+    </Attribute>
+    <Attribute name="netcdf_version_id" type="String">
+        <Value>4.7.4</Value>
+    </Attribute>
+    <Attribute name="date_created" type="String">
+        <Value>20220622T011537Z</Value>
+    </Attribute>
+    <Attribute name="file_quality_level" type="Int32">
+        <Value>3</Value>
+    </Attribute>
+    <Attribute name="spatial_resolution" type="String">
+        <Value>9 km</Value>
+    </Attribute>
+    <Attribute name="start_time" type="String">
+        <Value>20160213T000000Z</Value>
+    </Attribute>
+    <Attribute name="time_coverage_start" type="String">
+        <Value>20160213T000000Z</Value>
+    </Attribute>
+    <Attribute name="stop_time" type="String">
+        <Value>20160213T235959Z</Value>
+    </Attribute>
+    <Attribute name="time_coverage_end" type="String">
+        <Value>20160213T235959Z</Value>
+    </Attribute>
+    <Attribute name="northernmost_latitude" type="Float32">
+        <Value>90.</Value>
+    </Attribute>
+    <Attribute name="southernmost_latitude" type="Float32">
+        <Value>-90.</Value>
+    </Attribute>
+    <Attribute name="easternmost_longitude" type="Float32">
+        <Value>180.</Value>
+    </Attribute>
+    <Attribute name="westernmost_longitude" type="Float32">
+        <Value>-180.</Value>
+    </Attribute>
+    <Attribute name="source" type="String">
+        <Value>OBPG-L3C-MODIS_Aqua,OBPG-L3C-MODIS_Terra,REMSS-L3C-AMSR2,REMSS-L3C-GMI,REMSS-L3C-WindSat,STAR-L3C-VIIRS_NPP</Value>
+    </Attribute>
+    <Attribute name="platform" type="String">
+        <Value>Aqua,Coriolis,GCOM-W1,GPM,NPP,Terra</Value>
+    </Attribute>
+    <Attribute name="sensor" type="String">
+        <Value>AMSR-2,GMI,MODIS,VIIRS,WindSat</Value>
+    </Attribute>
+    <Attribute name="metadata_link" type="String">
+        <Value>https://cmr.earthdata.nasa.gov/search/concepts/C2205102254-POCLOUD</Value>
+    </Attribute>
+    <Attribute name="keywords" type="String">
+        <Value>Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature</Value>
+    </Attribute>
+    <Attribute name="keywords_vocabulary" type="String">
+        <Value>NASA Global Change Master Directory (GCMD) Science Keywords</Value>
+    </Attribute>
+    <Attribute name="standard_name_vocabulary" type="String">
+        <Value>NetCDF Climate and Forecast (CF) Metadata Convention</Value>
+    </Attribute>
+    <Attribute name="geospatial_lat_units" type="String">
+        <Value>degrees_north</Value>
+    </Attribute>
+    <Attribute name="geospatial_lat_resolution" type="Float32">
+        <Value>0.08789057285</Value>
+    </Attribute>
+    <Attribute name="geospatial_lon_units" type="String">
+        <Value>degrees_east</Value>
+    </Attribute>
+    <Attribute name="geospatial_lon_resolution" type="Float32">
+        <Value>0.0878905952</Value>
+    </Attribute>
+    <Attribute name="acknowledgment" type="String">
+        <Value>http://www.remss.com/measurements/sea-surface-temperature/oisst-description</Value>
+    </Attribute>
+    <Attribute name="creator_name" type="String">
+        <Value>Remote Sensing Systems</Value>
+    </Attribute>
+    <Attribute name="creator_email" type="String">
+        <Value>support@remss.com</Value>
+    </Attribute>
+    <Attribute name="creator_url" type="String">
+        <Value>http://www.remss.com</Value>
+    </Attribute>
+    <Attribute name="project" type="String">
+        <Value>Group for High Resolution Sea Surface Temperature</Value>
+    </Attribute>
+    <Attribute name="publisher_name" type="String">
+        <Value>The GHRSST Project Office</Value>
+    </Attribute>
+    <Attribute name="publisher_email" type="String">
+        <Value>ghrsst-po@nceo.ac.uk</Value>
+    </Attribute>
+    <Attribute name="publisher_url" type="String">
+        <Value>http://www.ghrsst.org</Value>
+    </Attribute>
+    <Attribute name="processing_level" type="String">
+        <Value>L4</Value>
+    </Attribute>
+    <Attribute name="cdm_data_type" type="String">
+        <Value>grid</Value>
+    </Attribute>
+    <Attribute name="build_dmrpp_metadata" type="Container">
+        <Attribute name="build_dmrpp" type="String">
+            <Value>3.20.9-91</Value>
+        </Attribute>
+        <Attribute name="bes" type="String">
+            <Value>3.20.9-91</Value>
+        </Attribute>
+        <Attribute name="libdap" type="String">
+            <Value>libdap-3.20.8-41</Value>
+        </Attribute>
+        <Attribute name="configuration" type="String">
+            <Value>
+# TheBESKeys::get_as_config()
+AllowedHosts=^https?:\/\/
+BES.Catalog.catalog.Exclude=^\..*;
+BES.Catalog.catalog.FollowSymLinks=Yes
+BES.Catalog.catalog.Include=;
+BES.Catalog.catalog.RootDirectory=/tmp/tmp7l6pl4xp/
+BES.Catalog.catalog.TypeMatch=dmrpp:.*\.(dmrpp)$;
+BES.Catalog.catalog.TypeMatch+=h5:.*(\.bz2|\.gz|\.Z)?$;
+BES.Container.Persistence=strict
+BES.Data.RootDirectory=/dev/null
+BES.DefaultResponseMethod=POST
+BES.FollowSymLinks=Yes
+BES.Group=group_name
+BES.Info.Buffered=no
+BES.Info.Type=xml
+BES.LogName=./bes.log
+BES.LogVerbose=no
+BES.Memory.GlobalArea.ControlHeap=no
+BES.Memory.GlobalArea.EmergencyPoolSize=1
+BES.Memory.GlobalArea.MaximumHeapSize=20
+BES.Memory.GlobalArea.Verbose=no
+BES.ProcessManagerMethod=multiple
+BES.ServerAdministrator=admin.email.address@your.domain.name
+BES.Uncompress.NumTries=10
+BES.Uncompress.Retry=2000
+BES.UncompressCache.dir=/tmp/hyrax_ux
+BES.UncompressCache.prefix=ux_
+BES.UncompressCache.size=500
+BES.User=user_name
+BES.module.cmd=/usr/lib64/bes/libdap_xml_module.so
+BES.module.dap=/usr/lib64/bes/libdap_module.so
+BES.module.dmrpp=/usr/lib64/bes/libdmrpp_module.so
+BES.module.fonc=/usr/lib64/bes/libfonc_module.so
+BES.module.h5=/usr/lib64/bes/libhdf5_module.so
+BES.module.nc=/usr/lib64/bes/libnc_module.so
+BES.modules=dap,cmd,h5,dmrpp,nc,fonc
+FONc.ClassicModel=false
+FONc.NoGlobalAttrs=true
+H5.Cache.latlon.path=/tmp/latlon
+H5.Cache.latlon.prefix=l
+H5.Cache.latlon.size=20000
+H5.CheckIgnoreObj=false
+H5.DefaultHandleDimension=true
+H5.DisableStructMetaAttr=true
+H5.DiskCacheComp=true
+H5.DiskCacheCompThreshold=2.0
+H5.DiskCacheCompVarSize=10000
+H5.DiskCacheDataPath=/tmp
+H5.DiskCacheFilePrefix=c
+H5.DiskCacheFloatOnlyComp=true
+H5.DiskCacheSize=10000
+H5.DiskMetaDataCachePath=/tmp
+H5.EnableAddPathAttrs=true
+H5.EnableCF=false
+H5.EnableCFDMR=true
+H5.EnableCheckNameClashing=true
+H5.EnableDiskDDSCache=false
+H5.EnableDiskDataCache=false
+H5.EnableDiskMetaDataCache=false
+H5.EnableDropLongString=true
+H5.EnableEOSGeoCacheFile=false
+H5.EnableFillValueCheck=true
+H5.KeepVarLeadingUnderscore=false
+H5.LargeDataMemCacheEntries=0
+H5.MetaDataMemCacheEntries=300
+H5.SmallDataMemCacheEntries=0
+</Value>
+        </Attribute>
+        <Attribute name="invocation" type="String">
+            <Value>build_dmrpp -c /tmp/conf_l8Tc -f /tmp/tmp7l6pl4xp//20160213120000-REMSS-L4_GHRSST-SSTfnd-MW_IR_OI-GLOB-v02.0-fv05.1.nc -r /tmp/dmr_Qb7p -u OPeNDAP_DMRpp_DATA_ACCESS_URL -M</Value>
+        </Attribute>
+    </Attribute>
+</Dataset>
+

@@ -5,7 +5,7 @@
 
 granules_file=C2152045877-POCLOUD-10.txt
 
-ccid=C2152045877-POCLOUD
+ccid=$1   # C2152045877-POCLOUD
 ask_cmr=../ask_cmr.py
 get_dmrpp=../get_dmrpp.py
 mk_invariant=../mk_invariant_dmrpp.py

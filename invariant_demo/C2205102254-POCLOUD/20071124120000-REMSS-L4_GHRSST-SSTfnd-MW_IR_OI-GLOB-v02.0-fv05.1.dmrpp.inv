@@ -1,0 +1,48 @@
+<?xml version="1.0" ?><Dataset xmlns="http://xml.opendap.org/ns/DAP/4.0#" xmlns:dmrpp="http://xml.opendap.org/dap/dmrpp/1.0.0#">
+    <Dimension name="lat"/>
+    <Dimension name="lon"/>
+    <Dimension name="time"/>
+    <Float32 name="lat">
+        <Dim name="/lat"/>
+        <dmrpp:chunks byteOrder="LE">
+            </dmrpp:chunks>
+    </Float32>
+    <Float32 name="lon">
+        <Dim name="/lon"/>
+        <dmrpp:chunks byteOrder="LE">
+            </dmrpp:chunks>
+    </Float32>
+    <Int32 name="time">
+        <Dim name="/time"/>
+        <dmrpp:chunks byteOrder="LE">
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="analysed_sst">
+        <Dim name="/time"/>
+        <Dim name="/lat"/>
+        <Dim name="/lon"/>
+        <dmrpp:chunks compressionType="shuffle deflate" byteOrder="LE">
+            </dmrpp:chunks>
+    </Int16>
+    <Int16 name="analysis_error">
+        <Dim name="/time"/>
+        <Dim name="/lat"/>
+        <Dim name="/lon"/>
+        <dmrpp:chunks compressionType="shuffle deflate" byteOrder="LE">
+            </dmrpp:chunks>
+    </Int16>
+    <Int8 name="sea_ice_fraction">
+        <Dim name="/time"/>
+        <Dim name="/lat"/>
+        <Dim name="/lon"/>
+        <dmrpp:chunks compressionType="shuffle deflate" byteOrder="LE">
+            </dmrpp:chunks>
+    </Int8>
+    <Int8 name="mask">
+        <Dim name="/time"/>
+        <Dim name="/lat"/>
+        <Dim name="/lon"/>
+        <dmrpp:chunks compressionType="shuffle deflate" byteOrder="LE">
+            </dmrpp:chunks>
+    </Int8>
+    </Dataset>

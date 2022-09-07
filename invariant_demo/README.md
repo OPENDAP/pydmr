@@ -30,9 +30,68 @@ Use `bash get_dmrpp_and_inv.sh` which read from `C2152045877-POCLOUD-10.txt` to 
 names to sample a 17,000 granule collection, getting the DMR++ and building its invariant.
 Use diff to examine them.
 
+`bash get_dmrpp_and_inv.sh C2152045877-POCLOUD < C2152045877-POCLOUD-10.txt`
+
+C2152045877-POCLOUD: This is the SWOT L2 collection used here
+C2205102254-POCLOUD: this is the REMSS GHRSST L4 collection used here
+
 NB: I have moved the old and new DMR++ files along with their invariants to the directory
 'old_and_new_files' and the ten DMR++ and associated invariant files to 'single_ccid_files'
 to reduce clutter here.
+
+Look at which of the DMR++ invariant files are different:
+
+for f in *.inv
+do
+echo "Inv: $f"
+diff -q SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv $f
+done
+
+In the 'new_way' dir (a bad name it's the invariant without the -d option):
+
+(base) jimg@edamame new_way % for f in *.inv
+do
+echo "Inv: $f"
+diff -q SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv $f
+done
+Inv: SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_003_534_20140612T063102_20140612T072230_DG10_01.dmrpp.inv
+Files SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv and SWOT_L2_LR_SSH_Expert_003_534_20140612T063102_20140612T072230_DG10_01.dmrpp.inv differ
+Inv: SWOT_L2_LR_SSH_Expert_006_483_20140812T010206_20140812T015332_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_009_432_20141011T193309_20141011T202435_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_012_381_20141211T140411_20141211T145538_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_015_330_20150210T083515_20150210T092641_DG10_01.dmrpp.inv
+Files SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv and SWOT_L2_LR_SSH_Expert_015_330_20150210T083515_20150210T092641_DG10_01.dmrpp.inv differ
+Inv: SWOT_L2_LR_SSH_Expert_018_279_20150412T030617_20150412T035743_DG10_01.dmrpp.inv
+Files SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv and SWOT_L2_LR_SSH_Expert_018_279_20150412T030617_20150412T035743_DG10_01.dmrpp.inv differ
+Inv: SWOT_L2_LR_SSH_Expert_021_228_20150611T213720_20150611T222847_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_024_177_20150811T160823_20150811T165950_DG10_01.dmrpp.inv
+Files SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv and SWOT_L2_LR_SSH_Expert_024_177_20150811T160823_20150811T165950_DG10_01.dmrpp.inv differ
+Inv: SWOT_L2_LR_SSH_Expert_027_126_20151011T103926_20151011T113052_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_030_075_20151211T051029_20151211T060156_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_031_044_20151230T232034_20151231T001200_DG10_01.dmrpp.inv
+(base) jimg@edamame new_way % 
+
+In the 'new_new' dir (where the -d option is used...)
+
+(base) jimg@edamame new_new % for f in *.inv
+do
+echo "Inv: $f"
+diff -q SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv $f
+done
+Inv: SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_003_534_20140612T063102_20140612T072230_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_006_483_20140812T010206_20140812T015332_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_009_432_20141011T193309_20141011T202435_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_012_381_20141211T140411_20141211T145538_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_015_330_20150210T083515_20150210T092641_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_018_279_20150412T030617_20150412T035743_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_021_228_20150611T213720_20150611T222847_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_024_177_20150811T160823_20150811T165950_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_027_126_20151011T103926_20151011T113052_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_030_075_20151211T051029_20151211T060156_DG10_01.dmrpp.inv
+Inv: SWOT_L2_LR_SSH_Expert_031_044_20151230T232034_20151231T001200_DG10_01.dmrpp.inv
+
 
 -----------------------------
 
