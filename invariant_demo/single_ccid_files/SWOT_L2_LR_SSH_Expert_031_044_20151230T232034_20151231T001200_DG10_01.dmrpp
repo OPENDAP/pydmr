@@ -1,0 +1,3920 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Dataset xmlns="http://xml.opendap.org/ns/DAP/4.0#" xmlns:dmrpp="http://xml.opendap.org/dap/dmrpp/1.0.0#" dapVersion="4.0" dmrVersion="1.0" name="SWOT_L2_LR_SSH_Expert_031_044_20151230T232034_20151231T001200_DG10_01.nc" dmrpp:href="OPeNDAP_DMRpp_DATA_ACCESS_URL">
+    <Dimension name="num_lines" size="9866"/>
+    <Dimension name="num_pixels" size="71"/>
+    <Dimension name="num_sides" size="2"/>
+    <UInt16 name="ssh_karin_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea surface height anomaly uncertainty</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>60000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>1-sigma uncertainty on the sea surface height from the KaRIn measurement.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ssh_karin_uncert</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ssh_karin_uncert</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="2958666" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Byte name="dynamic_ice_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Byte">
+            <Value>255</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>dynamic ice flag</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>EUMETSAT Ocean and Sea Ice Satellite Applications Facility</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>EUMETSAT</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>no_ice probable_ice ice</Value>
+        </Attribute>
+        <Attribute name="flag_values" type="Byte">
+            <Value>0</Value>
+            <Value>1</Value>
+            <Value>2</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Byte">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Byte">
+            <Value>2</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Dynamic ice flag for the location of the KaRIn measurement.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>dynamic_ice_flag</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/dynamic_ice_flag</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="10366502" nBytes="1298" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Byte>
+    <Int16 name="rad_wet_tropo_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>wet troposphere vertical correction from radiometer data</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-10000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Equivalent vertical correction due to wet troposphere delay from radiometer measurements. The reported pixel height, latitude and longitude are computed after adding negative media corrections to uncorrected range along slant-range paths, accounting for the differential delay between the two KaRIn antennas. The equivalent vertical correction is computed by applying obliquity factors to the slant-path correction. Adding the reported correction to the reported sea surface height (ssh_karin) results in the uncorrected sea surface height.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rad_wet_tropo_cor</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rad_wet_tropo_cor</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3528836" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Float32 name="sig0_karin_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Float32">
+            <Value>9.969209968e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>normalized radar cross section (sigma0) from KaRIn</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>surface_backwards_scattering_coefficient_of_radar_wave</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>-1000.000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>10000000.00</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Normalized radar cross section (sigma0) from KaRIn in real, linear units (not decibels).  The value may be negative due to noise subtraction.  The value is corrected for instrument calibration and atmospheric attenuation. A meteorological model provides the atmospheric attenuation (sig0_cor_atmos_model).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sig0_karin_2</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sig0_karin_2</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3033093" nBytes="2743" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Int16 name="iono_cor_gim_ka">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>ionosphere vertical correction</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Global Ionosphere Maps</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>JPL</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-5000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Equivalent vertical correction due to ionosphere delay. The reported sea surface height, latitude and longitude are computed after adding negative media corrections to uncorrected range along slant-range paths, accounting for the differential delay between the two KaRIn antennas. The equivalent vertical correction is computed by applying obliquity factors to the slant-path correction. Adding the reported correction to the reported sea surface height results in the uncorrected sea surface height.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>iono_cor_gim_ka</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/iono_cor_gim_ka</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3536767" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="height_cor_xover">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>height correction from KaRIn crossovers</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-100000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>100000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Height correction from KaRIn crossover calibration. To apply this correction the value of height_cor_xover should be added to the value of ssh_karin, ssh_karin_2, ssha_karin, and ssha_karin_2.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>height_cor_xover</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/height_cor_xover</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3543987" nBytes="2740" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Byte name="correction_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Byte">
+            <Value>255</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>quality flag for corrections</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>good bad</Value>
+        </Attribute>
+        <Attribute name="flag_values" type="Byte">
+            <Value>0</Value>
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Byte">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Byte">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Quality flag for corrections.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>correction_flag</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/correction_flag</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3552145" nBytes="701" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Byte>
+    <Int32 name="simulated_error_roll">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>Error due to roll</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>simulated_error_roll</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/simulated_error_roll</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="5367006" nBytes="362396" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int32 name="phase_bias_ref_surface">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>height of reference surface used for phase bias calculation</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-15000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>150000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Height (relative to the reference ellipsoid) of the reference surface used for phase bias calculation during L1B processing.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>phase_bias_ref_surface</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/phase_bias_ref_surface</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3316894" nBytes="2740" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int32 name="mean_sea_surface_dtu">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>mean sea surface height (DTU)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>DTU18</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>DTU</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-1500000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>1500000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Mean sea surface height above the reference ellipsoid. The value is referenced to the mean tide system, i.e. includes the permanent tide (zero frequency).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>mean_sea_surface_dtu</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/mean_sea_surface_dtu</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3382759" nBytes="2740" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Float32 name="sig0_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Float32">
+            <Value>9.969209968e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>normalized radar cross section (sigma0) from KaRIn</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>surface_backwards_scattering_coefficient_of_radar_wave</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>-1000.000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>10000000.00</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Normalized radar cross section (sigma0) from KaRIn in real, linear units (not decibels).  The value may be negative due to noise subtraction.  The value is corrected for instrument calibration and atmospheric attenuation. Radiometer measurements provide the atmospheric attenuation (sig0_cor_atmos_rad).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sig0_karin</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sig0_karin</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3016906" nBytes="2743" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Int32 name="simulated_error_phase">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>Error due to phase</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>simulated_error_phase</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/simulated_error_phase</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="5734066" nBytes="403431" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="rad_water_vapor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>water vapor content from radiometer</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>atmosphere_water_vapor_content </Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>kg/m^2</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>15000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Integrated water vapor content from radiometer measurements.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rad_water_vapor</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rad_water_vapor</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3351945" nBytes="63" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="simulated_error_timing">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>Timing error</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>simulated_error_timing</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/simulated_error_timing</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="5229867" nBytes="132475" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="swh_karin_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>1-sigma uncertainty on significant wave height from KaRIn</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>25000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>1-sigma uncertainty on significant wave height from KaRIn.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>swh_karin_uncert</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/swh_karin_uncert</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3009642" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <UInt16 name="distance_to_coast">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>distance to coast</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>MODIS/GlobCover</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>European Space Agency</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>1000.0000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>21000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Approximate distance to the nearest coast point along the Earth surface.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>distance_to_coast</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/distance_to_coast</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="6712893" nBytes="142590" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <UInt16 name="mean_dynamic_topography_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>mean dynamic topography accuracy</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>CNES_CLS_18</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>CNES/CLS</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>10000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Accuracy of the mean dynamic topography.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>mean_dynamic_topography_uncert</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/mean_dynamic_topography_uncert</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3413217" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int32 name="sc_altitude">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>altitude of KMSF origin</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>height_above_reference_ellipsoid</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="add_offset" type="Float64">
+            <Value>800000.00000000000</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>2000000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Altitude of the KMSF origin.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sc_altitude</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sc_altitude</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude_nadir latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3157404" nBytes="65" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int32 name="sc_yaw">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>yaw of the spacecraft</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>platform_yaw_angle</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-1799999</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>1800000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>KMSF attitude yaw angle relative to the nadir track. The yaw angle is a right-handed rotation about the nadir (downward) direction. A yaw value of 0 deg indicates that the KMSF +x axis is aligned with the horizontal component of the Earth-relative velocity vector. A yaw value of 180 deg indicates that the spacecraft is in a yaw-flipped state, with the KMSF -x axis aligned with the horizontal component of the Earth-relative velocity vector.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sc_yaw</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sc_yaw</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude_nadir latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3234504" nBytes="65" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="rad_tmb_187">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>radiometer main beam brightness temperature at 18.7 GHz</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>toa_brightness_temperature</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>K</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>13000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>25000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Main beam brightness temperature measurement at 18.7 GHz. Value is unsmoothed (along-track averaging has not been performed).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rad_tmb_187</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rad_tmb_187</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3333820" nBytes="63" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int16 name="pole_tide">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>geocentric pole tide height</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Wahr (1985) and Desai et al. (2015)</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-2000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Geocentric pole tide height.  The total of the contribution from the solid-Earth (body) pole tide height, the ocean pole tide height, and the load pole tide height (i.e., the effect of the ocean pole tide loading of the Earth's crust).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>pole_tide</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/pole_tide</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3491837" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="velocity_heading">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>heading of the spacecraft Earth-relative velocity vector</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>9.9999999999999995e-07</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>359999999</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Angle with respect to true north of the horizontal component of the spacecraft Earth-relative velocity vector. A value of 90 deg indicates that the spacecraft velocity vector pointed due east. Values between 0 and 90 deg indicate that the velocity vector has a northward component, and values between 90 and 180 deg indicate that the velocity vector has a southward component.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>velocity_heading</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/velocity_heading</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude_nadir latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3239531" nBytes="65" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="rad_tmb_238">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>radiometer main beam brightness temperature at 23.8 GHz</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>toa_brightness_temperature</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>K</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>13000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>25000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Main beam brightness temperature measurement at 23.8 GHz. Value is unsmoothed (along-track averaging has not been performed).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rad_tmb_238</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rad_tmb_238</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3339639" nBytes="63" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="ssh_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea surface height</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea surface height above reference ellipsoid</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-15000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>150000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Fully corrected sea surface height measured by KaRIn. The height is relative to the reference ellipsoid defined in the global attributes. This value is computed using radiometer measurements for wet troposphere effects on the KaRIn measurement (e.g., rad_wet_tropo_cor and sea_state_bias_cor).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ssh_karin</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ssh_karin</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="2120420" nBytes="407699" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="model_dry_tropo_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>dry troposphere vertical correction</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>European Centre for Medium-Range Weather Forecasts</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>ECMWF</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-30000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>-15000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Equivalent vertical correction due to dry troposphere delay. The reported sea surface height, latitude and longitude are computed after adding negative media corrections to uncorrected range along slant-range paths, accounting for the differential delay between the two KaRIn antennas. The equivalent vertical correction is computed by applying obliquity factors to the slant-path correction. Adding the reported correction to the reported sea surface height results in the uncorrected sea surface height.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>model_dry_tropo_cor</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/model_dry_tropo_cor</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3513243" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <UInt16 name="wind_speed_rad">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>wind speed from radiometer</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>wind_speed</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m/s</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>65000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Wind speed from radiometer measurements.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>wind_speed_rad</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/wind_speed_rad</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3112352" nBytes="60" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="orbit_alt_rate">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>orbital altitude rate with respect to mean sea surface</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m/s</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-3500</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>3500</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Orbital altitude rate with respect to the mean sea surface.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>orbit_alt_rate</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/orbit_alt_rate</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude_nadir latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3213330" nBytes="43" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int16 name="ocean_tide_non_eq">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>non-equilibrium long-period ocean tide height</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>FES2014b (Carrere et al., 2016)</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>LEGOS/CNES</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-2000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Non-equilibrium long-period ocean tide height. This value is reported as a relative displacement with repsect to ocean_tide_eq. This value can be added to ocean_tide_eq, ocean_tide_fes, or ocean_tide_got, or subtracted from ssha_karin and ssha_karin_2, to account for the total long-period ocean tides from equilibrium and non-equilibrium contributions.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ocean_tide_non_eq</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ocean_tide_non_eq</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3471675" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <UInt16 name="wind_speed_karin_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>wind speed from KaRIn </Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>wind_speed</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>TBD</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m/s</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>65000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Wind speed from KaRIn computed from sig0_karin_2.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>wind_speed_karin_2</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/wind_speed_karin_2</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3048086" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Float64 name="time">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Float64">
+            <Value>9.9692099683868690e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>time in UTC</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>time</Value>
+        </Attribute>
+        <Attribute name="calendar" type="String">
+            <Value>gregorian</Value>
+        </Attribute>
+        <Attribute name="leap_second" type="String">
+            <Value>YYYY-MM-DDThh:mm:ssZ</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>seconds since 2000-01-01 00:00:00.0</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Time of measurement in seconds in the UTC time scale since 1 Jan 2000 00:00:00 UTC. [tai_utc_difference] is the difference between TAI and UTC reference time (seconds) for the first measurement of the data set. If a leap second occurs within the data set, the attribute leap_second is set to the UTC time at which the leap second occurs.</Value>
+        </Attribute>
+        <Attribute name="tai_utc_difference" type="Float64">
+            <Value>36.000000000000000</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>time</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/time</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="18057" nBytes="25484" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Float64>
+    <UInt16 name="heading_to_coast">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>heading to coast</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>35999</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Approximate compass heading (0-360 degrees with respect to true north) to the nearest coast point.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>heading_to_coast</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/heading_to_coast</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3125450" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="depth_or_elevation">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>ocean depth or land elevation</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Altimeter Corrected Elevations, version 2</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>European Space Agency</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>1.0000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-12000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>10000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Ocean depth or land elevation above reference ellipsoid. Ocean depth (bathymetry) is given as negative values, and land elevation positive values.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>depth_or_elevation</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/depth_or_elevation</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="6855483" nBytes="712261" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Float32 name="sig0_cor_atmos_rad">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Float32">
+            <Value>9.969209968e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>two-way atmospheric correction to sigma0 from radiometer data</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>1.000000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>10.00000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Atmospheric correction to sigma0 from radiometer data as a linear power multiplier (not decibels). sig0_cor_atmos_rad is already applied in computing sig0_karin.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sig0_cor_atmos_rad</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sig0_cor_atmos_rad</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3302770" nBytes="2743" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Int32 name="longitude">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>longitude (degrees East)</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>longitude</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees_east</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>9.9999999999999995e-07</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>359999999</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Longitude of measurement. East longitude relative to Greenwich meridian.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>longitude</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/longitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="1037008" nBytes="1076506" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Byte name="rain_rate">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Byte">
+            <Value>255</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>rain rate from weather model</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>European Centre for Medium-Range Weather Forecasts</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>ECMWF</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>mm/hr</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>1.0000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Byte">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Byte">
+            <Value>200</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Rain rate from weather model.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rain_rate</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rain_rate</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3558204" nBytes="701" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Byte>
+    <Int32 name="latitude">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>latitude (positive N, negative S)</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>latitude</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees_north</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>9.9999999999999995e-07</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-80000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>80000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Latitude of measurement [-80,80]. Positive latitude is North latitude, negative latitude is South latitude.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>latitude</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="53650" nBytes="977638" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Byte name="orbit_qual">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Byte">
+            <Value>255</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>orbit quality flag </Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Byte">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Byte">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Orbit quality flag.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>orbit_qual</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/orbit_qual</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude_nadir latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3243778" nBytes="32" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Byte>
+    <Int32 name="ssha_karin_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea surface height anomaly</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-1000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>1000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Sea surface height anomaly from the KaRIn measurement = ssh_karin_2 - mean_sea_surface_cnescls - solid_earth_tide - ocean_tide_fes &#8211; internal_tide_hret - pole_tide - dac.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ssha_karin_2</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ssha_karin_2</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="8020921" nBytes="408259" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int32 name="simulated_error_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>KaRIn error</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>simulated_error_karin</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/simulated_error_karin</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="4097896" nBytes="941214" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="solid_earth_tide">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>solid Earth tide height</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Cartwright and Taylor (1971) and Cartwright and Edden (1973)</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-10000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>10000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Solid-Earth (body) tide height. The zero-frequency permanent tide component is not included.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>solid_earth_tide</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/solid_earth_tide</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3426671" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Byte name="ancillary_surface_classification_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Byte">
+            <Value>255</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>surface classification</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>MODIS/GlobCover</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>European Space Agency</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>open_ocean land continental_water aquatic_vegetation continental_ice_snow floating_ice salted_basin</Value>
+        </Attribute>
+        <Attribute name="flag_values" type="Byte">
+            <Value>0</Value>
+            <Value>1</Value>
+            <Value>2</Value>
+            <Value>3</Value>
+            <Value>4</Value>
+            <Value>5</Value>
+            <Value>6</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Byte">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Byte">
+            <Value>6</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>7-state surface type classification computed from a mask built with MODIS and GlobCover data.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ancillary_surface_classification_flag</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ancillary_surface_classification_flag</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="7593267" nBytes="19955" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Byte>
+    <Int16 name="load_tide_got">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>geocentric load tide height (GOT)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>GOT4.10c (Ray, 2013)</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>GSFC</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-2000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Geocentric load tide height. The effect of the ocean tide loading of the Earth's crust. This value has already been added to the corresponding ocean tide height value (ocean_tide_got).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>load_tide_got</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/load_tide_got</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3457003" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="simulated_error_orbital">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>Error due to orbital perturbations</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>simulated_error_orbital</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/simulated_error_orbital</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="6140113" nBytes="572780" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="dac">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>dynamic atmospheric correction</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>MOG2D</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>LEGOS/CNES/CLS</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-12000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>12000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Model estimate of the effect on sea surface topography due to high frequency air pressure and wind effects and the low-frequency height from inverted barometer effect (inv_bar_cor). This value is subtracted from the ssh_karin and ssh_karin_2 to compute ssha_karin and ssha_karin_2, respectively. Use only one of inv_bar_cor and dac.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>dac</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/dac</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3498601" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <String name="polarization_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="String">
+            <Value>*</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>polarization for each side of the KaRIn swath</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>H denotes co-polarized linear horizontal, V denotes co-polarized linear vertical.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>polarization_karin</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/polarization_karin</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="2997324" nBytes="43" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </String>
+    <Float64 name="time_tai">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Float64">
+            <Value>9.9692099683868690e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>time in TAI</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>time</Value>
+        </Attribute>
+        <Attribute name="calendar" type="String">
+            <Value>gregorian</Value>
+        </Attribute>
+        <Attribute name="tai_utc_difference" type="String">
+            <Value>[Value of TAI-UTC at time of first record]</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>seconds since 2000-01-01 00:00:00.0</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Time of measurement in seconds in the TAI time scale since 1 Jan 2000 00:00:00 TAI. This time scale contains no leap seconds. The difference (in seconds) with time in UTC is given by the attribute [time:tai_utc_difference].</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>time_tai</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/time_tai</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="7567744" nBytes="25486" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Float64>
+    <Int32 name="longitude_avg_ssh">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>weighted average longitude of samples used to compute SSH</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>longitude</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees_east</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>9.9999999999999995e-07</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>359999999</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Longitude of measurement. East longitude relative to Greenwich meridian.  This value may be biased away from a nominal grid location if some of the native, unsmoothed samples were discarded during processing.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>longitude_avg_ssh</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/longitude_avg_ssh</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3258050" nBytes="2740" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="ice_conc">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>concentration of sea ice</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea_ice_area_fraction</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>EUMETSAT Ocean and Sea Ice Satellite Applications Facility</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>EUMETSAT</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>%</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>10000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Concentration of sea ice from model.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ice_conc</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ice_conc</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="10367800" nBytes="29372" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int16 name="wind_speed_model_v">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>v component of model wind</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>northward_wind</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>European Centre for Medium-Range Weather Forecasts</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>ECMWF</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m/s</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-30000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>30000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Northward component of the atmospheric model wind vector at 10 meters.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>wind_speed_model_v</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/wind_speed_model_v</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3105329" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <UInt16 name="wind_speed_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>wind speed from KaRIn </Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>wind_speed</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>TBD</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m/s</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>65000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Wind speed from KaRIn computed from sig0_karin.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>wind_speed_karin</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/wind_speed_karin</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3041222" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int32 name="ssh_karin_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea surface height</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea surface height above reference ellipsoid</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-15000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>150000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Fully corrected sea surface height measured by KaRIn. The height is relative to the reference ellipsoid defined in the global attributes. This value is computed using model-based estimates for wet troposphere effects on the KaRIn measurement (e.g., model_wet_tropo_cor and sea_state_bias_cor_2).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ssh_karin_2</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ssh_karin_2</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="7613222" nBytes="407699" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int32 name="latitude_nadir">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>latitude of satellite nadir point</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>latitude</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees_north</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>9.9999999999999995e-07</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-80000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>80000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Geodetic latitude [-80,80] (degrees north of equator) of the satellite nadir point.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>latitude_nadir</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3162465" nBytes="18743" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="doppler_centroid">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>doppler centroid estimated by KaRIn</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>1/s</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>1.0000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-30000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>30000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Doppler centroid (in hertz or cycles per second) estimated by KaRIn.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>doppler_centroid</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/doppler_centroid</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3311123" nBytes="63" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="simulated_true_ssh_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea surface height</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea surface height above reference ellipsoid</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-15000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>150000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Height of the sea surface free of measurement errors.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>simulated_true_ssh_karin</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/simulated_true_ssh_karin</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3591131" nBytes="502101" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="mean_wave_direction">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>mean sea surface wave direction</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Meteo France Wave Model (MF-WAM)</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>Meteo France</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degree</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>36000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Mean sea surface wave direction.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>mean_wave_direction</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/mean_wave_direction</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3084723" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="ocean_tide_eq">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>equilibrium long-period ocean tide height</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-2000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Equilibrium long-period ocean tide height. This value has already been added to the corresponding ocean tide height values (ocean_tide_fes and ocean_tide_got).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ocean_tide_eq</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ocean_tide_eq</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3463819" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int16 name="rad_tmb_340">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>radiometer main beam brightness temperature at 34.0 GHz</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>toa_brightness_temperature</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>K</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>15000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>28000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Main beam brightness temperature measurement at 34.0 GHz. Value is unsmoothed (along-track averaging has not been performed).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rad_tmb_340</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rad_tmb_340</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3345474" nBytes="63" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int16 name="model_wet_tropo_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>wet troposphere vertical correction from weather model data</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>European Centre for Medium-Range Weather Forecasts</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>ECMWF</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-10000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Equivalent vertical correction due to wet troposphere delay from weather model data. The reported pixel height, latitude and longitude are computed after adding negative media corrections to uncorrected range along slant-range paths, accounting for the differential delay between the two KaRIn antennas. The equivalent vertical correction is computed by applying obliquity factors to the slant-path correction. Adding the reported correction to the reported sea surface height (ssh_karin_2) results in the uncorrected sea surface height.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>model_wet_tropo_cor</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/model_wet_tropo_cor</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3520927" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="simulated_error_baseline_dilation">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>Error due to baseline mast dilation</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>simulated_error_baseline_dilation</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/simulated_error_baseline_dilation</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="5043774" nBytes="181429" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="swh_sea_state_bias">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>SWH used in sea state bias correction</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>25000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Significant wave height used in sea state bias correction.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>swh_sea_state_bias</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/swh_sea_state_bias</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3585085" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Byte name="rad_surface_type_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="Byte">
+            <Value>255</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>radiometer surface type flag</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>open_ocean coastal_ocean land</Value>
+        </Attribute>
+        <Attribute name="flag_values" type="Byte">
+            <Value>0</Value>
+            <Value>1</Value>
+            <Value>2</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Byte">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Byte">
+            <Value>2</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Flag indicating the validity and type of processing applied to generate the wet troposphere correction (rad_wet_tropo_cor). A value of 0 indicates that open ocean processing is used, a value of 1 indicates coastal processing, and a value of 2 indicates that rad_wet_tropo_cor is invalid due to land contamination.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rad_surface_type_flag</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rad_surface_type_flag</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3152231" nBytes="42" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Byte>
+    <Int32 name="ssha_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea surface height anomaly</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-1000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>1000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Sea surface height anomaly from the KaRIn measurement = ssh_karin - mean_sea_surface_cnescls - solid_earth_tide - ocean_tide_fes &#8211; internal_tide_hret - pole_tide - dac.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ssha_karin</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ssha_karin</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="2528119" nBytes="408259" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Float32 name="x_factor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Float32">
+            <Value>9.969209968e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>radiometric calibration X factor as a composite value for the X factors of the +y and -y channels</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>0.000000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>1.000000020e+20</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Radiometric calibration X factor as a linear power ratio.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>x_factor</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/x_factor</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3285884" nBytes="2743" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Int32 name="cross_track_angle">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>cross-track angle from true north</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>9.9999999999999995e-07</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>359999999</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Angle with respect to true north of the cross-track direction to the right of the spacecraft velocity vector.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>cross_track_angle</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/cross_track_angle</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude_nadir latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3218391" nBytes="65" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="swh_model">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>significant wave height from wave model</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea_surface_wave_significant_height</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>European Centre for Medium-Range Weather Forecasts</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>ECMWF</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>30000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Significant wave height from model.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>swh_model</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/swh_model</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3078045" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="inv_bar_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>static inverse barometer effect on sea surface height</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-2000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Estimate of static effect of atmospheric pressure on sea surface height. Above average pressure lowers sea surface height. Computed by interpolating ECMWF pressure fields in space and time. The value is included in dac. To apply, add dac to ssha_karin and ssha_karin_2 and subtract inv_bar_cor.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>inv_bar_cor</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/inv_bar_cor</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3505324" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="geoid">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>geoid height</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>geoid_height_above_reference_ellipsoid</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>EGM2008 (Pavlis et al., 2012)</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-1500000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>1500000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Geoid height above the reference ellipsoid with a correction to refer the value to the mean tide system, i.e. includes the permanent tide (zero frequency).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>geoid</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/geoid</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="9255541" nBytes="976268" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <UInt32 name="ssha_karin_qual">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt32">
+            <Value>4294967295</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea surface height quality flag</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>good bad</Value>
+        </Attribute>
+        <Attribute name="flag_values" type="UInt32">
+            <Value>0</Value>
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt32">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Quality flag for the SSHA from KaRIn.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ssha_karin_qual</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ssha_karin_qual</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="8429180" nBytes="17029" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt32>
+    <Int32 name="ocean_tide_fes">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>geocentric ocean tide height (FES)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>FES2014b (Carrere et al., 2016)</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>LEGOS/CNES</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-300000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>300000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Geocentric ocean tide height. Includes the sum total of the ocean tide, the corresponding load tide (load_tide_fes) and equilibrium long-period ocean tide height (ocean_tide_eq).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ocean_tide_fes</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ocean_tide_fes</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3433423" nBytes="2740" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="mean_dynamic_topography">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>mean dynamic topography</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>CNES_CLS_18</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>CNES/CLS</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-30000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>30000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Mean dynamic topography above the geoid.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>mean_dynamic_topography</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/mean_dynamic_topography</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3406001" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Float32 name="sig0_cor_atmos_model">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Float32">
+            <Value>9.969209968e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>two-way atmospheric correction to sigma0 from model</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>European Centre for Medium-Range Weather Forecasts</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>ECMWF</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>1.000000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>10.00000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Atmospheric correction to sigma0 from weather model data as a linear power multiplier (not decibels). sig0_cor_atmos_model is already applied in computing sig0_karin_2.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sig0_cor_atmos_model</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sig0_cor_atmos_model</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3294287" nBytes="2743" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Float32 name="cross_track_distance">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Float32">
+            <Value>9.969209968e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>cross track distance</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>-75000.00000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>75000.00000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Distance of sample from nadir. Negative values indicate the left side of the swath, and positive values indicate the right side of the swath.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>cross_track_distance</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/cross_track_distance</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3266690" nBytes="13632" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Int32 name="obp_ref_surface">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>height of reference surface used by on-board-processor</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-15000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>150000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Height (relative to the reference ellipsoid) of the reference surface used by the KaRIn on-board processor.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>obp_ref_surface</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/obp_ref_surface</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3325276" nBytes="2740" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="internal_tide_hret">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>coherent internal tide (HRET)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Zaron (2019)</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-2000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Coherent internal ocean tide. This value is subtracted from the ssh_karin and ssh_karin_2 to compute ssha_karin and ssha_karin_2, respectively.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>internal_tide_hret</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/internal_tide_hret</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="10231809" nBytes="66859" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="ocean_tide_got">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>geocentric ocean tide height (GOT)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>GOT4.10c (Ray, 2013)</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>GSFC</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-300000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>300000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Geocentric ocean tide height. Includes the sum total of the ocean tide, the corresponding load tide (load_tide_got) and equilibrium long-period ocean tide height (ocean_tide_eq).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>ocean_tide_got</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/ocean_tide_got</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3442061" nBytes="2740" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int16 name="sea_state_bias_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea state bias correction to height</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>TBD</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-6000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Sea state bias correction to ssh_karin. Adding the reported correction to the reported sea surface height results in the uncorrected sea surface height. The wind_speed_karin value is used to compute this quantity.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sea_state_bias_cor</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sea_state_bias_cor</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3571051" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Float32 name="sig0_karin_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Float32">
+            <Value>9.969209968e+36</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>1-sigma uncertainty on sigma0 from KaRIn</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Float32">
+            <Value>0.000000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Float32">
+            <Value>1000.000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>1-sigma uncertainty on sigma0 from KaRIn.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sig0_karin_uncert</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sig0_karin_uncert</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3025056" nBytes="2743" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Float32>
+    <Int32 name="sc_pitch">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>pitch of the spacecraft</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>platform_pitch_angle</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-1799999</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>1800000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>KMSF attitude pitch angle; positive values move the KMSF +x axis up.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sc_pitch</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sc_pitch</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude_nadir latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3228821" nBytes="65" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <UInt32 name="sig0_karin_qual">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt32">
+            <Value>4294967295</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>quality flag for sigma0 from KaRIn.</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>good bad</Value>
+        </Attribute>
+        <Attribute name="flag_values" type="UInt32">
+            <Value>0</Value>
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt32">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Quality flag for sigma0 from KaRIn.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sig0_karin_qual</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sig0_karin_qual</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3063079" nBytes="2738" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt32>
+    <Int16 name="load_tide_fes">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>geocentric load tide height (FES)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>FES2014b (Carrere et al., 2016)</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>LEGOS/CNES</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-2000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Geocentric load tide height. The effect of the ocean tide loading of the Earth's crust. This value has already been added to the corresponding ocean tide height value (ocean_tide_fes).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>load_tide_fes</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/load_tide_fes</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3450203" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Byte name="rain_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Byte">
+            <Value>255</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>rain flag</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>no_rain probable_rain rain</Value>
+        </Attribute>
+        <Attribute name="flag_values" type="Byte">
+            <Value>0</Value>
+            <Value>1</Value>
+            <Value>2</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Byte">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Byte">
+            <Value>2</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Flag indicates that signal is attenuated, probably from rain.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rain_flag</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rain_flag</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3145870" nBytes="701" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Byte>
+    <UInt16 name="mean_sea_surface_dtu_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>mean sea surface height accuracy (DTU)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>DTU18</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>DTU</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>10000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Accuracy of the mean sea surface height (mean_sea_surface_dtu)</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>mean_sea_surface_dtu_uncert</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/mean_sea_surface_dtu_uncert</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3390773" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int32 name="longitude_nadir">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>longitude of satellite nadir point</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>longitude</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees_east</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>9.9999999999999995e-07</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>359999999</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Longitude (degrees east of Grenwich meridian) of the satellite nadir point.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>longitude_nadir</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/longitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3186302" nBytes="21823" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <Int32 name="mean_sea_surface_cnescls">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>mean sea surface height (CNES/CLS)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>CNES_CLS_15</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>CNES/CLS</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-1500000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>1500000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Mean sea surface height above the reference ellipsoid. The value is referenced to the mean tide system, i.e. includes the permanent tide (zero frequency).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>mean_sea_surface_cnescls</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/mean_sea_surface_cnescls</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="8446209" nBytes="488991" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="mean_wave_period_t02">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea surface wind wave mean period</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea_surface_wave_significant_period</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Meteo France Wave Model (MF-WAM)</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>Meteo France</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>s</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>100</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Sea surface wind wave mean period from model spectral density second moment.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>mean_wave_period_t02</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/mean_wave_period_t02</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3091637" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <UInt16 name="num_pt_avg">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>number of samples averaged</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>289</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Number of native unsmoothed, beam-combined KaRIn samples averaged.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>num_pt_avg</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/num_pt_avg</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3071383" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="wind_speed_model_u">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>u component of model wind</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>eastward_wind</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>European Centre for Medium-Range Weather Forecasts</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>ECMWF</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m/s</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-30000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>30000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Eastward component of the atmospheric model wind vector at 10 meters.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>wind_speed_model_u</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/wind_speed_model_u</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3098493" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int16 name="rad_cloud_liquid_water">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>liquid water content from radiometer</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>atmosphere_cloud_liquid_water_content  </Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Advanced Microwave Radiometer</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>kg/m^2</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Integrated cloud liquid water content from radiometer measurements.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>rad_cloud_liquid_water</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/rad_cloud_liquid_water</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3357730" nBytes="63" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="latitude_avg_ssh">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>weighted average latitude of samples used to compute SSH</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>latitude</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees_north</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>9.9999999999999995e-07</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-80000000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>80000000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Latitude of measurement [-80,80]. Positive latitude is North latitude, negative latitude is South latitude.  This value may be biased away from a nominal grid location if some of the native, unsmoothed samples were discarded during processing.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>latitude_avg_ssh</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/latitude_avg_ssh</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3249552" nBytes="2740" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="swh_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>significant wave height from KaRIn</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>sea_surface_wave_significant_height</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.0010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>25000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Significant wave height from KaRIn volumetric correlation.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>swh_karin</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/swh_karin</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3002787" nBytes="1380" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <UInt32 name="swh_karin_qual">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt32">
+            <Value>4294967295</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>quality flag for significant wave height from KaRIn.</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>status_flag</Value>
+        </Attribute>
+        <Attribute name="flag_meanings" type="String">
+            <Value>good bad</Value>
+        </Attribute>
+        <Attribute name="flag_values" type="UInt32">
+            <Value>0</Value>
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt32">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt32">
+            <Value>1</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Quality flag for significant wave height from KaRIn.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>swh_karin_qual</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/swh_karin_qual</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3054846" nBytes="2738" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt32>
+    <Int16 name="sea_state_bias_cor_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>sea state bias correction to height</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>TBD</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-6000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Sea state bias correction to ssh_karin_2. Adding the reported correction to the reported sea surface height results in the uncorrected sea surface height. The wind_speed_karin_2 value is used to compute this quantity.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sea_state_bias_cor_2</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sea_state_bias_cor_2</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3577839" nBytes="1382" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Int32 name="sc_roll">
+        <Dim name="/num_lines"/>
+        <Attribute name="_FillValue" type="Int32">
+            <Value>2147483647</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>roll of the spacecraft</Value>
+        </Attribute>
+        <Attribute name="standard_name" type="String">
+            <Value>platform_roll_angle</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>degrees</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int32">
+            <Value>-1799999</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int32">
+            <Value>1800000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>KMSF attitude roll angle; positive values move the +y antenna down.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>sc_roll</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/sc_roll</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude_nadir latitude_nadir</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="3223598" nBytes="65" chunkPositionInArray="[0]"/>
+        </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="mean_sea_surface_cnescls_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="UInt16">
+            <Value>65535</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>mean sea surface height accuracy (CNES/CLS)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>CNES_CLS_15</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>CNES/CLS</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="UInt16">
+            <Value>0</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="UInt16">
+            <Value>10000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Accuracy of the mean sea surface height (mean_sea_surface_cnescls).</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>mean_sea_surface_cnescls_uncert</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/mean_sea_surface_cnescls_uncert</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="8935200" nBytes="320341" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="internal_tide_sol2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <Attribute name="_FillValue" type="Int16">
+            <Value>32767</Value>
+        </Attribute>
+        <Attribute name="long_name" type="String">
+            <Value>coherent internal tide (Model 2)</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>TBD</Value>
+        </Attribute>
+        <Attribute name="units" type="String">
+            <Value>m</Value>
+        </Attribute>
+        <Attribute name="scale_factor" type="Float64">
+            <Value>0.00010000000000000000</Value>
+        </Attribute>
+        <Attribute name="valid_min" type="Int16">
+            <Value>-2000</Value>
+        </Attribute>
+        <Attribute name="valid_max" type="Int16">
+            <Value>2000</Value>
+        </Attribute>
+        <Attribute name="comment" type="String">
+            <Value>Coherent internal tide.</Value>
+        </Attribute>
+        <Attribute name="origname" type="String">
+            <Value>internal_tide_sol2</Value>
+        </Attribute>
+        <Attribute name="fullnamepath" type="String">
+            <Value>/internal_tide_sol2</Value>
+        </Attribute>
+        <Attribute name="coordinates" type="String">
+            <Value>longitude latitude</Value>
+        </Attribute>
+        <dmrpp:chunks compressionType="deflate shuffle" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            <dmrpp:chunk offset="10298668" nBytes="67834" chunkPositionInArray="[0,0]"/>
+        </dmrpp:chunks>
+    </Int16>
+    <Float32 name="num_lines">
+        <Dim name="/num_lines"/>
+    </Float32>
+    <Float32 name="num_pixels">
+        <Dim name="/num_pixels"/>
+    </Float32>
+    <Float32 name="num_sides">
+        <Dim name="/num_sides"/>
+    </Float32>
+    <Attribute name="HDF5_GLOBAL" type="Container">
+        <Attribute name="Conventions" type="String">
+            <Value>CF-1.7</Value>
+        </Attribute>
+        <Attribute name="title" type="String">
+            <Value>Level 2 Low Rate Sea Surface Height Data Product - Expert SSH with Wind and Wave</Value>
+        </Attribute>
+        <Attribute name="institution" type="String">
+            <Value>CNES/JPL</Value>
+        </Attribute>
+        <Attribute name="source" type="String">
+            <Value>Simulate product</Value>
+        </Attribute>
+        <Attribute name="history" type="String">
+            <Value>2021-09-10 10:20:33Z : Creation</Value>
+        </Attribute>
+        <Attribute name="platform" type="String">
+            <Value>SWOT</Value>
+        </Attribute>
+        <Attribute name="product_version" type="String">
+            <Value>1.1.0.dev33</Value>
+        </Attribute>
+        <Attribute name="references" type="String">
+            <Value>Gaultier, L., C. Ubelmann, and L.-L. Fu, 2016: The Challenge of Using Future SWOT Data for Oceanic Field Reconstruction. J. Atmos. Oceanic Technol., 33, 119-126, doi:10.1175/jtech-d-15-0160.1. http://dx.doi.org/10.1175/JTECH-D-15-0160.1.</Value>
+        </Attribute>
+        <Attribute name="reference_document" type="String">
+            <Value>D-56407_SWOT_Product_Description_L2_LR_SSH</Value>
+        </Attribute>
+        <Attribute name="contact" type="String">
+            <Value>CNES aviso@altimetry.fr, JPL podaac@podaac.jpl.nasa.gov</Value>
+        </Attribute>
+        <Attribute name="cycle_number" type="Int16">
+            <Value>31</Value>
+        </Attribute>
+        <Attribute name="pass_number" type="Int16">
+            <Value>44</Value>
+        </Attribute>
+        <Attribute name="equator_time" type="String">
+            <Value>2015-12-30T23:46:15.831148Z</Value>
+        </Attribute>
+        <Attribute name="equator_longitude" type="Float64">
+            <Value>31.626986372332908</Value>
+        </Attribute>
+        <Attribute name="time_coverage_start" type="String">
+            <Value>2015-12-30T23:20:34.524998Z</Value>
+        </Attribute>
+        <Attribute name="time_coverage_end" type="String">
+            <Value>2015-12-31T00:12:00.949880Z</Value>
+        </Attribute>
+        <Attribute name="geospatial_lon_min" type="Float64">
+            <Value>0.00025688500987744591</Value>
+        </Attribute>
+        <Attribute name="geospatial_lon_max" type="Float64">
+            <Value>359.99963913549169</Value>
+        </Attribute>
+        <Attribute name="geospatial_lat_min" type="Float64">
+            <Value>-78.292242564106317</Value>
+        </Attribute>
+        <Attribute name="geospatial_lat_max" type="Float64">
+            <Value>78.292026404982323</Value>
+        </Attribute>
+        <Attribute name="left_first_longitude" type="Float64">
+            <Value>308.10695755583447</Value>
+        </Attribute>
+        <Attribute name="left_first_latitude" type="Float64">
+            <Value>78.292026404982323</Value>
+        </Attribute>
+        <Attribute name="left_last_longitude" type="Float64">
+            <Value>115.05282031628334</Value>
+        </Attribute>
+        <Attribute name="left_last_latitude" type="Float64">
+            <Value>-77.033192468904403</Value>
+        </Attribute>
+        <Attribute name="right_first_longitude" type="Float64">
+            <Value>308.09708787958317</Value>
+        </Attribute>
+        <Attribute name="right_first_latitude" type="Float64">
+            <Value>77.032977980324802</Value>
+        </Attribute>
+        <Attribute name="right_last_longitude" type="Float64">
+            <Value>115.05506411308676</Value>
+        </Attribute>
+        <Attribute name="right_last_latitude" type="Float64">
+            <Value>-78.292242564106317</Value>
+        </Attribute>
+        <Attribute name="wavelength" type="Float64">
+            <Value>0.0083858030209790005</Value>
+        </Attribute>
+        <Attribute name="orbit_solution" type="String">
+            <Value>POE</Value>
+        </Attribute>
+        <Attribute name="ellipsoid_semi_major_axis" type="Float64">
+            <Value>6378137.0000000000</Value>
+        </Attribute>
+        <Attribute name="ellipsoid_flattening" type="Float64">
+            <Value>0.0033528106647812048</Value>
+        </Attribute>
+    </Attribute>
+</Dataset>
+

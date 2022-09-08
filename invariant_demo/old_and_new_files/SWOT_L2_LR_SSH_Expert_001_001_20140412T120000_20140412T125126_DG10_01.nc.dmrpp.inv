@@ -1,0 +1,659 @@
+<?xml version="1.0" ?><Dataset xmlns="http://xml.opendap.org/ns/DAP/4.0#" xmlns:dmrpp="http://xml.opendap.org/dap/dmrpp/1.0.0#">
+    <Dimension name="num_lines" size="9866"/>
+    <Dimension name="num_pixels" size="71"/>
+    <Dimension name="num_sides" size="2"/>
+    <UInt16 name="ssh_karin_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Byte name="dynamic_ice_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="255" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Byte>
+    <Int16 name="rad_wet_tropo_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Float32 name="sig0_karin_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float32>
+    <Int16 name="iono_cor_gim_ka">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="height_cor_xover">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Byte name="correction_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="255" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Byte>
+    <Int32 name="simulated_error_roll">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int32 name="phase_bias_ref_surface">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int32 name="mean_sea_surface_dtu">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Float32 name="sig0_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float32>
+    <Int32 name="simulated_error_phase">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="rad_water_vapor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="simulated_error_timing">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="swh_karin_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <UInt16 name="distance_to_coast">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <UInt16 name="mean_dynamic_topography_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int32 name="sc_altitude">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int32 name="sc_yaw">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="rad_tmb_187">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int16 name="pole_tide">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="velocity_heading">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="rad_tmb_238">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="ssh_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="model_dry_tropo_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <UInt16 name="wind_speed_rad">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="orbit_alt_rate">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int16 name="ocean_tide_non_eq">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <UInt16 name="wind_speed_karin_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Float64 name="time">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float64>
+    <UInt16 name="heading_to_coast">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="depth_or_elevation">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Float32 name="sig0_cor_atmos_rad">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float32>
+    <Int32 name="longitude">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Byte name="rain_rate">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="255" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Byte>
+    <Int32 name="latitude">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Byte name="orbit_qual">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="255" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Byte>
+    <Int32 name="ssha_karin_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int32 name="simulated_error_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="solid_earth_tide">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Byte name="ancillary_surface_classification_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="255" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Byte>
+    <Int16 name="load_tide_got">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="simulated_error_orbital">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="dac">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <String name="polarization_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="unsupported-string">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+        <dmrpp:FixedLengthStringArray string_length="1" pad="null_term"/>
+    </String>
+    <Float64 name="time_tai">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float64>
+    <Int32 name="longitude_avg_ssh">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="ice_conc">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int16 name="wind_speed_model_v">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <UInt16 name="wind_speed_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int32 name="ssh_karin_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int32 name="latitude_nadir">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="doppler_centroid">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="simulated_true_ssh_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="mean_wave_direction">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="ocean_tide_eq">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int16 name="rad_tmb_340">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int16 name="model_wet_tropo_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="simulated_error_baseline_dilation">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="swh_sea_state_bias">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Byte name="rad_surface_type_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="255" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Byte>
+    <Int32 name="ssha_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Float32 name="x_factor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float32>
+    <Int32 name="cross_track_angle">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="swh_model">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="inv_bar_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="geoid">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <UInt32 name="ssha_karin_qual">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="4294967295" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt32>
+    <Int32 name="ocean_tide_fes">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="mean_dynamic_topography">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Float32 name="sig0_cor_atmos_model">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float32>
+    <Float32 name="cross_track_distance">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float32>
+    <Int32 name="obp_ref_surface">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="internal_tide_hret">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="ocean_tide_got">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int16 name="sea_state_bias_cor">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Float32 name="sig0_karin_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="9.96921e+36" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Float32>
+    <Int32 name="sc_pitch">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <UInt32 name="sig0_karin_qual">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="4294967295" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt32>
+    <Int16 name="load_tide_fes">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Byte name="rain_flag">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="255" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Byte>
+    <UInt16 name="mean_sea_surface_dtu_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int32 name="longitude_nadir">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <Int32 name="mean_sea_surface_cnescls">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="mean_wave_period_t02">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <UInt16 name="num_pt_avg">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="wind_speed_model_u">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int16 name="rad_cloud_liquid_water">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_sides"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 2</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="latitude_avg_ssh">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="swh_karin">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <UInt32 name="swh_karin_qual">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="4294967295" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt32>
+    <Int16 name="sea_state_bias_cor_2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    <Int32 name="sc_roll">
+        <Dim name="/num_lines"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="2147483647" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int32>
+    <UInt16 name="mean_sea_surface_cnescls_uncert">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="65535" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </UInt16>
+    <Int16 name="internal_tide_sol2">
+        <Dim name="/num_lines"/>
+        <Dim name="/num_pixels"/>
+        <dmrpp:chunks compressionType="shuffle deflate" fillValue="32767" byteOrder="LE">
+            <dmrpp:chunkDimensionSizes>9866 71</dmrpp:chunkDimensionSizes>
+            </dmrpp:chunks>
+    </Int16>
+    </Dataset>
