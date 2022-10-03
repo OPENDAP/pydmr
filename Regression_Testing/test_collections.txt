@@ -1,0 +1,1375 @@
+---POCLOUD---
+C2075141559-POCLOUD: MetOp-B ASCAT Level 2 25.0km Ocean Surface Wind Vectors in Full Orbit Swath
+C2075141638-POCLOUD: MetOp-C ASCAT Level 2 25.0km Ocean Surface Wind Vectors in Full Orbit Swath
+C2075141605-POCLOUD: MetOp-B ASCAT Level 2 Ocean Surface Wind Vectors Optimized for Coastal Ocean
+C2075141684-POCLOUD: MetOp-C ASCAT Level 2 Ocean Surface Wind Vectors Optimized for Coastal Ocean
+C2251464384-POCLOUD: CYGNSS Level 1 Science Data Record Version 2.1
+C2251464495-POCLOUD: CYGNSS Level 2 Science Data Record Version 2.1
+C2205121485-POCLOUD: CYGNSS Level 2 Climate Data Record Version 1.1
+C2205618975-POCLOUD: CYGNSS Level 2 Ocean Surface Heat Flux Climate Data Record Version 1.0
+C2205121520-POCLOUD: CYGNSS Level 2 Ocean Surface Heat Flux Climate Data Record Version 1.1
+C2205620319-POCLOUD: CYGNSS Level 2 Science Data Record Version 3.0
+C2036882072-POCLOUD: NOAA CYGNSS Level 2 Science Wind Speed 25-km Product Version 1.1
+C2254232941-POCLOUD: NOAA CYGNSS Level 2 Science Wind Speed 25-km Product Version 1.2
+C2036882397-POCLOUD: QuikSCAT Level 2B Ocean Wind Vectors in 12.5km Slice Composites Version 4.1
+C2036882492-POCLOUD: QuikSCAT Level 2B Ocean Wind Vectors in 12.5km Slice Composites Version 3.1
+C2036878103-POCLOUD: GHRSST Level 4 RAMSSA_9km Australian Regional Foundation Sea Surface Temperature Analysis v1.0 dataset (GDS2)
+C2075141524-POCLOUD: MetOp-A ASCAT Level 2 25.0 km Ocean Surface Wind Vectors
+C2036877686-POCLOUD: MetOp-A ASCAT Level 2 12.5-km Ocean Surface Wind Vector Climate Data Record Optimized for Coastal Ocean
+C2036882048-POCLOUD: CYGNSS Level 2 Climate Data Record Version 1.0
+C2274919215-POCLOUD: CYGNSS Level 2 Climate Data Record Version 1.2
+C2036882055-POCLOUD: CYGNSS Level 2 Ocean Surface Heat Flux Science Data Record Version 1.0
+C2247621105-POCLOUD: CYGNSS Level 2 Ocean Surface Heat Flux Science Data Record Version 2.0
+C2036882064-POCLOUD: CYGNSS Level 3 Climate Data Record Version 1.0
+C2205121540-POCLOUD: CYGNSS Level 3 Climate Data Record Version 1.1
+C2274918604-POCLOUD: CYGNSS Level 3 Climate Data Record Version 1.2
+C2205121698-POCLOUD: CYGNSS Level 3 Storm Centric Grid Science Data Record Version 1.0
+C2251464847-POCLOUD: CYGNSS Level 3 Science Data Record Version 2.1
+C2251464874-POCLOUD: CYGNSS Level 3 Science Data Record Version 3.0
+C2036877806-POCLOUD: GHRSST L3C hourly America Region sub-skin Sea Surface Temperature v1.0 from ABI on GOES16 produced by OSISAF
+C2036882482-POCLOUD: Oceansat-2 Scatterometer Level 2B Ocean Wind Vectors in 12.5km Slice Composites Version 2
+C2036882499-POCLOUD: RapidScat Level 2B Climate Ocean Wind Vectors in 12.5km Footprints Version 2.0
+C2157151105-POCLOUD: GHRSST L3C hourly Atlantic reprocessed sub-skin sea surface temperature data record v1.0 from SEVIRI on MSG produced by OSISAF
+Total entries: 31
+
+---GES_DISC---
+C1276812851-GES_DISC: MERRA-2 tavg1_2d_rad_Nx: 2d,1-Hourly,Time-Averaged,Single-Level,Assimilation,Radiation Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T1NXRAD) at GES DISC
+C1276812838-GES_DISC: MERRA-2 tavg1_2d_flx_Nx: 2d,1-Hourly,Time-Averaged,Single-Level,Assimilation,Surface Flux Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T1NXFLX) at GES DISC
+C1276812863-GES_DISC: MERRA-2 tavg1_2d_slv_Nx: 2d,1-Hourly,Time-Averaged,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T1NXSLV) at GES DISC
+C1342986035-GES_DISC: GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.1 (GLDAS_NOAH025_3H) at GES DISC
+C1276812820-GES_DISC: MERRA-2 inst1_2d_asm_Nx: 2d,1-Hourly,Instantaneous,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2I1NXASM) at GES DISC
+C1598621098-GES_DISC: GPM IMERG Late Precipitation L3 1 day 0.1 degree x 0.1 degree V06 (GPM_3IMERGDL) at GES DISC
+C1598621093-GES_DISC: GPM IMERG Final Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHH) at GES DISC
+C1598621095-GES_DISC: GPM IMERG Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHL) at GES DISC
+C1598621096-GES_DISC: GPM IMERG Final Precipitation L3 1 day 0.1 degree x 0.1 degree V06 (GPM_3IMERGDF) at GES DISC
+C1276812879-GES_DISC: MERRA-2 inst3_3d_asm_Np: 3d,3-Hourly,Instantaneous,Pressure-Level,Assimilation,Assimilated Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2I3NPASM) at GES DISC
+C1276812830-GES_DISC: MERRA-2 tavg1_2d_aer_Nx: 2d,1-Hourly,Time-averaged,Single-Level,Assimilation,Aerosol Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T1NXAER) at GES DISC
+C1238517344-GES_DISC: AIRS/Aqua L3 Daily Standard Physical Retrieval (AIRS+AMSU) 1 degree x 1 degree V006 (AIRX3STD) at GES DISC
+C1700900796-GES_DISC: GLDAS Catchment Land Surface Model L4 daily 0.25 x 0.25 degree GRACE-DA1 V2.2 (GLDAS_CLSM025_DA1_D) at GES DISC
+C1598621094-GES_DISC: GPM IMERG Early Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V06 (GPM_3IMERGHHE) at GES DISC
+C1598621092-GES_DISC: GPM IMERG Final Precipitation L3 1 month 0.1 degree x 0.1 degree V06 (GPM_3IMERGM) at GES DISC
+C1276812861-GES_DISC: MERRA-2 tavg1_2d_lnd_Nx: 2d,1-Hourly,Time-Averaged,Single-Level,Assimilation,Land Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T1NXLND) at GES DISC
+C1239966842-GES_DISC: OMI/Aura Nitrogen Dioxide (NO2) Total and Tropospheric Column 1-orbit L2 Swath 13x24 km V003 (OMNO2) at GES DISC
+C1239536905-GES_DISC: TRMM (TMPA) Precipitation L3 1 day 0.25 degree x 0.25 degree V7 (TRMM_3B42_Daily) at GES DISC
+C1342986036-GES_DISC: GLDAS Noah Land Surface Model L4 monthly 0.25 x 0.25 degree V2.1 (GLDAS_NOAH025_M) at GES DISC
+C1598621097-GES_DISC: GPM IMERG Early Precipitation L3 1 day 0.1 degree x 0.1 degree V06 (GPM_3IMERGDE) at GES DISC
+C1276812884-GES_DISC: MERRA-2 inst6_3d_ana_Np: 3d,6-Hourly,Instantaneous,Pressure-Level,Analysis,Analyzed Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2I6NPANA) at GES DISC
+C1276812866-GES_DISC: MERRA-2 tavgM_2d_aer_Nx: 2d,Monthly mean,Time-averaged,Single-Level,Assimilation,Aerosol Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXAER) at GES DISC
+C1276812868-GES_DISC: MERRA-2 tavgM_2d_flx_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Surface Flux Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXFLX) at GES DISC
+C1266136111-GES_DISC: OMI/Aura NO2 Cloud-Screened Total and Tropospheric Column L3 Global Gridded 0.25 degree x 0.25 degree V3 (OMNO2d) at GES DISC
+C1282032631-GES_DISC: TRMM (TMPA/3B43) Rainfall Estimate L3 1 month 0.25 degree x 0.25 degree V7 (TRMM_3B43) at GES DISC
+C1563089663-GES_DISC: FLDAS Noah Land Surface Model L4 Global Monthly 0.1 x 0.1 degree (MERRA-2 and CHIRPS) V001 (FLDAS_NOAH01_C_GL_M) at GES DISC
+C1424679205-GES_DISC: GPM PR on TRMM Echo Power L1B 1.5 hours 5 km V05 (GPM_1BPR) at GES DISC
+C1424679203-GES_DISC: GPM TMI on TRMM Brightness Temperatures L1B 1.5 hours 13 km V05 (GPM_1BTMI) at GES DISC
+C1424679200-GES_DISC: GPM VIRS on TRMM Radiance L1B 1.5 hours 2 km V05 (GPM_1BVIRS) at GES DISC
+C1276812882-GES_DISC: MERRA-2 inst3_3d_aer_Nv: 3d,3-Hourly,Instantaneous,Model-Level,Assimilation,Aerosol Mixing Ratio 0.625 x 0.5 degree V5.12.4 (M2I3NVAER) at GES DISC
+C1276812850-GES_DISC: MERRA-2 tavg1_2d_lfo_Nx: 2d,1-Hourly,Time-Averaged,Single-Level,Assimilation,Land Surface Forcings 0.625 x 0.5 degree V5.12.4 (M2T1NXLFO) at GES DISC
+C1685783927-GES_DISC: OCO-2 Level 2 bias-corrected XCO2 and other select fields from the full-physics retrieval aggregated as daily files, Retrospective processing V10r (OCO2_L2_Lite_FP) at GES DISC
+C2082387252-GES_DISC: OCO-3 Level 2 geolocated XCO2 retrievals results, physical model, Retrospective Processing V10r (OCO3_L2_Standard) at GES DISC
+C1725228527-GES_DISC: OMI/Aura NO2 Tropospheric, Stratospheric & Total Columns MINDS 1-Orbit L2 Swath 13 km x 24 km V1 (OMI_MINDS_NO2) at GES DISC
+C1239966837-GES_DISC: OMI/Aura Sulphur Dioxide (SO2) Total Column 1-orbit L2 Swath 13x24 km V003 (OMSO2) at GES DISC
+C1239900189-GES_DISC: SeaWiFS Deep Blue Aerosol Optical Depth and Angstrom Exponent Level 2 Data V004 (SWDB_L2) at GES DISC V004
+C1282110251-GES_DISC: TRMM Visible and Infrared Scanner Calibrated Radiances L1B 1.5 hours V7 (TRMM_1B01) at GES DISC
+C1282110402-GES_DISC: TRMM Microwave Imager Calibrated Radiances L1B 1.5 hours V7 (TRMM_1B11) at GES DISC
+C1282110505-GES_DISC: TRMM Precipitation Radar Power and Reflectivity L1B 1.5 hours V7 (TRMM_1B21) at GES DISC
+C1282110521-GES_DISC: TRMM Precipitation Radar Power and Reflectivity L1C 1.5 hours V7 (TRMM_1C21) at GES DISC
+C1282060543-GES_DISC: TRMM Microwave Imager Hydrometeor Profile L2 1.5 hours V7 (TRMM_2A12) at GES DISC
+C1281704371-GES_DISC: TRMM (TMPA) Rainfall Estimate L3 3 hour 0.25 degree x 0.25 degree V7 (TRMM_3B42) at GES DISC
+C1276795284-GES_DISC: TRMM (TMPA-RT) Near Real-Time Precipitation L3 1 day 0.25 degree x 0.25 degree V7 (TRMM_3B42RT_Daily) at GES DISC
+C1633158704-GES_DISC: ACOS GOSAT/TANSO-FTS Level 2 Full Physics Standard Product V9r (ACOS_L2S) at GES DISC
+C1243477369-GES_DISC: AIRS/Aqua L1B Infrared (IR) geolocated and calibrated radiances V005 (AIRIBRAD) at GES DISC at GES DISC
+C1243477371-GES_DISC: AIRS/Aqua L2 CO2 in the free troposphere (AIRS-only) V005 (AIRS2STC) at GES DISC
+C1238517264-GES_DISC: AIRS/Aqua L3 Monthly CO2 in the free troposphere (AIRS-only) 2.5 degrees x 2 degrees V005 (AIRS3C2M) at GES DISC
+C1701805657-GES_DISC: Aqua/AIRS L3 Daily Support Product (AIRS-only) 1 degree x 1 degree V7.0 at GES DISC
+C1701805652-GES_DISC: Aqua/AIRS L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V7.0 at GES DISC
+C1238517289-GES_DISC: AIRS/Aqua L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V006 (AIRS3STD) at GES DISC
+C1701805662-GES_DISC: Aqua/AIRS L3 Monthly Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V7.0 at GES DISC
+C1238517301-GES_DISC: AIRS/Aqua L3 Monthly Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V006 (AIRS3STM) at GES DISC
+C1243477383-GES_DISC: AIRS/Aqua L2 Standard Physical Retrieval (AIRS+AMSU) V006 (AIRX2RET) at GES DISC
+C1243477317-GES_DISC: AIRS/Aqua L2 Support Retrieval (AIRS+AMSU) V006 (AIRX2SUP) at GES DISC
+C1238517293-GES_DISC: AIRS/Aqua L3 Monthly CO2 in the free troposphere (AIRS+AMSU) 2.5 degrees x 2 degrees V005 (AIRX3C2M) at GES DISC
+C1701805672-GES_DISC: Aqua/AIRS L3 Daily Standard Physical Retrieval (AIRS+AMSU) 1 degree x 1 degree V7.0 at GES DISC
+C1701805681-GES_DISC: Aqua/AIRS L3 Monthly Standard Physical Retrieval (AIRS+AMSU) 1 degree x 1 degree V7.0 at GES DISC
+C1238517346-GES_DISC: AIRS/Aqua L3 Monthly Standard Physical Retrieval (AIRS+AMSU) 1 degree x 1 degree V006 (AIRX3STM) at GES DISC
+C1382049816-GES_DISC: AMSR-MODIS Boundary Layer Water Vapor L3 Daily 1 degree x 1 degree V1 (AMDBLWV) at GES DISC
+C2020764153-GES_DISC: FLDAS Noah Land Surface Model L4 Central Asia Daily 0.01 x 0.01 degree V001 (FLDAS_NOAH001_G_CA_D) at GES DISC
+C1453188197-GES_DISC: GLDAS Catchment Land Surface Model L4 daily 0.25 x 0.25 degree V2.0 (GLDAS_CLSM025_D) at GES DISC
+C1933574500-GES_DISC: GLDAS Catchment Land Surface Model L4 3 hourly 1.0 x 1.0 degree V2.0 (GLDAS_CLSM10_3H) at GES DISC
+C1690022314-GES_DISC: GLDAS Catchment Land Surface Model L4 monthly 1.0 x 1.0 degree V2.1 (GLDAS_CLSM10_M) at GES DISC
+C1233767545-GES_DISC: GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree V2.0 (GLDAS_NOAH025_3H) at GES DISC
+C1700900626-GES_DISC: GLDAS Noah Land Surface Model L4 3 hourly 0.25 x 0.25 degree Early Product V2.1 (GLDAS_NOAH025_3H_EP) at GES DISC
+C1233767569-GES_DISC: GLDAS Noah Land Surface Model L4 monthly 0.25 x 0.25 degree V2.0 (GLDAS_NOAH025_M) at GES DISC
+C1288937542-GES_DISC: GLDAS Noah Land Surface Model L4 monthly 1.0 x 1.0 degree V2.1 (GLDAS_NOAH10_M) at GES DISC
+C2211412414-GES_DISC: GPCP Precipitation Level 3 Monthly 0.5-Degree V3.2 (GPCPMON) at GES DISC
+C2264132201-GES_DISC: GPM PR on TRMM Echo Power L1B 1.5 hours 5 km V07 (GPM_1BPR) at GES DISC
+C2264132644-GES_DISC: GPM VIRS on TRMM Radiance L1B 1.5 hours 2 km V07 (GPM_1BVIRS) at GES DISC
+C1384615107-GES_DISC: GPM SSMIS on F16 Common Calibrated Brightness Temperatures L1C 1.5 hours 12 km V05 (GPM_1CF16SSMIS) at GES DISC
+C2264132902-GES_DISC: GPM SSMIS on F17 Common Calibrated Brightness Temperatures L1C 1.5 hours 12 km V07 (GPM_1CF17SSMIS) at GES DISC
+C1384615108-GES_DISC: GPM SSMIS on F17 Common Calibrated Brightness Temperatures L1C 1.5 hours 12 km V05 (GPM_1CF17SSMIS) at GES DISC
+C2259345484-GES_DISC: GPM GMI Common Calibrated Brightness Temperatures Collocated L1C 1.5 hours 13 km V07 (GPM_1CGPMGMI) at GES DISC
+C2264133181-GES_DISC: GPM SAPHIR on MT1 Common Calibrated Brightness Temperature L1C 1.5 hours 10 km V07 (GPM_1CMT1SAPHIR) at GES DISC
+C2264133616-GES_DISC: GPM TMI on TRMM Common Calibrated Brightness Temperatures L1C 1.5 hours 13 km V07 (GPM_1CTRMMTMI) at GES DISC
+C2179081499-GES_DISC: GPM DPR Precipitation Profile L2A 1.5 hours 5 km V07 (GPM_2ADPR) at GES DISC
+C2259345563-GES_DISC: GPM GMI (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 4 km x 4 km V07 (GPM_2AGPROFGPMGMI_CLIM) at GES DISC
+C2264132215-GES_DISC: GPM PR on TRMM Reflectivity, Precipitation Characteristics and Rate, at Surface and Profile L2 1.5 hours V07 (GPM_2APR) at GES DISC
+C2264132362-GES_DISC: GPM PR and TMI on TRMM Combined Precipitation L2B 1.5 hours 5 km V07 (GPM_2BCMB_TRMM) at GES DISC
+C2264132377-GES_DISC: GPM PR and TMI on TRMM Combined Convective-Stratiform Latent Heating Profiles L2 1.5 hours 5 km V07 (GPM_2HCSH_TRMM) at GES DISC
+C2264132245-GES_DISC: GPM PR on TRMM Spectral Latent Heating Profiles L2 1.5 hours 5 km V07 (GPM_2HSLH_TRMM) at GES DISC
+C2259345423-GES_DISC: GPM GMI Antenna Temperatures L1BASE 1.5 hours 13 km V07 (GPM_BASEGPMGMI) at GES DISC
+C1432254058-GES_DISC: NCEP/CPC L3 Half Hourly 4km Global (60S - 60N) Merged IR V1 (GPM_MERGIR) at GES DISC
+C1237113343-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 0.25 x 0.25 deg, Daily Grid V3 (GSSTF) at GES DISC
+C1237113336-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Daily Grid, Set1 V2c (GSSTF) at GES DISC
+C1237113442-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 0.25 x 0.25 deg, Monthly Grid V3 (GSSTFM) at GES DISC
+C1276812821-GES_DISC: MERRA-2 inst1_2d_int_Nx: 2d,1-Hourly,Instantaneous,Single-Level,Assimilation,Vertically Integrated Diagnostics 0.625 x 0.5 degree V5.12.4 (M2I1NXINT) at GES DISC
+C1276812822-GES_DISC: MERRA-2 inst1_2d_lfo_Nx: 2d,1-Hourly,Instantaneous,Single-Level,Assimilation,Land Surface Forcings 0.625 x 0.5 degree V5.12.4 (M2I1NXLFO) at GES DISC
+C1276812900-GES_DISC: MERRA-2 inst3_3d_asm_Nv: 3d,3-Hourly,Instantaneous,Model-Level,Assimilation,Assimilated Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2I3NVASM) at GES DISC
+C1276812759-GES_DISC: MERRA-2 inst3_2d_gas_Nx: 2d,3-Hourly,Instantaneous,Single-Level,Assimilation,Aerosol Optical Depth Analysis 0.625 x 0.5 degree V5.12.4 (M2I3NXGAS) at GES DISC
+C1276812902-GES_DISC: MERRA-2 instM_3d_ana_Np: 3d,Monthly mean,Instantaneous,Pressure-Level,Analysis,Analyzed Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2IMNPANA) at GES DISC
+C1276812904-GES_DISC: MERRA-2 instM_3d_asm_Np: 3d,Monthly mean,Instantaneous,Pressure-Level,Assimilation,Assimilated Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2IMNPASM) at GES DISC
+C1276812823-GES_DISC: MERRA-2 instM_2d_asm_Nx: 2d,Monthly mean,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2IMNXASM) at GES DISC
+C1276812840-GES_DISC: MERRA-2 instM_2d_lfo_Nx: 2d,Monthly mean,Instantaneous,Single-Level,Assimilation,Land Surface Forcings 0.625 x 0.5 degree V5.12.4 (M2IMNXLFO) at GES DISC
+C1276812843-GES_DISC: MERRA-2 statD_2d_slv_Nx: 2d,Daily,Aggregated Statistics,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2SDNXSLV) at GES DISC
+C1276812846-GES_DISC: MERRA-2 tavg1_2d_int_Nx: 2d,1-Hourly,Time-Averaged,Single-Level,Assimilation,Vertically Integrated Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T1NXINT) at GES DISC
+C1276812912-GES_DISC: MERRA-2 tavg3_3d_mst_Ne: 3d,3-Hourly,Time-Averaged,Model-Level Edge,Assimilation,Moist Processes Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NEMST) at GES DISC
+C1276812686-GES_DISC: MERRA-2 tavg3_3d_nav_Ne: 3d,3-Hourly,Time-Averaged, Vertical Coordinates 0.625 x 0.5 degree V5.12.4 (M2T3NENAV) at GES DISC
+C1276812940-GES_DISC: MERRA-2 tavg3_3d_tdt_Np: 3d,3-Hourly,Time-Averaged,Pressure-Level,Assimilation,Temperature Tendencies 0.625 x 0.5 degree V5.12.4 (M2T3NPTDT) at GES DISC
+C1276812941-GES_DISC: MERRA-2 tavg3_3d_udt_Np: 3d,3-Hourly,Time-Averaged,Pressure-Level,Assimilation,Wind Tendencies 0.625 x 0.5 degree V5.12.4 (M2T3NPUDT) at GES DISC
+C1276812865-GES_DISC: MERRA-2 tavgM_2d_adg_Nx: 2d,Monthly mean,Time-averaged,Single-Level,Assimilation,Aerosol Diagnostics (extended) 0.625 x 0.5 degree V5.12.4 (M2TMNXADG) at GES DISC
+C1276812852-GES_DISC: MERRA-2 tavgM_2d_chm_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Carbon Monoxide and Ozone Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXCHM) at GES DISC
+C1276812856-GES_DISC: MERRA-2 tavgM_2d_lnd_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Land Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXLND) at GES DISC
+C1276812858-GES_DISC: MERRA-2 tavgM_2d_rad_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Radiation Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXRAD) at GES DISC
+C1276812859-GES_DISC: MERRA-2 tavgM_2d_slv_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXSLV) at GES DISC
+C1274767825-GES_DISC: inst6_3d_ana_Nv: MERRA 3D Analyzed State, Meteorology Instantaneous 6-hourly  0.667 x 0.5 degree V5.2.0 (MAI6NVANA) at GES DISC
+C1274767785-GES_DISC: tavg1_2d_ocn_Nx: MERRA 2D IAU Ocean Surface Diagnostic, Time Average 1-hourly  0.667 x 0.5 degree V5.2.0 (MAT1NXOCN) at GES DISC
+C1274767792-GES_DISC: tavg1_2d_rad_Nx: MERRA 2D IAU Diagnostic, Radiation Surface and TOA, Time Average 1-hourly  0.667 x 0.5 degree V5.2.0 (MAT1NXRAD) at GES DISC
+C1274767799-GES_DISC: tavg1_2d_slv_Nx: MERRA 2D IAU Diagnostic, Single Level Meteorology, Time Average 1-hourly  0.667 x 0.5 degree V5.2.0 (MAT1NXSLV) at GES DISC
+C1729926922-GES_DISC: MLS/Aura Level 2 Temperature V005 (ML2T) at GES DISC
+C1454297282-GES_DISC: NCA-LDAS Noah-3.3 Land Surface Model L4 Daily 0.125 x 0.125 degree V2.0 (NCALDAS_NOAH0125_D) at GES DISC
+C1685783883-GES_DISC: OCO-2 Level 1B calibrated, geolocated calibration spectra, Retrospective Processing V10r (OCO2_L1B_Calibration) at GES DISC
+C2237418875-GES_DISC: OCO-2 Level 1B calibrated, geolocated science spectra V11 (OCO2_L1B_Science) at GES DISC
+C1554062160-GES_DISC: OCO-2 Level 2 bias-corrected XCO2 and other select fields from the full-physics retrieval aggregated as daily files, Retrospective processing V9r (OCO2_L2_Lite_FP) at GES DISC
+C1685783910-GES_DISC: OCO-2 Level 2 geolocated XCO2 retrievals results, physical model, Retrospective Processing V10r (OCO2_L2_Standard) at GES DISC
+C2082387247-GES_DISC: OCO-3 Level 2 geolocated XCO2 retrieval results and algorithm diagnostic information, Retrospective Processing V10r (OCO3_L2_Diagnostic) at GES DISC
+C2237732007-GES_DISC: OCO-3 Level 2 bias-corrected XCO2 and other select fields from the full-physics retrieval aggregated as daily files, Retrospective processing v10.4r (OCO3_L2_Lite_FP) at GES DISC
+C1266136062-GES_DISC: OMI/Aura Multi-wavelength Aerosol Optical Depth and Single Scattering Albedo L3 1 day Best Pixel in 0.25 degree x 0.25 degree V3 (OMAEROe) at GES DISC
+C1266136096-GES_DISC: OMI/Aura Near UV Aerosol Optical Depth and Single Scattering Albedo L3 1 day 1.0 degree x 1.0 degree V3 (OMAERUVd) at GES DISC
+C1266136037-GES_DISC: OMI/Aura Ozone (O3) DOAS Total Column Daily L3 1 day 0.25 degree x 0.25 degree V3 (OMDOAO3e) at GES DISC
+C1917909223-GES_DISC: OMPS/NPP PCA SO2 Total Column 1-Orbit L2 Swath 50x50km V2 (OMPS_NPP_NMSO2_PCA_L2) at GES DISC
+C1266136112-GES_DISC: OMI/Aura Sulfur Dioxide (SO2) Total Column Daily L3 1 day Best Pixel in 0.25 degree x 0.25 degree V3 (OMSO2e) at GES DISC
+C1239966818-GES_DISC: OMI/Aura Ozone(O3) Total Column 1-Orbit L2 Swath 13x24 km V003 (OMTO3) at GES DISC
+C1266136070-GES_DISC: OMI/Aura TOMS-Like Ozone, Aerosol Index, Cloud Radiance Fraction L3 1 day 1 degree x 1 degree V3 (OMTO3d) at GES DISC
+C1266136071-GES_DISC: OMI/Aura TOMS-Like Ozone and Radiative Cloud Fraction L3 1 day 0.25 degree x 0.25 degree V3 (OMTO3e) at GES DISC
+C1442068493-GES_DISC: Sentinel-5P TROPOMI Carbon Monoxide CO Column 1-Orbit L2 7km x 7km V1 (S5P_L2__CO____) at GES DISC
+C1918210023-GES_DISC: Sentinel-5P TROPOMI Tropospheric Formaldehyde HCHO 1-Orbit L2 5.5km x 3.5km V2 (S5P_L2__HCHO___HiR) at GES DISC
+C2089270961-GES_DISC: Sentinel-5P TROPOMI Tropospheric NO2 1-Orbit L2 5.5km x 3.5km V2 (S5P_L2__NO2____HiR) at GES DISC
+C2011289787-GES_DISC: Sounder SIPS: Sun Synchronous 13:30 orbit Climate Hyperspectral InfraRed Product (CHIRP): Calibrated Radiances from EOS-Aqua, S-NPP, JPSS-1/NOAA-20, V2 (SNDR13CHRP1) at GES DISC
+C1692982090-GES_DISC: Sounder SIPS: JPSS-1 CrIS Level 2 CLIMCAPS: Atmosphere cloud and surface geophysical state V2 at GES DISC
+C1633993915-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 2 CLIMCAPS Normal Spectral Resolution: Cloud Cleared Radiances V1
+C1615905582-GES_DISC: TOMS/N7 MS SO2 Vertical Column 1-Orbit L2 Swath 50x50 km V3 (TOMSN7SO2) at GES DISC
+C1282032625-GES_DISC: TRMM Microwave Imager Precipitation Profile L3 1 month 0.5 degree x 0.5 degree V7 (TRMM_3A12) at GES DISC
+C1231627223-GES_DISC: TRMM (TMPA-RT) Near Real-Time Precipitation L3 3 hour 0.25 degree x 0.25 degree V7 (TRMM_3B42RT) at GES DISC
+C2219374316-GES_DISC: Monthly Gridded Level 4 bias-corrected XCO2 and other select fields aggregated from ACOS as Level 4 monthly files V3 (ACOSMonthlyGriddedXCO2)
+C1339230297-GES_DISC: ACOS GOSAT/TANSO-FTS Level 2 Full Physics Standard Product V7.3 (ACOS_L2S) at GES DISC
+C1720416694-GES_DISC: ACOS GOSAT/TANSO-FTS Level 2 bias-corrected XCO2 and other select fields from the full-physics retrieval aggregated as daily files V9r (ACOS_L2_Lite_FP) at GES DISC
+C1339230298-GES_DISC: ACOS GOSAT/TANSO-FTS Level 2 bias-corrected XCO2 and other select fields from the full-physics retrieval aggregated as daily files V7.3 (ACOS_L2_Lite_FP) at GES DISC
+C1243477366-GES_DISC: AIRS/Aqua L1B AMSU (A1/A2) geolocated and calibrated brightness temperatures V005 (AIRABRAD) at GES DISC
+C1233769000-GES_DISC: AIRS/Aqua L1B Near Real Time (NRT) AMSU (A1/A2) geolocated and calibrated brightness temperatures V005 (AIRABRAD_NRT) at GES DISC
+C1243477375-GES_DISC: AIRS/Aqua L2G Precipitation Estimate V006 (AIRG2SSD) at GES DISC
+C1702050366-GES_DISC: AIRS/Aqua L2G Precipitation Estimate (AIRS-only) V7.0 at GES DISC
+C1618076955-GES_DISC: AIRS/Aqua L2G Precipitation Estimate (AIRS-only) V006 (AIRG2SSD_IRonly) at GES DISC
+C1701805614-GES_DISC: Aqua/AIRS L2 Cloud-Cleared Infrared Radiances (AIRS+AMSU+HSB) V7.0 at GES DISC
+C1243477316-GES_DISC: AIRS/Aqua L2 Cloud-Cleared Infrared Radiances (AIRS+AMSU+HSB) V006 (AIRH2CCF) at GES DISC
+C1701805647-GES_DISC: Aqua/AIRS L2 Standard Physical Retrieval (AIRS+AMSU+HSB) V7.0 at GES DISC
+C1243477376-GES_DISC: AIRS/Aqua L2 Standard Physical Retrieval (AIRS+AMSU+HSB) V006 (AIRH2RET) at GES DISC
+C1701828239-GES_DISC: Aqua/AIRS L2 Support Retrieval (AIRS+AMSU+HSB) V7.0 at GES DISC
+C1243477377-GES_DISC: AIRS/Aqua L2 Support Retrieval (AIRS+AMSU+HSB) V006 (AIRH2SUP) at GES DISC
+C1238517199-GES_DISC: AIRS/Aqua L3 5-day Quantization in Physical Units (AIRS+AMSU+HSB) 5 degrees x 5 degrees V006 (AIRH3QP5) at GES DISC
+C1238517242-GES_DISC: AIRS/Aqua L3 Monthly Quantization in Physical Units (AIRS+AMSU+HSB) 5 degrees x 5 degrees V006 (AIRH3QPM) at GES DISC
+C1238517226-GES_DISC: AIRS/Aqua L3 8-day Support Multiday Product (AIRS+AMSU+HSB) 1 degree x 1 degree V006 (AIRH3SP8) at GES DISC
+C1701805696-GES_DISC: Aqua/AIRS L3 Daily Support Daily Product (AIRS+AMSU+HSB) 1 degree x 1 degree V7.0 at GES DISC
+C1238517230-GES_DISC: AIRS/Aqua L3 Daily Support Daily Product (AIRS+AMSU+HSB) 1 degree x 1 degree V006 (AIRH3SPD) at GES DISC
+C1701805707-GES_DISC: Aqua/AIRS L3 Monthly Support Monthly Product (AIRS+AMSU+HSB) 1 degree x 1 degree V7.0 at GES DISC
+C1238517247-GES_DISC: AIRS/Aqua L3 Monthly Support Product (AIRS+AMSU+HSB) 1 degree x 1 degree V006 (AIRH3SPM) at GES DISC
+C1238517250-GES_DISC: AIRS/Aqua L3 8-day Standard Physical Retrieval (AIRS+AMSU+HSB) 1 degree x 1 degree V006 (AIRH3ST8) at GES DISC
+C1701805692-GES_DISC: Aqua/AIRS L3 Daily Standard Physical Retrieval (AIRS+AMSU+HSB) 1 degree x 1 degree V7.0 at GES DISC
+C1238517253-GES_DISC: AIRS/Aqua L3 Daily Standard Physical Retrieval (AIRS+AMSU+HSB) 1 degree x 1 degree V006 (AIRH3STD) at GES DISC
+C1701805701-GES_DISC: Aqua/AIRS L3 Monthly Standard Physical Retrieval (AIRS+AMSU+HSB) 1 degree x 1 degree V7.0 at GES DISC
+C1238517238-GES_DISC: AIRS/Aqua L3 Monthly Standard Physical Retrieval (AIRS+AMSU+HSB) 1 degree x 1 degree V006 (AIRH3STM) at GES DISC
+C1243477367-GES_DISC: AIRS/Aqua L1B HSB geolocated and calibrated brightness temperatures V005 (AIRHBRAD) at GES DISC
+C1701805611-GES_DISC: Aqua/AIRS L2 Cloud-Cleared Infrared Radiances (AIRS+AMSU) V7.0 at GES DISC
+C1243477378-GES_DISC: AIRS/Aqua L2 Cloud-Cleared Infrared Radiances (AIRS+AMSU) V006 (AIRI2CCF) at GES DISC
+C1243477368-GES_DISC: AIRS/Aqua L1B Infrared (IR) quality assurance subset V005 (AIRIBQAP) at GES DISC
+C1233768981-GES_DISC: AIRS/Aqua L1B Near Real Time (NRT) Infrared (IR) quality assurance subset V005 (AIRIBQAP_NRT) at GES DISC
+C1233768982-GES_DISC: AIRS/Aqua L1B Near Real Time (NRT) Infrared (IR) geolocated and calibrated radiances V005 (AIRIBRAD_NRT) at GES DISC
+C1233769001-GES_DISC: AIRS/Aqua L1B Near Real Time (NRT) Infrared (IR) geolocated and calibrated radiances in BUFR format V005 (AIRIBRAD_NRT_BUFR) at GES DISC
+C1675477037-GES_DISC: AIRS/Aqua L1C Infrared (IR) resampled and corrected radiances V6.7 (AIRICRAD) at GES DISC
+C1712047294-GES_DISC: AIRS/Aqua L1C Near Real Time (NRT) Infrared (IR) resampled and corrected radiances V6.7 (AIRICRAD_NRT) at GES DISC
+C1701805601-GES_DISC: Aqua/AIRS L2 Cloud-Cleared Infrared Radiances (AIRS-only) V7.0 at GES DISC
+C1243477380-GES_DISC: AIRS/Aqua L2 Cloud-Cleared Infrared Radiances (AIRS-only) V006 (AIRS2CCF) at GES DISC
+C1701805606-GES_DISC: Aqua/AIRS L2 Near Real Time (NRT) Cloud-Cleared Infrared Radiances (AIRS-only) V7.0 at GES DISC
+C1345119267-GES_DISC: AIRS/Aqua L2 Near Real Time (NRT) Cloud-Cleared Infrared Radiances (AIRS-only) V006 (AIRS2CCF_NRT) at GES DISC
+C1701805619-GES_DISC: Aqua/AIRS L2 Standard Physical Retrieval (AIRS-only) V7.0 at GES DISC
+C1243477381-GES_DISC: AIRS/Aqua L2 Standard Physical Retrieval (AIRS-only) V006 (AIRS2RET) at GES DISC
+C1701805625-GES_DISC: Aqua/AIRS L2 Near Real Time (NRT) Standard Physical Retrieval (AIRS-only) V7.0 at GES DISC
+C1345119345-GES_DISC: AIRS/Aqua L2 Near Real Time (NRT) Standard Physical Retrieval (AIRS-only) V006 (AIRS2RET_NRT) at GES DISC
+C1243477370-GES_DISC: AIRS/Aqua L2 CO2 support retrieval (AIRS-only) V005 (AIRS2SPC) at GES DISC
+C1701805630-GES_DISC: Aqua/AIRS L2 Support Retrieval (AIRS-only) V7.0 at GES DISC
+C1243477382-GES_DISC: AIRS/Aqua L2 Support Retrieval (AIRS-only) V006 (AIRS2SUP) at GES DISC
+C1701805636-GES_DISC: Aqua/AIRS L2 Near Real Time (NRT) Support Retrieval (AIRS-only) V7.0 at GES DISC
+C1345119372-GES_DISC: AIRS/Aqua L2 Near Real Time (NRT) Support Retrieval (AIRS-only) V006 (AIRS2SUP_NRT) at GES DISC
+C1238517256-GES_DISC: AIRS/Aqua L3 8-day CO2 in the free troposphere (AIRS-only) 2.5 degrees x 2 degrees V005 (AIRS3C28) at GES DISC
+C1238517258-GES_DISC: AIRS/Aqua L3 daily CO2 in the free troposphere (AIRS-only) 2.5 degrees x 2 degrees V005 (AIRS3C2D) at GES DISC
+C1238517265-GES_DISC: AIRS/Aqua L3 5-day Quantization in Physical Units (AIRS-only) 5 degrees x 5 degrees V006 (AIRS3QP5) at GES DISC
+C1238517283-GES_DISC: AIRS/Aqua L3 Monthly Quantization in Physical Units (AIRS-only) 5 degrees x 5 degrees V006 (AIRS3QPM) at GES DISC
+C1238517268-GES_DISC: AIRS/Aqua L3 8-day Support Product (AIRS-only) 1 degree X 1 degree V006 (AIRS3SP8) at GES DISC
+C1238517272-GES_DISC: AIRS/Aqua L3 Daily Support Product (AIRS-only) 1 degree x 1 degree V006 (AIRS3SPD) at GES DISC
+C1701805668-GES_DISC: Aqua/AIRS L3 Monthly Support Product (AIRS-only) 1 degree x 1 degree V7.0 at GES DISC
+C1238517285-GES_DISC: AIRS/Aqua L3 Monthly Support Product (AIRS-only) 1 degree x 1 degree V006 (AIRS3SPM) at GES DISC
+C1238517287-GES_DISC: AIRS/Aqua L3 8-day Standard Physical Retrieval (AIRS-only) 1 degree X 1 degree V006 (AIRS3ST8) at GES DISC
+C1619004533-GES_DISC: Atmospheric Composition Ammonia Volume Mixing Ratio L3 (AIRSAC3MNH3 V3) from AIRS/AMSU on NASA Aqua at GES DISC
+C1697372449-GES_DISC: Aqua AIRS Level 3 Spectral Outgoing Longwave Radiation (OLR) Monthly
+C1243477372-GES_DISC: AIRS/Aqua L1B Visible/Near Infrared (VIS/NIR) quality assurance subset V005 (AIRVBQAP) at GES DISC
+C1233768983-GES_DISC: AIRS/Aqua L1B Near Real Time (NRT) Visible/Near Infrared (VIS/NIR) quality assurance subset V005 (AIRVBQAP_NRT) at GES DISC
+C1243477373-GES_DISC: AIRS/Aqua L1B Visible/Near Infrared (VIS/NIR) geolocated and calibrated radiances V005 (AIRVBRAD) at GES DISC
+C1233768984-GES_DISC: AIRS/Aqua L1B Near Real Time (NRT) Visible/Near Infrared (VIS/NIR) geolocated and calibrated radiances V005 (AIRVBRAD_NRT) at GES DISC
+C1701805641-GES_DISC: Aqua/AIRS  L2 Standard Physical Retrieval (AIRS+AMSU) V7.0 at GES DISC
+C1243477374-GES_DISC: AIRS/Aqua L2 CO2 support retrieval (AIRS+AMSU) V005 (AIRX2SPC) at GES DISC
+C1243477314-GES_DISC: AIRS/Aqua L2 CO2 in the free troposphere (AIRS+AMSU) V005 (AIRX2STC) at GES DISC
+C1701828243-GES_DISC: Aqua/AIRS  L2 Support Retrieval (AIRS+AMSU) V7.0 at GES DISC
+C1238517303-GES_DISC: AIRS/Aqua L3 8-day CO2 in the free troposphere (AIRS+AMSU) 2.5 degrees x 2 degrees V005 (AIRX3C28) at GES DISC
+C1238517305-GES_DISC: AIRS/Aqua L3 daily CO2 in the free troposphere (AIRS+AMSU) 2.5 degrees x 2 degrees V005 (AIRX3C2D) at GES DISC
+C1238517308-GES_DISC: AIRS/Aqua L3 5-day Quantization in Physical Units (AIRS+AMSU) 5 degrees x 5 degrees V006 (AIRX3QP5) at GES DISC
+C1238517296-GES_DISC: AIRS/Aqua L3 Monthly Quantization in Physical Units (AIRS+AMSU) 5 degrees x 5 degrees V006 (AIRX3QPM) at GES DISC
+C1238517314-GES_DISC: AIRS/Aqua L3 8-day Support Multiday Product (AIRS+AMSU) 1 degree x 1 degree V006 (AIRX3SP8) at GES DISC
+C1701805677-GES_DISC: Aqua/AIRS L3 Daily Support Product (AIRS+AMSU) 1 degree x 1 degree V7.0 at GES DISC
+C1238517317-GES_DISC: AIRS/Aqua L3 Daily Support Product (AIRS+AMSU) 1 degree x 1 degree V006 (AIRX3SPD) at GES DISC
+C1701805687-GES_DISC: Aqua/AIRS L3 Monthly Support Product (AIRS+AMSU) 1 degree x 1 degree V7.0 at GES DISC
+C1238517340-GES_DISC: AIRS/Aqua L3 Monthly Support Product (AIRS+AMSU) 1 degree x 1 degree V006 (AIRX3SPM) at GES DISC
+C1238517323-GES_DISC: AIRS/Aqua L3 8-day Standard Physical Retrieval (AIRS+AMSU) 1 degree x 1 degree V006 (AIRX3ST8) at GES DISC
+C1243477315-GES_DISC: AIRS/Aqua L1B Calibration subset V005 (AIRXBCAL) at GES DISC
+C1412973545-GES_DISC: AMSR-MODIS Boundary Layer Water Vapor L3 Daily 1 degree x 1 degree V2 (AMDBLWV) at GES DISC
+C1412973546-GES_DISC: AMSR-MODIS Boundary Layer Water Vapor L3 Monthly 1 degree x 1 degree V2 (AMMBLWV) at GES DISC
+C1382049817-GES_DISC: AMSR-MODIS Boundary Layer Water Vapor L3 Monthly 1 degree x 1 degree V1 (AMMBLWV) at GES DISC
+C1251051137-GES_DISC: BUV/Nimbus-4 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (BUVN04L2) at GES DISC
+C1251051178-GES_DISC: BUV/Nimbus-4 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (BUVN04L3zm) at GES DISC
+C1617621679-GES_DISC: CAR ARCTAS BRDF Measurements  V2 (CAR_ARCTAS_BRDF) at GES DISC
+C1442068281-GES_DISC: CAR ARCTAS Arctic Research of the Composition of the Troposphere from Aircraft and Satellites L1 V1 (CAR_ARCTAS_L1C) at GES DISC
+C1617621680-GES_DISC: CAR ARMCAS Arctic Cloud BRDF Measurements V2 (CAR_ARMCAS_BRDF) at GES DISC
+C1442068286-GES_DISC: CAR ARMCAS Arctic Cloud Radiation Measurements L1 V1 (CAR_ARMCAS_L1C) at GES DISC
+C1617621681-GES_DISC: CAR CLAMS BRDF Measurements V2 (CAR_CLAMS_BRDF) at GES DISC
+C1442068288-GES_DISC: CAR Clams Chesapeake Lighthouse Aircraft Ocean Measurements L1 V1 (CAR_CLAMS_L1C) at GES DISC
+C1617621682-GES_DISC: CAR CLASIC BRDF Measurements V2 (CAR_CLASIC_BRDF) at GES DISC
+C1442068290-GES_DISC: CAR CLASIC Cloud and Land Surface Measurements L1 V1 (CAR_CLASIC_L1C) at GES DISC
+C1617621683-GES_DISC: CAR Discover AQ BRDF Measurements V2 (CAR_DISCOVERAQ_BRDF_2)
+C1442068291-GES_DISC: CAR Discover AQ Air Quality L1 V1 (CAR_DISCOVERAQ_L1C) at GES DISC
+C1617621686-GES_DISC: CAR ECO3D BRDF Measurements V2 (CAR_ECO3D_BRDF) at GES DISC
+C1442068293-GES_DISC: CAR Eco-3D Vegetation Response to Changing Forcing Factors L1 V1 (CAR_ECO3D_L1C) at GES DISC
+C1617621687-GES_DISC: CAR FIREACE Arctic Ice and Cloud Radiation BRDF V2 (CAR_FIREACE_BRDF) at GES DISC
+C1442068295-GES_DISC: CAR FIREACE Arctic Ice and Cloud Radiation L1 V1 (CAR_FIREACE_L1C) at GES DISC
+C1617621688-GES_DISC: CAR INTEXB BRDF Measurements L1 V2 (CAR_INTEXB_BRDF) at GES DISC
+C1442068297-GES_DISC: CAR INTEX-B Long-range Pollution Transportation L1 V1 (CAR_INTEXB_L1C) at GES DISC
+C1617621689-GES_DISC: CAR Kuwait Oil Fire BRDF V2 (CAR_KUWAITOILFIRE_BRDF) at GES DISC
+C1442068298-GES_DISC: CAR Kuwait Oil Fire Spectral Reflectance L1 V1 (CAR_KUWAITOILFIRE_L1C) at GES DISC
+C1617621690-GES_DISC: CAR LEADEX Arctic Sea Ice and Tundra BRDF Measurements L1 V2 (CAR_LEADEX_BRDF) at GES DISC
+C1442068300-GES_DISC: CAR LEADEX Arctic Sea Ice and Tundra Radiation Measurements L1 V1 (CAR_LEADEX_L1C) at GES DISC
+C1617621691-GES_DISC: CAR Safari BRDF Measurements L1 V2 (CAR_SAFARI_BRDF) at GES DISC
+C1442068302-GES_DISC: CAR Safari South African Biogeophysics and Biogeochemistry L1 V1 (CAR_SAFARI_L1C) at GES DISC
+C1617621692-GES_DISC: CAR SCAR-A Sulfates, Clouds, and Radiation-Atlantic BRDF Measurements BRDF V2 (CAR_SCARA_BRDF) at GES DISC
+C1442068303-GES_DISC: CAR SCAR-A Sulfates, Clouds, and Radiation-Atlantic L1 V1 (CAR_SCARA_L1C) at GES DISC
+C1617621693-GES_DISC: CAR SCAR-B BRDF Measurements L1 V2 (CAR_SCARB_BRDF) at GES DISC
+C1442068305-GES_DISC: CAR SCAR-B Smoke, Clouds, and Radiation-Brazil L1 V1 (CAR_SCARB_L1C) at GES DISC
+C1617621694-GES_DISC: CAR SKUKUZA BRDF Measurements L1 V2 (CAR_SKUKUZA_BRDF) at GES DISC
+C1442068307-GES_DISC: CAR Skukuza South African Ecosystems L1 V1 (CAR_SKUKUZA_L1C) at GES DISC
+C1617621734-GES_DISC: CAR SnowEx17 BRDF Measurements L1 V2 (CAR_SNOWEX17_BRDF) at GES DISC
+C1442068308-GES_DISC: CAR SnowEx17 Snow Mass and Energy Measurements L1 V1 (CAR_SNOWEX17_L1C) at GES DISC
+C1617621695-GES_DISC: CAR TARFOX Tropospheric Aerosol Experiment BRDF V2 (CAR_TARFOX_BRDF) at GES DISC
+C1442068310-GES_DISC: CAR TARFOX Tropospheric Aerosol Radiative Forcing Observational Experiment L1 V1 (CAR_TARFOX_L1C) at GES DISC
+C1945851681-GES_DISC: Carbon Monitoring System Carbon Flux for Fire L4 V2 (CMSFluxFire) at GES DISC
+C1424798922-GES_DISC: Carbon Monitoring System Carbon Flux for Fire L4 V1 (CMSFluxFire) at GES DISC
+C1424798923-GES_DISC: Carbon Monitoring System Flux for Posterior Fire Carbon L4 V1 (CMSFluxFirepost) at GES DISC
+C1945851812-GES_DISC: Carbon Monitoring System Carbon Flux for Fossil Fuel Prior L4 V2 (CMSFluxFossilFuelPrior) at GES DISC
+C1424798924-GES_DISC: Carbon Monitoring System Flux for Fossil Fuel L4 V1 (CMSFluxFossilfuel) at GES DISC
+C1424798925-GES_DISC: Carbon Monitoring System Flux for Shipping, Aviation, and Chemical Sources L4 V1 (CMSFluxMISC) at GES DISC
+C1945851870-GES_DISC: Carbon Monitoring System Carbon Flux from the Net Biome Exchange L4 V2 (CMSFluxNBE) at GES DISC
+C1945851924-GES_DISC: Carbon Monitoring System Carbon Flux from the Net Biome Exchange Prior L4 V2 (CMSFluxNBEPrior) at GES DISC
+C1424798926-GES_DISC: Carbon Monitoring System Flux from the Net Ecosystem Exchange L4 V1 (CMSFluxNEE) at GES DISC
+C1424798927-GES_DISC: Carbon Monitoring System Flux for Ocean Carbon L4 V1 (CMSFluxOcean) at GES DISC
+C1945851993-GES_DISC: Carbon Monitoring System Carbon Flux for Ocean Prior L4 V2 (CMSFluxOceanPrior) at GES DISC
+C1945852056-GES_DISC: Carbon Monitoring System Carbon Flux Total L4 V2 (CMSFluxTotal) at GES DISC
+C1424798928-GES_DISC: Carbon Monitoring System Flux for Posterior Total Carbon L4 V1 (CMSFluxTotalpost) at GES DISC
+C1424798929-GES_DISC: Carbon Monitoring System Flux for Prior Total Carbon L4 V1 (CMSFluxTotalprior) at GES DISC
+C1652491691-GES_DISC: Carbon Monitoring System Lake Huron Primary Production Monthly V1 (CMSLakeHuronPPM) at GES DISC
+C1652491701-GES_DISC: Carbon Monitoring System Lake Huron Primary Production Yearly V1 (CMSLakeHuronPPY) at GES DISC
+C1652491711-GES_DISC: Carbon Monitoring System Lake Michigan Primary Production Monthly V1 (CMSLakeMichiganPPM) at GES DISC
+C1652491716-GES_DISC: Carbon Monitoring System Lake Michigan Primary Production Yearly V1 (CMSLakeMichiganPPY) at GES DISC
+C1652491837-GES_DISC: Carbon Monitoring System Lake Superior Primary Production Monthly V1 (CMSLakeSuperiorPPM) at GES DISC
+C1652491725-GES_DISC: Carbon Monitoring System Lake Superior Primary Production Yearly V1 (CMSLakeSuperiorPPY) at GES DISC
+C1405716389-GES_DISC: Methane (CH4) Flux for Canadian Oil/Gas Systems L4 V1 (CMS_CH4_FLX_CA) at GES DISC
+C1405716390-GES_DISC: Methane (CH4) Flux for Mexican Oil/Gas Systems L4 V1 (CMS_CH4_FLX_MX) at GES DISC
+C2467903005-GES_DISC: CarbonTracker-Lagrange North America GOSAT Vertical Profile of Footprints V1 (CMS_CTL_NA_GOSAT_FOOTPRINTS)
+C2467863601-GES_DISC: CarbonTracker-Lagrange North America OCO-2 Vertical Profile of Footprints V1 (CMS_CTL_NA_OCO2_FOOTPRINTS)
+C2467917764-GES_DISC: CarbonTracker-Lagrange North America TCCON Vertical Profile of Footprints V1 (CMS_CTL_NA_TCCON_FOOTPRINTS)
+C2467880659-GES_DISC: CarbonTracker-Lagrange South America OCO-2 Vertical Profile of Footprints V1 (CMS_CTL_SA_OCO2_FOOTPRINTS)
+C1439146826-GES_DISC: Ocean Biogeochemistry in the California Current System 2007-2010 L4 Monthly
+C2020765110-GES_DISC: FLDAS Noah Land Surface Model L4 Global Monthly 0.1 x 0.1 degree (GDAS and CHIRPS-PRELIM) V001 (FLDAS_NOAH01_CP_GL_M) at GES DISC
+C1563092281-GES_DISC: FLDAS Noah Land Surface Model L4 Global Monthly Anomaly 0.1 x 0.1 degree (MERRA-2 and CHIRPS) V001 (FLDAS_NOAH01_C_GL_MA) at GES DISC
+C1563092283-GES_DISC: FLDAS Noah Land Surface Model L4 Global Monthly Climatology 0.1 x 0.1 degree (MERRA-2 and CHIRPS) V001 (FLDAS_NOAH01_C_GL_MC) at GES DISC
+C1701034775-GES_DISC: GEOS-Carb CASA-GFED 3-hourly Ecosystem Exchange Fluxes 0.5 degree x 0.625 degree V3 (GEOS_CASAGFED_3H_NEE) at GES DISC
+C1701034748-GES_DISC: GEOS-Carb CASA-GFED 3-hourly Ecosystem Exchange Fluxes 0.5 degree x 0.625 degree V2 (GEOS_CASAGFED_3H_NEE) at GES DISC
+C1701034766-GES_DISC: GEOS-Carb CASA-GFED Daily Fire and Fuel Emissions 0.5 degree x 0.5 degree V3 (GEOS_CASAGFED_D_FIRE) at GES DISC
+C1701034739-GES_DISC: GEOS-Carb CASA-GFED Daily Fire and Fuel Emissions 0.5 degree x 0.5 degree V2 (GEOS_CASAGFED_D_FIRE) at GES DISC
+C1701034757-GES_DISC: GEOS-Carb CASA-GFED Monthly Fire Fuel NPP Rh NEE Fluxes 0.5 degree x 0.5 degree V3 (GEOS_CASAGFED_M_FLUX) at GES DISC
+C1701034725-GES_DISC: GEOS-Carb CASA-GFED Monthly Fire Fuel NPP Rh NEE Fluxes 0.5 degree x 0.5 degree V2 (GEOS_CASAGFED_M_FLUX) at GES DISC
+C2143386827-GES_DISC: Global Inventory of Methane Emissions from Fuel Exploitation V1 (GFEI_CH4)
+C1700900822-GES_DISC: GLDAS Catchment Land Surface Model L4 daily 0.25 x 0.25 degree GRACE-DA1 V2.2 (GLDAS_CLSM025_DA1_D_EP) at GES DISC
+C1690022359-GES_DISC: GLDAS Catchment Land Surface Model L4 3 hourly 1.0 x 1.0 degree V2.1 (GLDAS_CLSM10_3H) at GES DISC
+C1700900748-GES_DISC: GLDAS Catchment Land Surface Model L4 3 hourly 1.0 x 1.0 degree Early Product V2.1 (GLDAS_CLSM10_3H_EP) at GES DISC
+C1933574465-GES_DISC: GLDAS Catchment Land Surface Model L4 monthly 1.0 x 1.0 degree V2.0 (GLDAS_CLSM10_M) at GES DISC
+C1700900777-GES_DISC: GLDAS Catchment Land Surface Model L4 monthly 1.0 x 1.0 degree Early Product V2.1 (GLDAS_CLSM10_M_EP) at GES DISC
+C1700900648-GES_DISC: GLDAS Noah Land Surface Model L4 monthly 0.25 x 0.25 degree Early Product V2.1 (GLDAS_NOAH025_M_EP) at GES DISC
+C1288937556-GES_DISC: GLDAS Noah Land Surface Model L4 3 hourly 1.0 x 1.0 degree V2.1 (GLDAS_NOAH10_3H) at GES DISC
+C1233767548-GES_DISC: GLDAS Noah Land Surface Model L4 3 hourly 1.0 x 1.0 degree V2.0 (GLDAS_NOAH10_3H) at GES DISC
+C1700900671-GES_DISC: GLDAS Noah Land Surface Model L4 3 hourly 1.0 x 1.0 degree Early Product V2.1 (GLDAS_NOAH10_3H_EP) at GES DISC
+C1233767575-GES_DISC: GLDAS Noah Land Surface Model L4 monthly 1.0 x 1.0 degree V2.0 (GLDAS_NOAH10_M) at GES DISC
+C1700900694-GES_DISC: GLDAS Noah Land Surface Model L4 monthly 1.0 x 1.0 degree Early Product V2.1 (GLDAS_NOAH10_M_EP) at GES DISC
+C1690022329-GES_DISC: GLDAS VIC Land Surface Model L4 3 hourly 1.0 x 1.0 degree V2.1 (GLDAS_VIC10_3H) at GES DISC
+C1933574580-GES_DISC: GLDAS VIC Land Surface Model L4 3 hourly 1.0 x 1.0 degree V2.0 (GLDAS_VIC10_3H) at GES DISC
+C1700900711-GES_DISC: GLDAS VIC Land Surface Model L4 3 hourly 1.0 x 1.0 degree Early Product V2.1 (GLDAS_VIC10_3H_EP) at GES DISC
+C1690022344-GES_DISC: GLDAS VIC Land Surface Model L4 monthly 1.0 x 1.0 degree V2.1 (GLDAS_VIC10_M) at GES DISC
+C1933574565-GES_DISC: GLDAS VIC Land Surface Model L4 monthly 1.0 x 1.0 degree V2.0 (GLDAS_VIC10_M) at GES DISC
+C1700900731-GES_DISC: GLDAS VIC Land Surface Model L4 monthly 1.0 x 1.0 degree Early Product V2.1 (GLDAS_VIC10_M_EP) at GES DISC
+C2311997595-GES_DISC: M2-SCREAM: 3d,3-Hourly,Instantaneous,Model-Level,Assimilation,Assimilated Constituent Fields,Replayed MERRA-2 Meteorological Fields
+C2311994359-GES_DISC: M2-SCREAM: Monthly,Model-Level,Assimilated Constituent Fields uncertainties
+C2211141201-GES_DISC: GPCP Precipitation Level 3 Daily 0.5-Degree V3.2 (GPCPDAY) at GES DISC
+C2068254212-GES_DISC: GPCP Precipitation Level 3 Daily 0.5-Degree V3.1 (GPCPDAY) at GES DISC
+C1921115203-GES_DISC: GPCP Precipitation Level 3 Monthly 0.5-Degree V3.1 (GPCPMON) at GES DISC
+C2259345379-GES_DISC: GPM GMI unpacked data L1A 1.5 hours 13 km V07 (GPM_1AGMI) at GES DISC
+C2259345403-GES_DISC: GPM GMI Brightness Temperatures L1B 1.5 hours 13 km V07 (GPM_1BGMI) at GES DISC
+C2264132608-GES_DISC: GPM TMI on TRMM Brightness Temperatures L1B 1.5 hours 13 km V07 (GPM_1BTMI) at GES DISC
+C2264132692-GES_DISC: GPM AMSR-E on AQUA Common Calibrated Brightness Temperatures L1C 1.5 hours 10.5 km V07 (GPM_1CAQUAAMSRE) at GES DISC
+C1429890443-GES_DISC: GPM AMSR-E on AQUA Common Calibrated Brightness Temperatures L1C 1.5 hours 10.5 km V05 (GPM_1CAQUAAMSRE) at GES DISC
+C2264132881-GES_DISC: GPM SSMIS on F16 Common Calibrated Brightness Temperatures L1C 1.5 hours 12 km V07 (GPM_1CF16SSMIS) at GES DISC
+C2264132936-GES_DISC: GPM SSMIS on F18 Common Calibrated Brightness Temperatures L1C 1.5 hours 12 km V07 (GPM_1CF18SSMIS) at GES DISC
+C1384615109-GES_DISC: GPM SSMIS on F18 Common Calibrated Brightness Temperatures L1C 1.5 hours 12 km V05 (GPM_1CF18SSMIS) at GES DISC
+C2264132955-GES_DISC: GPM SSMIS on F19 Common Calibrated Brightness Temperatures L1C 1.5 hours 12 km V07 (GPM_1CF19SSMIS) at GES DISC
+C1384639552-GES_DISC: GPM SSMIS on F19 Common Calibrated Brightness Temperatures L1C 1.5 hours 12 km V05 (GPM_1CF19SSMIS) at GES DISC
+C2264132976-GES_DISC: GPM AMSR-2 on GCOM-W1 Common Calibrated Brightness Temperature L1C 1.5 hours 10 km V07 (GPM_1CGCOMW1AMSR2) at GES DISC
+C1384615110-GES_DISC: GPM AMSR-2 on GCOM-W1 Common Calibrated Brightness Temperature L1C 1.5 hours 10 km V05 (GPM_1CGCOMW1AMSR2) at GES DISC
+C2259345519-GES_DISC: GPM GMI_R Common Calibrated Brightness Temperatures Collocated L1C 1.5 hours 13 km V07 (GPM_1CGPMGMI_R) at GES DISC
+C2264133025-GES_DISC: GPM MHS on METOP-A Common Calibrated Brightness Temperature L1C 1.5 hours 17 km V07 (GPM_1CMETOPAMHS) at GES DISC
+C1384615111-GES_DISC: GPM MHS on METOP-A Common Calibrated Brightness Temperature L1C 1.5 hours 17 km V05 (GPM_1CMETOPAMHS) at GES DISC
+C2264133072-GES_DISC: GPM MHS on METOP-B Common Calibrated Brightness Temperature L1C 1.5 hours 17 km V07 (GPM_1CMETOPBMHS) at GES DISC
+C1384615112-GES_DISC: GPM MHS on METOP-B Common Calibrated Brightness Temperature L1C 1.5 hours 17 km V05 (GPM_1CMETOPBMHS) at GES DISC
+C2264133127-GES_DISC: GPM MHS on METOP-C Common Calibrated Brightness Temperature L1C 1.5 hours 17 km V07 (GPM_1CMETOPCMHS) at GES DISC
+C1687121808-GES_DISC: GPM MHS on METOP-C Common Calibrated Brightness Temperature L1C 1.5 hours 17 km V05 (GPM_1CMETOPCMHS) at GES DISC
+C1384615114-GES_DISC: GPM SAPHIR on MT1 Common Calibrated Brightness Temperature L1C 1.5 hours 10 km V05 (GPM_1CMT1SAPHIR) at GES DISC
+C2264133240-GES_DISC: GPM AMSU-B on NOAA 15 Common Calibrated Brightness Temperatures L1C 1.5 hours 16 km V07 (GPM_1CNOAA15AMSUB) at GES DISC
+C1431312226-GES_DISC: GPM AMSU-B on NOAA 15 Common Calibrated Brightness Temperatures L1C 1.5 hours 16 km V05 (GPM_1CNOAA15AMSUB) at GES DISC
+C2264133295-GES_DISC: GPM AMSU-B on NOAA 16 Common Calibrated Brightness Temperatures L1C 1.5 hours 16 km V07 (GPM_1CNOAA16AMSUB) at GES DISC
+C1431312227-GES_DISC: GPM AMSU-B on NOAA 16 Common Calibrated Brightness Temperatures L1C 1.5 hours 16 km V05 (GPM_1CNOAA16AMSUB) at GES DISC
+C2264133344-GES_DISC: GPM AMSU-B on NOAA 17 Common Calibrated Brightness Temperatures L1C 1.5 hours 16 km V07 (GPM_1CNOAA17AMSUB) at GES DISC
+C1431312228-GES_DISC: GPM AMSU-B on NOAA 17 Common Calibrated Brightness Temperatures L1C 1.5 hours 16 km V05 (GPM_1CNOAA17AMSUB) at GES DISC
+C2264133406-GES_DISC: GPM MHS on NOAA-18 Common Calibrated Brightness Temperature L1C 1.5 hours 17 km V07 (GPM_1CNOAA18MHS) at GES DISC
+C1384615115-GES_DISC: GPM MHS on NOAA-18 Common Calibrated Brightness Temperature L1C 1.5 hours 17 km V05 (GPM_1CNOAA18MHS) at GES DISC
+C2264133458-GES_DISC: GPM MHS on NOAA-19 Common Calibrated Brightness Temperatures L1C 1.5 hours 17 km V07 (GPM_1CNOAA19MHS) at GES DISC
+C1384615116-GES_DISC: GPM MHS on NOAA-19 Common Calibrated Brightness Temperatures L1C 1.5 hours 17 km V05 (GPM_1CNOAA19MHS) at GES DISC
+C2264133522-GES_DISC: GPM ATMS on NOAA-20 Common Calibrated Brightness Temperatures L1C 1.5 hours 17 km V07 (GPM_1CNOAA20ATMS) at GES DISC
+C1545047048-GES_DISC: GPM ATMS on NOAA-20 Common Calibrated Brightness Temperatures L1C 1.5 hours 17 km V05 (GPM_1CNOAA20ATMS) at GES DISC
+C2264133568-GES_DISC: GPM ATMS on SUOMI-NPP Common Calibrated Brightness Temperature L1C 1.5 hours 16 km V07 (GPM_1CNPPATMS) at GES DISC
+C1384615117-GES_DISC: GPM ATMS on SUOMI-NPP Common Calibrated Brightness Temperature L1C 1.5 hours 16 km V05 (GPM_1CNPPATMS) at GES DISC
+C1424679218-GES_DISC: GPM TMI on TRMM Common Calibrated Brightness Temperatures L1C 1.5 hours 13 km V05 (GPM_1CTRMMTMI) at GES DISC
+C2179081510-GES_DISC: GPM DPR L2A Environment 1.5 hours 5 km V07 (GPM_2ADPRENV) at GES DISC
+C2264133950-GES_DISC: GPM AMSR-E on Aqua (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 5 km V07 (GPM_2AGPROFAQUAAMSRE_CLIM) at GES DISC
+C1452977737-GES_DISC: GPM AMSR-E on Aqua (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 5 km V05 (GPM_2AGPROFAQUAAMSRE_CLIM) at GES DISC
+C2264133957-GES_DISC: GPM SSM/I on F08 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 12 km V07 (GPM_2AGPROFF08SSMI_CLIM) at GES DISC
+C2264133962-GES_DISC: GPM SSM/I on F10 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 12 km V07 (GPM_2AGPROFF10SSMI_CLIM) at GES DISC
+C2264133965-GES_DISC: GPM SSM/I on F11 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 13 km V07 (GPM_2AGPROFF11SSMI_CLIM) at GES DISC
+C1452977747-GES_DISC: GPM SSM/I on F11 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 13 km V05 (GPM_2AGPROFF11SSMI_CLIM) at GES DISC
+C2264133990-GES_DISC: GPM SSM/I on F13 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 12 km V07 (GPM_2AGPROFF13SSMI_CLIM) at GES DISC
+C1452977754-GES_DISC: GPM SSM/I on F13 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 12 km V05 (GPM_2AGPROFF13SSMI_CLIM) at GES DISC
+C2264134011-GES_DISC: GPM SSM/I on F14 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 12 km V07 (GPM_2AGPROFF14SSMI_CLIM) at GES DISC
+C1452977755-GES_DISC: GPM SSM/I on F14 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 12 km V05 (GPM_2AGPROFF14SSMI_CLIM) at GES DISC
+C2264134016-GES_DISC: GPM SSM/I on F15 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 12 km V07 (GPM_2AGPROFF15SSMI_CLIM) at GES DISC
+C1452977756-GES_DISC: GPM SSM/I on F15 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 12 km V05 (GPM_2AGPROFF15SSMI_CLIM) at GES DISC
+C2264133638-GES_DISC: GPM SSMIS on F16 (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 12 km V07 (GPM_2AGPROFF16SSMIS) at GES DISC
+C1384615118-GES_DISC: GPM SSMIS on F16 (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 12 km V05 (GPM_2AGPROFF16SSMIS) at GES DISC
+C2264134019-GES_DISC: GPM SSMIS on F16 (GPROF) Climate-based Radiometer Precipitation Profiling 1.5 hours 12 km V07 (GPM_2AGPROFF16SSMIS_CLIM) at GES DISC
+C1388355271-GES_DISC: GPM SSMIS on F16 (GPROF) Climate-based Radiometer Precipitation Profiling 1.5 hours 12 km V05 (GPM_2AGPROFF16SSMIS_CLIM) at GES DISC
+C2264133661-GES_DISC: GPM SSMIS on F17 (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 12 km V07 (GPM_2AGPROFF17SSMIS) at GES DISC
+C1384615119-GES_DISC: GPM SSMIS on F17 (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 12 km V05 (GPM_2AGPROFF17SSMIS) at GES DISC
+C2264134035-GES_DISC: GPM SSMIS on F17 (GPROF) Climate-based Radiometer Precipitation Profiling 1.5 hours 12 km V07 (GPM_2AGPROFF17SSMIS_CLIM) at GES DISC
+C1388355296-GES_DISC: GPM SSMIS on F17 (GPROF) Climate-based Radiometer Precipitation Profiling 1.5 hours 12 km V05 (GPM_2AGPROFF17SSMIS_CLIM) at GES DISC
+C2264133688-GES_DISC: GPM SSMIS on F18 (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 12 km V07 (GPM_2AGPROFF18SSMIS) at GES DISC
+C1384615120-GES_DISC: GPM SSMIS on F18 (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 12 km V05 (GPM_2AGPROFF18SSMIS) at GES DISC
+C2264134059-GES_DISC: GPM SSMIS on F18 (GPROF) Climate-based Radiometer Precipitation Profiling 1.5 hours 12 km V07 (GPM_2AGPROFF18SSMIS_CLIM) at GES DISC
+C1388355298-GES_DISC: GPM SSMIS on F18 (GPROF) Climate-based Radiometer Precipitation Profiling 1.5 hours 12 km V05 (GPM_2AGPROFF18SSMIS_CLIM) at GES DISC
+C1384615121-GES_DISC: GPM SSMIS on F19 (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 12 km V05 (GPM_2AGPROFF19SSMIS) at GES DISC
+C2264134106-GES_DISC: GPM SSMIS on F19 (GPROF) Climate-based Radiometer Precipitation Profiling 1.5 hours 12 km V07 (GPM_2AGPROFF19SSMIS_CLIM) at GES DISC
+C1388355299-GES_DISC: GPM SSMIS on F19 (GPROF) Climate-based Radiometer Precipitation Profiling 1.5 hours 12 km V05 (GPM_2AGPROFF19SSMIS_CLIM) at GES DISC
+C2264133757-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 10 km V07 (GPM_2AGPROFGCOMW1AMSR2) at GES DISC
+C1384615122-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 10 km V05 (GPM_2AGPROFGCOMW1AMSR2) at GES DISC
+C2264134168-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 10 km V07 (GPM_2AGPROFGCOMW1AMSR2_CLIM) at GES DISC
+C1388355340-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 10 km V05 (GPM_2AGPROFGCOMW1AMSR2_CLIM) at GES DISC
+C2259345545-GES_DISC: GPM GMI (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 13 km V07 (GPM_2AGPROFGPMGMI) at GES DISC
+C1385483801-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFMETOPAMHS) at GES DISC
+C2264134196-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFMETOPAMHS_CLIM) at GES DISC
+C1517890073-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFMETOPAMHS_CLIM) at GES DISC
+C2264133816-GES_DISC: GPM MHS on METOP-B (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFMETOPBMHS) at GES DISC
+C1385291383-GES_DISC: GPM MHS on METOP-B (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFMETOPBMHS) at GES DISC
+C2264134219-GES_DISC: GPM MHS on METOP-B (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFMETOPBMHS_CLIM) at GES DISC
+C1517890074-GES_DISC: GPM MHS on METOP-B (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFMETOPBMHS_CLIM) at GES DISC
+C2264133834-GES_DISC: GPM MHS on METOP-C (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFMETOPCMHS) at GES DISC
+C1687121809-GES_DISC: GPM MHS on METOP-C (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFMETOPCMHS) at GES DISC
+C2264134246-GES_DISC: GPM MHS on METOP-C (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFMETOPCMHS_CLIM) at GES DISC
+C1687121810-GES_DISC: GPM MHS on METOP-C (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFMETOPCMHS_CLIM) at GES DISC
+C2264134264-GES_DISC: GPM AMSU-B on NOAA15 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 16 km V07 (GPM_2AGPROFNOAA15AMSUB) at GES DISC
+C1452977757-GES_DISC: GPM AMSU-B on NOAA15 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 16 km V05 (GPM_2AGPROFNOAA15AMSUB) at GES DISC
+C2264134296-GES_DISC: GPM AMSU-B on NOAA16 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 16 km V07 (GPM_2AGPROFNOAA16AMSUB) at GES DISC
+C1452977759-GES_DISC: GPM AMSU-B on NOAA16 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 16 km V05 (GPM_2AGPROFNOAA16AMSUB) at GES DISC
+C2264134325-GES_DISC: GPM AMSU-B on NOAA17 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 16 km V07 (GPM_2AGPROFNOAA17AMSUB) at GES DISC
+C1452977763-GES_DISC: GPM AMSU-B on NOAA17 (GPROF) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 16 km V05 (GPM_2AGPROFNOAA17AMSUB) at GES DISC
+C1385291384-GES_DISC: GPM MHS on NOAA-18 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFNOAA18MHS) at GES DISC
+C2264134345-GES_DISC: GPM MHS on NOAA-18 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFNOAA18MHS_CLIM) at GES DISC
+C1517890075-GES_DISC: GPM MHS on NOAA-18 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFNOAA18MHS_CLIM) at GES DISC
+C2264133875-GES_DISC: GPM MHS on NOAA-19 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFNOAA19MHS) at GES DISC
+C1385291385-GES_DISC: GPM MHS on NOAA-19 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFNOAA19MHS) at GES DISC
+C2264134366-GES_DISC: GPM MHS on NOAA-19 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFNOAA19MHS_CLIM) at GES DISC
+C1517890081-GES_DISC: GPM MHS on NOAA-19 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFNOAA19MHS_CLIM) at GES DISC
+C2264133891-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFNOAA20ATMS) at GES DISC
+C1545047053-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFNOAA20ATMS) at GES DISC
+C2264134395-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 17 km V07 (GPM_2AGPROFNOAA20ATMS_CLIM) at GES DISC
+C1545047057-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 17 km V05 (GPM_2AGPROFNOAA20ATMS_CLIM) at GES DISC
+C2264133914-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 16 km V07 (GPM_2AGPROFNPPATMS) at GES DISC
+C1385291386-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 16 km V05 (GPM_2AGPROFNPPATMS) at GES DISC
+C2264134428-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 16 km V07 (GPM_2AGPROFNPPATMS_CLIM) at GES DISC
+C1517890090-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L2 1.5 hours 16 km V05 (GPM_2AGPROFNPPATMS_CLIM) at GES DISC
+C2264134452-GES_DISC: GPM TMI on TRMM (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 13 km V07 (GPM_2AGPROFTRMMTMI_CLIM) at GES DISC
+C1388355363-GES_DISC: GPM TMI on TRMM (GPROF) Climate-based Radiometer Precipitation Profiling L2A 1.5 hours 13 km V05 (GPM_2AGPROFTRMMTMI_CLIM) at GES DISC
+C2179081525-GES_DISC: GPM DPR Ka Precipitation Profile 2A 1.5 hours 5 km V07 (GPM_2AKa) at GES DISC
+C2179301732-GES_DISC: GPM DPR Ka Environment L2A 1.5 hours 5 km V07 (GPM_2AKaENV) at GES DISC
+C2179081538-GES_DISC: GPM DPR Ku Precipitation Profile 2A 1.5 hours 5 km V07 (GPM_2AKu) at GES DISC
+C2179301740-GES_DISC: GPM DPR Ku Environment L2A 1.5 hours 5 km V07 (GPM_2AKuENV) at GES DISC
+C1596594714-GES_DISC: GPM SAPHIR on MT1 (PRPS) Radiometer Precipitation Profiling L2 1.5 hours 10 km V06 (GPM_2APRPSMT1SAPHIR) at GES DISC
+C1596594715-GES_DISC: GPM SAPHIR on MT1 (PRPS) Climate-based Radiometer Precipitation Profiling L2 1.5 hours 10 km V06 (GPM_2APRPSMT1SAPHIR_CLIM) at GES DISC
+C2179081553-GES_DISC: GPM DPR and GMI Combined Precipitation L2B 1.5 hours 5 km V07 (GPM_2BCMB) at GES DISC
+C1560291660-GES_DISC: GPM DPR and GMI Combined Precipitation L2B 1.5 hours 5 km V06 (GPM_2BCMB) at GES DISC
+C2179081566-GES_DISC: GPM DPR and GMI Combined Stratiform Heating L2 1.5 hours 5 km V07 (GPM_2HCSH) at GES DISC
+C1560291662-GES_DISC: GPM DPR and GMI Combined Stratiform Heating L2 1.5 hours 5 km V06 (GPM_2HCSH) at GES DISC
+C2179081549-GES_DISC: GPM DPR Spectral Latent Heating Profiles L2 1.5 hours 5 km V07 (GPM_2HSLH) at GES DISC
+C2179081668-GES_DISC: GPM DPR and GMI (Combined Precipitation) L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3CMB) at GES DISC
+C1560291690-GES_DISC: GPM DPR and GMI (Combined Precipitation) L3 1 month 0.25 degree x 0.25 degree V06 (GPM_3CMB) at GES DISC
+C2179081680-GES_DISC: GPM DPR and GMI (Combined Precipitation) L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3CMB_DAY) at GES DISC
+C1560291666-GES_DISC: GPM DPR and GMI (Combined Precipitation) L3 1 day 0.25 degree x 0.25 degree V06 (GPM_3CMB_DAY) at GES DISC
+C2264132450-GES_DISC: GPM PR and TMI on TRMM (Combined Precipitation) L3 1 month 0.25x0.25 degree V07 (GPM_3CMB_TRMM) at GES DISC
+C2264132469-GES_DISC: GPM PR and TMI on TRMM (Combined Precipitation) L3 1 day 0.25x0.25 degree V07 (GPM_3CMB_TRMM_DAY) at GES DISC
+C2179081580-GES_DISC: GPM DPR Precipitation Profile 1 month 0.25 degree x 0.25 degree V07 (GPM_3DPR) at GES DISC
+C2179081590-GES_DISC: GPM DPR Precipitation Profile 1 Day 0.25 degree x 0.25 degree V07 (GPM_3DPRD) at GES DISC
+C2179081652-GES_DISC: GPM DPR Precipitation Profile 1 Day Ascending 0.25 degree x 0.25 degree V07 (GPM_3DPR_ASC) at GES DISC
+C2179081663-GES_DISC: GPM DPR Precipitation Profile 1 Day Descending 0.25 degree x 0.25 degree V07 (GPM_3DPR_DES) at GES DISC
+C2179081683-GES_DISC: GPM DPR (Gridded Convective Stratiform Heating) L3 1.5 hours 0.5 degree x 0.5 degree V07 (GPM_3GCSH) at GES DISC
+C1560291686-GES_DISC: GPM DPR (Gridded Convective Stratiform Heating) L3 1.5 hours 0.5 degree x 0.5 degree V06 (GPM_3GCSH) at GES DISC
+C2264132506-GES_DISC: GPM PR and TMI on TRMM Combined Gridded Orbital Convective-Stratiform Latent Heating Profiles L3 1.5 hours 0.25x0.25 degree V07 (GPM_3GCSH_TRMM) at GES DISC
+C2264134954-GES_DISC: GPM AMSR-E on Aqua (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFAQUAAMSRE_CLIM) at GES DISC
+C1452978042-GES_DISC: GPM AMSR-E on Aqua (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFAQUAAMSRE_CLIM) at GES DISC
+C2264134971-GES_DISC: GPM AMSR-E on Aqua (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFAQUAAMSRE_DAY_CLIM) at GES DISC
+C1452978043-GES_DISC: GPM AMSR-E on Aqua (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFAQUAAMSRE_DAY_CLIM) at GES DISC
+C2264135006-GES_DISC: GPM SSMI on F08 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF08SSMI_CLIM) at GES DISC
+C2264135026-GES_DISC: GPM SSMI on F08 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF08SSMI_DAY_CLIM) at GES DISC
+C2264135047-GES_DISC: GPM SSMI on F10 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF10SSMI_CLIM) at GES DISC
+C2264135079-GES_DISC: GPM SSMI on F10 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF10SSMI_DAY_CLIM) at GES DISC
+C2264135111-GES_DISC: GPM SSMI on F11 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF11SSMI_CLIM) at GES DISC
+C1452978044-GES_DISC: GPM SSMI on F11 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF11SSMI_CLIM) at GES DISC
+C2264135158-GES_DISC: GPM SSMI on F11 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF11SSMI_DAY_CLIM) at GES DISC
+C1452978046-GES_DISC: GPM SSMI on F11 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF11SSMI_DAY_CLIM) at GES DISC
+C2264135190-GES_DISC: GPM SSMI on F13 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF13SSMI_CLIM) at GES DISC
+C1452978047-GES_DISC: GPM SSMI on F13 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF13SSMI_CLIM) at GES DISC
+C2264135209-GES_DISC: GPM SSMI on F13 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF13SSMI_DAY_CLIM) at GES DISC
+C1452978048-GES_DISC: GPM SSMI on F13 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF13SSMI_DAY_CLIM) at GES DISC
+C2264135224-GES_DISC: GPM SSMI on F14 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF14SSMI_CLIM) at GES DISC
+C1452978049-GES_DISC: GPM SSMI on F14 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF14SSMI_CLIM) at GES DISC
+C2264135246-GES_DISC: GPM SSMI on F14 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF14SSMI_DAY_CLIM) at GES DISC
+C1452978050-GES_DISC: GPM SSMI on F14 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF14SSMI_DAY_CLIM) at GES DISC
+C2264135273-GES_DISC: GPM SSMI on F15 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF15SSMI_CLIM) at GES DISC
+C1452978051-GES_DISC: GPM SSMI on F15 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF15SSMI_CLIM) at GES DISC
+C2264135294-GES_DISC: GPM SSMI on F15 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF15SSMI_DAY_CLIM) at GES DISC
+C1452978052-GES_DISC: GPM SSMI on F15 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF15SSMI_DAY_CLIM) at GES DISC
+C2264134492-GES_DISC: GPM SSMIS on F16 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF16SSMIS) at GES DISC
+C1384615124-GES_DISC: GPM SSMIS on F16 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF16SSMIS) at GES DISC
+C2264135319-GES_DISC: GPM SSMIS on F16 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF16SSMIS_CLIM) at GES DISC
+C1388355365-GES_DISC: GPM SSMIS on F16 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF16SSMIS_CLIM) at GES DISC
+C2264134526-GES_DISC: GPM SSMIS on F16 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF16SSMIS_DAY) at GES DISC
+C1384627475-GES_DISC: GPM SSMIS on F16 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF16SSMIS_DAY) at GES DISC
+C2264135339-GES_DISC: GPM SSMIS on F16 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF16SSMIS_DAY_CLIM) at GES DISC
+C1388355366-GES_DISC: GPM SSMIS on F16 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF16SSMIS_DAY_CLIM) at GES DISC
+C2264134547-GES_DISC: GPM SSMIS on F17 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF17SSMIS) at GES DISC
+C1384615125-GES_DISC: GPM SSMIS on F17 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF17SSMIS) at GES DISC
+C2264135360-GES_DISC: GPM SSMIS on F17 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF17SSMIS_CLIM) at GES DISC
+C1388355367-GES_DISC: GPM SSMIS on F17 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF17SSMIS_CLIM) at GES DISC
+C2264134565-GES_DISC: GPM SSMIS on F17 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF17SSMIS_DAY) at GES DISC
+C1384627480-GES_DISC: GPM SSMIS on F17 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF17SSMIS_DAY) at GES DISC
+C2264135388-GES_DISC: GPM SSMIS on F17 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF17SSMIS_DAY_CLIM) at GES DISC
+C1388355368-GES_DISC: GPM SSMIS on F17 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF17SSMIS_DAY_CLIM) at GES DISC
+C2264134592-GES_DISC: GPM SSMIS on F18 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF18SSMIS) at GES DISC
+C1384615126-GES_DISC: GPM SSMIS on F18 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF18SSMIS) at GES DISC
+C2264135411-GES_DISC: GPM SSMIS on F18 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF18SSMIS_CLIM) at GES DISC
+C1388355374-GES_DISC: GPM SSMIS on F18 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF18SSMIS_CLIM) at GES DISC
+C2264134615-GES_DISC: GPM SSMIS on F18 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF18SSMIS_DAY) at GES DISC
+C1384627481-GES_DISC: GPM SSMIS on F18 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF18SSMIS_DAY) at GES DISC
+C2264135441-GES_DISC: GPM SSMIS on F18 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF18SSMIS_DAY_CLIM) at GES DISC
+C1388355376-GES_DISC: GPM SSMIS on F18 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF18SSMIS_DAY_CLIM) at GES DISC
+C1384615127-GES_DISC: GPM SSMIS on F19 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF19SSMIS) at GES DISC
+C2264135475-GES_DISC: GPM SSMIS on F19 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFF19SSMIS_CLIM) at GES DISC
+C1388355378-GES_DISC: GPM SSMIS on F19 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFF19SSMIS_CLIM) at GES DISC
+C1384639553-GES_DISC: GPM SSMIS on F19 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF19SSMIS_DAY) at GES DISC
+C2264135505-GES_DISC: GPM SSMIS on F19 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFF19SSMIS_DAY_CLIM) at GES DISC
+C1388355381-GES_DISC: GPM SSMIS on F19 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFF19SSMIS_DAY_CLIM) at GES DISC
+C2264134680-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFGCOMW1AMSR2) at GES DISC
+C1384615128-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFGCOMW1AMSR2) at GES DISC
+C2264135524-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFGCOMW1AMSR2_CLIM) at GES DISC
+C1388355383-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFGCOMW1AMSR2_CLIM) at GES DISC
+C2264134685-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFGCOMW1AMSR2_DAY) at GES DISC
+C1384627482-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFGCOMW1AMSR2_DAY) at GES DISC
+C2264135548-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFGCOMW1AMSR2_DAY_CLIM) at GES DISC
+C1388355385-GES_DISC: GPM AMSR-2 on GCOM-W1 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFGCOMW1AMSR2_DAY_CLIM) at GES DISC
+C2259345585-GES_DISC: GPM GMI (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFGPMGMI) at GES DISC
+C2259345631-GES_DISC: GPM GMI (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFGPMGMI_CLIM) at GES DISC
+C2259345611-GES_DISC: GPM GMI (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFGPMGMI_DAY) at GES DISC
+C2259345664-GES_DISC: GPM GMI (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V07 (GPM_3GPROFGPMGMI_DAY_CLIM) at GES DISC
+C1385483802-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPAMHS) at GES DISC
+C2264135573-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPAMHS_CLIM) at GES DISC
+C1517890093-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPAMHS_CLIM) at GES DISC
+C1385483803-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPAMHS_DAY) at GES DISC
+C2264135591-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPAMHS_DAY_CLIM) at GES DISC
+C1517890094-GES_DISC: GPM MHS on METOP-A (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPAMHS_DAY_CLIM) at GES DISC
+C2264134767-GES_DISC: GPM MHS on METOP-B (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPBMHS) at GES DISC
+C1385291387-GES_DISC: GPM MHS on METOP-B (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPBMHS) at GES DISC
+C2264135677-GES_DISC: GPM MHS on METOP-B (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPBMHS_CLIM) at GES DISC
+C1517890095-GES_DISC: GPM MHS on METOP-B (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPBMHS_CLIM) at GES DISC
+C2264134788-GES_DISC: GPM MHS on METOP-B (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPBMHS_DAY) at GES DISC
+C1385291388-GES_DISC: GPM MHS on METOP-B (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPBMHS_DAY) at GES DISC
+C2264135750-GES_DISC: GPM MHS on METOP-B (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPBMHS_DAY_CLIM) at GES DISC
+C1517890096-GES_DISC: GPM MHS on METOP-B (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPBMHS_DAY_CLIM) at GES DISC
+C2264134803-GES_DISC: GPM MHS on METOP-C (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPCMHS) at GES DISC
+C1687121815-GES_DISC: GPM MHS on METOP-C (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPCMHS) at GES DISC
+C2264135766-GES_DISC: GPM MHS on METOP-C (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPCMHS_CLIM) at GES DISC
+C1687121816-GES_DISC: GPM MHS on METOP-C (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPCMHS_CLIM) at GES DISC
+C2264134822-GES_DISC: GPM MHS on METOP-C (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPCMHS_DAY) at GES DISC
+C1687121817-GES_DISC: GPM MHS on METOP-C (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPCMHS_DAY) at GES DISC
+C2264135780-GES_DISC: GPM MHS on METOP-C (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFMETOPCMHS_DAY_CLIM) at GES DISC
+C1687121822-GES_DISC: GPM MHS on METOP-C (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFMETOPCMHS_DAY_CLIM) at GES DISC
+C2264135808-GES_DISC: GPM AMSUB on NOAA15 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA15AMSUB_CLIM) at GES DISC
+C1452978056-GES_DISC: GPM AMSUB on NOAA15 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA15AMSUB_CLIM) at GES DISC
+C2264135823-GES_DISC: GPM AMSUB on NOAA15 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA15AMSUB_DAY_CLIM) at GES DISC
+C1452978053-GES_DISC: GPM AMSUB on NOAA15 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA15AMSUB_DAY_CLIM) at GES DISC
+C2264135852-GES_DISC: GPM AMSUB on NOAA16 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA16AMSUB_CLIM) at GES DISC
+C1452978057-GES_DISC: GPM AMSUB on NOAA16 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA16AMSUB_CLIM) at GES DISC
+C2264135870-GES_DISC: GPM AMSUB on NOAA16 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA16AMSUB_DAY_CLIM) at GES DISC
+C1452978054-GES_DISC: GPM AMSUB on NOAA16 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA16AMSUB_DAY_CLIM) at GES DISC
+C2264135904-GES_DISC: GPM AMSUB on NOAA17 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA17AMSUB_CLIM) at GES DISC
+C1452978059-GES_DISC: GPM AMSUB on NOAA17 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA17AMSUB_CLIM) at GES DISC
+C2264135925-GES_DISC: GPM AMSUB on NOAA17 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA17AMSUB_DAY_CLIM) at GES DISC
+C1452978055-GES_DISC: GPM AMSUB on NOAA17 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA17AMSUB_DAY_CLIM) at GES DISC
+C1385291389-GES_DISC: GPM MHS on NOAA18 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFNOAA18MHS) at GES DISC
+C2264135951-GES_DISC: GPM MHS on NOAA18 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFNOAA18MHS_CLIM) at GES DISC
+C1517890097-GES_DISC: GPM MHS on NOAA18 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFNOAA18MHS_CLIM) at GES DISC
+C1385291390-GES_DISC: GPM MHS on NOAA18 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFNOAA18MHS_DAY) at GES DISC
+C2264135974-GES_DISC: GPM MHS on NOAA18 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFNOAA18MHS_DAY_CLIM) at GES DISC
+C1517890098-GES_DISC: GPM MHS on NOAA18 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFNOAA18MHS_DAY_CLIM) at GES DISC
+C2264134845-GES_DISC: GPM MHS on NOAA19 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFNOAA19MHS) at GES DISC
+C1385291392-GES_DISC: GPM MHS on NOAA19 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFNOAA19MHS) at GES DISC
+C2264135995-GES_DISC: GPM MHS on NOAA19 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFNOAA19MHS_CLIM) at GES DISC
+C1517890099-GES_DISC: GPM MHS on NOAA19 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFNOAA19MHS_CLIM) at GES DISC
+C2264134857-GES_DISC: GPM MHS on NOAA19 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA19MHS_DAY) at GES DISC
+C1385291393-GES_DISC: GPM MHS on NOAA19 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA19MHS_DAY) at GES DISC
+C2264136015-GES_DISC: GPM MHS on NOAA19 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA19MHS_DAY_CLIM) at GES DISC
+C1517890100-GES_DISC: GPM MHS on NOAA19 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA19MHS_DAY_CLIM) at GES DISC
+C2264134864-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFNOAA20ATMS) at GES DISC
+C1545047061-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFNOAA20ATMS) at GES DISC
+C2264136034-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFNOAA20ATMS_CLIM) at GES DISC
+C1545047065-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFNOAA20ATMS_CLIM) at GES DISC
+C2264134877-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA20ATMS_DAY) at GES DISC
+C1545047068-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA20ATMS_DAY) at GES DISC
+C2264136066-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V07 (GPM_3GPROFNOAA20ATMS_DAY_CLIM) at GES DISC
+C1545047073-GES_DISC: GPM ATMS on NOAA-20 (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree  V05 (GPM_3GPROFNOAA20ATMS_DAY_CLIM) at GES DISC
+C2264134880-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFNPPATMS) at GES DISC
+C1385291394-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFNPPATMS) at GES DISC
+C2264136081-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFNPPATMS_CLIM) at GES DISC
+C1517890101-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFNPPATMS_CLIM) at GES DISC
+C2264134888-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFNPPATMS_DAY) at GES DISC
+C1385291395-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFNPPATMS_DAY) at GES DISC
+C2264136106-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFNPPATMS_DAY_CLIM) at GES DISC
+C1517890102-GES_DISC: GPM ATMS on SUOMI-NPP (GPROF) Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFNPPATMS_DAY_CLIM) at GES DISC
+C2264136122-GES_DISC: GPM TMI on TRMM (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V07 (GPM_3GPROFTRMMTMI_CLIM) at GES DISC
+C1388355391-GES_DISC: GPM TMI on TRMM (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 degree x 0.25 degree V05 (GPM_3GPROFTRMMTMI_CLIM) at GES DISC
+C2264136142-GES_DISC: GPM TMI on TRMM (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V07 (GPM_3GPROFTRMMTMI_DAY_CLIM) at GES DISC
+C1388355403-GES_DISC: GPM TMI on TRMM (GPROF) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 degree x 0.25 degree V05 (GPM_3GPROFTRMMTMI_DAY_CLIM) at GES DISC
+C2179081604-GES_DISC: GPM DPR Gridded Orbital Spectral Latent Heating Profiles L3 1.5 hours 0.5 degree x 0.5 degree V07 (GPM_3GSLH) at GES DISC
+C2264132393-GES_DISC: GPM PR on TRMM Gridded Orbital Spectral Latent Heating Profiles L3 1.5 hours 0.5x0.5 degree V07 (GPM_3GSLH_TRMM) at GES DISC
+C2179081704-GES_DISC: GPM DPR and GMI Combined Convective Stratiform Heating L3 1 month 0.5 degree x 0.5 degree V07 (GPM_3HCSH) at GES DISC
+C1560291676-GES_DISC: GPM DPR and GMI Combined Convective Stratiform Heating L3 1 month 0.5 degree x 0.5 degree V06 (GPM_3HCSH) at GES DISC
+C2264132528-GES_DISC: GPM PR and TMI on TRMM Combined Convective-Stratiform Latent Heating Profiles L3 1 month 0.25x0.25 degree V07 (GPM_3HCSH_TRMM) at GES DISC
+C2179081611-GES_DISC: GPM DPR Spectral Latent Heating Profiles L3 1 month 0.5 degree x 0.5 degree V07 (GPM_3HSLH) at GES DISC
+C2179081641-GES_DISC: GPM DPR Spectral Latent Heating Profiles L3 1 day 0.5 degree x 0.5 degree V07 (GPM_3HSLH_DAY) at GES DISC
+C2264132394-GES_DISC: GPM PR on TRMM Spectral Latent Heating L3 1 month 0.5 degree x 0.5 degree V07 (GPM_3HSLH_TRMM) at GES DISC
+C2264132414-GES_DISC: GPM PR on TRMM Spectral Latent Heating Profiles L3 1 Day 0.5x0.5 degree V07 (GPM_3HSLH_TRMM_DAY) at GES DISC
+C2264132415-GES_DISC: GPM PR on TRMM Reflectivity, Precipitation Statistics, Histograms, at Surface and Fixed Heights, 1 month 5x5 and 0.25x0.25 degree V07 (GPM_3PR) at GES DISC
+C2264132424-GES_DISC: GPM PR on TRMM Precipitation Statistics, at Surface and Fixed Heights 1 day 0.25x0.25 degree V07 (GPM_3PRD) at GES DISC
+C1596594716-GES_DISC: GPM SAPHIR on MT1 (PRPS) Radiometer Precipitation Profiling L3 1 month 0.25 x 0.25 degree V06 (GPM_3PRPSMT1SAPHIR) at GES DISC
+C1596594717-GES_DISC: GPM SAPHIR on MT1 (PRPS) Climate-based Radiometer Precipitation Profiling L3 1 month 0.25 x 0.25 degree V06 (GPM_3PRPSMT1SAPHIR_CLIM) at GES DISC
+C1596594718-GES_DISC: GPM SAPHIR on MT1 (PRPS) Radiometer Precipitation Profiling L3 1 day 0.25 x 0.25 degree V06 (GPM_3PRPSMT1SAPHIR_DAY) at GES DISC
+C1596594719-GES_DISC: GPM SAPHIR on MT1 (PRPS) Climate-based Radiometer Precipitation Profiling L3 1 day 0.25 x 0.25 degree V06 (GPM_3PRPSMT1SAPHIR_DAY_CLIM) at GES DISC
+C2264132435-GES_DISC: GPM PR on TRMM Reflectivity, Precipitation Statistics, Histograms, at Surface and Fixed Heights, Ascending, 1 day 5x5 and 0.25x0.25 degree V07 (GPM_3PR_ASC) at GES DISC
+C2264132441-GES_DISC: GPM PR on TRMM Reflectivity, Precipitation Statistics, Histograms, at Surface and Fixed Heights, Descending, 1 day 5x5 and 0.25x0.25 degree V07 (GPM_3PR_DES) at GES DISC
+C2259345441-GES_DISC: GPM GMI RSS Common Calibrated Brightness Temperatures L1BASE 1.5 hours 13 km V07 (GPM_BASEGPMGMI_RSS) at GES DISC
+C2259345466-GES_DISC: GPM GMI XCAL Common Calibrated Brightness Temperatures L1BASE 1.5 hours 13 km V07 (GPM_BASEGPMGMI_XCAL) at GES DISC
+C2264132669-GES_DISC: GPM TMI on TRMM Antenna Temperatures L1BASE 1.5 hours 13 km V07 (GPM_BASETRMMTMI) at GES DISC
+C1424679220-GES_DISC: GPM TMI on TRMM Antenna Temperatures L1BASE 1.5 hours 13 km V05 (GPM_BASETRMMTMI) at GES DISC
+C1617332035-GES_DISC: Land/Sea static mask relevant to IMERG precipitation 0.1x0.1 degree V2 (GPM_IMERG_LandSeaMask) at GES DISC
+C2179064667-GES_DISC: GPM DPR Ka-band Received Power L1B 1.5 hours 5 km V07 (GPM_PRL1KA) at GES DISC
+C2179064680-GES_DISC: GPM DPR Ku-band Received Power L1B 1.5 hours 5 km V07 (GPM_PRL1KU) at GES DISC
+C2226544227-GES_DISC: GPS Radio Occultation Boundary Layer Depth Annual L3 V2 (GPSROZPBLA) at GES DISC
+C1562324235-GES_DISC: GPS Radio Occultation Boundary Layer Depth Annual L3 V1 (GPSROZPBLA) at GES DISC
+C2226041112-GES_DISC: GPS Radio Occultation Boundary Layer Depth Seasonal L3 V2 (GPSROZPBLS) at GES DISC
+C1562324239-GES_DISC: GPS Radio Occultation Boundary Layer Depth Seasonal L3 V1 (GPSROZPBLS) at GES DISC
+C1993409520-GES_DISC: Groundwater and Soil Moisture Conditions from GRACE Data Assimilation L4 7-days 0.125 x 0.125 degree V4.0 (GRACEDADM_CLSM0125US_7D) at GES DISC
+C2283200566-GES_DISC: Groundwater and Soil Moisture Conditions from GRACE and GRACE-FO Data Assimilation L4 7-days 0.25 x 0.25 degree V3.0 (GRACEDADM_CLSM025GL_7D) at GES DISC
+C1237113419-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Monthly Grid, Set1 and Interpolated Data V2c (GSSTFM) at GES DISC
+C1237113446-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes Climatology, 0.25 x 0.25 deg, Monthly Grid V3 (GSSTFMC) at GES DISC
+C1237113432-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Monthly Climatology, Set1 and NCEP V2c (GSSTFMC) at GES DISC
+C1237113461-GES_DISC: NCEP/DOE Reanalysis II, for GSSTF, 0.25x0.25 deg, Monthly grid V3 (GSSTFM_NCEP) at GES DISC
+C1237113437-GES_DISC: NCEP/DOE Reanalysis II in HDF-EOS5, for GSSTF2c, 1x1 deg Monthly grid V2c (GSSTFM_NCEP) at GES DISC
+C1237113454-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes Climatology, 0.25 x 0.25 deg, Seasonal Grid V3 (GSSTFSC) at GES DISC
+C1237113469-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Seasonal Climatology, Set1 and NCEP V2c (GSSTFSC) at GES DISC
+C1237113477-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes Climatology, 0.25 x 0.25 deg, Yearly Grid V3 (GSSTFYC) at GES DISC
+C1237113456-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Yearly Climatology, Set1 and NCEP V2c (GSSTFYC) at GES DISC
+C1237113367-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 0.25 x 0.25 deg, Daily Grid F08 V3 (GSSTF_F08) at GES DISC
+C1237113365-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Daily Grid, Satellite F08 V2c (GSSTF_F08) at GES DISC
+C1237113374-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 0.25 x 0.25 deg, Daily Grid F10 V3 (GSSTF_F10) at GES DISC
+C1237113368-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Daily Grid, Satellite F10 V2c (GSSTF_F10) at GES DISC
+C1237113377-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 0.25 x 0.25 deg, Daily Grid F11 V3 (GSSTF_F11) at GES DISC
+C1237113384-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Daily Grid, Satellite F11 V2c (GSSTF_F11) at GES DISC
+C1237113405-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 0.25 x 0.25 deg, Daily Grid F13 V3 (GSSTF_F13) at GES DISC
+C1237113389-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Daily Grid, Satellite F13 V2c (GSSTF_F13) at GES DISC
+C1237113409-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 0.25 x 0.25 deg, Daily Grid F14 V3 (GSSTF_F14) at GES DISC
+C1237113407-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Daily Grid, Satellite F14 V2c (GSSTF_F14) at GES DISC
+C1237113424-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 0.25 x 0.25 deg, Daily Grid F15 V3 (GSSTF_F15) at GES DISC
+C1237113422-GES_DISC: Goddard Satellite-Based Surface Turbulent Fluxes, 1x1 deg Daily Grid, Satellite F15 V2c (GSSTF_F15) at GES DISC
+C1237113465-GES_DISC: NCEP/DOE Reanalysis II, for GSSTF, 0.25 x 0.25 deg, Daily Grid V3 (GSSTF_NCEP) at GES DISC
+C1237113451-GES_DISC: NCEP/DOE Reanalysis II in HDF-EOS5, for GSSTF2c, 1x1 deg Daily grid V2c (GSSTF_NCEP) at GES DISC
+C1251051158-GES_DISC: GOZCARDS Merged Water Vapor 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozMmlpH2O) at GES DISC
+C1251051227-GES_DISC: GOZCARDS Merged Hydrogen Chloride 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozMmlpHCl) at GES DISC
+C1251051235-GES_DISC: GOZCARDS Merged Nitric Acid 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozMmlpHNO3) at GES DISC
+C1251051239-GES_DISC: GOZCARDS Merged Nitrous Oxide 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozMmlpN2O) at GES DISC
+C1251051291-GES_DISC: GOZCARDS Merged Ozone 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozMmlpO3) at GES DISC
+C1251051277-GES_DISC: GOZCARDS Source Water Vapor 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozSmlpH2O) at GES DISC
+C1251051321-GES_DISC: GOZCARDS Source Hydrogen Chloride 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozSmlpHCl) at GES DISC
+C1251051329-GES_DISC: GOZCARDS Source Nitric Acid 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozSmlpHNO3) at GES DISC
+C1251051333-GES_DISC: GOZCARDS Source Nitrous Oxide 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozSmlpN2O) at GES DISC
+C1251051360-GES_DISC: GOZCARDS Source Ozone 1 month L3 10 degree Zonal Means on a Vertical Pressure Grid V1 (GozSmlpO3) at GES DISC
+C1251051362-GES_DISC: GOZCARDS Source Temperature 1 month L4 10 degree Zonal Averages on a Vertical Pressure Grid V1 (GozSmlpT) at GES DISC
+C1251100759-GES_DISC: HIRDLS/Aura Level 3 Extinction at 12.1 Microns 1deg Lat Zonal Fourier Coefficients V007 (H3ZFC12MEXT) at GES DISC
+C1251100820-GES_DISC: HIRDLS/Aura Level 3 Extinction at 8.3 Microns 1deg Lat Zonal Fourier Coefficients V007 (H3ZFC8MEXT) at GES DISC
+C1251100818-GES_DISC: HIRDLS/Aura Level 3 Chlorofluorocarbon-11 (CFC-11) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCCFC11) at GES DISC
+C1251100869-GES_DISC: HIRDLS/Aura Level 3 Chlorofluorocarbon-12 (CFC-12) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCCFC11) at GES DISC
+C1251100901-GES_DISC: HIRDLS/Aura Level 3 Chlorine Nitrate (ClONO2) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCCLONO2) at GES DISC
+C1251100913-GES_DISC: HIRDLS/Aura Level 3 Geopotential Height 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCGPH) at GES DISC
+C1251100952-GES_DISC: HIRDLS/Aura Level 3 Water Vapor (H2O) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCH2O) at GES DISC
+C1251100929-GES_DISC: HIRDLS/Aura Level 3 Nitric Acid (HNO3) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCHNO3) at GES DISC
+C1251100984-GES_DISC: HIRDLS/Aura Level 3 Nitrous Oxide (N2O) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCN2O) at GES DISC
+C1251100988-GES_DISC: HIRDLS/Aura Level 3 Dinitrogen Pentoxide (N2O5) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCN2O5) at GES DISC
+C1251101003-GES_DISC: HIRDLS/Aura Level 3 Nitrogen Dioxide (NO2) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCNO2) at GES DISC
+C1251100938-GES_DISC: HIRDLS/Aura Level 3 Ozone (O3) 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCO3) at GES DISC
+C1251101041-GES_DISC: HIRDLS/Aura Level 3 Temperature 1deg Lat Zonal Fourier Coefficients V007 (H3ZFCT) at GES DISC
+C1251101014-GES_DISC: HIRDLS/Aura Level 3 Daily Gridded 1 x 1 deg Stratospheric Columns of NO2 V007 (HIR3SCOL) at GES DISC
+C1251101072-GES_DISC: HIRDLS/Aura Level 2 Daily Geophysical Parameters V007 (HIRDLS2) at GES DISC
+C1251101078-GES_DISC: HIRDLS-MLS/Aura Level 3 Monthly 10 x 20 deg Ice Water Content V002 (HIRMLS3IWC) at GES DISC
+C1374187813-GES_DISC: Land Surface Atmospheric Boundary Interaction Product L3 V1(LANDMET) at GES DISC
+C1374187876-GES_DISC: LANDMET Ancillary Soil Moisture data L3 V1 (LANDMET_ANC_SM) at GES DISC
+C1374187873-GES_DISC: LANDMET Ancillary ISCCP Surface Type Data L3 V1 (LANDMET_ANC_ST) at GES DISC
+C1374187815-GES_DISC: LANDMET Ancillary Monthly Mean Thermal Effective Infrared and Microwave Emissivity Data L3 V1 (LANDMET_ANC_TEIME) at GES DISC
+C1374187878-GES_DISC: LANDMET Ancillary Monthly Mean Effective and Spectral Albedo Data L3 V1 (LANDMET_ANC_TESA) at GES DISC
+C1235316198-GES_DISC: AMSR2/GCOM-W1 surface soil moisture (LPRM) L3 1 day 25 km x 25 km ascending V001 (LPRM_AMSR2_A_SOILM3) at GES DISC
+C1235316218-GES_DISC: AMSR2/GCOM-W1 surface soil moisture (LPRM) L3 1 day 10 km x 10 km ascending V001 (LPRM_AMSR2_DS_A_SOILM3) at GES DISC
+C1235316199-GES_DISC: AMSR2/GCOM-W1 surface soil moisture (LPRM) L3 1 day 10 km x 10 km descending V001 (LPRM_AMSR2_DS_D_SOILM3) at GES DISC
+C1235316219-GES_DISC: AMSR2/GCOM-W1 downscaled surface soil moisture (LPRM) L2B V001 (LPRM_AMSR2_DS_SOILM2) at GES DISC
+C1235316217-GES_DISC: AMSR2/GCOM-W1 surface soil moisture (LPRM) L3 1 day 25 km x 25 km descending V001 (LPRM_AMSR2_D_SOILM3) at GES DISC
+C1235316220-GES_DISC: AMSR2/GCOM-W1 surface soil moisture (LPRM) L2B V001 (LPRM_AMSR2_SOILM2) at GES DISC
+C1235316240-GES_DISC: AMSR-E/Aqua surface soil moisture (LPRM) L3 1 day 25 km x 25 km ascending V002 (LPRM_AMSRE_A_SOILM3) at GES DISC
+C1235316221-GES_DISC: AMSR-E/Aqua surface soil moisture (LPRM) L3 1 day 25 km x 25 km descending V002 (LPRM_AMSRE_D_SOILM3) at GES DISC
+C1235316222-GES_DISC: AMSR-E/Aqua surface soil moisture (LPRM) L2B V002 (LPRM_AMSRE_SOILM2) at GES DISC
+C1235338549-GES_DISC: TMI/TRMM surface soil moisture (LPRM) L3 1 day 25 km x 25 km daytime V001 (LPRM_TMI_DY_SOILM3) at GES DISC
+C1235338554-GES_DISC: TMI/TRMM surface soil moisture (LPRM) L3 1 day 25 km x 25 km nighttime V001 (LPRM_TMI_NT_SOILM3) at GES DISC
+C1235316223-GES_DISC: TMI/TRMM surface soil moisture (LPRM) L2 V001 (LPRM_TMI_SOILM2) at GES DISC
+C1488311742-GES_DISC: WindSat/Coriolis surface soil moisture (LPRM) L3 1 day 25 km x 25 km daytime V001 (LPRM_WINDSAT_DY_SOILM3) at GES DISC
+C1488311688-GES_DISC: WindSat/Coriolis surface soil moisture (LPRM) L3 1 day 25 km x 25 km nighttime V001 (LPRM_WINDSAT_NT_SOILM3) at GES DISC
+C1488311935-GES_DISC: WindSat/Coriolis surface soil moisture (LPRM) L2 V001 (LPRM_WINDSAT_SOILM2) at GES DISC
+C1276812819-GES_DISC: MERRA-2 const_2d_asm_Nx: 2d, constants 0.625 x 0.5 degree V5.12.4 (M2C0NXASM) at GES DISC
+C1278787764-GES_DISC: MERRA-2 const_2d_ctm_Nx: Constant Model Parameters for Usage by CTM 0.625 x 0.5 degree V5.12.4 (M2C0NXCTM) at GES DISC
+C1278787757-GES_DISC: MERRA-2 const_2d_lnd_Nx: 2d, constants Land Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2C0NXLND) at GES DISC
+C1276812901-GES_DISC: MERRA-2 inst3_3d_chm_Nv: 3d,3-Hourly,Instantaneous,Model-Level,Assimilation,Carbon Monoxide and Ozone Mixing Ratio 0.625 x 0.5 degree V5.12.4 (M2I3NVCHM) at GES DISC
+C1276812883-GES_DISC: MERRA-2 inst3_3d_gas_Nv: 3d,3-Hourly,Instantaneous,Model-Level,Assimilation,Aerosol Mixing Ratio Analysis Increments 0.625 x 0.5 degree V5.12.4 (M2I3NVGAS) at GES DISC
+C1276812885-GES_DISC: MERRA-2 inst6_3d_ana_Nv: 3d,6-Hourly,Instantaneous,Model-Level,Analysis,Analyzed Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2I6NVANA) at GES DISC
+C1276812824-GES_DISC: MERRA-2 instM_2d_gas_Nx: 2d,Monthly mean,Instantaneous,Single-Level,Assimilation,Aerosol Optical Depth Analysis 0.625 x 0.5 degree V5.12.4 (M2IMNXGAS) at GES DISC
+C1276812825-GES_DISC: MERRA-2 instM_2d_int_Nx: 2d,Monthly mean,Instantaneous,Single-Level,Assimilation,Vertically Integrated Diagnostics 0.625 x 0.5 degree V5.12.4 (M2IMNXINT) at GES DISC
+C1276812907-GES_DISC: MERRA-2 instU_3d_ana_Np: 3d,diurnal,Instantaneous,Pressure-Level,Analysis,Analyzed Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2IUNPANA) at GES DISC
+C1276812888-GES_DISC: MERRA-2 instU_3d_asm_Np: 3d,diurnal,Instantaneous,Pressure-Level,Assimilation,Assimilated Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2IUNPASM) at GES DISC
+C1276812841-GES_DISC: MERRA-2 instU_2d_asm_Nx: 2d,diurnal,Instantaneous,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2IUNXASM) at GES DISC
+C1276812826-GES_DISC: MERRA-2 instU_2d_gas_Nx: 2d,diurnal,Instantaneous,Single-Level,Assimilation,Aerosol Optical Depth Analysis 0.625 x 0.5 degree V5.12.4 (M2IUNXGAS) at GES DISC
+C1276812827-GES_DISC: MERRA-2 instU_2d_int_Nx: 2d,diurnal,Instantaneous,Single-Level,Assimilation,Vertically Integrated Diagnostics 0.625 x 0.5 degree V5.12.4 (M2IUNXINT) at GES DISC
+C1276812842-GES_DISC: MERRA-2 instU_2d_lfo_Nx: 2d,diurnal,Instantaneous,Single-Level,Assimilation,Land Surface Forcings 0.625 x 0.5 degree V5.12.4 (M2IUNXLFO) at GES DISC
+C1949649168-GES_DISC: MERRA-2 statM_2d_edi_Nx: 2d, Single-Level, Monthly Extremes Detection Indices V1 (M2SMNXEDI) at GES DISC
+C1949649171-GES_DISC: MERRA-2 statM_2d_pct_Nx: 2d, Single-Level, Monthly Percentiles V1 (M2SMNXPCT) at GES DISC
+C1276812828-GES_DISC: MERRA-2 statM_2d_slv_Nx: 2d,Monthly,Aggregated Statistics,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2SMNXSLV) at GES DISC
+C1276812829-GES_DISC: MERRA-2 tavg1_2d_adg_Nx: 2d,1-Hourly,Time-averaged,Single-Level,Assimilation,Aerosol Diagnostics (extended) 0.625 x 0.5 degree V5.12.4 (M2T1NXADG) at GES DISC
+C1276812831-GES_DISC: MERRA-2 tavg1_2d_chm_Nx: 2d,1-Hourly,Time-Averaged,Single-Level,Assimilation,Carbon Monoxide and Ozone Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T1NXCHM) at GES DISC
+C1276812834-GES_DISC: MERRA-2 tavg1_2d_csp_Nx: 2d,1-Hourly,Time-averaged,Single-Level,Assimilation,COSP Satellite Simulator 0.625 x 0.5 degree V5.12.4 (M2T1NXCSP) at GES DISC
+C1276812862-GES_DISC: MERRA-2 tavg1_2d_ocn_Nx: 2d,1-Hourly,Time-Averaged,Single-Level,Assimilation,Ocean Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T1NXOCN) at GES DISC
+C1276812890-GES_DISC: MERRA-2 tavg3_3d_trb_Ne: 3d,3-Hourly,Time-Averaged,Model-Level Edge,Assimilation,Turbulence Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NETRB) at GES DISC
+C1276812893-GES_DISC: MERRA-2 tavg3_3d_cld_Np: 3d,3-Hourly,Time-Averaged,Pressure-Level,Assimilation,Cloud Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NPCLD) at GES DISC
+C1276812688-GES_DISC: MERRA-2 tavg3_3d_mst_Np: 3d,3-Hourly,Time-Averaged,Pressure-Level,Assimilation,Moist Processes Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NPMST) at GES DISC
+C1276812689-GES_DISC: MERRA-2 tavg3_3d_odt_Np: 3d,3-Hourly,Time-Averaged,Pressure-Level,Assimilation,Ozone Tendencies 0.625 x 0.5 degree V5.12.4 (M2T3NPODT) at GES DISC
+C1276812924-GES_DISC: MERRA-2 tavg3_3d_qdt_Np: 3d,3-Hourly,Time-Averaged,Pressure-Level,Assimilation,Moist Tendencies 0.625 x 0.5 degree V5.12.4 (M2T3NPQDT) at GES DISC
+C1276812899-GES_DISC: MERRA-2 tavg3_3d_rad_Np: 3d,3-Hourly,Time-Averaged,Pressure-Level,Assimilation,Radiation Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NPRAD) at GES DISC
+C1276812691-GES_DISC: MERRA-2 tavg3_3d_trb_Np: 3d,3-Hourly,Time-Averaged,Pressure-Level,Assimilation,Turbulence Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NPTRB) at GES DISC
+C1276812925-GES_DISC: MERRA-2 tavg3_3d_asm_Nv: 3d,3-Hourly,Time-Averaged,Model-Level,Assimilation,Assimilated Meteorological Fields 0.625 x 0.5 degree V5.12.4 (M2T3NVASM) at GES DISC
+C1276812926-GES_DISC: MERRA-2 tavg3_3d_cld_Nv: 3d,3-Hourly,Time-Averaged,Model-Level,Assimilation,Cloud Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NVCLD) at GES DISC
+C1276812927-GES_DISC: MERRA-2 tavg3_3d_mst_Nv: 3d,3-Hourly,Time-Averaged,Model-Level,Assimilation,Moist Processes Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NVMST) at GES DISC
+C1276812928-GES_DISC: MERRA-2 tavg3_3d_rad_Nv: 3d,3-Hourly,Time-Averaged,Model-Level,Assimilation,Radiation Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NVRAD) at GES DISC
+C1276812864-GES_DISC: MERRA-2 tavg3_2d_glc_Nx: 2d,3-Hourly,Time-Averaged,Single-Level,Assimilation,Land Ice Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2T3NXGLC) at GES DISC
+C1949650985-GES_DISC: MERRA-2 tavgC_3d_ltm_Np: 3d, Long Term Mean 3-Dimensional Meteorological Fields V1 (M2TCNPLTM) at GES DISC
+C1949650995-GES_DISC: MERRA-2 tavgC_2d_ltm_Nx: 2d, Single-Level, Long Term Mean Diagnostics V1 (M2TCNXLTM) at GES DISC
+C1276812942-GES_DISC: MERRA-2 tavgM_3d_cld_Np: 3d,Monthly mean,Time-Averaged,Pressure-Level,Assimilation,Cloud Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNPCLD) at GES DISC
+C1276812692-GES_DISC: MERRA-2 tavgM_3d_mst_Np: 3d,Monthly mean,Time-Averaged,Pressure-Level,Assimilation,Moist Processes Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNPMST) at GES DISC
+C1276812929-GES_DISC: MERRA-2 tavgM_3d_odt_Np: 3d,Monthly mean,Time-Averaged,Pressure-Level,Assimilation,Ozone Tendencies 0.625 x 0.5 degree V5.12.4 (M2TMNPODT) at GES DISC
+C1276812930-GES_DISC: MERRA-2 tavgM_3d_qdt_Np: 3d,Monthly mean,Time-Averaged,Pressure-Level,Assimilation,Moist Tendencies 0.625 x 0.5 degree V5.12.4 (M2TMNPQDT) at GES DISC
+C1276812931-GES_DISC: MERRA-2 tavgM_3d_rad_Np: 3d,Monthly mean,Time-Averaged,Pressure-Level,Assimilation,Radiation Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNPRAD) at GES DISC
+C1276812693-GES_DISC: MERRA-2 tavgM_3d_tdt_Np: 3d,Monthly mean,Time-Averaged,Pressure-Level,Assimilation,Temperature Tendencies 0.625 x 0.5 degree V5.12.4 (M2TMNPTDT) at GES DISC
+C1276812943-GES_DISC: MERRA-2 tavgM_3d_trb_Np: 3d,Monthly mean,Time-Averaged,Pressure-Level,Assimilation,Turbulence Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNPTRB) at GES DISC
+C1276812944-GES_DISC: MERRA-2 tavgM_3d_udt_Np: 3d,Monthly mean,Time-Averaged,Pressure-Level,Assimilation,Wind Tendencies 0.625 x 0.5 degree V5.12.4 (M2TMNPUDT) at GES DISC
+C1276812867-GES_DISC: MERRA-2 tavgM_2d_csp_Nx: 2d,Monthly mean,Time-averaged,Single-Level,Assimilation,COSP Satellite Simulator 0.625 x 0.5 degree V5.12.4 (M2TMNXCSP) at GES DISC
+C1276812853-GES_DISC: MERRA-2 tavgM_2d_glc_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Land Ice Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXGLC) at GES DISC
+C1276812854-GES_DISC: MERRA-2 tavgM_2d_int_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Vertically Integrated Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXINT) at GES DISC
+C1276812855-GES_DISC: MERRA-2 tavgM_2d_lfo_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Land Surface Forcings 0.625 x 0.5 degree V5.12.4 (M2TMNXLFO) at GES DISC
+C1276812857-GES_DISC: MERRA-2 tavgM_2d_ocn_Nx: 2d,Monthly mean,Time-Averaged,Single-Level,Assimilation,Ocean Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TMNXOCN) at GES DISC
+C1276812932-GES_DISC: MERRA-2 tavgU_3d_cld_Np: 3d,diurnal,Time-Averaged,Pressure-Level,Assimilation,Cloud Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNPCLD) at GES DISC
+C1276812933-GES_DISC: MERRA-2 tavgU_3d_mst_Np: 3d,diurnal,Time-Averaged,Pressure-Level,Assimilation,Moist Processes Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNPMST) at GES DISC
+C1276812694-GES_DISC: MERRA-2 tavgU_3d_odt_Np: 3d,diurnal,Time-Averaged,Pressure-Level,Assimilation,Ozone Tendencies 0.625 x 0.5 degree V5.12.4 (M2TUNPODT) at GES DISC
+C1276812945-GES_DISC: MERRA-2 tavgU_3d_qdt_Np: 3d,diurnal,Time-Averaged,Pressure-Level,Assimilation,Moist Tendencies 0.625 x 0.5 degree V5.12.4 (M2TUNPQDT) at GES DISC
+C1276812946-GES_DISC: MERRA-2 tavgU_3d_rad_Np: 3d,diurnal,Time-Averaged,Pressure-Level,Assimilation,Radiation Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNPRAD) at GES DISC
+C1276812695-GES_DISC: MERRA-2 tavgU_3d_tdt_Np: 3d,diurnal,Time-Averaged,Pressure-Level,Assimilation,Temperature Tendencies 0.625 x 0.5 degree V5.12.4 (M2TUNPTDT) at GES DISC
+C1276812934-GES_DISC: MERRA-2 tavgU_3d_trb_Np: 3d,diurnal,Time-Averaged,Pressure-Level,Assimilation,Turbulence Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNPTRB) at GES DISC
+C1276812935-GES_DISC: MERRA-2 tavgU_3d_udt_Np: 3d,diurnal,Time-Averaged,Pressure-Level,Assimilation,Wind Tendencies 0.625 x 0.5 degree V5.12.4 (M2TUNPUDT) at GES DISC
+C1276812880-GES_DISC: MERRA-2 tavgU_2d_adg_Nx: 2d,diurnal,Time-averaged,Single-Level,Assimilation,Aerosol Diagnostics (extended) 0.625 x 0.5 degree V5.12.4 (M2TUNXADG) at GES DISC
+C1276812869-GES_DISC: MERRA-2 tavgU_2d_aer_Nx: 2d,diurnal,Time-averaged,Single-Level,Assimilation,Aerosol Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXAER) at GES DISC
+C1276812870-GES_DISC: MERRA-2 tavgU_2d_chm_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Carbon Monoxide and Ozone Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXCHM) at GES DISC
+C1276812871-GES_DISC: MERRA-2 tavgU_2d_csp_Nx: 2d,diurnal,Time-averaged,Single-Level,Assimilation,COSP Satellite Simulator 0.625 x 0.5 degree V5.12.4 (M2TUNXCSP) at GES DISC
+C1276812872-GES_DISC: MERRA-2 tavgU_2d_flx_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Surface Flux Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXFLX) at GES DISC
+C1276812873-GES_DISC: MERRA-2 tavgU_2d_glc_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Land Ice Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXGLC) at GES DISC
+C1276812874-GES_DISC: MERRA-2 tavgU_2d_int_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Vertically Integrated Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXINT) at GES DISC
+C1276812875-GES_DISC: MERRA-2 tavgU_2d_lfo_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Land Surface Forcings 0.625 x 0.5 degree V5.12.4 (M2TUNXLFO) at GES DISC
+C1276812876-GES_DISC: MERRA-2 tavgU_2d_lnd_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Land Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXLND) at GES DISC
+C1276812877-GES_DISC: MERRA-2 tavgU_2d_ocn_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Ocean Surface Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXOCN) at GES DISC
+C1276812881-GES_DISC: MERRA-2 tavgU_2d_rad_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Radiation Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXRAD) at GES DISC
+C1276812878-GES_DISC: MERRA-2 tavgU_2d_slv_Nx: 2d,diurnal,Time-Averaged,Single-Level,Assimilation,Single-Level Diagnostics 0.625 x 0.5 degree V5.12.4 (M2TUNXSLV) at GES DISC
+C1274767783-GES_DISC: const_2d_chm_Fx: MERRA 2-D invariants on chemistry grid 1.25 x 1 degree V5.2.0 (MAC0FXCHM) at GES DISC
+C1274767791-GES_DISC: const_2d_asm_Nx: MERRA DAS 2d constants 0.667 x 0.5 degree V5.2.0 (MAC0NXASM) at GES DISC
+C1368521972-GES_DISC: Multisensor Advanced Climatology Mean Liquid Water Path Diurnal Cycle L3 Monthly 1 degree x 1 degree V1 (MACLWP_diurnal) at GES DISC
+C1368521971-GES_DISC: Multisensor Advanced Climatology Mean Liquid Water Path L3 Monthly 1 degree X 1 degree V1 (MACLWP_mean) at GES DISC
+C1368522053-GES_DISC: Multisensor Advanced Climatology Total Liquid Water Path L3 Monthly 1 degree x 1 degree V1 (MACTWP_mean) at GES DISC
+C1274767798-GES_DISC: inst1_2d_int_Nx: MERRA 2D IAU Diagnostic, Vertical Integrals and Budget Terms, Time Average 1-hourly  0.667 x 0.5 degree V5.2.0 (MAI1NXINT) at GES DISC
+C1274767805-GES_DISC: inst3_3d_asm_Cp: MERRA 3D IAU State, Meteorology Instantaneous 3-hourly  1.25 x 1.25 degree V5.2.0 (MAI3CPASM) at GES DISC
+C1274767812-GES_DISC: inst3_3d_chm_Ne: MERRA Chem 3D IAU Edge Pressure, Instantaneous 3-Hourly  0.667 x 0.5 degree V5.2.0 (MAI3NECHM) at GES DISC
+C1274767820-GES_DISC: inst6_3d_ana_Np: MERRA 3D Analyzed State, Meteorology Instantaneous 6-hourly  0.667 x 0.5 degree V5.2.0 (MAI6NPANA) at GES DISC
+C1274767831-GES_DISC: instM_3d_asm_Cp: MERRA 3D IAU State, Meteorology Monthly Mean  1.25 x 1.25 degree V5.2.0 (MAIMCPASM) at GES DISC
+C1274767784-GES_DISC: instM_3d_ana_Np: MERRA 3D Analyzed State, Meteorology Monthly Mean  0.667 x 0.5 degree V5.2.0 (MAIMNPANA) at GES DISC
+C1274767716-GES_DISC: instM_2d_int_Nx: MERRA 2D IAU Diagnostic, Vertical Integrals and Budget Terms, Monthly Mean  0.667 x 0.5 degree V5.2.0 (MAIMNXINT) at GES DISC
+C1274767636-GES_DISC: instU_3d_asm_Cp: MERRA 3D IAU State, Meteorology Diurnal  1.25 x 1.25 degree V5.2.0 (MAIUCPASM) at GES DISC
+C1274767806-GES_DISC: instU_3d_ana_Np: MERRA 3D Analyzed State, Meteorology Diurnal  0.667 x 0.5 degree V5.2.0 (MAIUNPANA) at GES DISC
+C1274767813-GES_DISC: instU_2d_int_Nx: MERRA 2D IAU Diagnostic, Vertical Integrals and Budget Terms, Diurnal  0.667 x 0.5 degree V5.2.0 (MAIUNXINT) at GES DISC
+C1274767821-GES_DISC: tavg1_2d_flx_Nx: MERRA 2D IAU Diagnostic, Surface Fluxes, Time Average 1-hourly  0.667 x 0.5 degree V5.2.0 (MAT1NXFLX) at GES DISC
+C1274767826-GES_DISC: tavg1_2d_int_Nx: MERRA 2D IAU Diagnostic, Vertical Integrals and Budget Terms, Time Average 1-hourly  0.667 x 0.5 degree V5.2.0 (MAT1NXINT) at GES DISC
+C1274767832-GES_DISC: tavg1_2d_lnd_Nx: MERRA 2D IAU Diagnostic, Land Only States and Diagnostics, Time Average 1-hourly  0.667 x 0.5 degree V5.2.0 (MAT1NXLND) at GES DISC
+C1274767638-GES_DISC: tavg3_3d_cld_Cp: MERRA 3D IAU Diagnostic, Cloud Properties, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3CPCLD) at GES DISC
+C1274767814-GES_DISC: tavg3_3d_mst_Cp: MERRA 3D IAU Diagnostic, Moist Physics, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3CPMST) at GES DISC
+C1274767822-GES_DISC: tavg3_3d_odt_Cp: MERRA 3D IAU Tendency, Ozone, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3CPODT) at GES DISC
+C1274767827-GES_DISC: tavg3_3d_qdt_Cp: MERRA 3D IAU Tendency, Specific Humidity, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3CPQDT) at GES DISC
+C1274767833-GES_DISC: tavg3_3d_rad_Cp: MERRA 3D IAU Diagnostic, Radiation, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3CPRAD) at GES DISC
+C1274767786-GES_DISC: tavg3_3d_tdt_Cp: MERRA 3D IAU Tendency, Temperature, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3CPTDT) at GES DISC
+C1274767635-GES_DISC: tavg3_3d_trb_Cp: MERRA 3D IAU Diagnostic, Turbulence, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3CPTRB) at GES DISC
+C1274767637-GES_DISC: tavg3_3d_udt_Cp: MERRA 3D IAU Tendency, Wind Components, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3CPUDT) at GES DISC
+C1274767807-GES_DISC: tavg3_3d_chm_Fe: MERRA Chem 3D IAU, Precip Mass Flux, Time average 3-hourly  1.25 x 1 degree V5.2.0 (MAT3FECHM) at GES DISC
+C1274767815-GES_DISC: tavg3_3d_chm_Fv: MERRA Chem 3D IAU States Cloud Precip, Time average 3-hourly  1.25 x 1.25 degree V5.2.0 (MAT3FVCHM) at GES DISC
+C1274767823-GES_DISC: tavg3_2d_chm_Fx: MERRA Chem 2D IAU Diagnostics, Fluxes and Meteorology, Time Average 3-hourly  1.25 x 1 degree V5.2.0 (MAT3FXCHM) at GES DISC
+C1274767842-GES_DISC: tavg3_3d_chm_Ne: MERRA Chem 3D IAU C-Grid Edge Mass Flux, Time Average 3-Hourly  0.667 x 0.5 degree V5.2.0 (MAT3NECHM) at GES DISC
+C1274767834-GES_DISC: tavg3_3d_chm_Nv: MERRA Chem 3D IAU C-Grid Edge Mass Flux, Time Average 3-Hourly  1.25 x 1.25 degree V5.2.0 (MAT3NVCHM) at GES DISC
+C1274767787-GES_DISC: tavgM_3d_cld_Cp: MERRA 3D IAU Diagnostic, Cloud Properties, Monthly Mean  1.25 x 1.25 degree V5.2.0 (MATMCPCLD) at GES DISC
+C1274767793-GES_DISC: tavgM_3d_mst_Cp: MERRA 3D IAU Diagnostic, Moist Physics, Monthly Mean  1.25 x 1.25 degree V5.2.0 (MATMCPMST) at GES DISC
+C1274767800-GES_DISC: tavgM_3d_odt_Cp: MERRA 3D IAU Tendency, Ozone, Monthly Mean  1.25 x 1.25 degree V5.2.0 (MATMCPODT) at GES DISC
+C1274767808-GES_DISC: tavgM_3d_qdt_Cp: MERRA 3D IAU Tendency, Specific Humidity, Monthly Mean  1.25 x 1.25 degree V5.2.0 (MATMCPQDT) at GES DISC
+C1274767816-GES_DISC: tavgM_3d_rad_Cp: MERRA 3D IAU Diagnostic, Radiation, Monthly Mean  1.25 x 1.25 degree V5.2.0 (MATMCPRAD) at GES DISC
+C1274767639-GES_DISC: tavgM_3d_tdt_Cp: MERRA 3D IAU Tendency, Temperature, Monthly Mean  1.25 x 1.25 degree V5.2.0 (MATMCPTDT) at GES DISC
+C1274767828-GES_DISC: tavgM_3d_trb_Cp: MERRA 3D IAU Diagnostic, Turbulence, Monthly Mean  1.25 x 1.25 degree V5.2.0 (MATMCPTRB) at GES DISC
+C1274767843-GES_DISC: tavgM_3d_udt_Cp: MERRA 3D IAU Tendency, Wind Components, Monthly Mean  1.25 x 1.25 degree V5.2.0 (MATMCPUDT) at GES DISC
+C1274767788-GES_DISC: tavgM_2d_chm_Fx: MERRA Chem 2D IAU Diagnostics, Fluxes and Meteorology, Monthly Mean  1.25 x 1 degree V5.2.0 (MATMFXCHM) at GES DISC
+C1274767794-GES_DISC: tavgM_2d_flx_Nx: MERRA 2D IAU Diagnostic, Surface Fluxes, Monthly Mean  0.667 x 0.5 degree V5.2.0 (MATMNXFLX) at GES DISC
+C1274767801-GES_DISC: tavgM_2d_int_Nx: MERRA 2D IAU Diagnostic, Vertical Integrals and Budget Terms, Monthly Mean  0.667 x 0.5 degree V5.2.0 (MATMNXINT) at GES DISC
+C1274767809-GES_DISC: tavgM_2d_lnd_Nx: MERRA 2D IAU Diagnostic, Land Only States and Diagnostics, Monthly Mean  0.667 x 0.5 degree V5.2.0 (MATMNXLND) at GES DISC
+C1274767817-GES_DISC: tavgM_2d_ocn_Nx: MERRA 2D IAU Ocean Surface Diagnostic, Monthly Mean  0.667 x 0.5 degree V5.2.0 (MATMNXOCN) at GES DISC
+C1274767840-GES_DISC: tavgM_2d_rad_Nx: MERRA 2D IAU Diagnostic, Radiation Surface and TOA, Monthly Mean  0.667 x 0.5 degree V5.2.0 (MATMNXRAD) at GES DISC
+C1274767829-GES_DISC: tavgM_2d_slv_Nx: MERRA 2D IAU Diagnostic, Single Level Meteorology, Monthly Mean  0.667 x 0.5 degree V5.2.0 (MATMNXSLV) at GES DISC
+C1274767835-GES_DISC: tavgU_3d_cld_Cp: MERRA 3D IAU Diagnostic, Cloud Properties, Diurnal  1.25 x 1.25 degree V5.2.0 (MATUCPCLD) at GES DISC
+C1274767715-GES_DISC: tavgU_3d_mst_Cp: MERRA 3D IAU Diagnostic, Moist Physics, Diurnal  1.25 x 1.25 degree V5.2.0 (MATUCPMST) at GES DISC
+C1274767795-GES_DISC: tavgU_3d_odt_Cp: MERRA 3D IAU Tendency, Ozone, Diurnal  1.25 x 1.25 degree V5.2.0 (MATUCPODT) at GES DISC
+C1274767802-GES_DISC: tavgU_3d_qdt_Cp: MERRA 3D IAU Tendency, Specific Humidity, Diurnal  1.25 x 1.25 degree V5.2.0 (MATUCPQDT) at GES DISC
+C1274767810-GES_DISC: tavgU_3d_rad_Cp: MERRA 3D IAU Diagnostic, Radiation, Diurnal  1.25 x 1.25 degree V5.2.0 (MATUCPRAD) at GES DISC
+C1274767818-GES_DISC: tavgU_3d_tdt_Cp: MERRA 3D IAU Tendency, Temperature, Diurnal  1.25 x 1.25 degree V5.2.0 (MATUCPTDT) at GES DISC
+C1274767841-GES_DISC: tavgU_3d_trb_Cp: MERRA 3D IAU Diagnostic, Turbulence, Diurnal  1.25 x 1.25 degree V5.2.0 (MATUCPTRB) at GES DISC
+C1274767830-GES_DISC: tavgU_3d_udt_Cp: MERRA 3D IAU Tendency, Wind Components, Diurnal  1.25 x 1.25 degree V5.2.0 (MATUCPUDT) at GES DISC
+C1274767836-GES_DISC: tavgU_2d_chm_Fx: MERRA Chem 2D IAU Diagnostics, Fluxes and Meteorology, Diurnal  1.25 x 1 degree V5.2.0 (MATUFXCHM) at GES DISC
+C1274767789-GES_DISC: tavgU_2d_flx_Nx: MERRA 2D IAU Diagnostic, Surface Fluxes, Diurnal  0.667 x 0.5 degree V5.2.0 (MATUNXFLX) at GES DISC
+C1274767796-GES_DISC: tavgU_2d_int_Nx: MERRA 2D IAU Diagnostic, Vertical Integrals and Budget Terms, Diurnal  0.667 x 0.5 degree V5.2.0 (MATUNXINT) at GES DISC
+C1274767803-GES_DISC: tavgU_2d_lnd_Nx: MERRA 2D IAU Diagnostic, Land Only States and Diagnostics, Diurnal  0.667 x 0.5 degree V5.2.0 (MATUNXLND) at GES DISC
+C1274767811-GES_DISC: tavgM_2d_ocn_Nx: MERRA 2D IAU Ocean Surface Diagnostic, Diurnal  0.667 x 0.5 degree V5.2.0 (MATUNXOCN) at GES DISC
+C1274767819-GES_DISC: tavgU_2d_rad_Nx: MERRA 2D IAU Diagnostic, Radiation Surface and TOA, Diurnal  0.667 x 0.5 degree V5.2.0 (MATUNXRAD) at GES DISC
+C1274767824-GES_DISC: tavgU_2d_slv_Nx: MERRA 2D IAU Diagnostic, Single Level Meteorology, Diurnal  0.667 x 0.5 degree V5.2.0 (MATUNXSLV) at GES DISC
+C1729925083-GES_DISC: MLS/Aura Level 2 Bromine Monoxide (BrO) Mixing Ratio V005 (ML2BRO) at GES DISC
+C1251101115-GES_DISC: MLS/Aura Level 2 Bromine Monoxide (BrO) Mixing Ratio V004 (ML2BRO) at GES DISC
+C1729925099-GES_DISC: MLS/Aura Level 2 Methyl Chloride (CH3CL) Mixing Ratio V005 (ML2CH3CL) at GES DISC
+C1251101182-GES_DISC: MLS/Aura Level 2 Methyl Chloride (CH3CL) Mixing Ratio V004 (ML2CH3CL) at GES DISC
+C1729925101-GES_DISC: MLS/Aura Level 2 Methyl Cyanide (CH3CN) Mixing Ratio V005 (ML2CH3CN) at GES DISC
+C1251101191-GES_DISC: MLS/Aura Level 2 Methyl Cyanide (CH3CN) Mixing Ratio V004 (ML2CH3CN) at GES DISC
+C1729925104-GES_DISC: MLS/Aura Level 2 Methanol (CH3OH) Mixing Ratio V005 (ML2CH3OH) at GES DISC
+C1251101199-GES_DISC: MLS/Aura Level 2 Methanol (CH3OH) Mixing Ratio V004 (ML2CH3OH) at GES DISC
+C1729925129-GES_DISC: MLS/Aura Level 2 Chlorine Monoxide (ClO) Mixing Ratio V005 (ML2CLO) at GES DISC
+C1251101234-GES_DISC: MLS/Aura Level 2 Chlorine Monoxide (ClO) Mixing Ratio V004 (ML2CLO) at GES DISC
+C1729925130-GES_DISC: MLS/Aura Level 2 Carbon Monoxide (CO) Mixing Ratio V005 (ML2CO) at GES DISC
+C1251101256-GES_DISC: MLS/Aura Level 2 Carbon Monoxide (CO) Mixing Ratio V004 (ML2CO) at GES DISC
+C2131771725-GES_DISC: MLS/Aura Near-Real-Time L2 Carbon Monoxide (CO) Mixing Ratio V005 (ML2CO_NRT) at GES DISC
+C1729925152-GES_DISC: MLS/Aura Level 2 Geopotential Height V005 (ML2GPH) at GES DISC
+C1251101402-GES_DISC: MLS/Aura Level 2 Geopotential Height V004 (ML2GPH) at GES DISC
+C1729925154-GES_DISC: MLS/Aura Level 2 Water Vapor (H2O) Mixing Ratio V005 (ML2H2O) at GES DISC
+C1251101435-GES_DISC: MLS/Aura Level 2 Water Vapor (H2O) Mixing Ratio V004 (ML2H2O) at GES DISC
+C2131771729-GES_DISC: MLS/Aura Near-Real-Time L2 Water Vapor (H2O) Mixing Ratio V005 (ML2H2O_NRT) at GES DISC
+C1729925175-GES_DISC: MLS/Aura Level 2 Hydrogen Chloride (HCl) Mixing Ratio V005 (ML2HCL) at GES DISC
+C1223720291-GES_DISC: MLS/Aura Level 2 Hydrogen Chloride (HCl) Mixing Ratio V004 (ML2HCL) at GES DISC
+C1729925178-GES_DISC: MLS/Aura Level 2 Hydrogen Cyanide (HCN) Mixing Ratio V005 (ML2HCN) at GES DISC
+C1251101457-GES_DISC: MLS/Aura Level 2 Hydrogen Cyanide (HCN) Mixing Ratio V004 (ML2HCN) at GES DISC
+C1729925263-GES_DISC: MLS/Aura Level 2 Nitric Acid (HNO3) Mixing Ratio V005 (ML2HNO3) at GES DISC
+C1251101497-GES_DISC: MLS/Aura Level 2 Nitric Acid (HNO3) Mixing Ratio V004 (ML2HNO3) at GES DISC
+C2131771772-GES_DISC: MLS/Aura Near-Real-Time L2 Nitric Acid (HNO3) Mixing Ratio V005 (ML2HNO3_NRT) at GES DISC
+C1729925368-GES_DISC: MLS/Aura Level 2 Hydroperoxy (HO2) Mixing Ratio V005 (ML2HO2) at GES DISC
+C1251101564-GES_DISC: MLS/Aura Level 2 Hydroperoxy (HO2) Mixing Ratio V004 (ML2HO2) at GES DISC
+C1729925474-GES_DISC: MLS/Aura Level 2 Hypochlorous Acid (HOCl) Mixing Ratio V005 (ML2HOCL) at GES DISC
+C1251101596-GES_DISC: MLS/Aura Level 2 Hypochlorous Acid (HOCl) Mixing Ratio V004 (ML2HOCL) at GES DISC
+C1729925584-GES_DISC: MLS/Aura Level 2 Cloud Ice Product V005 (ML2IWC) at GES DISC
+C1251101649-GES_DISC: MLS/Aura Level 2 Cloud Ice Product V004 (ML2IWC) at GES DISC
+C1729925686-GES_DISC: MLS/Aura Level 2 Nitrous Oxide (N2O) Mixing Ratio V005 (ML2N2O) at GES DISC
+C1251101667-GES_DISC: MLS/Aura Level 2 Nitrous Oxide (N2O) Mixing Ratio V004 (ML2N2O) at GES DISC
+C2131771775-GES_DISC: MLS/Aura Near-Real-Time L2 Nitrous Oxide (N2O) Mixing Ratio V005 (ML2N2O_NRT) at GES DISC
+C1729925806-GES_DISC: MLS/Aura Level 2 Ozone (O3) Mixing Ratio V005 (ML2O3) at GES DISC
+C1251101678-GES_DISC: MLS/Aura Level 2 Ozone (O3) Mixing Ratio V004 (ML2O3) at GES DISC
+C2131771812-GES_DISC: MLS/Aura Near-Real-Time L2 Ozone (O3) Mixing Ratio V005 (ML2O3_NRT) at GES DISC
+C1729926181-GES_DISC: MLS/Aura Level 2 Hydroxyl (OH) Mixing Ratio V005 (ML2OH) at GES DISC
+C1251101730-GES_DISC: MLS/Aura Level 2 Hydroxyl (OH) Mixing Ratio V004 (ML2OH) at GES DISC
+C1729926467-GES_DISC: MLS/Aura Level 2 Relative Humidity With Respect To Ice V005 (ML2RHI) at GES DISC
+C1251101764-GES_DISC: MLS/Aura Level 2 Relative Humidity With Respect To Ice V004 (ML2RHI) at GES DISC
+C1729926699-GES_DISC: MLS/Aura Level 2 Sulfur Dioxide (SO2) Mixing Ratio V005 (ML2SO2) at GES DISC
+C1251101777-GES_DISC: MLS/Aura Level 2 Sulfur Dioxide (SO2) Mixing Ratio V004 (ML2SO2) at GES DISC
+C2131772275-GES_DISC: MLS/Aura Near-Real-Time L2 Sulfur Dioxide (SO2) Mixing Ratio V005 (ML2SO2_NRT) at GES DISC
+C1251101828-GES_DISC: MLS/Aura Level 2 Temperature V004 (ML2T) at GES DISC
+C2131772833-GES_DISC: MLS/Aura Near-Real-Time L2 Temperature V005 (ML2T_NRT) at GES DISC
+C2042565209-GES_DISC: MLS/Aura Level 3 Daily Binned Methyl Chloride (CH3Cl) Mixing Ratio on Assorted Grids V005 (ML3DBCH3CL) at GES DISC
+C1725331400-GES_DISC: MLS/Aura Level 3 Daily Binned Methyl Chloride (CH3Cl) Mixing Ratio on Assorted Grids V004 (ML3DBCH3CL) at GES DISC
+C2042565243-GES_DISC: MLS/Aura Level 3 Daily Binned Chlorine Monoxide (ClO) Mixing Ratio on Assorted Grids V005 (ML3DBCLO) at GES DISC
+C1725331414-GES_DISC: MLS/Aura Level 3 Daily Binned Chlorine Monoxide (ClO) Mixing Ratio on Assorted Grids V004 (ML3DBCLO) at GES DISC
+C2042565287-GES_DISC: MLS/Aura Level 3 Daily Binned Carbon Monoxide (CO) Mixing Ratio on Assorted Grids V005 (ML3DBCO) at GES DISC
+C1725331427-GES_DISC: MLS/Aura Level 3 Daily Binned Carbon Monoxide (CO) Mixing Ratio on Assorted Grids V004 (ML3DBCO) at GES DISC
+C2042565519-GES_DISC: MLS/Aura Level 3 Daily Binned Geopotential Height (GPH) on Assorted Grids V005 (ML3DBGPH) at GES DISC
+C1725331443-GES_DISC: MLS/Aura Level 3 Daily Binned Geopotential Height (GPH) on Assorted Grids V004 (ML3DBGPH) at GES DISC
+C2042565743-GES_DISC: MLS/Aura Level 3 Daily Binned Water Vapor (H2O) Mixing Ratio on Assorted Grids V005 (ML3DBH2O) at GES DISC
+C1725331462-GES_DISC: MLS/Aura Level 3 Daily Binned Water Vapor (H2O) Mixing Ratio on Assorted Grids V004 (ML3DBH2O) at GES DISC
+C2042565785-GES_DISC: MLS/Aura Level 3 Daily Binned Hydrogen Chloride (HCl) Mixing Ratio on Assorted Grids V005 (ML3DBHCL) at GES DISC
+C1725331497-GES_DISC: MLS/Aura Level 3 Daily Binned Hydrogen Chloride (HCl) Mixing Ratio on Assorted Grids V004 (ML3DBHCL) at GES DISC
+C2042565842-GES_DISC: MLS/Aura Level 3 Daily Binned Hydrogen Cyanide (HCN) Mixing Ratio on Assorted Grids V005 (ML3DBHCN) at GES DISC
+C1725331558-GES_DISC: MLS/Aura Level 3 Daily Binned Hydrogen Cyanide (HCN) Mixing Ratio on Assorted Grids V004 (ML3DBHCN) at GES DISC
+C2042565887-GES_DISC: MLS/Aura Level 3 Daily Binned Nitric Acid (HNO3) Mixing Ratio on Assorted Grids V005 (ML3DBHNO3) at GES DISC
+C1725331754-GES_DISC: MLS/Aura Level 3 Daily Binned Nitric Acid (HNO3) Mixing Ratio on Assorted Grids V004 (ML3DBHNO3) at GES DISC
+C2042565932-GES_DISC: MLS/Aura Level 3 Daily Binned Hypochlorous Acid (HOCl) Mixing Ratio on Assorted Grids V005 (ML3DBHOCL) at GES DISC
+C1725331943-GES_DISC: MLS/Aura Level 3 Daily Binned Hypochlorous Acid (HOCl) Mixing Ratio on Assorted Grids V004 (ML3DBHOCL) at GES DISC
+C2042565985-GES_DISC: MLS/Aura Level 3 Daily Binned Cloud Ice (IWC) on Assorted Grids V005 (ML3DBIWC) at GES DISC
+C1725331957-GES_DISC: MLS/Aura Level 3 Daily Binned Cloud Ice (IWC) on Assorted Grids V004 (ML3DBIWC) at GES DISC
+C2042566037-GES_DISC: MLS/Aura Level 3 Daily Binned Nitrous Oxide (N2O) Mixing Ratio on Assorted Grids V005 (ML3DBN2O) at GES DISC
+C1725332032-GES_DISC: MLS/Aura Level 3 Daily Binned Nitrous Oxide (N2O) Mixing Ratio on Assorted Grids V004 (ML3DBN2O) at GES DISC
+C2042566088-GES_DISC: MLS/Aura Level 3 Daily Binned Ozone (O3) Mixing Ratio on Assorted Grids V005 (ML3DBO3) at GES DISC
+C1725332420-GES_DISC: MLS/Aura Level 3 Daily Binned Ozone (O3) Mixing Ratio on Assorted Grids V004 (ML3DBO3) at GES DISC
+C2042566140-GES_DISC: MLS/Aura Level 3 Daily Binned Hydroxyl (OH) Mixing Ratio on Assorted Grids V005 (ML3DBOH) at GES DISC
+C1725332788-GES_DISC: MLS/Aura Level 3 Daily Binned Hydroxyl (OH) Mixing Ratio on Assorted Grids V004 (ML3DBOH) at GES DISC
+C2042566207-GES_DISC: MLS/Aura Level 3 Daily Binned Relative Humidity With Respect To Ice (RHI) on Assorted Grids V005 (ML3DBRHI) at GES DISC
+C1725333209-GES_DISC: MLS/Aura Level 3 Daily Binned Relative Humidity With Respect To Ice (RHI) on Assorted Grids V004 (ML3DBRHI) at GES DISC
+C2042566261-GES_DISC: MLS/Aura Level 3 Daily Binned Sulfur Dioxide (SO2) Mixing Ratio on Assorted Grids V005 (ML3DBSO2) at GES DISC
+C1725333619-GES_DISC: MLS/Aura Level 3 Daily Binned Sulfur Dioxide (SO2) Mixing Ratio on Assorted Grids V004 (ML3DBSO2) at GES DISC
+C2042566338-GES_DISC: MLS/Aura Level 3 Daily Binned Temperature on Assorted Grids V005 (ML3DBT) at GES DISC
+C1725333999-GES_DISC: MLS/Aura Level 3 Daily Binned Temperature on Assorted Grids V004 (ML3DBT) at GES DISC
+C2042566434-GES_DISC: MLS/Aura Level 3 Daily Binned Methyl Chloride (CH3Cl) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZCH3CL) at GES DISC
+C1725334314-GES_DISC: MLS/Aura Level 3 Daily Binned Methyl Chloride (CH3Cl) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZCH3CL) at GES DISC
+C2042566506-GES_DISC: MLS/Aura Level 3 Daily Binned Chlorine Monoxide (ClO) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZCLO) at GES DISC
+C1725334542-GES_DISC: MLS/Aura Level 3 Daily Binned Chlorine Monoxide (ClO) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZCLO) at GES DISC
+C2042566539-GES_DISC: MLS/Aura Level 3 Daily Binned Carbon Monoxide (CO) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZCO) at GES DISC
+C1725334789-GES_DISC: MLS/Aura Level 3 Daily Binned Carbon Monoxide (CO) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZCO) at GES DISC
+C2042566572-GES_DISC: MLS/Aura Level 3 Daily Binned Geopotential Height (GPH) on Zonal and Similar Grids V005 (ML3DZGPH) at GES DISC
+C1725335040-GES_DISC: MLS/Aura Level 3 Daily Binned Geopotential Height (GPH) on Zonal and Similar Grids V004 (ML3DZGPH) at GES DISC
+C2042566616-GES_DISC: MLS/Aura Level 3 Daily Binned Water Vapor (H2O) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZH2O) at GES DISC
+C1725335247-GES_DISC: MLS/Aura Level 3 Daily Binned Water Vapor (H2O) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZH2O) at GES DISC
+C2042566665-GES_DISC: MLS/Aura Level 3 Daily Binned Hydrogen Chloride (HCl) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZHCL) at GES DISC
+C1725335444-GES_DISC: MLS/Aura Level 3 Daily Binned Hydrogen Chloride (HCl) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZHCL) at GES DISC
+C2042566702-GES_DISC: MLS/Aura Level 3 Daily Binned Hydrogen Cyanide (HCN) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZHCN) at GES DISC
+C1725335654-GES_DISC: MLS/Aura Level 3 Daily Binned Hydrogen Cyanide (HCN) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZHCN) at GES DISC
+C2042566751-GES_DISC: MLS/Aura Level 3 Daily Binned Nitric Acid (HNO3) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZHNO3) at GES DISC
+C1725335835-GES_DISC: MLS/Aura Level 3 Daily Binned Nitric Acid (HNO3) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZHNO3) at GES DISC
+C2042566789-GES_DISC: MLS/Aura Level 3 Daily Binned Hypochlorous Acid (HOCl) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZHOCL) at GES DISC
+C1725336044-GES_DISC: MLS/Aura Level 3 Daily Binned Hypochlorous Acid (HOCl) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZHOCL) at GES DISC
+C2042566860-GES_DISC: MLS/Aura Level 3 Daily Binned Cloud Ice (IWC) on Zonal and Similar Grids V005 (ML3DZIWC) at GES DISC
+C1725336280-GES_DISC: MLS/Aura Level 3 Daily Binned Cloud Ice (IWC) on Zonal and Similar Grids V004 (ML3DZIWC) at GES DISC
+C2042566930-GES_DISC: MLS/Aura (pre-average radiances) Level 3 Bromine Monoxide (BrO) Daily 10deg Lat Zonal Mean V005 (ML3DZMBRO) at GES DISC
+C1281455546-GES_DISC: MLS/Aura Level 3 Bromine Monoxide (BrO) Daily 10degrees Lat Zonal Mean V004 (ML3DZMBRO) at GES DISC
+C1251101864-GES_DISC: MLS/Aura Level 3 Bromine Monoxide (BrO) Daily 10degrees Lat Zonal Mean V003 (ML3DZMBRO) at GES DISC
+C2042567021-GES_DISC: MLS/Aura (pre-average radiances) Level 3 Hydroperoxy Radical (HO2) Daily 10deg Lat Zonal Mean V005 (ML3DZMHO2) at GES DISC
+C1281455547-GES_DISC: MLS/Aura Level 3 Hydroperoxy (HO2) Daily 10degrees Lat Zonal Mean V004 (ML3DZMHO2) at GES DISC
+C2042567101-GES_DISC: MLS/Aura Level 3 Daily Binned Nitrous Oxide (N2O) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZN2O) at GES DISC
+C1725336516-GES_DISC: MLS/Aura Level 3 Daily Binned Nitrous Oxide (N2O) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZN2O) at GES DISC
+C2042567177-GES_DISC: MLS/Aura Level 3 Daily Binned Ozone (O3) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZO3) at GES DISC
+C1725336747-GES_DISC: MLS/Aura Level 3 Daily Binned Ozone (O3) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZO3) at GES DISC
+C2042567259-GES_DISC: MLS/Aura Level 3 Daily Binned Hydroxyl (OH) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZOH) at GES DISC
+C1725336920-GES_DISC: MLS/Aura Level 3 Daily Binned Hydroxyl (OH) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZOH) at GES DISC
+C2042567331-GES_DISC: MLS/Aura Level 3 Daily Binned Relative Humidity With Respect To Ice (RHI) on Zonal and Similar Grids V005 (ML3DZRHI) at GES DISC
+C1725337411-GES_DISC: MLS/Aura Level 3 Daily Binned Relative Humidity With Respect To Ice (RHI) on Zonal and Similar Grids V004 (ML3DZRHI) at GES DISC
+C2042567405-GES_DISC: MLS/Aura Level 3 Daily Binned Sulfur Dioxide (SO2) Mixing Ratio on Zonal and Similar Grids V005 (ML3DZSO2) at GES DISC
+C1725337919-GES_DISC: MLS/Aura Level 3 Daily Binned Sulfur Dioxide (SO2) Mixing Ratio on Zonal and Similar Grids V004 (ML3DZSO2) at GES DISC
+C2042567495-GES_DISC: MLS/Aura Level 3 Daily Binned Temperature on Zonal and Similar Grids V005 (ML3DZT) at GES DISC
+C1725338316-GES_DISC: MLS/Aura Level 3 Daily Binned Temperature on Zonal and Similar Grids V004 (ML3DZT) at GES DISC
+C2042567586-GES_DISC: MLS/Aura Level 3 Monthly Binned Methyl Chloride (CH3Cl) Mixing Ratio on Assorted Grids V005 (ML3MBCH3CL) at GES DISC
+C1725338716-GES_DISC: MLS/Aura Level 3 Monthly Binned Methyl Chloride (CH3Cl) Mixing Ratio on Assorted Grids V004 (ML3MBCH3CL) at GES DISC
+C2042567673-GES_DISC: MLS/Aura Level 3 Monthly Binned Chlorine Monoxide (ClO) Mixing Ratio on Assorted Grids V005 (ML3MBCLO) at GES DISC
+C1725338984-GES_DISC: MLS/Aura Level 3 Monthly Binned Chlorine Monoxide (ClO) Mixing Ratio on Assorted Grids V004 (ML3MBCLO) at GES DISC
+C2042567756-GES_DISC: MLS/Aura Level 3 Monthly Binned Carbon Monoxide (CO) Mixing Ratio on Assorted Grids V005 (ML3MBCO) at GES DISC
+C1725339095-GES_DISC: MLS/Aura Level 3 Monthly Binned Carbon Monoxide (CO) Mixing Ratio on Assorted Grids V004 (ML3MBCO) at GES DISC
+C2042567845-GES_DISC: MLS/Aura Level 3 Monthly Binned Geopotential Height (GPH) on Assorted Grids V005 (ML3MBGPH) at GES DISC
+C1725339145-GES_DISC: MLS/Aura Level 3 Monthly Binned Geopotential Height (GPH) on Assorted Grids V004 (ML3MBGPH) at GES DISC
+C2042567940-GES_DISC: MLS/Aura Level 3 Monthly Binned Water Vapor (H2O) Mixing Ratio on Assorted Grids V005 (ML3MBH2O) at GES DISC
+C1725339213-GES_DISC: MLS/Aura Level 3 Monthly Binned Water Vapor (H2O) Mixing Ratio on Assorted Grids V004 (ML3MBH2O) at GES DISC
+C2042568224-GES_DISC: MLS/Aura Level 3 Monthly Binned Hydrogen Chloride (HCl) Mixing Ratio on Assorted Grids V005 (ML3MBHCL) at GES DISC
+C1725339229-GES_DISC: MLS/Aura Level 3 Monthly Binned Hydrogen Chloride (HCl) Mixing Ratio on Assorted Grids V004 (ML3MBHCL) at GES DISC
+C2042568323-GES_DISC: MLS/Aura Level 3 Monthly Binned Hydrogen Cyanide (HCN) Mixing Ratio on Assorted Grids V005 (ML3MBHCN) at GES DISC
+C1725339260-GES_DISC: MLS/Aura Level 3 Monthly Binned Hydrogen Cyanide (HCN) Mixing Ratio on Assorted Grids V004 (ML3MBHCN) at GES DISC
+C2042568418-GES_DISC: MLS/Aura Level 3 Monthly Binned Nitric Acid (HNO3) Mixing Ratio on Assorted Grids V005 (ML3MBHNO3) at GES DISC
+C1725339273-GES_DISC: MLS/Aura Level 3 Monthly Binned Nitric Acid (HNO3) Mixing Ratio on Assorted Grids V004 (ML3MBHNO3) at GES DISC
+C2042568517-GES_DISC: MLS/Aura Level 3 Monthly Binned Hypochlorous Acid (HOCl) Mixing Ratio on Assorted Grids V005 (ML3MBHOCL) at GES DISC
+C1725339295-GES_DISC: MLS/Aura Level 3 Monthly Binned Hypochlorous Acid (HOCl) Mixing Ratio on Assorted Grids V004 (ML3MBHOCL) at GES DISC
+C2042568626-GES_DISC: MLS/Aura Level 3 Monthly Binned Cloud Ice (IWC) on Assorted Grids V005 (ML3MBIWC) at GES DISC
+C1725339336-GES_DISC: MLS/Aura Level 3 Monthly Binned Cloud Ice (IWC) on Assorted Grids V004 (ML3MBIWC) at GES DISC
+C2042568728-GES_DISC: MLS/Aura Level 3 Monthly Binned Nitrous Oxide (N2O) Mixing Ratio on Assorted Grids V005 (ML3MBN2O) at GES DISC
+C1725339356-GES_DISC: MLS/Aura Level 3 Monthly Binned Nitrous Oxide (N2O) Mixing Ratio on Assorted Grids V004 (ML3MBN2O) at GES DISC
+C2042568830-GES_DISC: MLS/Aura Level 3 Monthly Binned Ozone (O3) Mixing Ratio on Assorted Grids V005 (ML3MBO3) at GES DISC
+C1725339383-GES_DISC: MLS/Aura Level 3 Monthly Binned Ozone (O3) Mixing Ratio on Assorted Grids V004 (ML3MBO3) at GES DISC
+C2042568937-GES_DISC: MLS/Aura Level 3 Monthly Binned Hydroxyl (OH) Mixing Ratio on Assorted Grids V005 (ML3MBOH) at GES DISC
+C1725339500-GES_DISC: MLS/Aura Level 3 Monthly Binned Hydroxyl (OH) Mixing Ratio on Assorted Grids V004 (ML3MBOH) at GES DISC
+C2042569039-GES_DISC: MLS/Aura Level 3 Monthly Binned Relative Humidity With Respect To Ice (RHI) on Assorted Grids V005 (ML3MBRHI) at GES DISC
+C1725339717-GES_DISC: MLS/Aura Level 3 Monthly Binned Relative Humidity With Respect To Ice (RHI) on Assorted Grids V004 (ML3MBRHI) at GES DISC
+C2042569148-GES_DISC: MLS/Aura Level 3 Monthly Binned Sulfur Dioxide (SO2) Mixing Ratio on Assorted Grids V005 (ML3MBSO2) at GES DISC
+C1725339828-GES_DISC: MLS/Aura Level 3 Monthly Binned Sulfur Dioxide (SO2) Mixing Ratio on Assorted Grids V004 (ML3MBSO2) at GES DISC
+C2042569256-GES_DISC: MLS/Aura Level 3 Monthly Binned Temperature on Assorted Grids V005 (ML3MBT) at GES DISC
+C1725339843-GES_DISC: MLS/Aura Level 3 Monthly Binned Temperature on Assorted Grids V004 (ML3MBT) at GES DISC
+C2089272156-GES_DISC: MODIS_CR_Equal_Angle_3h
+C2089272480-GES_DISC: MODIS_CR_Equal_Angle_Daily
+C2084194432-GES_DISC: MODIS_CR_Equal_Area_3h
+C1403031684-GES_DISC: Multi-Satellite Air Quality Sulfur Dioxide (SO2) Database Long-Term L4 Global V1 (MSAQSO2L4) at GES DISC
+C1274767837-GES_DISC: const_2d_mld_Nx: MERRA DAS 2d Land constants 0.667 x 0.5 degree V5.2.0 (MSC0NXMLD) at GES DISC
+C1251051403-GES_DISC: Multi-Satellite Lambertian Equivalent Reflectivity (Local Satellite Time) 10-Day L3 Global 2.0x5.0deg Lat/Lon Grid V1 (MSLERLSTL3d10) at GES DISC
+C1251051377-GES_DISC: Multi-Satellite Lambertian Equivalent Reflectivity (Local Satellite Time) 1 day L3 Global 5.0deg Lat Zones V1 (MSLERLSTL3zm) at GES DISC
+C1251051428-GES_DISC: Multi-Satellite Lambertian Equivalent Reflectivity (Noon Normalized) 10-Day L3 Global 2.0x5.0deg Lat/Lon Grid V1 (MSLERNNL3d10) at GES DISC
+C1251051435-GES_DISC: Multi-Satellite Lambertian Equivalent Reflectivity (Noon Normalized) 1 day L3 Global 5.0deg Lat Zones V1 (MSLERNNL3zm) at GES DISC
+C1251051481-GES_DISC: Multi-Satellite Merged Ozone (O3) Profile and Total Column 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (MSO3L3zm5) at GES DISC
+C1274767790-GES_DISC: tavg1_2d_mld_Nx: MERRA Simulated 2D Incremental Analysis Update (IAU) MERRA-Land reanalysis, GEOSldas-MERRALand, Time Average 1-hourly  0.667 x 0.5 degree V5.2.0 (MST1NXMLD) at GES DISC
+C1274767797-GES_DISC: tavgM_2d_mld_Nx: MERRA Simulated 2D Incremental Analysis Update (IAU) MERRA-Land reanalysis, GEOSldas-MERRALand, Time Average Monthly Mean  0.667 x 0.5 degree V5.2.0 (MSTMNXMLD) at GES DISC
+C1274767804-GES_DISC: tavgU_2d_mld_Nx: MERRA Simulated 2D Incremental Analysis Update (IAU) MERRA-Land reanalysis, GEOSldas-MERRALand, Time Average Diurnal  0.667 x 0.5 degree V5.2.0 (MSTUNXMLD) at GES DISC
+C1261530244-GES_DISC: MSU Ch 4 Daily Lower Stratosphere Temps with Limb93 Correction L3 1 day 2.5 degree x 2.5 degree V001 (MSULST) at GES DISC
+C1261530310-GES_DISC: MSU Ch 2/3 Daily Lower Troposphere Temps with Limb93 Correction L3 1 day 2.5 degree x 2.5 degree V001 (MSULTT) at GES DISC
+C1261530370-GES_DISC: MSU Daily Oceanic Precipitation with Limb93 Correction L3 1 day 2.5 degree x 2.5 degree V001 (MSUOP) at GES DISC
+C1261530423-GES_DISC: MSU Ch 3/4 Daily Upper Troposphere Temps with Limb93 Correction V001 L3 1 day 2.5 degree x 2.5 degree (MSUUTT) at GES DISC
+C2185135863-GES_DISC: MODIS Aqua L2 chopped blocks (block size: 128 pixels x 128 pixels, daytime) V001 (MYD_L2_CB) at GES DISC
+C2185135862-GES_DISC: MODIS Aqua L2 model predicted low cloud types of chopped blocks in which low cloud dominates (block size: 128pixels x 128pixels) V001 (MYD_L2_MPLCT) at GES DISC
+C2185135853-GES_DISC: MODIS Aqua L3 occurrence frequency of low-cloud types monthly mean and annual mean 2x2 degree resolution V001 (MYD_L3_OFLCT) at GES DISC
+C2219373930-GES_DISC: Multi-Instrument Fused bias-corrected XCO2 and other select fields aggregated as Level 4 daily files V3 (MultiInstrumentFusedXCO2)
+C1646132439-GES_DISC: NCA-LDAS Noah-3.3 Land Surface Model L4 Trends 0.125 x 0.125 degree V2.0 (NCALDAS_NOAH0125_Trends) at GES DISC
+C2033151148-GES_DISC: NLDAS Primary Forcing Data L4 Hourly 0.125 x 0.125 degree V2.0 (NLDAS_FORA0125_H) at GES DISC
+C1887583680-GES_DISC: NLDAS Primary Forcing Data L4 Monthly 0.125 x 0.125 degree V2.0 (NLDAS_FORA0125_M) at GES DISC
+C1889390708-GES_DISC: NLDAS Primary Forcing Data L4 Monthly Climatology 0.125 x 0.125 degree V2.0 (NLDAS_FORA0125_MC) at GES DISC
+C2033167496-GES_DISC: NLDAS Secondary Forcing Data L4 Hourly 0.125 x 0.125 degree V2.0 (NLDAS_FORB0125_H) at GES DISC
+C1887991357-GES_DISC: NLDAS Secondary Forcing Data L4 Monthly 0.125 x 0.125 degree V2.0 (NLDAS_FORB0125_M) at GES DISC
+C1889391073-GES_DISC: NLDAS Secondary Forcing Data L4 Monthly Climatology 0.125 x 0.125 degree V2.0 (NLDAS_FORB0125_MC) at GES DISC
+C2069247178-GES_DISC: NLDAS Mosaic Land Surface Model L4 Hourly 0.125 x 0.125 degree V2.0 (NLDAS_MOS0125_H) at GES DISC
+C1887990159-GES_DISC: NLDAS Mosaic Land Surface Model L4 Monthly 0.125 x 0.125 degree V2.0 (NLDAS_MOS0125_M) at GES DISC
+C1888969742-GES_DISC: NLDAS Mosaic Land Surface Model L4 Monthly Climatology 0.125 x 0.125 degree V2.0 (NLDAS_MOS0125_MC) at GES DISC
+C2069246977-GES_DISC: NLDAS Noah Land Surface Model L4 Hourly 0.125 x 0.125 degree V2.0 (NLDAS_NOAH0125_H) at GES DISC
+C1887990023-GES_DISC: NLDAS Noah Land Surface Model L4 Monthly 0.125 x 0.125 degree V2.0 (NLDAS_NOAH0125_M) at GES DISC
+C1888969640-GES_DISC: NLDAS Noah Land Surface Model L4 Monthly Climatology 0.125 x 0.125 degree V2.0 (NLDAS_NOAH0125_MC) at GES DISC
+C2069247359-GES_DISC: NLDAS VIC Land Surface Model L4 Hourly 0.125 x 0.125 degree V2.0 (NLDAS_VIC0125_H) at GES DISC
+C1887995922-GES_DISC: NLDAS VIC Land Surface Model L4 Monthly 0.125 x 0.125 degree V2.0 (NLDAS_VIC0125_M) at GES DISC
+C1888969053-GES_DISC: NLDAS VIC Land Surface Model L4 Monthly Climatology 0.125 x 0.125 degree V2.0 (NLDAS_VIC0125_MC) at GES DISC
+C1404080675-GES_DISC: NASA Ocean Biogeochemical Model assimilating satellite chlorophyll data global daily VR2017 (NOBM_DAY) at GES DISC
+C1404080681-GES_DISC: NASA Ocean Biogeochemical Model assimilating satellite chlorophyll data global monthly VR2017 (NOBM_MON) at GES DISC
+C2219374142-GES_DISC: OCO-2 Gridded bias-corrected XCO2 and other select fields aggregated as Level 4 daily files V3 (OCO2GriddedXCO2)
+C2248663206-GES_DISC: OCO-2 Level 0 spacecraft attitude data, Retrospective Processing V11r (OCO2_Att) at GES DISC
+C2237418306-GES_DISC: OCO-2 Level 0 spacecraft attitude data V11 (OCO2_Att) at GES DISC
+C1685783847-GES_DISC: OCO-2 Level 0 spacecraft attitude data, Retrospective Processing V10r (OCO2_Att) at GES DISC
+C1685783946-GES_DISC: OCO-2 Level 0 spacecraft attitude data V10 (OCO2_Att) at GES DISC
+C2248663220-GES_DISC: OCO-2 Level 0 spacecraft ephemerides, Retrospective Processing V11r (OCO2_Eph) at GES DISC
+C2237418345-GES_DISC: OCO-2 Level 0 spacecraft ephemerides V11 (OCO2_Eph) at GES DISC
+C1685783856-GES_DISC: OCO-2 Level 0 spacecraft ephemerides, Retrospective Processing V10r (OCO2_Eph) at GES DISC
+C1685783951-GES_DISC: OCO-2 Level 0 spacecraft ephemerides V10 (OCO2_Eph) at GES DISC
+C2240248762-GES_DISC: OCO-2 GEOS Level 3 daily, 0.5x0.625 assimilated CO2 V10r (OCO2_GEOS_L3CO2_DAY) at GES DISC
+C2240248790-GES_DISC: OCO-2 GEOS Level 3 monthly, 0.5x0.625 assimilated CO2 V10r (OCO2_GEOS_L3CO2_MONTH) at GES DISC
+C2248663235-GES_DISC: OCO-2 Level 1B calibrated, geolocated calibration spectra, Retrospective Processing V11r (OCO2_L1B_Calibration) at GES DISC
+C2237418530-GES_DISC: OCO-2 Level 1B calibrated, geolocated calibration spectra V11 (OCO2_L1B_Calibration) at GES DISC
+C1685783959-GES_DISC: OCO-2 Level 1B calibrated, geolocated calibration spectra V10 (OCO2_L1B_Calibration) at GES DISC
+C2248652600-GES_DISC: OCO-2 Level 1B calibrated, geolocated science spectra, Retrospective Processing V11r (OCO2_L1B_Science) at GES DISC
+C1685783889-GES_DISC: OCO-2 Level 1B calibrated, geolocated science spectra, Retrospective Processing V10r (OCO2_L1B_Science) at GES DISC
+C1685783967-GES_DISC: OCO-2 Level 1B calibrated, geolocated science spectra V10 (OCO2_L1B_Science) at GES DISC
+C2248663248-GES_DISC: OCO-2 Level 1A collated, parsed, calibration data, Retrospective Processing V11r (OCO2_L1aIn_Pixel) at GES DISC
+C2237419212-GES_DISC: OCO-2 Level 1A collated, parsed, calibration data V11 (OCO2_L1aIn_Pixel) at GES DISC
+C1685783865-GES_DISC: OCO-2 Level 1A collated, parsed, calibration data, Retrospective Processing V10r (OCO2_L1aIn_Pixel) at GES DISC
+C1685783974-GES_DISC: OCO-2 Level 1A collated, parsed, calibration data V10 (OCO2_L1aIn_Pixel) at GES DISC
+C2248663267-GES_DISC: OCO-2 Level 1A collated, parsed, science or calibration data, Retrospective Processing V11r (OCO2_L1aIn_Sample) at GES DISC
+C2237419562-GES_DISC: OCO-2 Level 1A collated, parsed, science or calibration data V11 (OCO2_L1aIn_Sample) at GES DISC
+C1685783873-GES_DISC: OCO-2 Level 1A collated, parsed, science or calibration data, Retrospective Processing V10r (OCO2_L1aIn_Sample) at GES DISC
+C1685783979-GES_DISC: OCO-2 Level 1A collated, parsed, science or calibration data V10 (OCO2_L1aIn_Sample) at GES DISC
+C2248652681-GES_DISC: OCO-2 Level 2 spatially ordered geolocated retrievals screened using the A-band Preprocessor, Retrospective Processing V11r (OCO2_L2_ABand) at GES DISC
+C2237419890-GES_DISC: OCO-2 Level 2 spatially ordered geolocated retrievals screened using the A-band Preprocessor V11 (OCO2_L2_ABand) at GES DISC
+C1685783936-GES_DISC: OCO-2 Level 2 spatially ordered geolocated retrievals screened using the A-band Preprocessor, Retrospective Processing V10r (OCO2_L2_ABand) at GES DISC
+C1685783990-GES_DISC: OCO-2 Level 2 spatially ordered geolocated retrievals screened using the A-band Preprocessor V10 (OCO2_L2_ABand) at GES DISC
+C2248652595-GES_DISC: OCO-2 Level 2 CO2 prior based on CO2 monthly flask record, global meteorology, and age of air, Retrospective Processing V11r (OCO2_L2_CO2Prior) at GES DISC
+C2237420234-GES_DISC: OCO-2 Level 2 CO2 prior based on CO2 monthly flask record, global meteorology, and age of air V11 (OCO2_L2_CO2Prior) at GES DISC
+C1685783897-GES_DISC: OCO-2 Level 2 CO2 prior based on CO2 monthly flask record, global meteorology, and age of air, Retrospective Processing V10r (OCO2_L2_CO2Prior) at GES DISC
+C1685783998-GES_DISC: OCO-2 Level 2 CO2 prior based on CO2 monthly flask record, global meteorology, and age of air V10 (OCO2_L2_CO2Prior) at GES DISC
+C2248652598-GES_DISC: OCO-2 Level 2 geolocated XCO2 retrieval results and algorithm diagnostic information, Retrospective Processing V11r (OCO2_L2_Diagnostic) at GES DISC
+C2237420550-GES_DISC: OCO-2 Level 2 geolocated XCO2 retrieval results and algorithm diagnostic information V11 (OCO2_L2_Diagnostic) at GES DISC
+C1685783941-GES_DISC: OCO-2 Level 2 geolocated XCO2 retrieval results and algorithm diagnostic information, Retrospective Processing V10r (OCO2_L2_Diagnostic) at GES DISC
+C1685784007-GES_DISC: OCO-2 Level 2 geolocated XCO2 retrieval results and algorithm diagnostic information V10 (OCO2_L2_Diagnostic) at GES DISC
+C2248652608-GES_DISC: OCO-2 Level 2 spatially ordered geolocated retrievals screened using the IMAP-DOAS Preprocessor (IDP), Retrospective Processing V11r (OCO2_L2_IMAPDOAS) at GES DISC
+C2237420828-GES_DISC: OCO-2 Level 2 spatially ordered geolocated retrievals screened using the IMAP-DOAS Preprocessor (IDP) V11 (OCO2_L2_IMAPDOAS) at GES DISC
+C1685783895-GES_DISC: OCO-2 Level 2 spatially ordered geolocated retrievals screened using the IMAP-DOAS Preprocessor (IDP), Retrospective Processing V10r (OCO2_L2_IMAPDOAS) at GES DISC
+C1685784017-GES_DISC: OCO-2 Level 2 spatially ordered geolocated retrievals screened using the IMAP-DOAS Preprocessor (IDP) V10 (OCO2_L2_IMAPDOAS) at GES DISC
+C2248652664-GES_DISC: OCO-2 Level 2 bias-corrected XCO2 and other select fields from the full-physics retrieval aggregated as daily files, Retrospective processing V11r (OCO2_L2_Lite_FP) at GES DISC
+C2248652649-GES_DISC: OCO-2 Level 2 bias-corrected solar-induced fluorescence and other select fields from the IMAP-DOAS algorithm aggregated as daily files, Retrospective processing V11r (OCO2_L2_Lite_SIF) at GES DISC
+C1685783920-GES_DISC: OCO-2 Level 2 bias-corrected solar-induced fluorescence and other select fields from the IMAP-DOAS algorithm aggregated as daily files, Retrospective processing V10r (OCO2_L2_Lite_SIF) at GES DISC
+C1537466735-GES_DISC: OCO-2 Level 2 meteorological parameters interpolated from global assimilation model for each sounding, Retrospective Processing V9r (OCO2_L2_Met) at GES DISC
+C2248652634-GES_DISC: OCO-2 Level 2 meteorological parameters interpolated from global assimilation model for each sounding, Retrospective Processing V11r (OCO2_L2_Met) at GES DISC
+C2237421114-GES_DISC: OCO-2 Level 2 meteorological parameters interpolated from global assimilation model for each sounding V11 (OCO2_L2_Met) at GES DISC
+C1685783912-GES_DISC: OCO-2 Level 2 meteorological parameters interpolated from global assimilation model for each sounding, Retrospective Processing V10r (OCO2_L2_Met) at GES DISC
+C1685784021-GES_DISC: OCO-2 Level 2 meteorological parameters interpolated from global assimilation model for each sounding V10 (OCO2_L2_Met) at GES DISC
+C2248652620-GES_DISC: OCO-2 Level 2 geolocated XCO2 retrievals results, physical model, Retrospective Processing V11r (OCO2_L2_Standard) at GES DISC
+C2237421512-GES_DISC: OCO-2 Level 2 geolocated XCO2 retrievals results, physical model V11 (OCO2_L2_Standard) at GES DISC
+C1685784023-GES_DISC: OCO-2 Level 2 geolocated XCO2 retrievals results, physical model V10 (OCO2_L2_Standard) at GES DISC
+C2074239090-GES_DISC: OCO-3 Level 1B calibrated, geolocated calibration spectra, Retrospective Processing V10r (OCO3_L1B_Calibration) at GES DISC
+C2074239073-GES_DISC: OCO-3 Level 1B calibrated, geolocated calibration spectra,  V10 (OCO3_L1B_Calibration) at GES DISC
+C2082387227-GES_DISC: OCO-3 Level 1B calibrated, geolocated science spectra, Retrospective Processing V10r (OCO3_L1B_Science) at GES DISC
+C2082387275-GES_DISC: OCO-3 Level 1B calibrated, geolocated science spectra, Forward Processing V10 (OCO3_L1B_Science) at GES DISC
+C2082387228-GES_DISC: OCO-3 Level 2 spatially ordered geolocated retrievals screened using the A-band Preprocessor, Retrospective Processing V10r (OCO3_L2_ABand) at GES DISC
+C2082387278-GES_DISC: OCO-3 Level 2 spatially ordered geolocated retrievals screened using the A-band Preprocessor, Forward Processing V10 (OCO3_L2_ABand) at GES DISC
+C2082387253-GES_DISC: OCO-3 Level 2 CO2 prior based on CO2 monthly flask record, global meteorology, and age of air, Retrospective Processing V10r (OCO3_L2_CO2Prior) at GES DISC
+C2082387288-GES_DISC: OCO-3 Level 2 CO2 prior based on CO2 monthly flask record, global meteorology, and age of air, Forward Processing V10 (OCO3_L2_CO2Prior) at GES DISC
+C2082387279-GES_DISC: OCO-3 Level 2 geolocated XCO2 retrieval results and algorithm diagnostic information, Forward Processing V10 (OCO3_L2_Diagnostic) at GES DISC
+C2082387270-GES_DISC: OCO-3 Level 2 spatially ordered geolocated retrievals screened using the IMAP-DOAS Preprocessor (IDP), Retrospective Processing V10r (OCO3_L2_IMAPDOAS) at GES DISC
+C2082387286-GES_DISC: OCO-3 Level 2 spatially ordered geolocated retrievals screened using the IMAP-DOAS Preprocessor (IDP), Forward Processing V10 (OCO3_L2_IMAPDOAS) at GES DISC
+C2082387249-GES_DISC: OCO-3 Level 2 bias-corrected solar-induced fluorescence and other select fields from the IMAP-DOAS algorithm aggregated as daily files, Retrospective processing V10r (OCO3_L2_Lite_SIF) at GES DISC
+C2082387254-GES_DISC: OCO-3 Level 2 meteorological parameters interpolated from global assimilation model for each sounding, Retrospective Processing V10r (OCO3_L2_Met) at GES DISC
+C2082387287-GES_DISC: OCO-3 Level 2 meteorological parameters interpolated from global assimilation model for each sounding, Forward Processing V10 (OCO3_L2_Met) at GES DISC
+C2082387276-GES_DISC: OCO-3 Level 2 geolocated XCO2 retrievals results, physical model, Forward Processing V10 (OCO3_L2_Standard) at GES DISC
+C1239966755-GES_DISC: OMI/Aura Multi-wavelength Aerosol Optical Depth and Single Scattering Albedo 1-orbit L2 Swath 13x24 km V003 (OMAERO) at GES DISC
+C1266136095-GES_DISC: OMI/Aura Multi-wavelength Aerosol Optical Depth and Single Scattering Albedo Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMAEROG) at GES DISC
+C1239966783-GES_DISC: OMI/Aura Aerosol product Multi-wavelength Algorithm Zoomed 1-Orbit L2 Swath 13x12km V003 (OMAEROZ) at GES DISC
+C1239966768-GES_DISC: OMI/Aura Near UV Aerosol Optical Depth and Single Scattering Albedo 1-orbit L2 Swath 13x24 km V003 (OMAERUV) at GES DISC
+C1266136097-GES_DISC: OMI/Aura Near UV Aerosol Optical Depth and Single Scattering Albedo Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMAERUVG) at GES DISC
+C1239966757-GES_DISC: OMI/Aura Bromine Monoxide (BrO) Total Column 1-orbit L2 Swath 13x24 km V003 (OMBRO) at GES DISC
+C1239966787-GES_DISC: OMI/Aura Cloud Pressure and Fraction (O2-O2 Absorption) 1-Orbit L2 Swath 13x24km V003 (OMCLDO2) at GES DISC
+C1266136098-GES_DISC: OMI/Aura Cloud Pressure and Fraction (O2-O2 Absorption) Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMCLDO2G) at GES DISC
+C1239966773-GES_DISC: OMI/Aura Cloud Pressure and Fraction (O2-O2 Absorption) Zoomed 1-Orbit L2 Swath 13x12km V003 (OMCLDO2Z) at GES DISC
+C1239966791-GES_DISC: OMI/Aura Effective Cloud Pressure and Fraction (Raman Scattering) 1-Orbit L2 Swath 13x24 km V003 (OMCLDRR) at GES DISC
+C1266136100-GES_DISC: OMI/Aura Effective Cloud Pressure and Fraction (Raman Scattering) Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMCLDRRG) at GES DISC
+C1239966794-GES_DISC: OMI/Aura DOAS Total Column Ozone 1-Orbit L2 Swath 13x24 km V003 (OMDOAO3) at GES DISC
+C1266136103-GES_DISC: OMI/Aura Ozone (O3) DOAS Total Column Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMDOAO3G) at GES DISC
+C1239966798-GES_DISC: OMI/Aura DOAS Total Column Ozone Zoomed 1-Orbit L2 Swath 13x12km V003 (OMDOAO3Z) at GES DISC
+C1611899353-GES_DISC: OMI/Aura Global Geometry-Dependent Surface LER 1-Orbit L2 Swath 13x24km V3 (OMGLER) at GES DISC
+C1239966779-GES_DISC: OMI/Aura Formaldehyde (HCHO) Total Column 1-orbit L2 Swath 13x24 km V003 (OMHCHO) at GES DISC
+C1266136038-GES_DISC: OMI/Aura Formaldehyde (HCHO) Total Column Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMHCHOG) at GES DISC
+C1626121562-GES_DISC: OMI/Aura Formaldehyde (HCHO) Total Column Daily L3 Weighted Mean Global 0.1deg Lat/Lon Grid V003 (OMHCHOd) at GES DISC
+C1460503190-GES_DISC: OMI/Aura Near UV Aerosol Index, Optical Depth and Single Scattering Albedo 1-Orbit L2 13x24km
+C2212151771-GES_DISC: OMI/Aura NO2 Tropospheric, Stratospheric & Total Columns MINDS 1-Orbit L2 Swath 13 km x 24 km V1.1 (OMI_MINDS_NO2) at GES DISC
+C2232479983-GES_DISC: OMI/Aura NO2 Tropospheric, Stratospheric & Total Columns MINDS Daily L2 Global Gridded 0.25 degree x 0.25 degree V1.1 (OMI_MINDS_NO2G) at GES DISC
+C2215175232-GES_DISC: OMI/Aura NO2 Tropospheric, Stratospheric & Total Columns MINDS Daily L3 Global Gridded 0.25 degree x 0.25 degree V1.1 (OMI_MINDS_NO2d) at GES DISC
+C1925863942-GES_DISC: OMI/Aura NO2 Tropospheric, Stratospheric & Total Columns MINDS Daily L3 Global Gridded 0.25 degree x 0.25 degree V1 (OMI_MINDS_NO2d) at GES DISC
+C1266136069-GES_DISC: OMI/Aura Surface Reflectance Climatology L3 Global Gridded 0.5 degree x 0.5 degree V3 (OMLER) at GES DISC
+C1278770864-GES_DISC: OMI/Aura and MODIS/Aqua Aerosol Geo-colocation Product 1-Orbit L2 Swath 13x24 km V003 (OMMYDAGEO) at GES DISC
+C1265734652-GES_DISC: OMI/Aura and MODIS/Aqua Merged Cloud Product 1-Orbit L2 Swath 13x24 km V003 (OMMYDCLD) at GES DISC
+C1266136121-GES_DISC: OMI/Aura NO2 Total and Tropospheric Column Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMNO2G) at GES DISC
+C1239966827-GES_DISC: OMI/Aura Ozone (O3) Profile 1-Orbit L2 Swath 13x48km V003 (OMO3PR) at GES DISC
+C1239966829-GES_DISC: OMI/Aura Chlorine Dioxide (OClO) Total Column 1-orbit L2 Swath 13x24 km V003 (OMOCLO) at GES DISC
+C1239966810-GES_DISC: OMI/Aura Global Ground Pixel Corners 1-Orbit L2 Swath 13x24km V003 (OMPIXCOR) at GES DISC
+C1239966812-GES_DISC: OMI/Aura Zoom-in Ground Pixel Corners 1-Orbit L2 Swath 13x12km V003 (OMPIXCORZ) at GES DISC
+C1898401389-GES_DISC: OMPS-NPP L2 LP Aerosol Extinction Vertical Profile swath daily 3slit V2 (OMPS_NPP_LP_L2_AER_DAILY) at GES DISC
+C1410181089-GES_DISC: OMPS-NPP L2 LP Ozone (O3) Vertical Profile swath daily 3slit V2.5 (OMPS_NPP_LP_L2_O3_DAILY) at GES DISC
+C1701674727-GES_DISC: OMPS-NPP L2 NM Cloud Pressure and Fraction swath orbital V2 (OMPS_NPP_NMCLDRR_L2) at GES DISC
+C1279850629-GES_DISC: OMPS/NPP L1B NM Radiance EV Calibrated Geolocated Swath Orbital V2 (OMPS_NPP_NMEV_L1B) at GES DISC
+C1564538427-GES_DISC: OMPS-NPP L2 NM Aerosol Index swath orbital
+C1396070100-GES_DISC: OMPS-NPP L2 NM Nitrogen Dioxide (NO2) Total and Tropospheric Column swath orbital V2 (OMPS_NPP_NMNO2_L2) at GES DISC
+C1396070103-GES_DISC: OMPS-NPP L2 NM Sulfur Dioxide (SO2) Total and Tropospheric Column swath orbital V2 (OMPS_NPP_NMSO2_L2) at GES DISC
+C1386443916-GES_DISC: OMPS-NPP L2 NM Ozone (O3) Total Column swath orbital
+C1393527975-GES_DISC: OMPS-NPP L3 NM Ozone (O3) Total Column 1.0 deg grid daily V2
+C1412974465-GES_DISC: OMPS-NPP L2 NP Ozone (O3) Vertical Profile swath orbital
+C1279850611-GES_DISC: OMPS/NPP L1B NP Radiance EV Calibrated Geolocated Swath Orbital V2 (OMPS_NPP_NPEV_L1B) at GES DISC
+C1266136113-GES_DISC: OMI/Aura Sulphur Dioxide (SO2) Total Column Daily L2 Global Gridded 0.125 degree x 0.125 degree V3 (OMSO2G) at GES DISC
+C1266136114-GES_DISC: OMI/Aura Ozone (O3) Total Column Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMTO3G) at GES DISC
+C1561222825-GES_DISC: GEOS-5 FP-IT Assimilation Geo-colocated to OMI/Aura UV-2 1-Orbit L2 Support Swath 13x24km V3 (OMUFPITMET) at GES DISC
+C1239966859-GES_DISC: OMI/Aura Surface UV Irradiance 1-orbit L2 Swath 13x24 km V003 (OMUVB) at GES DISC
+C1266136073-GES_DISC: OMI/Aura Surface UVB Irradiance and Erythemal Dose Daily L2 Global Gridded 0.25 degree x 0.25 degree V3 (OMUVBG) at GES DISC
+C1266136072-GES_DISC: OMI/Aura Surface UVB Irradiance and Erythemal Dose Daily L3 Global Gridded 1.0 degree x 1.0 degree V3 (OMUVBd) at GES DISC
+C1561222826-GES_DISC: GEOS-5 FP-IT Assimilation Geo-colocated to OMI/Aura VIS 1-Orbit L2 Support Swath 13x24km V3 (OMVFPITMET) at GES DISC
+C2028928738-GES_DISC: RM-OBS/PU Potential Evapotranspiration and Supporting Forcing L4 3-hourly 0.25x0.25 degree V002 (PET_PU_3H025) at GES DISC
+C1575363595-GES_DISC: RM-OBS/PU Potential Evapotranspiration and Supporting Forcing L4 3-hourly 0.25x0.25 degree V001 (PET_PU_3H025) at GES DISC
+C2368305620-GES_DISC: NASA MEASURES Precipitation Ensemble based on AMSR2 GCOMW1 NASA PPS L1C V05 TBs 1-orbit L2 Swath 10x10km V1 (PRECIP_AMSR2_GCOMW1) at GES DISC
+C2368306433-GES_DISC: NASA MEASURES Precipitation Ensemble based on AMSRE AQUA NASA PPS L1C V05 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_AMSRE_AQUA) at GES DISC
+C2368306937-GES_DISC: NASA MEASURES Precipitation Ensemble based on GMI GPM NASA PPS L1C V05 Tbs 1-orbit L2 Swath 10x10km V1 (PRECIP_GMI_GPM) at GES DISC
+C2368307664-GES_DISC: NASA MEASURES Precipitation Ensemble based on SMMR Nimbus-7 NSIDC L1B Tbs 1-orbit L2 Swath 25x25km V1 (PRECIP_SMMR_NIMBUS7) at GES DISC
+C2368310204-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSMIS DMSP F16 NASA PPS L1C V05 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMIS_F16) at GES DISC
+C2368310484-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSMIS DMSP F17 NASA PPS L1C V05 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMIS_F17) at GES DISC
+C2368311020-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSMIS DMSP F18 NASA PPS L1C V05 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMIS_F18) at GES DISC
+C2368311435-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSMIS DMSP F19 NASA PPS L1C V05 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMIS_F19) at GES DISC
+C2368307993-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSM/I DMSP F08 NASA PPS L1C V06 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMI_F08) at GES DISC
+C2368308287-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSM/I DMSP F10 NASA PPS L1C V06 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMI_F10) at GES DISC
+C2368308779-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSM/I DMSP F11 NASA PPS L1C V06 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMI_F11) at GES DISC
+C2368309102-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSM/I DMSP F13 NASA PPS L1C V06 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMI_F13) at GES DISC
+C2368309429-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSM/I DMSP F14 NASA PPS L1C V06 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMI_F14) at GES DISC
+C2368309823-GES_DISC: NASA MEASURES Precipitation Ensemble based on SSM/I DMSP F15 NASA PPS L1C V06 Tbs 1-orbit L2 Swath 12x12km V1 (PRECIP_SSMI_F15) at GES DISC
+C2368307239-GES_DISC: NASA MEASURES Precipitation Ensemble based on TMI TRMM NASA PPS L1C V05 Tbs 1-orbit L2 Swath 5x5km V1 (PRECIP_TMI_TRMM) at GES DISC
+C2086458246-GES_DISC: Sentinel-5P TROPOMI Irradiance product SWIR module L1B V2 (S5P_L1B_IR_SIR) at GES DISC
+C1442068494-GES_DISC: Sentinel-5P TROPOMI Irradiance product SWIR module L1B V1 (S5P_L1B_IR_SIR) at GES DISC
+C2086465652-GES_DISC: Sentinel-5P TROPOMI Irradiance product UVN module L1B V2 (S5P_L1B_IR_UVN) at GES DISC
+C1442068495-GES_DISC: Sentinel-5P TROPOMI Irradiance product UVN module L1B V1 (S5P_L1B_IR_UVN) at GES DISC
+C1442068496-GES_DISC: Sentinel-5P TROPOMI Radiance product band 1 (UV detector) L1B V1 (S5P_L1B_RA_BD1) at GES DISC
+C2086564120-GES_DISC: Sentinel-5P TROPOMI Radiance product band 1 (UV detector) L1B 5.5km x 21km V2 (S5P_L1B_RA_BD1_HiR) at GES DISC
+C1627516264-GES_DISC: Sentinel-5P TROPOMI Radiance product band 1 (UV detector) L1B 5.5km x 21km V1 (S5P_L1B_RA_BD1_HiR) at GES DISC
+C1442068497-GES_DISC: Sentinel-5P TROPOMI Radiance product band 2 (UV detector) L1B V1 (S5P_L1B_RA_BD2) at GES DISC
+C2086570156-GES_DISC: Sentinel-5P TROPOMI Radiance product band 2 (UV detector) L1B 5.5km x 3.5km V2 (S5P_L1B_RA_BD2_HiR) at GES DISC
+C1627516266-GES_DISC: Sentinel-5P TROPOMI Radiance product band 2 (UV detector) L1B 5.5km x 3.5km V1 (S5P_L1B_RA_BD2_HiR) at GES DISC
+C1442068498-GES_DISC: Sentinel-5P TROPOMI Radiance product band 3 (UVIS detector) L1B V1 (S5P_L1B_RA_BD3) at GES DISC
+C2086575700-GES_DISC: Sentinel-5P TROPOMI Radiance product band 3 (UVIS detector) L1B 5.5km x 3.5km V2 (S5P_L1B_RA_BD3_HiR) at GES DISC
+C1627516268-GES_DISC: Sentinel-5P TROPOMI Radiance product band 3 (UVIS detector) L1B 5.5km x 3.5km V1 (S5P_L1B_RA_BD3_HiR) at GES DISC
+C1442068499-GES_DISC: Sentinel-5P TROPOMI Radiance product band 4 (UVIS detector) L1B V1 (S5P_L1B_RA_BD4) at GES DISC
+C2086582256-GES_DISC: Sentinel-5P TROPOMI Radiance product band 4 (UVIS detector) L1B 5.5km x 3.5km V2 (S5P_L1B_RA_BD4_HiR) at GES DISC
+C1627516270-GES_DISC: Sentinel-5P TROPOMI Radiance product band 4 (UVIS detector) L1B 5.5km x 3.5km V1 (S5P_L1B_RA_BD4_HiR) at GES DISC
+C1442068500-GES_DISC: Sentinel-5P TROPOMI Radiance product band 5 (NIR detector) L1B V1 (S5P_L1B_RA_BD5) at GES DISC
+C2086586396-GES_DISC: Sentinel-5P TROPOMI Radiance product band 5 (NIR detector) L1B 5.5km x 3.5km V2 (S5P_L1B_RA_BD5_HiR) at GES DISC
+C1627516271-GES_DISC: Sentinel-5P TROPOMI Radiance product band 5 (NIR detector) L1B 5.5km x 3.5km V1 (S5P_L1B_RA_BD5_HiR) at GES DISC
+C1442068501-GES_DISC: Sentinel-5P TROPOMI Radiance product band 6 (NIR detector) L1B V1 (S5P_L1B_RA_BD6) at GES DISC
+C2086590715-GES_DISC: Sentinel-5P TROPOMI Radiance product band 6 (NIR detector) L1B 5.5km x 3.5km V2 (S5P_L1B_RA_BD6_HiR) at GES DISC
+C1627516273-GES_DISC: Sentinel-5P TROPOMI Radiance product band 6 (NIR detector) L1B 5.5km x 3.5km V1 (S5P_L1B_RA_BD6_HiR) at GES DISC
+C1442068502-GES_DISC: Sentinel-5P TROPOMI Radiance product band 7 (SWIR detector) L1B V1 (S5P_L1B_RA_BD7) at GES DISC
+C2086595497-GES_DISC: Sentinel-5P TROPOMI Radiance product band 7 (SWIR detector) L1B 5.5km x 7km V2 (S5P_L1B_RA_BD7_HiR) at GES DISC
+C1627516275-GES_DISC: Sentinel-5P TROPOMI Radiance product band 7 (SWIR detector) L1B 5.5km x 7km V1 (S5P_L1B_RA_BD7_HiR) at GES DISC
+C1442068503-GES_DISC: Sentinel-5P TROPOMI Radiance product band 8 (SWIR detector) L1B V1 (S5P_L1B_RA_BD8) at GES DISC
+C2086600995-GES_DISC: Sentinel-5P TROPOMI Radiance product band 8 (SWIR detector) L1B 5.5km x 7km V2 (S5P_L1B_RA_BD8_HiR) at GES DISC
+C1627516277-GES_DISC: Sentinel-5P TROPOMI Radiance product band 8 (SWIR detector) L1B 5.5km x 7km V1 (S5P_L1B_RA_BD8_HiR) at GES DISC
+C1442068490-GES_DISC: Sentinel-5P TROPOMI Aerosol Index 1-Orbit L2 7km x 3.5km V1 (S5P_L2__AER_AI) at GES DISC
+C2087131083-GES_DISC: Sentinel-5P TROPOMI Aerosol Index 1-Orbit L2 5.5km x 3.5km V2 (S5P_L2__AER_AI_HiR) at GES DISC
+C1627516285-GES_DISC: Sentinel-5P TROPOMI Aerosol Index 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__AER_AI_HiR) at GES DISC
+C1442068491-GES_DISC: Sentinel-5P TROPOMI Aerosol Layer Height 1-Orbit L2 7km x 3.5km V1 (S5P_L2__AER_LH) at GES DISC
+C2087216100-GES_DISC: Sentinel-5P TROPOMI Aerosol Layer Height 1-Orbit L2 5.5km x 3.5km V2 (S5P_L2__AER_LH_HiR) at GES DISC
+C1627516290-GES_DISC: Sentinel-5P TROPOMI Aerosol Layer Height 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__AER_LH_HiR) at GES DISC
+C1442068505-GES_DISC: Sentinel-5P TROPOMI Methane CH4 1-Orbit L2 7km x 7km V1 (S5P_L2__CH4___) at GES DISC
+C2087216530-GES_DISC: Sentinel-5P TROPOMI Methane CH4 1-Orbit L2 5.5km x 7km V2 (S5P_L2__CH4____HiR) at GES DISC
+C1627516288-GES_DISC: Sentinel-5P TROPOMI Methane CH4 1-Orbit L2 5.5km x 7km V1 (S5P_L2__CH4____HiR) at GES DISC
+C1442068492-GES_DISC: Sentinel-5P TROPOMI Cloud 1-Orbit L2 7km x 3.5km V1 (S5P_L2__CLOUD_) at GES DISC
+C1918209669-GES_DISC: Sentinel-5P TROPOMI Cloud 1-Orbit L2 5.5km x 3.5km V2 (S5P_L2__CLOUD__HiR) at GES DISC
+C1627516294-GES_DISC: Sentinel-5P TROPOMI Cloud 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__CLOUD__HiR) at GES DISC
+C2087132178-GES_DISC: Sentinel-5P TROPOMI Carbon Monoxide CO Column 1-Orbit L2 5.5km x 7km V2 (S5P_L2__CO_____HiR) at GES DISC
+C1627516287-GES_DISC: Sentinel-5P TROPOMI Carbon Monoxide CO Column 1-Orbit L2 5.5km x 7km V1 (S5P_L2__CO_____HiR) at GES DISC
+C1442068510-GES_DISC: Sentinel-5P TROPOMI Tropospheric Formaldehyde HCHO 1-Orbit L2 7km x 3.5km V1 (S5P_L2__HCHO__) at GES DISC
+C1627516292-GES_DISC: Sentinel-5P TROPOMI Tropospheric Formaldehyde HCHO 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__HCHO___HiR) at GES DISC
+C1442068511-GES_DISC: Sentinel-5P TROPOMI Tropospheric NO2 1-Orbit L2 7km x 3.5km V1 (S5P_L2__NO2___) at GES DISC
+C1627516298-GES_DISC: Sentinel-5P TROPOMI Tropospheric NO2 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__NO2____HiR) at GES DISC
+C1622747253-GES_DISC: Sentinel-5P TROPOMI SNPP VIIRS cloud product band 3 (UVIS detector) 1-Orbit L2 7km x 3.5km V1 (S5P_L2__NP_BD3) at GES DISC
+C1627516279-GES_DISC: Sentinel-5P TROPOMI SNPP VIIRS cloud product band 3 (UVIS detector) 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__NP_BD3_HiR) at GES DISC
+C1622747262-GES_DISC: Sentinel-5P TROPOMI SNPP VIIRS cloud product band 6 (NIR detector) 1-Orbit L2 7km x 3.5km V1 (S5P_L2__NP_BD6) at GES DISC
+C1627516281-GES_DISC: Sentinel-5P TROPOMI SNPP VIIRS cloud product band 6 (NIR detector) 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__NP_BD6_HiR) at GES DISC
+C1622747264-GES_DISC: Sentinel-5P TROPOMI SNPP cloud product band 7 (SWIR detector) 1-Orbit L2 7km x 7km V1 (S5P_L2__NP_BD7) at GES DISC
+C1627516283-GES_DISC: Sentinel-5P TROPOMI SNPP cloud product band 7 (SWIR detector) 1-Orbit L2 5.5km x 7km V1 (S5P_L2__NP_BD7_HiR) at GES DISC
+C1918211535-GES_DISC: Sentinel-5P TROPOMI Tropospheric Ozone Column V2 (S5P_L2__O3_TCL) at GES DISC
+C1442068507-GES_DISC: Sentinel-5P TROPOMI Tropospheric Ozone Column V1 (S5P_L2__O3_TCL) at GES DISC
+C1442068509-GES_DISC: Sentinel-5P TROPOMI Total Ozone Column 1-Orbit L2 7km x 3.5km V1 (S5P_L2__O3_TOT) at GES DISC
+C1918209846-GES_DISC: Sentinel-5P TROPOMI Total Ozone Column 1-Orbit L2 5.5km x 3.5km V2 (S5P_L2__O3_TOT_HiR) at GES DISC
+C1627516300-GES_DISC: Sentinel-5P TROPOMI Total Ozone Column 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__O3_TOT_HiR) at GES DISC
+C2168596905-GES_DISC: Sentinel-5P TROPOMI Ozone Profile 1-Orbit L2 30km x 30km V2 (S5P_L2__O3__PR_HiR) at GES DISC
+C1442068508-GES_DISC: Sentinel-5P TROPOMI Sulphur Dioxide SO2 1-Orbit L2 7km x 3.5km V1 (S5P_L2__SO2___) at GES DISC
+C1918210292-GES_DISC: Sentinel-5P TROPOMI Sulphur Dioxide SO2 1-Orbit L2 5.5km x 3.5km V2 (S5P_L2__SO2____HiR) at GES DISC
+C1627516296-GES_DISC: Sentinel-5P TROPOMI Sulphur Dioxide SO2 1-Orbit L2 5.5km x 3.5km V1 (S5P_L2__SO2____HiR) at GES DISC
+C1251051468-GES_DISC: SBUV2/NOAA-9 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (SBUV2N09L2) at GES DISC
+C1251051471-GES_DISC: SBUV2/NOAA-9 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (SBUV2N09L3zm) at GES DISC
+C1251051523-GES_DISC: SBUV2/NOAA-11 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (SBUV2N11L2) at GES DISC
+C1251051529-GES_DISC: SBUV2/NOAA-11 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (SBUV2N11L3zm) at GES DISC
+C1251051546-GES_DISC: SBUV2/NOAA-14 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (SBUV2N14L2) at GES DISC
+C1251051549-GES_DISC: SBUV2/NOAA-14 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (SBUV2N14L3zm) at GES DISC
+C1251051586-GES_DISC: SBUV2/NOAA-16 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (SBUV2N16L2) at GES DISC
+C1251051574-GES_DISC: SBUV2/NOAA-16 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (SBUV2N16L3zm) at GES DISC
+C1251051640-GES_DISC: SBUV2/NOAA-17 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (SBUV2N17L2) at GES DISC
+C1251051604-GES_DISC: SBUV2/NOAA-17 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (SBUV2N17L3zm) at GES DISC
+C1251051650-GES_DISC: SBUV2/NOAA-18 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (SBUV2N18L2) at GES DISC
+C1251051612-GES_DISC: SBUV2/NOAA-18 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (SBUV2N18L3zm) at GES DISC
+C1251051657-GES_DISC: SBUV2/NOAA-19 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (SBUV2N19L2) at GES DISC
+C1251051721-GES_DISC: SBUV2/NOAA-19 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (SBUV2N19L3zm) at GES DISC
+C1251051726-GES_DISC: SBUV/Nimbus-7 Ozone (O3) Nadir Profile and Total Column 1 Day L2 V1 (SBUVN07L2) at GES DISC
+C1251051713-GES_DISC: SBUV/Nimbus-7 Ozone (O3) Profile and Total Column Ozone 1 Month Zonal Mean L3 Global 5.0 degree Latitude Zones V1 (SBUVN07L3zm) at GES DISC
+C1569839798-GES_DISC: Smerge-Noah-CCI root zone soil moisture 0-40 cm L4 daily 0.125 x 0.125 degree V2.0 (SMERGE_RZSM0_40CM) at GES DISC
+C2011289898-GES_DISC: Sounder SIPS: Sun Synchronous 13:30 orbit Climate Hyperspectral InfraRed Product (CHIRP): Calibrated Radiances from EOS-Aqua, V2 (SNDR13CHRP1AQCal) at GES DISC
+C2011290109-GES_DISC: Sounder SIPS: Sun Synchronous 13:30 orbit Climate Hyperspectral InfraRed Product (CHIRP): Calibrated Radiances from JPSS-1/NOAA-20, V2 (SNDR13CHRP1J1Cal) at GES DISC
+C2011289954-GES_DISC: Sounder SIPS: Sun Synchronous 13:30 orbit Climate Hyperspectral InfraRed Product (CHIRP): Calibrated Radiances from S-NPP, V2 (SNDR13CHRP1SNCal) at GES DISC
+C2287943722-GES_DISC: Spatial Statistical Data Fusion (SSDF) Level 3: CONUS Near-Surface Atmospheric Temperature from SNPP CrIMSS and Aqua AIRS, V2 (SNDR13IML3SSDFCNSAT)
+C1693440794-GES_DISC: Sounder SIPS: AQUA AIRS IR-only Level 2 CLIMCAPS: Cloud Cleared Radiances V2 at GES DISC
+C1693440795-GES_DISC: Sounder SIPS: AQUA AIRS IR-only Level 2 CLIMCAPS : Atmosphere, cloud and surface geophysical state V2 at GES DISC
+C1693440800-GES_DISC: Sounder SIPS: AQUA AIRS IR-only Level 3 CLIMCAPS : Comprehensive Quality Control Gridded Daily V2 at GES DISC
+C1693440801-GES_DISC: Sounder SIPS: AQUA AIRS IR-only Level 3 CLIMCAPS: Comprehensive Quality Control Gridded Monthly V2 at GES DISC
+C1693440802-GES_DISC: Sounder SIPS: AQUA AIRS IR-only Level 3 CLIMCAPS: Specific Quality Control Gridded Daily V2 at GES DISC
+C1693440803-GES_DISC: Sounder SIPS: AQUA AIRS IR-only Level 3 CLIMCAPS: Specific Quality Control Gridded Monthly V2 at GES DISC
+C2284983739-GES_DISC: Spatial Statistical Data Fusion (SSDF) Level 3: CONUS Near-Surface Atmospheric Temperature from Aqua AIRS, V2 (SNDRAQIL3SSDFCNSAT)
+C1693440796-GES_DISC: Sounder SIPS: AQUA AIRS IR + MW Level 2 CLIMCAPS: Cloud Cleared Radiances V2 at GES DISC
+C1693440798-GES_DISC: Sounder SIPS: AQUA AIRS IR + MW Level 2 CLIMCAPS: Atmosphere, cloud and surface geophysical state V2 at GES DISC
+C1693440804-GES_DISC: Sounder SIPS: AQUA AIRS IR + MW Level 3 CLIMCAPS : Comprehensive Quality Control Gridded Daily V2 at GES DISC
+C1693440807-GES_DISC: Sounder SIPS: AQUA AIRS IR + MW Level 3 CLIMCAPS : Comprehensive Quality Control Gridded Monthly V2 at GES DISC
+C1693440821-GES_DISC: Sounder SIPS: AQUA AIRS IR   MW Level 3 CLIMCAPS : Specific Quality Control Gridded Daily V2 at GES DISC
+C1693440838-GES_DISC: Sounder SIPS: AQUA AIRS IR + MW Level 3 CLIMCAPS: Specific Quality Control Gridded Monthly V2 at GES DISC
+C1952167460-GES_DISC: JPSS-1 ATMS Level 1B Brightness Temperature V3 (SNDRJ1ATMSL1B) at GES DISC
+C1442068433-GES_DISC: JPSS-1 ATMS Level 1B Brightness Temperature V2 (SNDRJ1ATMSL1B) at GES DISC
+C1952167461-GES_DISC: JPSS-1 CrIS Level 1B Full Spectral Resolution V3 (SNDRJ1CrISL1B) at GES DISC
+C1442068434-GES_DISC: JPSS-1 CrIS Level 1B Full Spectral Resolution V2 (SNDRJ1CrISL1B) at GES DISC
+C1994855247-GES_DISC: JPSS-1 CrIS IMG: Collocated VIIRS level 1 / cloud mask statistical summary V2 (SNDRJ1CrISL1BIMG) at GES DISC
+C1993075854-GES_DISC: JPSS-1 CrIS IMG_COL: Array indices for collocated VIIRS observations V2 (SNDRJ1CrISL1BIMGC) at GES DISC
+C1692982092-GES_DISC: Sounder SIPS: JPSS-1 CrIS Level 2 CLIMCAPS: Cloud Cleared Radiances V2 at GES DISC
+C1692982094-GES_DISC: Sounder SIPS: JPSS-1 CrIS Level 3 Comprehensive Quality Control Gridded Daily CLIMCAPS V2 at GES DISC
+C1692982095-GES_DISC: Sounder SIPS: JPSS-1 CrIS Level 3 Comprehensive Quality Control Gridded Monthly CLIMCAPS V2 at GES DISC
+C1692982096-GES_DISC: Sounder SIPS: JPSS-1 CrIS Level 3 Specific Quality Control Gridded Daily CLIMCAPS V2 at GES DISC
+C1692982099-GES_DISC: Sounder SIPS: JPSS-1 CrIS Level 3 Specific Quality Control Gridded Monthly CLIMCAPS V2 at GES DISC
+C1943072252-GES_DISC: S-NPP CrIS IMG: Collocated VIIRS level 1 / cloud mask statistical summary V2 (SNDRSNCrISL1BIMG) at GES DISC
+C1943072156-GES_DISC: S-NPP CrIS IMG_COL: Array indices for collocated VIIRS observations V2 (SNDRSNCrISL1BIMGC) at GES DISC
+C1921638441-GES_DISC: Cross-track Infrared Sounder (CrIS) Level 2 Earth System Science Profiling Algorithm Ammonia Retrieval Algorithm (ESSPA-NH3) V1 (SNDRSNIL2ESPNH3)
+C1692982076-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 2 CLIMCAPS Full Spectral Resolution: Cloud Cleared Radiances V2 at GES DISC
+C1692982073-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 2 CLIMCAPS Normal Spectral Resolution: Cloud Cleared Radiances V2 at GES DISC
+C1692982075-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 2 CLIMCAPS Full Spectral Resolution: Atmosphere cloud and surface geophysical state V2 at GES DISC
+C1692982070-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 2 CLIMCAPS Normal Spectral Resolution: Atmosphere cloud and surface geophysical state V2 at GES DISC
+C1633993913-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 2 CLIMCAPS Normal Spectral Resolution: Atmosphere, cloud and surface geophysical state V1
+C1633993911-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 2 CHART Normal Spectral Resolution: Cloud Cleared Radiances V1
+C1633993908-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 2 CHART Normal Spectral Resolution: Atmosphere, cloud and surface geophysical state V1
+C1692982085-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Comprehensive Quality Control Gridded Daily CLIMCAPS Full Spectral Resolution V2 at GES DISC
+C1692982078-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Comprehensive Quality Control Gridded Daily CLIMCAPS Normal Spectral Resolution V2 at GES DISC
+C1633993929-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Comprehensive Quality Control Gridded Daily CLIMCAPS Normal Spectral Resolution V1
+C1633993917-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Comprehensive Quality Control Gridded Daily CHART Normal Spectral Resolution V1
+C1692982087-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Comprehensive Quality Control Gridded Monthly CLIMCAPS Full Spectral Resolution V2 at GES DISC
+C1692982080-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Comprehensive Quality Control Gridded Monthly CLIMCAPS Normal Spectral Resolution V2 at GES DISC
+C1633993932-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Comprehensive Quality Control Gridded Monthly CLIMCAPS Normal Spectral Resolution V1
+C1633993919-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Comprehensive Quality Control Gridded Monthly CHART Normal Spectral Resolution V1
+C1692982088-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Specific Quality Control Gridded Daily CLIMCAPS Full Spectral Resolution V2 at GES DISC
+C1692982081-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Specific Quality Control Gridded Daily CLIMCAPS Normal Spectral Resolution V2 at GES DISC
+C1633993922-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Specific Quality Control Gridded Daily CHART Normal Spectral Resolution V1
+C1692982089-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Specific Quality Control Gridded Monthly CLIMCAPS Full Spectral Resolution V2 at GES DISC
+C1692982082-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Specific Quality Control Gridded Monthly CLIMCAPS Normal Spectral Resolution V2 at GES DISC
+C1633993925-GES_DISC: Sounder SIPS: Suomi NPP CrIMSS Level 3 Specific Quality Control Gridded Monthly CHART Normal Spectral Resolution V1
+C2099190126-GES_DISC: Sounder SIPS: Suomi NPP ATMS Level 2 RAMSES II: Atmosphere, cloud and surface geophysical state V1 (SNDRSNML2RMS) at GES DISC
+C1952167462-GES_DISC: Suomi NPP ATMS Sounder Science Investigator-led Processing System (SIPS) Level 1B Brightness Temperature V3 (SNPPATMSL1B) at GES DISC
+C1442068516-GES_DISC: Suomi NPP ATMS Sounder Science Investigator-led Processing System (SIPS) Level 1B Brightness Temperature V2 (SNPPATMSL1B) at GES DISC
+C1952167468-GES_DISC: Suomi NPP CrIS Level 1B Full Spectral Resolution V3 (SNPPCrISL1B) at GES DISC
+C1442068517-GES_DISC: Suomi NPP CrIS Level 1B Full Spectral Resolution V2 (SNPPCrISL1B) at GES DISC
+C1952167492-GES_DISC: Suomi NPP CrIS Level 1B Normal Spectral Resolution V3 (SNPPCrISL1BNSR) at GES DISC
+C1442068519-GES_DISC: Suomi NPP CrIS Level 1B Normal Spectral Resolution V2 (SNPPCrISL1BNSR) at GES DISC
+C1239900190-GES_DISC: SeaWiFS Deep Blue Aerosol Optical Depth and Angstrom Exponent Daily Level 3 Data Gridded at 0.5 Degrees V004 (SWDB_L305) at GES DISC
+C1239900200-GES_DISC: SeaWiFS Deep Blue Aerosol Optical Depth and Angstrom Exponent Daily Level 3 Data Gridded at 1.0 Degrees V004 (SWDB_L310) at GES DISC
+C1239900201-GES_DISC: SeaWiFS Deep Blue Aerosol Optical Depth and Angstrom Exponent Monthly Level 3 Data Gridded at 0.5 Degrees V004 (SWDB_L3M05) at GES DISC
+C1239900202-GES_DISC: SeaWiFS Deep Blue Aerosol Optical Depth and Angstrom Exponent Monthly Level 3 Data Gridded at 1.0 Degrees V004 (SWDB_L3M10) at GES DISC
+C1239900191-GES_DISC: SeaWiFS Deep Blue Aerosol Optical Thickness Monthly Level 3 Climatology Data Gridded at 0.5 Degrees V004 (SWDB_L3MC05) at GES DISC
+C1239900203-GES_DISC: SeaWiFS Deep Blue Aerosol Optical Thickness Monthly Level 3 Climatology Data Gridded at 1.0 Degrees V004 (SWDB_L3MC10) at GES DISC
+C1452994122-GES_DISC: TOMS/EP Near UV Aerosol Index and LER 1-Orbit L2 40x40km at GES DISC
+C1237114194-GES_DISC: TOMS Earth-Probe Total Ozone (O3) Aerosol Index UV-Reflectivity UV-B Erythemal Irradiances Daily L3 Global 1 deg x 1.25 deg V008 (TOMSEPL3) at GES DISC
+C1237114207-GES_DISC: TOMS Meteor-3 Total Ozone UV-Reflectivity Daily L3 Global 1 deg x 1.25 deg V008 (TOMSM3L3) at GES DISC
+C1418718313-GES_DISC: TOMS/N7 Near UV Aerosol Index and LER 1-Orbit L2 50x50 km
+C1237114212-GES_DISC: TOMS Nimbus-7 Total Ozone Aerosol Index UV-Reflectivity UV-B Erythemal Irradiances Daily L3 Global 1 deg x 1.25 deg V008 (TOMSN7L3) at GES DISC
+C1548834212-GES_DISC: TOVS GLA MONTHLY GRIDS from NOAA-6 02 (TOVSAMNA) at GES DISC
+C1548834216-GES_DISC: TOVS GLA MONTHLY GRIDS from NOAA-7 02 (TOVSAMNC) at GES DISC
+C1548834220-GES_DISC: TOVS GLA MONTHLY GRIDS from NOAA-12 02 (TOVSAMND) at GES DISCc
+C1548834222-GES_DISC: TOVS GLA MONTHLY GRIDS from NOAA-8 02 (TOVSAMNE) at GES DISC
+C1548834224-GES_DISC: TOVS GLA MONTHLY GRIDS from NOAA-9 02 (TOVSAMNF) at GES DISC
+C1548834225-GES_DISC: TOVS GLA MONTHLY GRIDS from NOAA-10 02 (TOVSAMNG) at GES DISC
+C1548834228-GES_DISC: TOVS GLA MONTHLY GRIDS from NOAA-11 02 (TOVSAMNH) at GES DISC
+C1548834235-GES_DISC: TOVS GLA MONTHLY GRIDS from NOAA-14 02 (TOVSAMNJ) at GES DISC
+C1548834200-GES_DISC: TOVS GLA MONTHLY GRIDS from TIROS-N 02 (TOVSAMTN) at GES DISC
+C1282060544-GES_DISC: TRMM Precipitation Radar Surface Cross-Section L2 1.5 hours  V7 (TRMM_2A21) at GES DISC
+C1282060545-GES_DISC: TRMM Precipitation Radar Rain Characteristics L2 1.5 hours V7 (TRMM_2A23) at GES DISC
+C1282060508-GES_DISC: TRMM Precipitation Radar Rainfall Rate and Profile L2 1.5 hours V7 (TRMM_2A25) at GES DISC
+C1282060546-GES_DISC: TRMM Combined Precipitation Radar and Microwave Imager Rainfall Profile L2 1.5 hours V7 (TRMM_2B31) at GES DISC
+C1282032623-GES_DISC: TRMM Microwave Imager Oceanic Rainfall L3 1 month 5 degree x 5 degree V7 (TRMM_3A11) at GES DISC
+C1282032627-GES_DISC: TRMM Radar Rainfall Statistics L3 1 month (5 x 5) and (0.5  x 0.5) degree V7 (TRMM_3A25) at GES DISC
+C1282032628-GES_DISC: TRMM Radar Rain Distributions L3 1 month 5 degree x 5 degree V7 (TRMM_3A26) at GES DISC
+C1282032614-GES_DISC: TRMM TMI/PR Combined Precipitation L3 1 month 0.5 degree x 0.5 degree V7 (TRMM_3B31) at GES DISC
+C1282032615-GES_DISC: TRMM PR Gridded Orbital Spectral Latent Heating Profiles L3 1.5 hours 0.5 degree x 0.5 degree V7 (TRMM_3G25) at GES DISC
+C1282032565-GES_DISC: TRMM TMI/PR Combined Gridded Orbital Spectral Latent Heating L3 1.5 hours 0.5 degree x 0.5 degree V7 (TRMM_3G31) at GES DISC
+C1282032633-GES_DISC: TRMM Precipitation Radar Spectral Latent Heating L3 1 month 0.5 degree x 0.5 degree V7 (TRMM_3H25) at GES DISC
+C1282032616-GES_DISC: TRMM TMI/PR Combined Convective Stratiform Heating L3 1 month 0.5 degree x 0.5 degree V7 (TRMM_3H31) at GES DISC
+C1282032566-GES_DISC: TRMM Convective and Stratiform Heating L3 1 month 0.5 degree x 0.5 degree V6 (TRMM_CSH) at GES DISC
+C1617332036-GES_DISC: Land/Sea static mask relevant to TMPA precipitation 0.25x0.25 degree V2 (TRMM_TMPA_LandSeaMask) at GES DISC
+C2152047233-GES_DISC: TROPOMI/Sentinel-5P Near UV Aerosol Optical Depth and Single Scattering Albedo L2 1-Orbit Snapshot 7.5 km x 3 km
+C2263977000-GES_DISC: TROPOMI/S5P NO2 Tropospheric, Stratospheric and Total Columns MINDS 1-Orbit L2 Swath 5.5 km  x 3.5 km V1.1 (TROPOMI_MINDS_NO2) at GES DISC
+C2041963327-GES_DISC: TROPESS AIRS-Aqua L2 Methane for Forward Stream, Standard Product V1 (TRPSDL2CH4AIRSFS) at GES DISC
+C2088007541-GES_DISC: TROPESS CrIS-JPSS1 L2 Methane for Forward Stream, Standard Product V1 (TRPSDL2CH4CRS1FS) at GES DISC
+C2041963409-GES_DISC: TROPESS CrIS-SNPP L2 Methane for Australian Fires, Standard Product V1 (TRPSDL2CH4CRSAUS) at GES DISC
+C2041963510-GES_DISC: TROPESS CrIS-SNPP L2 Methane for Forward Stream, Standard Product V1 (TRPSDL2CH4CRSFS) at GES DISC
+C2041963756-GES_DISC: TROPESS AIRS-Aqua L2 Carbon Monoxide for Forward Stream, Standard Product V1 (TRPSDL2COAIRSFS) at GES DISC
+C2088007544-GES_DISC: TROPESS CrIS-JPSS1 L2 Carbon Monoxide for Forward Stream, Standard Product V1 (TRPSDL2COCRS1FS) at GES DISC
+C2041963848-GES_DISC: TROPESS CrIS-SNPP L2 Carbon Monoxide for Australian Fires, Standard Product V1 (TRPSDL2COCRSAUS) at GES DISC
+C2041963982-GES_DISC: TROPESS CrIS-SNPP L2 Carbon Monoxide for Forward Stream, Standard Product V1 (TRPSDL2COCRSFS) at GES DISC
+C2041964117-GES_DISC: TROPESS CrIS-SNPP L2 Carbon Monoxide for Buchholz2021 TS1, Standard Product V1 (TRPSDL2COCRSTS1) at GES DISC
+C2041964232-GES_DISC: TROPESS CrIS-SNPP L2 Carbon Monoxide for Buchholz2021 TS2, Standard Product V1 (TRPSDL2COCRSTS2) at GES DISC
+C1980429431-GES_DISC: TROPESS CrIS-SNPP L2 Carbon Monoxide for West Coast Fires, Standard Product V1 (TRPSDL2COCRSWCF) at GES DISC
+C2054599696-GES_DISC: TROPESS CrIS-SNPP L2 Carbon Monoxide for West Coast Fires HiRes, Standard Product V1 (TRPSDL2COCRSWCFHI) at GES DISC
+C2041964582-GES_DISC: TROPESS AIRS-Aqua L2 Water for Forward Stream, Standard Product V1 (TRPSDL2H2OAIRSFS) at GES DISC
+C2088007546-GES_DISC: TROPESS CrIS-JPSS1 L2 Water for Forward Stream, Standard Product V1 (TRPSDL2H2OCRS1FS) at GES DISC
+C2041964691-GES_DISC: TROPESS CrIS-SNPP L2 Water for Australian Fires, Standard Product V1 (TRPSDL2H2OCRSAUS) at GES DISC
+C2041964952-GES_DISC: TROPESS CrIS-SNPP L2 Water for Forward Stream, Standard Product V1 (TRPSDL2H2OCRSFS) at GES DISC
+C2041965054-GES_DISC: TROPESS AIRS-Aqua L2 Deuterated Water Vapor for Forward Stream, Standard Product V1 (TRPSDL2HDOAIRSFS) at GES DISC
+C2088007557-GES_DISC: TROPESS CrIS-JPSS1 L2 Deuterated Water Vapor for Forward Stream, Standard Product V1 (TRPSDL2HDOCRS1FS) at GES DISC
+C2041965187-GES_DISC: TROPESS CrIS-SNPP L2 Deuterated Water Vapor for Australian Fires, Standard Product V1 (TRPSDL2HDOCRSAUS) at GES DISC
+C2041965312-GES_DISC: TROPESS CrIS-SNPP L2 Deuterated Water Vapor for Forward Stream, Standard Product V1 (TRPSDL2HDOCRSFS) at GES DISC
+C2041965834-GES_DISC: TROPESS AIRS-Aqua L2 Ammonia for Forward Stream, Standard Product V1 (TRPSDL2NH3AIRSFS) at GES DISC
+C2088007559-GES_DISC: TROPESS CrIS-JPSS1 L2 Ammonia for Forward Stream, Standard Product V1 (TRPSDL2NH3CRS1FS) at GES DISC
+C2041965954-GES_DISC: TROPESS CrIS-SNPP L2 Ammonia for Australian Fires, Standard Product V1 (TRPSDL2NH3CRSAUS) at GES DISC
+C2041966092-GES_DISC: TROPESS CrIS-SNPP L2 Ammonia for Forward Stream, Standard Product V1 (TRPSDL2NH3CRSFS) at GES DISC
+C1980429433-GES_DISC: TROPESS CrIS-SNPP L2 Ammonia for West Coast Fires, Standard Product V1 (TRPSDL2NH3CRSWCF) at GES DISC
+C2054599702-GES_DISC: TROPESS CrIS-SNPP L2 Ammonia for West Coast Fires HiRes, Standard Product V1 (TRPSDL2NH3CRSWCFHI) at GES DISC
+C2041966388-GES_DISC: TROPESS AIRS-Aqua L2 Ozone for Forward Stream, Standard Product V1 (TRPSDL2O3AIRSFS) at GES DISC
+C2041966555-GES_DISC: TROPESS AIRS-Aqua and OMI-Aura L2 Ozone for Forward Stream, Standard Product V1 (TRPSDL2O3AIRSOMIFS) at GES DISC
+C2088007562-GES_DISC: TROPESS CrIS-JPSS1 L2 Ozone for Forward Stream, Standard Product V1 (TRPSDL2O3CRS1FS) at GES DISC
+C2041966693-GES_DISC: TROPESS CrIS-SNPP L2 Ozone for Australian Fires, Standard Product V1 (TRPSDL2O3CRSAUS) at GES DISC
+C2041966826-GES_DISC: TROPESS CrIS-SNPP L2 Ozone for Forward Stream, Standard Product V1 (TRPSDL2O3CRSFS) at GES DISC
+C1980429446-GES_DISC: TROPESS CrIS-SNPP L2 Ozone for West Coast Fires, Standard Product V1 (TRPSDL2O3CRSWCF) at GES DISC
+C2054599705-GES_DISC: TROPESS CrIS-SNPP L2 Ozone for West Coast Fires HiRes, Standard Product V1 (TRPSDL2O3CRSWCFHI) at GES DISC
+C2041967527-GES_DISC: TROPESS OMI-Aura L2 Ozone for Forward Stream, Standard Product V1 (TRPSDL2O3OMIFS) at GES DISC
+C2088007569-GES_DISC: TROPESS CrIS-JPSS1 L2 Peroxyacetyl Nitrate for Forward Stream, Standard Product V1 (TRPSDL2PANCRS1FS) at GES DISC
+C2041967844-GES_DISC: TROPESS CrIS-SNPP L2 Peroxyacetyl Nitrate for Australian Fires, Standard Product V1 (TRPSDL2PANCRSAUS) at GES DISC
+C2041968030-GES_DISC: TROPESS CrIS-SNPP L2 Peroxyacetyl Nitrate for Forward Stream, Standard Product V1 (TRPSDL2PANCRSFS) at GES DISC
+C1980429450-GES_DISC: TROPESS CrIS-SNPP L2 Peroxyacetyl Nitrate for West Coast Fires, Standard Product V1 (TRPSDL2PANCRSWCF) at GES DISC
+C2054599713-GES_DISC: TROPESS CrIS-SNPP L2 Peroxyacetyl Nitrate for West Coast Fires HiRes, Standard Product V1 (TRPSDL2PANCRSWCFHI) at GES DISC
+C2041968414-GES_DISC: TROPESS AIRS-Aqua L2 Atmospheric Temperature for Forward Stream, Standard Product V1 (TRPSDL2TATMAIRSFS) at GES DISC
+C2088007577-GES_DISC: TROPESS CrIS-JPSS1 L2 Atmospheric Temperature for Forward Stream, Standard Product V1 (TRPSDL2TATMCRS1FS) at GES DISC
+C2041968586-GES_DISC: TROPESS CrIS-SNPP L2 Atmospheric Temperature for Australian Fires, Standard Product V1 (TRPSDL2TATMCRSAUS) at GES DISC
+C2041968764-GES_DISC: TROPESS CrIS-SNPP L2 Atmospheric Temperature for Forward Stream, Standard Product V1 (TRPSDL2TATMCRSFS) at GES DISC
+C1242287803-GES_DISC: AMSR-E/Aqua surface soil moisture (LSMEM) L3 1 day 0.25 degree x 0.25 degree V001 (WC_LSMEM_SOILM_025) at GES DISC
+C1242287793-GES_DISC: TMI/TRMM precipitation and uncertainty (TMPA) L3 3 hour 0.25 degree x 0.25 degree V001 (WC_MULTISEN_PREC_025) at GES DISC
+C1371013470-GES_DISC: SRB/GEWEX evapotranspiration (Penman-Monteith) L4 3 hour 0.5 degree x 0.5 degree V1 (WC_PM_ET_050) at GES DISC
+Total entries: 1337
+
+---PODACC---
