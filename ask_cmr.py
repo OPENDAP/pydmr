@@ -33,17 +33,22 @@ def main():
     parser.add_argument("-o", "--opendap", help="for a provider, show only collections with opendap URLS", action="store_true")
     parser.add_argument("-g", "--granules", help="for a collection, get info about all the granules", action="store_true")
 
+    parser.add_argument("-fl", "--firstlast", help="get the first and last granule of a collection", action="store_true")
+
     args = parser.parse_args()
 
     cmr.verbose = True if args.verbose else False
     pretty = True if args.pretty else False
     opendap = True if args.opendap else False
     granules = True if args.granules else False
+    firstlast = True if args.firstlast else False
 
     try:
         start = time.time()
         if args.collection and granules:
             entries = cmr.get_collection_granules(args.collection, pretty)
+        elif args.collection and firstlast:
+            entries = cmr.get_collection_granules_first_last(args.collection, pretty)
         elif args.collection:
             entries = cmr.get_collection_entry(args.collection, pretty)
         elif args.resty_path:

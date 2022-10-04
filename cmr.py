@@ -1,10 +1,10 @@
-
 """
 Access information about data in NASA's EarthData Cloud system using the
 CMR Web API.
 """
 
 import requests
+import json
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
@@ -14,6 +14,7 @@ verbose: bool = False
 
 class CMRException(Exception):
     """When CMR returns an error"""
+
     def __init__(self, status, message="No error message given"):
         self.status = status
         self.message = message
@@ -52,6 +53,24 @@ def collection_granules_dict(json_resp):
             dict_resp[entry["id"]] = (entry["title"], entry["producer_granule_id"])
         else:
             dict_resp[entry["id"]] = entry["title"]
+    return dict_resp
+
+
+def collection_granules_first_last(json_resp):
+    dict_resp = {}
+
+    if "producer_granule_id" in dict_resp:  # some granule records lack "producer_granule_id". jhrg 9/4/22
+        dict_resp[json_resp["id"]] = (json_resp["title"], json_resp["producer_granule_id"])
+    else:
+        dict_resp[json_resp["id"]] = json_resp["title"]
+
+    with open(json_resp) as f:
+        j = json.loads(f.readlines()[-1])
+
+    if "producer_granule_id" in dict_resp:  # some granule records lack "producer_granule_id". jhrg 9/4/22
+        dict_resp[j["id"]] = (j["title"], j["producer_granule_id"])
+    else:
+        dict_resp[j["id"]] = j["title"]
     return dict_resp
 
 
@@ -137,7 +156,7 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
         # By default, requests uses cookies, supports OAuth2 and reads username and password
         # from a ~/.netrc file.
         r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
-        page += 1   # if page_num was explicitly set, this is not needed
+        page += 1  # if page_num was explicitly set, this is not needed
 
         if verbose > 0:
             print(f'CMR Query URL: {cmr_query_url}')
@@ -149,19 +168,59 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
             raise CMRException(r.status_code, r.json()["errors"][0])
 
         json_resp = r.json()
-        if "feed" in json_resp and "entry" in json_resp["feed"]:    # 'feed' is for the json response
+        if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
             entries = len(json_resp["feed"]["entry"])
-        elif "items" in json_resp:                                  # 'items' is for json_umm
+        elif "items" in json_resp:  # 'items' is for json_umm
             entries = len(json_resp["items"])
         else:
             raise CMRException(200, "cmr.process_request does not know how to decode the response")
 
         if entries > 0:
-            entries = response_processor(json_resp)   # The response_processor() is passed in
+            entries = response_processor(json_resp)  # The response_processor() is passed in
             entries_dict = merge(entries_dict, entries)
         if page_num != 0 or len(entries) < page_size:
             break
     return entries_dict
+
+
+def process_request_first_last(cmr_query_url, response_processor, page_size=10, page_num=0):
+    """
+    Only return the first and last granule of a collection
+
+    :param cmr_query_url: The whole URL, query params and all
+    :param response_processor: A function that will process the returned json response
+    :param page_size: The number of entries per page from CMR. The default is the CMR
+        default value.
+    :param page_num: Return an explicit page of the query response. If not given, gets all
+        the pages
+    :returns: A dictionary of entries
+    """
+    page = 1 if page_num == 0 else page_num
+    entries_dict = {}
+    granule_dict = {}
+
+    # By default, requests uses cookies, supports OAuth2 and reads username and password
+    # from a ~/.netrc file.
+    r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
+    page += 1  # if page_num was explicitly set, this is not needed
+
+    if verbose > 0:
+        print(f'CMR Query URL: {cmr_query_url}')
+        print(f'Status code: {r.status_code}')
+        print(f'text: {r.text}')
+
+    if r.status_code != 200:
+        # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
+        raise CMRException(r.status_code, r.json()["errors"][0])
+
+    json_resp = r.json()
+
+    entries = response_processor(json_resp)  # The response_processor() is passed in
+    entries_dict = merge(entries_dict, entries)
+
+    granule_dict[0] = list(entries_dict.items())[0]
+    granule_dict[1] = list(entries_dict.items())[-1]
+    return granule_dict
 
 
 def get_provider_collections(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
@@ -225,6 +284,20 @@ def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nas
     return process_request(cmr_query_url, collection_granules_dict, page_size=500)
 
 
+def get_collection_granules_first_last(concept_id, pretty=False, service='cmr.earthdata.nasa.gov'):
+    """
+    Get granules for a collection
+
+    :param concept_id: The string Collection (Concept) Id
+    :param pretty: request a 'pretty' version of the response from the service. default False
+    :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
+    :returns: The collection JSON object
+    """
+    pretty = '&pretty=true' if pretty > 0 else ''
+    cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}'
+    return process_request_first_last(cmr_query_url, collection_granules_dict, page_size=500)
+
+
 def decompose_resty_url(url, pretty=False):
     """
     Extract the collection concept id and granule ur. Use this information to
@@ -237,7 +310,7 @@ def decompose_resty_url(url, pretty=False):
     :returns: A dictionary of the URLs, indexed as 'URL1', ..., 'URLn.'
     """
     url_pieces = url.split('/')[3:]
-    url_dict = convert(url_pieces)          # convert the array to a dictionary
+    url_dict = convert(url_pieces)  # convert the array to a dictionary
     print(f'URL parts: {url_dict}') if verbose else ''
 
     items = get_related_urls(url_dict['collections'], url_dict['granules'], pretty=pretty)
