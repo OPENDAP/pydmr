@@ -1,5 +1,5 @@
-Demo scratch:
-Use this collection since we have new DMR++ doc s for it: C2152045877-POCLOUD. I got the collection concept Id from
+Demo:
+Use this collection since we have new DMR++ documents for it: C2152045877-POCLOUD. I got the collection concept Id from
 Phoebe Sham's spreadsheet.
 
 Use ask_cmr.py for all the granules (used later): 
@@ -16,7 +16,10 @@ SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01
 The last two are part of two different CCIDs: C2152045877-POCLOUD and C2152046451-POCLOUD
 
 Build the DMR++ invariant files and for the old and the new DMR++ and look for differences.
-The command looks like ./mk_invariant_dmrpp SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125105_DG10_01.nc.dmrpp
+The command looks like:
+
+`./mk_invariant_dmrpp SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125105_DG10_01.nc.dmrpp`
+
 In this directory, `bash make_inv.sh old_and_new_dmrpp.txt` will do this for the two sets of 
 old and new DMR++ files. Use `diff` to examine the differences between the two. Note that for
 these two sets of files there are differences. Differences that can be seen: the new DMR++
@@ -26,7 +29,7 @@ for these data, the new DMR++ builder produces something with significant differ
 What about differences within a collection - will there be false positives (i.e., datasets
 that look different but are not)?
 
-Use `bash get_dmrpp_and_inv.sh` which read from `C2152045877-POCLOUD-10.txt` to get granule 
+Use `bash get_dmrpp_and_inv.sh` which reads from `C2152045877-POCLOUD-10.txt` to get granule 
 names to sample a 17,000 granule collection, getting the DMR++ and building its invariant.
 Use diff to examine them.
 
@@ -47,7 +50,7 @@ echo "Inv: $f"
 diff -q SWOT_L2_LR_SSH_Expert_001_001_20140412T120000_20140412T125126_DG10_01.dmrpp.inv $f
 done
 
-In the 'new_way' dir (a bad name it's the invariant without the -d option):
+In the 'old_way' directory (a bad name it's the invariant without the -d option):
 
 (base) jimg@edamame new_way % for f in *.inv
 do
