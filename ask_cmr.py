@@ -33,8 +33,8 @@ def main():
     parser.add_argument("-o", "--opendap", help="for a provider, show only collections with opendap URLS", action="store_true")
     parser.add_argument("-g", "--granules", help="for a collection, get info about all the granules", action="store_true")
 
-    parser.add_argument("-test", "--test-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
-    parser.add_argument("-fl", "--firstlast", help="get the first and last granule of a collection", action="store_true")
+    parser.add_argument("-T", "--test-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
+    parser.add_argument("-f", "--firstlast", help="get the first and last granule of a collection", action="store_true")
 
     args = parser.parse_args()
 
