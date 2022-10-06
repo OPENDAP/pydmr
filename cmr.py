@@ -4,7 +4,6 @@ CMR Web API.
 """
 
 import requests
-import json
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
@@ -53,24 +52,6 @@ def collection_granules_dict(json_resp):
             dict_resp[entry["id"]] = (entry["title"], entry["producer_granule_id"])
         else:
             dict_resp[entry["id"]] = entry["title"]
-    return dict_resp
-
-
-def collection_granules_first_last(json_resp):
-    dict_resp = {}
-
-    if "producer_granule_id" in dict_resp:  # some granule records lack "producer_granule_id". jhrg 9/4/22
-        dict_resp[json_resp["id"]] = (json_resp["title"], json_resp["producer_granule_id"])
-    else:
-        dict_resp[json_resp["id"]] = json_resp["title"]
-
-    with open(json_resp) as f:
-        j = json.loads(f.readlines()[-1])
-
-    if "producer_granule_id" in dict_resp:  # some granule records lack "producer_granule_id". jhrg 9/4/22
-        dict_resp[j["id"]] = (j["title"], j["producer_granule_id"])
-    else:
-        dict_resp[j["id"]] = j["title"]
     return dict_resp
 
 
@@ -136,7 +117,7 @@ def convert(a):
     return res_dct
 
 
-def process_request(cmr_query_url, response_processor, page_size=10, page_num=0):
+def process_request(cmr_query_url, response_processor, first_last=False, page_size=10, page_num=0):
     """
     The generic part of a CMR request. Make the request, print some stuff
     and return the number of entries. The page_size parameter is there so that paged responses
@@ -144,6 +125,7 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
 
     :param cmr_query_url: The whole URL, query params and all
     :param response_processor: A function that will process the returned json response
+    :param first_last: Only return the first and last granule if set to true
     :param page_size: The number of entries per page from CMR. The default is the CMR
         default value.
     :param page_num: Return an explicit page of the query response. If not given, gets all
@@ -180,47 +162,50 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
             entries_dict = merge(entries_dict, entries)
         if page_num != 0 or len(entries) < page_size:
             break
-    return entries_dict
+
+    if first_last:
+        granule_dict = {}
+        granule_dict[0] = list(entries_dict.items())[0]
+        granule_dict[1] = list(entries_dict.items())[-1]
+        return granule_dict
+    else:
+        return entries_dict
 
 
-def process_request_first_last(cmr_query_url, response_processor, page_size=10, page_num=0):
+def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
-    Only return the first and last granule of a collection
+    Take the collections for a provider and get the first and last granule for each one.
 
-    :param cmr_query_url: The whole URL, query params and all
-    :param response_processor: A function that will process the returned json response
-    :param page_size: The number of entries per page from CMR. The default is the CMR
-        default value.
-    :param page_num: Return an explicit page of the query response. If not given, gets all
-        the pages
-    :returns: A dictionary of entries
+    :param provider_id: The string ID for a given EDC provider (e.g., ORNL_CLOUD)
+    :return: A dictionary of entries formatted as 'Provider, Collection, Granule'
     """
-    page = 1 if page_num == 0 else page_num
-    entries_dict = {}
+
+    print(f'{provider_id}')
+
+    pretty = '&pretty=true' if pretty else ''
+    opendap = '&has_opendap_url=true' if opendap else ''
+    cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
+
+    print(f'{cmr_query_url}')
+    collect_dict = {}
     granule_dict = {}
+    test_dict = {}
+    # Get the list of collections
+    collect_dict = process_request(cmr_query_url, provider_collections_dict, page_size=500)
+    # Get the list of granules
+    i = 0
+    for collection in collect_dict.keys():
+        cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{pretty}'
+        granule_dict = process_request(cmr_query_url, collection_granules_dict, first_last=True, page_size=500)
+        test_dict[i] = {provider_id, collection, granule_dict[0]}
+        test_dict[i + 1] = {provider_id, collection, granule_dict[1]}
+        i += 2
+        print(f'{test_dict}')
 
-    # By default, requests uses cookies, supports OAuth2 and reads username and password
-    # from a ~/.netrc file.
-    r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
-    page += 1  # if page_num was explicitly set, this is not needed
-
-    if verbose > 0:
-        print(f'CMR Query URL: {cmr_query_url}')
-        print(f'Status code: {r.status_code}')
-        print(f'text: {r.text}')
-
-    if r.status_code != 200:
-        # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
-        raise CMRException(r.status_code, r.json()["errors"][0])
-
-    json_resp = r.json()
-
-    entries = response_processor(json_resp)  # The response_processor() is passed in
-    entries_dict = merge(entries_dict, entries)
-
-    granule_dict[0] = list(entries_dict.items())[0]
-    granule_dict[1] = list(entries_dict.items())[-1]
     return granule_dict
+    # Loop through and add the first and last granule of each collection
+    # for collection in collect_dict:
+    # print(f'{collection}')
 
 
 def get_provider_collections(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
@@ -270,32 +255,19 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
     return process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
 
-def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov'):
+def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', first_last=False):
     """
     Get granules for a collection
 
     :param concept_id: The string Collection (Concept) Id
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
+    :param first_last: Only return the first and last granule if set to true
     :returns: The collection JSON object
     """
     pretty = '&pretty=true' if pretty > 0 else ''
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}'
-    return process_request(cmr_query_url, collection_granules_dict, page_size=500)
-
-
-def get_collection_granules_first_last(concept_id, pretty=False, service='cmr.earthdata.nasa.gov'):
-    """
-    Get granules for a collection
-
-    :param concept_id: The string Collection (Concept) Id
-    :param pretty: request a 'pretty' version of the response from the service. default False
-    :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
-    :returns: The collection JSON object
-    """
-    pretty = '&pretty=true' if pretty > 0 else ''
-    cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}'
-    return process_request_first_last(cmr_query_url, collection_granules_dict, page_size=500)
+    return process_request(cmr_query_url, collection_granules_dict, first_last, page_size=500)
 
 
 def decompose_resty_url(url, pretty=False):

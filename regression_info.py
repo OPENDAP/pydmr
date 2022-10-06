@@ -1,3 +1,10 @@
+"""
+May not be needed. Adding functions to cmr.py to handle the building of the regression
+testing files/format.
+
+Will use ask_cmr.py and cmr.py for the time being.
+"""
+
 import time
 import cmr
 
