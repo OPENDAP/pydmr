@@ -180,32 +180,30 @@ def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthd
     :return: A dictionary of entries formatted as 'Provider, Collection, Granule'
     """
 
-    print(f'{provider_id}')
-
     pretty = '&pretty=true' if pretty else ''
     opendap = '&has_opendap_url=true' if opendap else ''
     cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
 
-    print(f'{cmr_query_url}')
     collect_dict = {}
     granule_dict = {}
     test_dict = {}
+
     # Get the list of collections
     collect_dict = process_request(cmr_query_url, provider_collections_dict, page_size=500)
-    # Get the list of granules
+    # Loop through the collections and get the first and last granule of each
     i = 0
     for collection in collect_dict.keys():
         cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{pretty}'
         granule_dict = process_request(cmr_query_url, collection_granules_dict, first_last=True, page_size=500)
-        test_dict[i] = {provider_id, collection, granule_dict[0]}
-        test_dict[i + 1] = {provider_id, collection, granule_dict[1]}
+        #test_dict[i] = {provider_id, collection, granule_dict[0]}
+        test_dict[i] = {granule_dict[0], collection, provider_id}
+        test_dict[i + 1] = {granule_dict[1], collection, provider_id}
+        #test_dict[i + 1] = {provider_id, collection, granule_dict[1]}
+        print(f'{list(test_dict.items())[i]}')
+        print(f'{list(test_dict.items())[i+1]}')
         i += 2
-        print(f'{test_dict}')
 
-    return granule_dict
-    # Loop through and add the first and last granule of each collection
-    # for collection in collect_dict:
-    # print(f'{collection}')
+    return test_dict
 
 
 def get_provider_collections(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
