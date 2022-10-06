@@ -157,16 +157,16 @@ def process_request(cmr_query_url, response_processor, first_last=False, page_si
         else:
             raise CMRException(200, "cmr.process_request does not know how to decode the response")
 
+        entries_pg = {}
         if entries > 0:
-            entries = response_processor(json_resp)  # The response_processor() is passed in
-            entries_dict = merge(entries_dict, entries)
-        if page_num != 0 or len(entries) < page_size:
+            entries_pg = response_processor(json_resp)  # The response_processor() is passed in
+            entries_dict = merge(entries_dict, entries_pg)
+            
+        if page_num != 0 or len(entries_pg) < page_size:
             break
 
     if first_last:
-        granule_dict = {}
-        granule_dict[0] = list(entries_dict.items())[0]
-        granule_dict[1] = list(entries_dict.items())[-1]
+        granule_dict = {0: list(entries_dict.items())[0], 1: list(entries_dict.items())[-1]}
         return granule_dict
     else:
         return entries_dict
