@@ -161,6 +161,7 @@ def process_request(cmr_query_url, response_processor, first_last=False, page_si
         if entries > 0:
             entries_pg = response_processor(json_resp)  # The response_processor() is passed in
             entries_dict = merge(entries_dict, entries_pg)
+            
         if page_num != 0 or len(entries_pg) < page_size:
             break
 
