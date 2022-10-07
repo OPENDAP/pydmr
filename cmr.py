@@ -40,6 +40,7 @@ def collection_granules_dict(json_resp):
             dict_resp[entry["id"]] = (entry["title"], entry["producer_granule_id"])
         else:
             dict_resp[entry["id"]] = (entry["title"])
+
     return dict_resp
 
 
@@ -75,8 +76,9 @@ def granule_ur_dict(json_resp):
     for item in json_resp["items"]:
         for r_url in item["umm"]["RelatedUrls"]:
             if "Type" in r_url and r_url["Type"] in ('GET DATA', 'USE SERVICE API'):
-                dict_resp[f'URL{i}'] = r_url["URL"]
+                dict_resp[f'URL{i}'] = (r_url["URL"])
                 i += 1
+
     return dict_resp
 
 
@@ -135,7 +137,7 @@ def process_request(cmr_query_url, response_processor, first_last=False, page_si
         if verbose > 0:
             print(f'CMR Query URL: {cmr_query_url}')
             print(f'Status code: {r.status_code}')
-            print(f'text: {r.text}')
+            # print(f'text: {r.text}')
 
         if r.status_code != 200:
             # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
@@ -158,8 +160,13 @@ def process_request(cmr_query_url, response_processor, first_last=False, page_si
             break
 
     if first_last:
-        granule_dict = {0: list(entries_dict.items())[0], 1: list(entries_dict.items())[-1]}
-        return granule_dict
+        entries = len(entries_dict)
+        if entries == 0:
+            return {}
+        elif entries == 1:
+            return {0: list(entries_dict.items())[0]}
+        else:
+            return {0: list(entries_dict.items())[0], 1: list(entries_dict.items())[-1]}
     else:
         return entries_dict
 
@@ -186,14 +193,31 @@ def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthd
     i = 0
     for collection in collect_dict.keys():
         cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{pretty}'
+        # TODO Drop passing first_last into process request and make two calls here
+        #  Use the sort order to get oldest and then newest
         granule_dict = process_request(cmr_query_url, collection_granules_dict, first_last=True, page_size=500)
-        #test_dict[i] = {provider_id, collection, granule_dict[0]}
-        test_dict[i] = {granule_dict[0], collection, provider_id}
-        test_dict[i + 1] = {granule_dict[1], collection, provider_id}
-        #test_dict[i + 1] = {provider_id, collection, granule_dict[1]}
-        print(f'{list(test_dict.items())[i]}')
-        print(f'{list(test_dict.items())[i+1]}')
-        i += 2
+
+        # oldest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+        # print(f'oldest: {oldest_dict}')
+        #
+        # sort_key = '&sort_key=-start_date'
+        # cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{sort_key}{pretty}'
+        # newest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+        # print(f'newest: {newest_dict}')
+
+        granules = len(granule_dict)
+        if granules == 0:
+            continue
+        elif granules == 1:
+            test_dict[i] = (granule_dict[0], collection, provider_id)
+            print(f'{list(test_dict.items())[i]}')
+            i += 1
+        else:
+            test_dict[i] = (granule_dict[0], collection, provider_id)
+            test_dict[i + 1] = (granule_dict[1], collection, provider_id)
+            print(f'{list(test_dict.items())[i]}')
+            print(f'{list(test_dict.items())[i+1]}')
+            i += 2
 
     return test_dict
 
