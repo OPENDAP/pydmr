@@ -33,6 +33,8 @@ def main():
     parser.add_argument("-o", "--opendap", help="for a provider, show only collections with OPeNDAP URLS", action="store_true")
     parser.add_argument("-g", "--granules", help="for a collection, get info about all the granules", action="store_true")
     parser.add_argument("-C", "--count", help="for a collection, get the granule count", action="store_true")
+    parser.add_argument("-d", "--descending", help="for a list of granules, get the newest first (the 'last' granule)."
+                                                    "By default, the granules are listed in ascending order (oldest first)", action="store_true")
 
     parser.add_argument("-T", "--test-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
     parser.add_argument("-f", "--firstlast", help="get the first and last granule of a collection", action="store_true")
@@ -44,16 +46,15 @@ def main():
     opendap = True if args.opendap else False
     granules = True if args.granules else False
     firstlast = True if args.firstlast else False
-    count = True if args.count else False
 
     try:
         start = time.time()
         if args.collection and granules:
-            entries = cmr.get_collection_granules(args.collection, pretty=pretty)
+            entries = cmr.get_collection_granules(args.collection, pretty=pretty, descending=args.descending)
         elif args.collection and firstlast:
             entries = cmr.get_collection_granules(args.collection, pretty=pretty, first_last=firstlast)
         elif args.collection:
-            entries = cmr.get_collection_entry(args.collection, pretty=pretty, count=count)
+            entries = cmr.get_collection_entry(args.collection, pretty=pretty, count=args.count)
         elif args.resty_path:
             entries = cmr.decompose_resty_url(args.resty_path, pretty=pretty)
         elif args.collection_and_title:

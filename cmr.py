@@ -229,7 +229,7 @@ def get_collection_entry(concept_id, pretty=False, count=False, service='cmr.ear
     collection_count = '&include_granule_counts=true' if count else ''
     cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{collection_count}{pretty}'
     return process_request(cmr_query_url, provider_collections_dict, page_num=1)
-    
+
 
 def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
@@ -246,7 +246,7 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
     return process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
 
-def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', first_last=False):
+def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', descending=False, first_last=False):
     """
     Get granules for a collection
 
@@ -254,10 +254,12 @@ def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nas
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
     :param first_last: Only return the first and last granule if set to true
+    :param descending: If true, get the granules in newest first order, else oldest granule is first
     :returns: The collection JSON object
     """
     pretty = '&pretty=true' if pretty else ''
-    cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}'
+    sort_key = '&sort_key=-start_date' if descending else ''
+    cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}{sort_key}'
     return process_request(cmr_query_url, collection_granules_dict, first_last, page_size=500)
 
 
