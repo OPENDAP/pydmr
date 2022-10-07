@@ -22,22 +22,10 @@ class CMRException(Exception):
         return f'CMR Exception HTTP status: {self.status} - {self.message}'
 
 
-def print_collection_granules(json_resp):
-    """
-    Print the granule ID, the producer id and the title for each granule
-    Deprecated; Not used
-    """
-    for entry in json_resp["feed"]["entry"]:
-        print(f'ID: {entry["id"]} - {entry["producer_granule_id"]} - {entry["title"]}')
-
-
-def print_provider_collections(json_resp):
-    """
-    Print the provider collection IDs based in the json response
-    Deprecated
-    """
-    for entry in json_resp["feed"]["entry"]:
-        print(f'ID: {entry["id"]} - {entry["title"]}')
+"""
+These are the response processors used by 'process_response()'. They extract
+various things from the JSON and return a dictionary.
+"""
 
 
 def collection_granules_dict(json_resp):
@@ -48,16 +36,16 @@ def collection_granules_dict(json_resp):
     """
     dict_resp = {}
     for entry in json_resp["feed"]["entry"]:
-        if "producer_granule_id" in dict_resp:  # some granule records lack "producer_granule_id". jhrg 9/4/22
+        if "producer_granule_id" in entry:  # some granule records lack "producer_granule_id". jhrg 9/4/22
             dict_resp[entry["id"]] = (entry["title"], entry["producer_granule_id"])
         else:
-            dict_resp[entry["id"]] = entry["title"]
+            dict_resp[entry["id"]] = (entry["title"])
     return dict_resp
 
 
 def provider_collections_dict(json_resp):
     """
-    Extract collection IDs and Titles from CMR JSON
+    Extract collection IDs and Titles from CMR JSON. Optionally get the granule count.
 
     :param json_resp: CMR JSON response
     :return: The provider collection IDs and title in a dictionary
@@ -65,7 +53,11 @@ def provider_collections_dict(json_resp):
     """
     dict_resp = {}
     for entry in json_resp["feed"]["entry"]:
-        dict_resp[entry["id"]] = entry["title"]
+        if "granule_count" in entry:
+            dict_resp[entry["id"]] = (entry["granule_count"], entry["title"])
+        else:
+            dict_resp[entry["id"]] = (entry["title"])
+
     return dict_resp
 
 
@@ -223,17 +215,19 @@ def get_provider_collections(provider_id, opendap=False, pretty=False, service='
     return process_request(cmr_query_url, provider_collections_dict, page_size=500)
 
 
-def get_collection_entry(concept_id, pretty=False, service='cmr.earthdata.nasa.gov'):
+def get_collection_entry(concept_id, pretty=False, count=False, service='cmr.earthdata.nasa.gov'):
     """
     Get the collection entry given a concept id.
 
     :param concept_id: The string Collection (Concept) Id
     :param pretty: request a 'pretty' version of the response from the service. default False
+    :param count: request the granule count for the collection
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
     :returns:The collection JSON object
     """
-    pretty = '&pretty=true' if pretty > 0 else ''
-    cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{pretty}'
+    pretty = '&pretty=true' if pretty else ''
+    collection_count = '&include_granule_counts=true' if count else ''
+    cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{collection_count}{pretty}'
     return process_request(cmr_query_url, provider_collections_dict, page_num=1)
     # return cmr_process_request(cmr_query_url)
 
@@ -248,7 +242,7 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
     :returns: A dictionary that holds all the RelatedUrls that have Type 'GET DATA' or
         'USE SERVICE DATA.'
     """
-    pretty = '&pretty=true' if pretty > 0 else ''
+    pretty = '&pretty=true' if pretty else ''
     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={concept_id}&granule_ur={granule_ur}{pretty}'
     return process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
@@ -263,7 +257,7 @@ def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nas
     :param first_last: Only return the first and last granule if set to true
     :returns: The collection JSON object
     """
-    pretty = '&pretty=true' if pretty > 0 else ''
+    pretty = '&pretty=true' if pretty else ''
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}'
     return process_request(cmr_query_url, collection_granules_dict, first_last, page_size=500)
 

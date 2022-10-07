@@ -4,10 +4,9 @@ PyDMR is a set of utilities to test the idea of a DMR++ invariant and ways that
 might be used in a DMR++ caching scheme.
 
 ## What's here
-This repository holds a set of function that ask CMR various questions that
+This repository holds a set of functions that ask CMR various questions that
 enable reading DMR++ documents for granules using either the 'resty' OPeNDAP
-URL or a collection concept id (CCID) and granule title (at least I think it's
-the title...).
+URL or a collection concept id (CCID) and granule title.
 
 Also contained here are some commands that use that library. Those commands are:
 * `ask_cmr.py` Ask the CMR for all the collections a provider has, all the 
