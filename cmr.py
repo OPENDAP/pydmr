@@ -229,8 +229,7 @@ def get_collection_entry(concept_id, pretty=False, count=False, service='cmr.ear
     collection_count = '&include_granule_counts=true' if count else ''
     cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{collection_count}{pretty}'
     return process_request(cmr_query_url, provider_collections_dict, page_num=1)
-    # return cmr_process_request(cmr_query_url)
-
+    
 
 def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
