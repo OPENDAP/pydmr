@@ -30,7 +30,7 @@ def main():
                                                             "The format for this is 'CCID:title,' for example:"
                                                             "C2205105895-POCLOUD:20220902120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1")
 
-    parser.add_argument("-o", "--opendap", help="for a provider, show only collections with opendap URLS", action="store_true")
+    parser.add_argument("-o", "--opendap", help="for a provider, show only collections with OPeNDAP URLS", action="store_true")
     parser.add_argument("-g", "--granules", help="for a collection, get info about all the granules", action="store_true")
 
     args = parser.parse_args()

@@ -3,6 +3,7 @@
 import xml.dom.minidom
 import xml.dom
 
+
 def cleanup_extra_spaces(tag):
     """
     Spaces... When removeChild is used to extract nodes from the document,

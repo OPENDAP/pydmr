@@ -159,6 +159,7 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
         if entries > 0:
             entries = response_processor(json_resp)   # The response_processor() is passed in
             entries_dict = merge(entries_dict, entries)
+
         if page_num != 0 or len(entries) < page_size:
             break
     return entries_dict
@@ -190,8 +191,10 @@ def get_collection_entry(concept_id, pretty=False, service='cmr.earthdata.nasa.g
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
     :returns:The collection JSON object
     """
-    pretty = '&pretty=true' if pretty > 0 else ''
-    cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{pretty}'
+    pretty = '&pretty=true' if pretty else ''
+    c_count = True
+    collection_count = '&include_granule_counts=true' if c_count else ''
+    cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{collection_count}{pretty}'
     return process_request(cmr_query_url, provider_collections_dict, page_num=1)
     # return cmr_process_request(cmr_query_url)
 
@@ -206,7 +209,7 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
     :returns: A dictionary that holds all the RelatedUrls that have Type 'GET DATA' or
         'USE SERVICE DATA.'
     """
-    pretty = '&pretty=true' if pretty > 0 else ''
+    pretty = '&pretty=true' if pretty else ''
     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={concept_id}&granule_ur={granule_ur}{pretty}'
     return process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
@@ -220,7 +223,7 @@ def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nas
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
     :returns: The collection JSON object
     """
-    pretty = '&pretty=true' if pretty > 0 else ''
+    pretty = '&pretty=true' if pretty else ''
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}'
     return process_request(cmr_query_url, collection_granules_dict, page_size=500)
 
