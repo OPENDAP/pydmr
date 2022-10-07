@@ -195,29 +195,37 @@ def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthd
         cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{pretty}'
         # TODO Drop passing first_last into process request and make two calls here
         #  Use the sort order to get oldest and then newest
-        granule_dict = process_request(cmr_query_url, collection_granules_dict, first_last=True, page_size=500)
+        # granule_dict = process_request(cmr_query_url, collection_granules_dict, first_last=True, page_size=500)
 
-        # oldest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
-        # print(f'oldest: {oldest_dict}')
-        #
-        # sort_key = '&sort_key=-start_date'
-        # cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{sort_key}{pretty}'
-        # newest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
-        # print(f'newest: {newest_dict}')
-
-        granules = len(granule_dict)
-        if granules == 0:
-            continue
-        elif granules == 1:
-            test_dict[i] = (granule_dict[0], collection, provider_id)
+        oldest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+        print(f'oldest: {oldest_dict}')
+        if len(oldest_dict) == 1:
+            test_dict[i] = (oldest_dict, collection, provider_id)
             print(f'{list(test_dict.items())[i]}')
             i += 1
-        else:
-            test_dict[i] = (granule_dict[0], collection, provider_id)
-            test_dict[i + 1] = (granule_dict[1], collection, provider_id)
+
+        sort_key = '&sort_key=-start_date'
+        cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{sort_key}{pretty}'
+        newest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+        print(f'newest: {newest_dict}')
+        if len(newest_dict) == 1:
+            test_dict[i] = (newest_dict, collection, provider_id)
             print(f'{list(test_dict.items())[i]}')
-            print(f'{list(test_dict.items())[i+1]}')
-            i += 2
+            i += 1
+
+        # granules = len(granule_dict)
+        # if granules == 0:
+        #     continue
+        # elif granules == 1:
+        #     test_dict[i] = (granule_dict[0], collection, provider_id)
+        #     print(f'{list(test_dict.items())[i]}')
+        #     i += 1
+        # else:
+        #     test_dict[i] = (granule_dict[0], collection, provider_id)
+        #     test_dict[i + 1] = (granule_dict[1], collection, provider_id)
+        #     print(f'{list(test_dict.items())[i]}')
+        #     print(f'{list(test_dict.items())[i+1]}')
+        #     i += 2
 
     return test_dict
 
