@@ -92,8 +92,13 @@ def merge(dict1, dict2):
     :returns: The dict1, modified so the entries in dict2 have been appended
     :rtype: dict
     """
+    # If there is nothing in dict1, the merge is just a copy.
+    if len(dict1) == 0:
+        return dict2
+
     for i in dict2.keys():
         dict1[i] = dict2[i]
+
     return dict1
 
 
@@ -111,7 +116,7 @@ def convert(a):
     return res_dct
 
 
-def process_request(cmr_query_url, response_processor, first_last=False, page_size=10, page_num=0):
+def process_request(cmr_query_url, response_processor, page_size=10, page_num=0):
     """
     The generic part of a CMR request. Make the request, print some stuff
     and return the number of entries. The page_size parameter is there so that paged responses
@@ -119,7 +124,6 @@ def process_request(cmr_query_url, response_processor, first_last=False, page_si
 
     :param cmr_query_url: The whole URL, query params and all
     :param response_processor: A function that will process the returned json response
-    :param first_last: Only return the first and last granule if set to true
     :param page_size: The number of entries per page from CMR. The default is the CMR
         default value.
     :param page_num: Return an explicit page of the query response. If not given, gets all
@@ -154,21 +158,12 @@ def process_request(cmr_query_url, response_processor, first_last=False, page_si
         entries_pg = {}
         if entries > 0:
             entries_pg = response_processor(json_resp)  # The response_processor() is passed in
-            entries_dict = merge(entries_dict, entries_pg)
-            
+            entries_dict = merge(entries_dict, entries_pg)  # merge is smart if entries_dict is empty
+
         if page_num != 0 or len(entries_pg) < page_size:
             break
 
-    if first_last:
-        entries = len(entries_dict)
-        if entries == 0:
-            return {}
-        elif entries == 1:
-            return {0: list(entries_dict.items())[0]}
-        else:
-            return {0: list(entries_dict.items())[0], 1: list(entries_dict.items())[-1]}
-    else:
-        return entries_dict
+    return entries_dict
 
 
 def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
@@ -178,54 +173,34 @@ def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthd
     :param provider_id: The string ID for a given EDC provider (e.g., ORNL_CLOUD)
     :return: A dictionary of entries formatted as 'Provider, Collection, Granule'
     """
-
-    pretty = '&pretty=true' if pretty else ''
-    opendap = '&has_opendap_url=true' if opendap else ''
-    cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
-
-    collect_dict = {}
-    granule_dict = {}
     test_dict = {}
 
     # Get the list of collections
+    pretty = '&pretty=true' if pretty else ''
+    opendap = '&has_opendap_url=true' if opendap else ''
+    cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
     collect_dict = process_request(cmr_query_url, provider_collections_dict, page_size=500)
+
     # Loop through the collections and get the first and last granule of each
     i = 0
     for collection in collect_dict.keys():
+        # by default, CMR returns results with "sort_key = +start_date"
         cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{pretty}'
-        # TODO Drop passing first_last into process request and make two calls here
-        #  Use the sort order to get oldest and then newest
-        # granule_dict = process_request(cmr_query_url, collection_granules_dict, first_last=True, page_size=500)
-
         oldest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
-        print(f'oldest: {oldest_dict}')
         if len(oldest_dict) == 1:
             test_dict[i] = (oldest_dict, collection, provider_id)
-            print(f'{list(test_dict.items())[i]}')
+            if verbose:
+                print(f'{list(test_dict.items())[i]}')
             i += 1
 
         sort_key = '&sort_key=-start_date'
         cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{sort_key}{pretty}'
         newest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
-        print(f'newest: {newest_dict}')
         if len(newest_dict) == 1:
             test_dict[i] = (newest_dict, collection, provider_id)
-            print(f'{list(test_dict.items())[i]}')
+            if verbose:
+                print(f'{list(test_dict.items())[i]}')
             i += 1
-
-        # granules = len(granule_dict)
-        # if granules == 0:
-        #     continue
-        # elif granules == 1:
-        #     test_dict[i] = (granule_dict[0], collection, provider_id)
-        #     print(f'{list(test_dict.items())[i]}')
-        #     i += 1
-        # else:
-        #     test_dict[i] = (granule_dict[0], collection, provider_id)
-        #     test_dict[i + 1] = (granule_dict[1], collection, provider_id)
-        #     print(f'{list(test_dict.items())[i]}')
-        #     print(f'{list(test_dict.items())[i+1]}')
-        #     i += 2
 
     return test_dict
 
@@ -278,7 +253,8 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
     return process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
 
-def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', descending=False, first_last=False):
+def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', descending=False,
+                            first_last=False):
     """
     Get granules for a collection
 
