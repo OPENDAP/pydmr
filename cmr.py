@@ -28,12 +28,24 @@ various things from the JSON and return a dictionary.
 """
 
 
+def is_entry_feed(json_resp):
+    """
+    Does this JSON object have the 'entry' key within a 'feed' key?
+    This function is used to protect various response processors
+    from responses that contain no entries or are malformed.
+    """
+    return len(json_resp) > 0 and "feed" in json_resp.keys() and "entry" in json_resp["feed"].keys()
+
+
 def collection_granules_dict(json_resp):
     """
     :param json_resp: CMR JSON response
     :return: A dictionary with the Granule id indexing the producer granule id and granule title
     :rtype: dict
     """
+    if not is_entry_feed(json_resp):
+        return {}
+
     dict_resp = {}
     for entry in json_resp["feed"]["entry"]:
         if "producer_granule_id" in entry:  # some granule records lack "producer_granule_id". jhrg 9/4/22
@@ -52,6 +64,9 @@ def provider_collections_dict(json_resp):
     :return: The provider collection IDs and title in a dictionary
     :rtype: dict
     """
+    if not is_entry_feed(json_resp):
+        return {}
+
     dict_resp = {}
     for entry in json_resp["feed"]["entry"]:
         if "granule_count" in entry:
@@ -65,12 +80,12 @@ def provider_collections_dict(json_resp):
 def granule_ur_dict(json_resp):
     """
     Extract Related URLs from CMR JSON UMM
-
     :param json_resp: CMR JSON UMM response
     :return: The granule UR related URL info in a dictionary. Only 'GET DATA' and 'USE SERVICE API'
         type URLs are included. Each is indexed using 'URL1', ..., 'URLn.'
     :rtype: dict
     """
+    # Check json_resp as above but for items, etc. jhrg 10/11/22
     dict_resp = {}
     i = 1
     for item in json_resp["items"]:
