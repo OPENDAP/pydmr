@@ -37,6 +37,16 @@ def is_entry_feed(json_resp):
     return len(json_resp) > 0 and "feed" in json_resp.keys() and "entry" in json_resp["feed"].keys()
 
 
+def is_granule_item(json_resp):
+    """
+    Does this JSON object have the 'entry' key within a 'feed' key?
+    This function is used to protect various response processors
+    from responses that contain no entries or are malformed.
+    """
+    return len(json_resp) > 0 and "umm" in json_resp.keys() and "RelatedUrls" in json_resp["umm"].keys()
+
+
+
 def collection_granules_dict(json_resp):
     """
     :param json_resp: CMR JSON response
@@ -86,9 +96,14 @@ def granule_ur_dict(json_resp):
     :rtype: dict
     """
     # Check json_resp as above but for items, etc. jhrg 10/11/22
+    if "items" not in json_resp.keys():
+        return {}
+
     dict_resp = {}
     i = 1
     for item in json_resp["items"]:
+        if not is_granule_item(item):
+            continue
         for r_url in item["umm"]["RelatedUrls"]:
             if "Type" in r_url and r_url["Type"] in ('GET DATA', 'USE SERVICE API'):
                 dict_resp[f'URL{i}'] = (r_url["URL"])

@@ -1,2 +1,5 @@
-retired/user.config
+retired/
+old/
+.idea/
+__pycache__
 *~
