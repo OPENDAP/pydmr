@@ -39,12 +39,11 @@ def is_entry_feed(json_resp):
 
 def is_granule_item(json_resp):
     """
-    Does this JSON object have the 'entry' key within a 'feed' key?
+    Does this JSON object have the 'RelatedUrls' key within a 'umm' key?
     This function is used to protect various response processors
     from responses that contain no entries or are malformed.
     """
     return len(json_resp) > 0 and "umm" in json_resp.keys() and "RelatedUrls" in json_resp["umm"].keys()
-
 
 
 def collection_granules_dict(json_resp):
@@ -105,6 +104,8 @@ def granule_ur_dict(json_resp):
         if not is_granule_item(item):
             continue
         for r_url in item["umm"]["RelatedUrls"]:
+            if "Type" not in r_url or "URL" not in r_url:
+                continue
             if "Type" in r_url and r_url["Type"] in ('GET DATA', 'USE SERVICE API'):
                 dict_resp[f'URL{i}'] = (r_url["URL"])
                 i += 1

@@ -20,6 +20,23 @@ class TestCMR(unittest.TestCase):
     d4 = {'feed': {'missing': ['x']}}
     d5 = {'foo': {'missing': ['x']}}
 
+    # valid 'items' from a granule query are a dictionary where the value is an array.
+    # That array holds dictionaries, where each value of the key 'umm' is and array of...
+    # dictionaries. gads.
+    g1 = {'items': [{'umm': {'RelatedUrls': [{'URL': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc',
+                                              'Type': 'GET DATA'},
+                                             {'URL': 'https://archive/250_2101_ovw.l2.nc',
+                                              'Type': 'GET DATA'}]}}]}
+    # this has one element of the RelatedUrls array with both Type and URL and one missing Type
+    g12 = {'items': [{'umm': {'RelatedUrls': [{'URL': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc',
+                                               'Type': 'GET DATA'},
+                                              {'URL': 'https://archive/250_2101_ovw.l2.nc'}]}}]}
+
+    # These are all missing things
+    g2 = {'items': [{'umm': {'RelatedUrls': {'URL': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc'}}}]}
+    g21 = {'items': [{'umm': {'RelatedUrls': {'Type': 'GET DATA'}}}]}
+    g3 = {'items': [{'umm': {}}]}
+    g4 = {'items': []}
 
     def test_collection_granules_dict(self):
         self.assertEqual(cmr.collection_granules_dict(self.d1), {'C1234-Provider': 'A title with spaces'})
@@ -39,6 +56,16 @@ class TestCMR(unittest.TestCase):
         self.assertEqual(cmr.provider_collections_dict(self.d4), {})
         self.assertEqual(cmr.provider_collections_dict(self.d5), {})
 
+    def test_granule_ur_dict(self):
+        self.assertEqual({'URL1': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc',
+                          'URL2': 'https://archive/250_2101_ovw.l2.nc'},
+                         cmr.granule_ur_dict(self.g1))
+        self.assertEqual({'URL1': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc'}, cmr.granule_ur_dict(self.g12))
+
+        self.assertEqual({}, cmr.granule_ur_dict(self.g2))
+        self.assertEqual({}, cmr.granule_ur_dict(self.g21))
+        self.assertEqual({}, cmr.granule_ur_dict(self.g3))
+        self.assertEqual({}, cmr.granule_ur_dict(self.g4))
 
 if __name__ == '__main__':
     unittest.main()
