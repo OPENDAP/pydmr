@@ -67,6 +67,16 @@ class TestCMR(unittest.TestCase):
         self.assertEqual({}, cmr.granule_ur_dict(self.g3))
         self.assertEqual({}, cmr.granule_ur_dict(self.g4))
 
+    def test_merge(self):
+        self.assertEqual({'a': 'b', 'c': 'd'}, cmr.merge({'a': 'b'}, {'c': 'd'}))
+        self.assertEqual({'a': 'b'}, cmr.merge({'a': 'b'}, {'a': 'b'}))
+        self.assertEqual({'a': 'b'}, cmr.merge({'a': 'b'}, {}))
+        self.assertEqual({'c': 'd'}, cmr.merge({}, {'c': 'd'}))
+        self.assertEqual({}, cmr.merge({}, {}))
+        # In the following, just test a small and unique part of the error message.
+        self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge, [], {'c': 'd'})
+        self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge, {'c': 'd'}, [])
+
 
 if __name__ == '__main__':
     unittest.main()
