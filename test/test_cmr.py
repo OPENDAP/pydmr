@@ -39,22 +39,22 @@ class TestCMR(unittest.TestCase):
     g4 = {'items': []}
 
     def test_collection_granules_dict(self):
-        self.assertEqual(cmr.collection_granules_dict(self.d1), {'C1234-Provider': 'A title with spaces'})
-        self.assertEqual(cmr.collection_granules_dict(self.d12), {'C1234-Provider': 'A title with spaces', 'C5678-Provider': 'Another title'})
-        self.assertEqual(cmr.collection_granules_dict(self.d2), {'C1234-Provider': ('A title with spaces', 'G1234')})
-        self.assertEqual(cmr.collection_granules_dict(self.d22), {'C1234-Provider': ('A title with spaces', 'G1234'), 'C5678-Provider': 'Another title'})
-        self.assertEqual(cmr.collection_granules_dict(self.d3), {})
-        self.assertEqual(cmr.collection_granules_dict(self.d4), {})
-        self.assertEqual(cmr.collection_granules_dict(self.d5), {})
+        self.assertEqual({'C1234-Provider': 'A title with spaces'}, cmr.collection_granules_dict(self.d1))
+        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': 'Another title'}, cmr.collection_granules_dict(self.d12))
+        self.assertEqual({'C1234-Provider': ('A title with spaces', 'G1234')}, cmr.collection_granules_dict(self.d2))
+        self.assertEqual({'C1234-Provider': ('A title with spaces', 'G1234'), 'C5678-Provider': 'Another title'}, cmr.collection_granules_dict(self.d22))
+        self.assertEqual({}, cmr.collection_granules_dict(self.d3))
+        self.assertEqual({}, cmr.collection_granules_dict(self.d4))
+        self.assertEqual({}, cmr.collection_granules_dict(self.d5))
 
     def test_provider_collections_dict(self):
-        self.assertEqual(cmr.provider_collections_dict(self.d1), {'C1234-Provider': 'A title with spaces'})
-        self.assertEqual(cmr.provider_collections_dict(self.d12), {'C1234-Provider': 'A title with spaces', 'C5678-Provider': 'Another title'})
-        self.assertEqual(cmr.provider_collections_dict(self.d2), {'C1234-Provider': (10, 'A title with spaces')})
-        self.assertEqual(cmr.provider_collections_dict(self.d22), {'C1234-Provider': 'A title with spaces', 'C5678-Provider': (10, 'Another title')})
-        self.assertEqual(cmr.provider_collections_dict(self.d3), {})
-        self.assertEqual(cmr.provider_collections_dict(self.d4), {})
-        self.assertEqual(cmr.provider_collections_dict(self.d5), {})
+        self.assertEqual({'C1234-Provider': 'A title with spaces'}, cmr.provider_collections_dict(self.d1))
+        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': 'Another title'}, cmr.provider_collections_dict(self.d12))
+        self.assertEqual({'C1234-Provider': (10, 'A title with spaces')}, cmr.provider_collections_dict(self.d2))
+        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': (10, 'Another title')}, cmr.provider_collections_dict(self.d22))
+        self.assertEqual({}, cmr.provider_collections_dict(self.d3))
+        self.assertEqual({}, cmr.provider_collections_dict(self.d4))
+        self.assertEqual({}, cmr.provider_collections_dict(self.d5))
 
     def test_granule_ur_dict(self):
         self.assertEqual({'URL1': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc',
@@ -66,6 +66,7 @@ class TestCMR(unittest.TestCase):
         self.assertEqual({}, cmr.granule_ur_dict(self.g21))
         self.assertEqual({}, cmr.granule_ur_dict(self.g3))
         self.assertEqual({}, cmr.granule_ur_dict(self.g4))
+
 
 if __name__ == '__main__':
     unittest.main()
