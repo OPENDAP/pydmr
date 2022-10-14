@@ -59,7 +59,7 @@ def main():
             entries = cmr.decompose_resty_url(args.resty_path, pretty=pretty)
         elif args.collection_and_title:
             collection, title = args.collection_and_title.split(':')
-            entries = cmr.get_related_urls(collection, title, pretty=pretty)
+            entries = cmr.url_test_array(collection, title, pretty=pretty)
         elif args.test_format and args.provider:
             entries = cmr.get_test_format(args.provider, opendap, pretty=pretty)
         else:

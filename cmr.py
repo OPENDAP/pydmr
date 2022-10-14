@@ -46,7 +46,6 @@ def is_granule_item(json_resp):
     return len(json_resp) > 0 and "umm" in json_resp.keys() and "RelatedUrls" in json_resp["umm"].keys()
 
 
-
 def collection_granules_dict(json_resp):
     """
     :param json_resp: CMR JSON response
@@ -194,6 +193,42 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
             break
 
     return entries_dict
+
+
+def url_tester(url_address):
+    """
+    Take in a url and test whether or not it has a dmr for testing purposes
+    :param url_address: The url to be checked
+    :return: A bool of whether or not the url passes
+    """
+    dmr_check = False
+
+    return dmr_check
+
+def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
+    """
+    Gather a list of urls and put them in an array/list to be tested
+
+    :return: A list of urls
+    """
+    url_list = []
+    url_dmr_test = {}
+
+    # Get the urls
+    pretty = '&pretty=true' if pretty else ''
+    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={concept_id}&granule_ur={granule_ur}{pretty}'
+    url_collection = process_request(cmr_query_url, granule_ur_dict, page_num=1)
+
+    # Store just the url value in the list
+    for urls in url_collection:
+        url_list.append(url_collection[urls])
+
+    print(f'{url_list}')
+
+    # Run tests
+    for urls in url_list:
+        url_dmr_test[url_list] = url_tester(url_list[urls])
+    print(f'{url_dmr_test}')
 
 
 def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
