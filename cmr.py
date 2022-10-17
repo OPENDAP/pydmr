@@ -203,7 +203,18 @@ def url_tester(url_address):
     """
     dmr_check = False
 
+    print(f'url: {url_address}')
+    try:
+        r = requests.get(url_address)
+        if r.status_code == 200:
+            dmr_check = True
+    # Ignore exception, the url_tester will return False
+    except requests.exceptions.InvalidSchema:
+        pass
+
+    print(f'dmr_check: {dmr_check}')
     return dmr_check
+
 
 def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
@@ -226,8 +237,10 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
     print(f'{url_list}')
 
     # Run tests
+    i = 0
     for urls in url_list:
-        url_dmr_test[url_list] = url_tester(url_list[urls])
+        url_dmr_test[urls] = url_tester(url_list[i])
+        i += 1
     print(f'{url_dmr_test}')
 
 
