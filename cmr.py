@@ -199,21 +199,25 @@ def url_tester(url_address):
     """
     Take in a url and test whether or not it has a dmr for testing purposes
     :param url_address: The url to be checked
-    :return: A bool of whether or not the url passes
+    :return: A pass/fail of whether or not the url passes
     """
     dmr_check = False
 
+    url_address += ".dmr"
     print(f'url: {url_address}')
     try:
         r = requests.get(url_address)
         if r.status_code == 200:
             dmr_check = True
-    # Ignore exception, the url_tester will return False
+    # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
 
     print(f'dmr_check: {dmr_check}')
-    return dmr_check
+    if dmr_check:
+        return "pass"
+    else:
+        return "fail"
 
 
 def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
