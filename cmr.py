@@ -124,7 +124,7 @@ def merge(dict1: dict, dict2: dict) -> dict:
     :rtype: dict
     """
     # silently bail
-    if not(type(dict1) is dict and type(dict2) is dict):
+    if not (type(dict1) is dict and type(dict2) is dict):
         raise TypeError("Both arguments to cmr.merge() must be dictionaries.")
 
     # If there is nothing in dict1, return dict2.
@@ -151,7 +151,7 @@ def convert(a: list) -> dict:
     return res_dct
 
 
-def process_request(cmr_query_url, response_processor, page_num=0, page_size=10):
+def process_request(cmr_query_url, response_processor, page_size=10, page_num=0):
     """
     The generic part of a CMR request. Make the request, print some stuff
     and return the number of entries. The page_size parameter is there so that paged responses
@@ -291,6 +291,29 @@ def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthd
     return test_dict
 
 
+def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
+    """
+    Given a provider, gather the collections and the first and last granule of each collection.
+    Then run through them and test each url.
+    :param provider_id:
+    :param opendap:
+    :param pretty:
+    :param service:
+    :return:
+    """
+
+    url_results = {}
+
+    collection_info = get_test_format(provider_id)
+
+    for granules in collection_info:
+        collection_id = collection_info[granules][1]
+        value = list(collection_info[granules][0].values())[0]
+        url_results[granules] = url_test_array(collection_id, value)
+
+    return url_results
+
+
 def get_provider_collections(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Get all the collections for a given provider.
@@ -339,22 +362,20 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
     return process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
 
-def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', descending=False,
-                            first_last=False):
+def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', descending=False):
     """
     Get granules for a collection
 
     :param concept_id: The string Collection (Concept) Id
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
-    :param first_last: Only return the first and last granule if set to true
     :param descending: If true, get the granules in newest first order, else oldest granule is first
     :returns: The collection JSON object
     """
     pretty = '&pretty=true' if pretty else ''
     sort_key = '&sort_key=-start_date' if descending else ''
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}{sort_key}'
-    return process_request(cmr_query_url, collection_granules_dict, first_last, page_size=500)
+    return process_request(cmr_query_url, collection_granules_dict, page_size=500)
 
 
 def decompose_resty_url(url, pretty=False):
@@ -375,23 +396,3 @@ def decompose_resty_url(url, pretty=False):
     items = get_related_urls(url_dict['collections'], url_dict['granules'], pretty=pretty)
     print(f'Data URLs: {items}') if verbose else ''
     return items
-
-def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
-    """
-    Given a provider, gather the collections and the first and last granule of each collection.
-    Then run through them and test each url.
-    :param provider_id:
-    :param opendap:
-    :param pretty:
-    :param service:
-    :return:
-    """
-
-    pretty = '&pretty=true' if pretty else ''
-    opendap = '&has_opendap_url=true' if opendap else ''
-    cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
-
-    collection = process_request(cmr_query_url, provider_collections_dict, page_size=500)
-    granules = process_request(cmr_query_url, collection_granules_dict, first_last=True, page_size=500)
-    print(f'{granules}')
-    return granules
