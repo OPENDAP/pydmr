@@ -39,6 +39,7 @@ def main():
     parser.add_argument("-T", "--test-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
     parser.add_argument("-f", "--firstlast", help="get the first and last granule of a collection", action="store_true")
     parser.add_argument("-u", "--url-test", help="find out which urls from a collection have a valid dmr")
+    parser.add_argument("-U", "--full-test", help="Given a provider, run the tests on the first and last granule of each collection")
 
     args = parser.parse_args()
 
@@ -64,6 +65,8 @@ def main():
         elif args.url_test:
             collection, title = args.url_test.split(':')
             entries = cmr.url_test_array(collection, title, pretty=pretty)
+        elif args.full_test:
+            entries = cmr.full_url_test(args.provider, opendap, pretty=pretty)
         elif args.test_format and args.provider:
             entries = cmr.get_test_format(args.provider, opendap, pretty=pretty)
         else:

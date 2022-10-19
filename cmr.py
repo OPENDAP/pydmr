@@ -204,7 +204,6 @@ def url_tester(url_address):
     dmr_check = False
 
     url_address += ".dmr"
-    print(f'url: {url_address}')
     try:
         r = requests.get(url_address)
         if r.status_code == 200:
@@ -213,7 +212,6 @@ def url_tester(url_address):
     except requests.exceptions.InvalidSchema:
         pass
 
-    print(f'dmr_check: {dmr_check}')
     if dmr_check:
         return "pass"
     else:
@@ -238,16 +236,14 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
     for urls in url_collection:
         url_list.append(url_collection[urls])
 
-    print(f'{url_list}')
-
-    # Run tests
+    # Run test but only on opendap.earthdata.nasa.gov urls
     i = 0
     for urls in url_list:
         if url_list[i].find("opendap.earthdata.nasa.gov") > 0:
-            print(url_list[i].find("opendap.earthdata.nasa.gov"))
             url_dmr_test[urls] = url_tester(url_list[i])
         i += 1
-    print(f'{url_dmr_test}')
+
+    return url_dmr_test
 
 
 def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
@@ -373,3 +369,23 @@ def decompose_resty_url(url, pretty=False):
     items = get_related_urls(url_dict['collections'], url_dict['granules'], pretty=pretty)
     print(f'Data URLs: {items}') if verbose else ''
     return items
+
+def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
+    """
+    Given a provider, gather the collections and the first and last granule of each collection.
+    Then run through them and test each url.
+    :param provider_id:
+    :param opendap:
+    :param pretty:
+    :param service:
+    :return:
+    """
+
+    pretty = '&pretty=true' if pretty else ''
+    opendap = '&has_opendap_url=true' if opendap else ''
+    cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
+
+    collection = process_request(cmr_query_url, provider_collections_dict, page_size=500)
+    granules = process_request(cmr_query_url, collection_granules_dict, first_last=True, page_size=500)
+    print(f'{granules}')
+    return granules
