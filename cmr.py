@@ -39,7 +39,7 @@ def is_entry_feed(json_resp):
 
 def is_granule_item(json_resp):
     """
-    Does this JSON object have the 'entry' key within a 'feed' key?
+    Does this JSON object have the 'RelatedUrls' key within a 'umm' key?
     This function is used to protect various response processors
     from responses that contain no entries or are malformed.
     """
@@ -104,6 +104,8 @@ def granule_ur_dict(json_resp):
         if not is_granule_item(item):
             continue
         for r_url in item["umm"]["RelatedUrls"]:
+            if "Type" not in r_url or "URL" not in r_url:
+                continue
             if "Type" in r_url and r_url["Type"] in ('GET DATA', 'USE SERVICE API'):
                 dict_resp[f'URL{i}'] = (r_url["URL"])
                 i += 1
@@ -111,7 +113,7 @@ def granule_ur_dict(json_resp):
     return dict_resp
 
 
-def merge(dict1, dict2):
+def merge(dict1: dict, dict2: dict) -> dict:
     """
     Merge dictionaries, preserve key order
     See https://www.geeksforgeeks.org/python-merging-two-dictionaries/
@@ -121,7 +123,11 @@ def merge(dict1, dict2):
     :returns: The dict1, modified so the entries in dict2 have been appended
     :rtype: dict
     """
-    # If there is nothing in dict1, the merge is just a copy.
+    # silently bail
+    if not(type(dict1) is dict and type(dict2) is dict):
+        raise TypeError("Both arguments to cmr.merge() must be dictionaries.")
+
+    # If there is nothing in dict1, return dict2.
     if len(dict1) == 0:
         return dict2
 
@@ -131,12 +137,12 @@ def merge(dict1, dict2):
     return dict1
 
 
-def convert(a):
+def convert(a: list) -> dict:
     """
     Convert and array of 2N things to a dictionary of N entries
     See https://www.geeksforgeeks.org/python-convert-a-list-to-dictionary/
 
-    :param: a: The Array to convert
+    :param: a: The List/Array to convert
     :return: The resulting dictionary
     :rtype: dict
     """
