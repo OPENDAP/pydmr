@@ -145,7 +145,7 @@ def convert(a):
     return res_dct
 
 
-def process_request(cmr_query_url, response_processor, page_size=10, page_num=0):
+def process_request(cmr_query_url, response_processor, page_num=0, page_size=10):
     """
     The generic part of a CMR request. Make the request, print some stuff
     and return the number of entries. The page_size parameter is there so that paged responses
@@ -243,7 +243,9 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
     # Run tests
     i = 0
     for urls in url_list:
-        url_dmr_test[urls] = url_tester(url_list[i])
+        if url_list[i].find("opendap.earthdata.nasa.gov") > 0:
+            print(url_list[i].find("opendap.earthdata.nasa.gov"))
+            url_dmr_test[urls] = url_tester(url_list[i])
         i += 1
     print(f'{url_dmr_test}')
 
