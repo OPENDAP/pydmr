@@ -124,7 +124,7 @@ def merge(dict1: dict, dict2: dict) -> dict:
     :rtype: dict
     """
     # silently bail
-    if not(type(dict1) is dict and type(dict2) is dict):
+    if not (type(dict1) is dict and type(dict2) is dict):
         raise TypeError("Both arguments to cmr.merge() must be dictionaries.")
 
     # If there is nothing in dict1, return dict2.
@@ -201,6 +201,57 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
     return entries_dict
 
 
+def url_tester(url_address):
+    """
+    Take in a url and test whether or not it has a dmr for testing purposes
+    :param url_address: The url to be checked
+    :return: A pass/fail of whether or not the url passes
+    """
+    dmr_check = False
+
+    url_address += ".dmr"
+    try:
+        r = requests.get(url_address)
+        if r.status_code == 200:
+            dmr_check = True
+    # Ignore exception, the url_tester will return 'fail'
+    except requests.exceptions.InvalidSchema:
+        pass
+
+    if dmr_check:
+        return "pass"
+    else:
+        return "fail"
+
+
+def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
+    """
+    Gather a list of urls and put them in an array/list to be tested
+
+    :return: A list of urls
+    """
+    url_list = []
+    url_dmr_test = {}
+
+    # Get the urls
+    pretty = '&pretty=true' if pretty else ''
+    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={concept_id}&granule_ur={granule_ur}{pretty}'
+    url_collection = process_request(cmr_query_url, granule_ur_dict, page_num=1)
+
+    # Store just the url value in the list
+    for urls in url_collection:
+        url_list.append(url_collection[urls])
+
+    # Run test but only on opendap.earthdata.nasa.gov urls
+    i = 0
+    for urls in url_list:
+        if url_list[i].find("opendap.earthdata.nasa.gov") > 0:
+            url_dmr_test[urls] = url_tester(url_list[i])
+        i += 1
+
+    return url_dmr_test
+
+
 def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Take the collections for a provider and get the first and last granule for each one.
@@ -238,6 +289,29 @@ def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthd
             i += 1
 
     return test_dict
+
+
+def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
+    """
+    Given a provider, gather the collections and the first and last granule of each collection.
+    Then run through them and test each url.
+    :param provider_id:
+    :param opendap:
+    :param pretty:
+    :param service:
+    :return:
+    """
+
+    url_results = {}
+
+    collection_info = get_test_format(provider_id)
+
+    for granules in collection_info:
+        collection_id = collection_info[granules][1]
+        value = list(collection_info[granules][0].values())[0]
+        url_results[granules] = url_test_array(collection_id, value)
+
+    return url_results
 
 
 def get_provider_collections(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
@@ -288,22 +362,20 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
     return process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
 
-def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', descending=False,
-                            first_last=False):
+def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', descending=False):
     """
     Get granules for a collection
 
     :param concept_id: The string Collection (Concept) Id
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
-    :param first_last: Only return the first and last granule if set to true
     :param descending: If true, get the granules in newest first order, else oldest granule is first
     :returns: The collection JSON object
     """
     pretty = '&pretty=true' if pretty else ''
     sort_key = '&sort_key=-start_date' if descending else ''
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}{sort_key}'
-    return process_request(cmr_query_url, collection_granules_dict, first_last, page_size=500)
+    return process_request(cmr_query_url, collection_granules_dict, page_size=500)
 
 
 def decompose_resty_url(url, pretty=False):
