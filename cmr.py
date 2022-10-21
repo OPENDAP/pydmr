@@ -286,7 +286,8 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
 
     return url_dmr_test
 
-
+# TODO Change the name
+# TODO Add print(".'. end="") here where appropriate.
 def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Take the collections for a provider and get the first and last granule for each one.
