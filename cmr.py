@@ -210,14 +210,19 @@ def url_tester_dmr(url_address):
     dmr_check = False
     try:
         # TODO Maybe add a 'quiet' option...
-        print(".", end="")
+        print(".", end="", flush=True)
         r = requests.get(url_address + '.dmr')
         if r.status_code == 200:
             dmr_check = True
-           # TODO Save the response to the local directory
+            # Save the response to the local directory
             base_name = url_address.split('/')[-1]
             with open(base_name + '.dmr', 'w') as file:
                 file.write(r.text)
+        else:
+            print("F", end="", flush=True)
+            base_name = url_address.split('/')[-1]
+            with open(base_name + '.dmr.fail', 'w') as file:
+                file.write(f'Status: {r.status_code}: {r.text}')
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
@@ -238,14 +243,19 @@ def url_tester_nc4(url_address):
     nc4_check = False
     try:
         # TODO Maybe add a 'quiet' option...
-        print(".", end="")
-        r = requests.get(url_address + '.nc4')
+        print(".", end="", flush=True)
+        r = requests.get(url_address + '.dap.nc4')
         if r.status_code == 200:
             nc4_check = True
-            # TODO Save the response to the local directory
+            # Save the response to the local directory
             base_name = url_address.split('/')[-1]
-            with open(base_name + '.nc4', 'wb') as file:
+            with open(base_name + '.dap.nc4', 'wb') as file:
                 file.write(r.content)
+        else:
+            print("F", end="", flush=True)
+            base_name = url_address.split('/')[-1]
+            with open(base_name + '.dap.nc4.fail', 'w') as file:
+                file.write(f'Status: {r.status_code}: {r.text}')
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
@@ -276,13 +286,11 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
         url_list.append(url_collection[urls])
 
     # Run test but only on opendap.earthdata.nasa.gov urls
-    #i = 0
     for url in url_list:
         if url.find("opendap.earthdata.nasa.gov") > 0:
             dmr_result = url_tester_dmr(url)
             nc4_result = url_tester_nc4(url)
             url_dmr_test[url] = (dmr_result, nc4_result)
-        #i += 1
 
     return url_dmr_test
 
@@ -340,7 +348,8 @@ def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthda
 
     url_results = {}
 
-    collection_info = get_test_format(provider_id)
+    print(".", end="", flush=True)
+    collection_info = get_test_format(provider_id, opendap=opendap, pretty=pretty, service=service)
 
     for granules in collection_info:
         collection_id = collection_info[granules][1]
@@ -348,7 +357,7 @@ def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthda
         url_results[granules] = url_test_array(collection_id, value)
 
     # TODO Maybe add a 'quiet' option...
-    print("", end="\n")
+    print("", end="\n", flush=True)
 
     return url_results
 
