@@ -68,7 +68,7 @@ def main():
         elif args.full_test:
             entries = cmr.full_url_test(args.provider, opendap, pretty=pretty)
         elif args.test_format and args.provider:
-            entries = cmr.get_test_format(args.provider, opendap, pretty=pretty)
+            entries = cmr.get_provider_collection_granules(args.provider, opendap, pretty=pretty)
         else:
             entries = cmr.get_provider_collections(args.provider, opendap, pretty=pretty)
         duration = time.time() - start
