@@ -234,6 +234,39 @@ def url_tester_dmr(url_address):
         return "fail"
 
 
+def url_tester_dap(url_address):
+    """
+    Take in a url and test whether or not it has a dmr for testing purposes
+    :param url_address: The url to be checked
+    :return: A pass/fail of whether or not the url passes
+    """
+    dap_check = False
+    try:
+        # TODO Maybe add a 'quiet' option... jhrg 10/21/22
+        print(".", end="", flush=True)
+        r = requests.get(url_address + '.dap.nc4')
+        if r.status_code == 200:
+            dap_check = True
+            # Save the response to the local directory
+            base_name = url_address.split('/')[-1]
+            with open(base_name + '.dap.nc4', 'wb') as file:
+                file.write(r.content)
+        else:
+            print("F", end="", flush=True)
+            base_name = url_address.split('/')[-1]
+            with open(base_name + '.dap.nc4.fail', 'w') as file:
+                file.write(f'Status: {r.status_code}: {r.text}')
+
+    # Ignore exception, the url_tester will return 'fail'
+    except requests.exceptions.InvalidSchema:
+        pass
+
+    if dap_check:
+        return "pass"
+    else:
+        return "fail"
+
+
 def url_tester_nc4(url_address):
     """
     Take in a url and test whether or not it has a dmr for testing purposes
@@ -245,7 +278,7 @@ def url_tester_nc4(url_address):
         # TODO Maybe add a 'quiet' option... jhrg 10/21/22
         print(".", end="", flush=True)
         # TODO Why does using '.dap.nc4' hang for requests that fail? jhrg 10/21/22
-        r = requests.get(url_address + '.nc4')
+        r = requests.get(url_address + '.dap.nc4')
         if r.status_code == 200:
             nc4_check = True
             # Save the response to the local directory
@@ -291,14 +324,15 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
         if url.find("opendap.earthdata.nasa.gov") > 0:
             dmr_result = url_tester_dmr(url)
             nc4_result = url_tester_nc4(url)
-            url_dmr_test[url] = (dmr_result, nc4_result)
+            dap_result = url_tester_dap(url)
+            url_dmr_test[url] = (dmr_result, dap_result, nc4_result)
 
     return url_dmr_test
 
 
 # TODO Change the name jhrg 10/21/22
 # TODO Add print(".'. end="") here where appropriate. jhrg 10/21/22
-def get_test_format(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
+def get_provider_collection_granules(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Take the collections for a provider and get the first and last granule for each one.
 
@@ -351,12 +385,14 @@ def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthda
     url_results = {}
 
     print(".", end="", flush=True)
-    collection_info = get_test_format(provider_id, opendap=opendap, pretty=pretty, service=service)
+    collection_info = get_provider_collection_granules(provider_id, opendap=opendap, pretty=pretty, service=service)
 
-    for granules in collection_info:
-        collection_id = collection_info[granules][1]
-        value = list(collection_info[granules][0].values())[0]
-        url_results[granules] = url_test_array(collection_id, value)
+    # Currently, the collection info gathered is formatted as:
+    # Granule{first, last}, Collection, Provider
+    for index in collection_info:
+        collection_id = collection_info[index][1]
+        value = list(collection_info[index][0].values())[0]
+        url_results[index] = url_test_array(collection_id, value)
 
     # TODO Maybe add a 'quiet' option... jhrg 10/21/22
     print("", end="\n", flush=True)
