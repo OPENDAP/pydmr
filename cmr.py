@@ -5,6 +5,9 @@ CMR Web API.
 
 import requests
 
+# import aiohttp
+# import asyncio
+
 """
 set 'verbose'' in main(), etc., and it affects various functions
 """
@@ -146,6 +149,12 @@ def convert(a: list) -> dict:
     :return: The resulting dictionary
     :rtype: dict
     """
+    if not isinstance(a, list):
+        raise TypeError("cmr.convert(<list>): Expected a list.")
+
+    if len(a) % 2:
+        raise ValueError("cmr.convert(<list>): Expected a list or set with an even number of elements.")
+
     it = iter(a)
     res_dct = dict(zip(it, it))
     return res_dct
@@ -176,11 +185,11 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
         if verbose > 0:
             print(f'CMR Query URL: {cmr_query_url}')
             print(f'Status code: {r.status_code}')
-            # print(f'text: {r.text}')
 
         if r.status_code != 200:
             # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
-            raise CMRException(r.status_code, r.json()["errors"][0])
+            raise CMRException(r.status_code, f'Could not get "{cmr_query_url}": {r.reason}')
+            #raise CMRException(r.status_code, r.json()["errors"][0])
 
         json_resp = r.json()
         if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response

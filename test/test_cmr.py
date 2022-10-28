@@ -77,6 +77,35 @@ class TestCMR(unittest.TestCase):
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge, [], {'c': 'd'})
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge, {'c': 'd'}, [])
 
+    def test_convert(self):
+        self.assertEqual({'a': 'b', 'c': 'd'}, cmr.convert(['a', 'b', 'c', 'd']))
+        self.assertEqual({'a': 'b'}, cmr.convert(['a', 'b']))
+        self.assertEqual({}, cmr.convert([]))
+
+        self.assertRaisesRegex(ValueError, ".*cmr.convert.*", cmr.convert, ['a'])  # only one element
+        self.assertRaisesRegex(ValueError, ".*cmr.convert.*", cmr.convert, ['a', 'b', 'c'])  # three elements
+        self.assertRaisesRegex(TypeError, ".*cmr.convert.*", cmr.convert, {'a', 'b'})   # not a list
+
+
+class TestCMRProcessRequest(unittest.TestCase):
+    url_that_returns_404 = "http://test.opendap.org/fail"
+
+    def unity(json_resp):
+        # TODO Can 'methods' not take self? jhrg 10/27/22
+        return json_resp
+
+    def test_process_request(self):
+        """ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0):
+            Test non 200 response
+            200 response w/o feed & w/o items
+            200 response w/feed but no entry
+            success using simple response_processor
+            page_size == 1
+            page_num = 1 (something not 0)
+        """
+        # self.assertIsNotNone(cmr.process_request(self.url_that_will_fail, self.unity))
+        self.assertRaisesRegex(cmr.CMRException, ".*404.*", cmr.process_request, self.url_that_returns_404, self.unity)
+
 
 if __name__ == '__main__':
     unittest.main()
