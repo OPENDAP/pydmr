@@ -4,11 +4,19 @@ CMR Web API.
 """
 
 import requests
+import asyncio
+import aiohttp
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
 """
 verbose: bool = False
+
+
+class NetrcAuth(aiohttp.BasicAuth):
+    def __new__(cls, host):
+        login, account, password = netrc.netrc().authenticators(host)
+        return super().__new__(cls, login=login, password=password)
 
 
 class CMRException(Exception):
@@ -201,7 +209,7 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
     return entries_dict
 
 
-def url_tester_dmr(url_address):
+async def url_tester_dmr(url_address):
     """
     Take in a url and test whether or not it has a dmr for testing purposes
     :param url_address: The url to be checked
@@ -234,7 +242,7 @@ def url_tester_dmr(url_address):
         return "fail"
 
 
-def url_tester_dap(url_address):
+async def url_tester_dap(url_address):
     """
     Take in a url and test whether or not it has a dmr for testing purposes
     :param url_address: The url to be checked
@@ -267,29 +275,33 @@ def url_tester_dap(url_address):
         return "fail"
 
 
-def url_tester_nc4(url_address):
+async def url_tester_nc4(session, url_address):
     """
     Take in a url and test whether or not it has a dmr for testing purposes
     :param url_address: The url to be checked
     :return: A pass/fail of whether or not the url passes
     """
     nc4_check = False
+
     try:
         # TODO Maybe add a 'quiet' option... jhrg 10/21/22
         print(".", end="", flush=True)
         # TODO Why does using '.dap.nc4' hang for requests that fail? jhrg 10/21/22
-        r = requests.get(url_address + '.dap.nc4')
-        if r.status_code == 200:
-            nc4_check = True
-            # Save the response to the local directory
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.nc4', 'wb') as file:
-                file.write(r.content)
-        else:
-            print("F", end="", flush=True)
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.nc4.fail', 'w') as file:
-                file.write(f'Status: {r.status_code}: {r.text}')
+        # r = requests.get(url_address + '.dap.nc4')
+        # TODO FIX max_redirects
+        max_redirects = 5
+        async with session.request('GET', url_address + '.dap.nc4', max_redirects=max_redirects) as response:
+            if response.status == 200:
+                nc4_check = True
+                # Save the response to the local directory
+                base_name = url_address.split('/')[-1]
+                with open(base_name + '.nc4', 'wb') as file:
+                    file.write(await response.read())
+            else:
+                print("F", end="", flush=True)
+                base_name = url_address.split('/')[-1]
+                with open(base_name + '.nc4.fail', 'w') as file:
+                    file.write(f'Status: {response.status}: {await response.read()}')
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
@@ -301,7 +313,10 @@ def url_tester_nc4(url_address):
         return "fail"
 
 
-def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
+from urllib.parse import urlparse
+
+
+async def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Gather a list of urls and put them in an array/list to be tested
 
@@ -319,18 +334,21 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
     for urls in url_collection:
         url_list.append(url_collection[urls])
 
-    # Run test but only on opendap.earthdata.nasa.gov urls
-    for url in url_list:
-        if url.find("opendap.earthdata.nasa.gov") > 0:
-            dmr_result = url_tester_dmr(url)
-            nc4_result = url_tester_nc4(url)
-            dap_result = url_tester_dap(url)
-            url_dmr_test[url] = (dmr_result, dap_result, nc4_result)
+        # Run test but only on opendap.earthdata.nasa.gov urls
+        # headers = { 'Authorization': f'Bearer {token}' }
+        hostname = urlparse(urls).hostname
+        async with aiohttp.ClientSession(auth=NetrcAuth(hostname)) as session:
+            for url in url_list:
+                if url.find("opendap.earthdata.nasa.gov") > 0:
+                    #dmr_result = await url_tester_dmr(session, url)
+                    nc4_result = await url_tester_nc4(session, url)
+                    #dap_result = await url_tester_dap(session, url)
+                    url_dmr_test[url] = (nc4_result)
+                    # (response.url, response.status, await response.read())
 
     return url_dmr_test
 
 
-# TODO Change the name jhrg 10/21/22
 # TODO Add print(".'. end="") here where appropriate. jhrg 10/21/22
 def get_provider_collection_granules(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
