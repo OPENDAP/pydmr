@@ -6,6 +6,7 @@ CMR Web API.
 import requests
 import asyncio
 import aiohttp
+import netrc
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
@@ -340,9 +341,9 @@ async def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.eart
         async with aiohttp.ClientSession(auth=NetrcAuth(hostname)) as session:
             for url in url_list:
                 if url.find("opendap.earthdata.nasa.gov") > 0:
-                    #dmr_result = await url_tester_dmr(session, url)
+                    # dmr_result = await url_tester_dmr(session, url)
                     nc4_result = await url_tester_nc4(session, url)
-                    #dap_result = await url_tester_dap(session, url)
+                    # dap_result = await url_tester_dap(session, url)
                     url_dmr_test[url] = (nc4_result)
                     # (response.url, response.status, await response.read())
 
@@ -410,7 +411,7 @@ def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthda
     for index in collection_info:
         collection_id = collection_info[index][1]
         value = list(collection_info[index][0].values())[0]
-        url_results[index] = url_test_array(collection_id, value)
+        url_results[index] = asyncio.run(url_test_array(collection_id, value))
 
     # TODO Maybe add a 'quiet' option... jhrg 10/21/22
     print("", end="\n", flush=True)
