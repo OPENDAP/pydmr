@@ -337,10 +337,11 @@ async def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.eart
 
         # Run test but only on opendap.earthdata.nasa.gov urls
         # headers = { 'Authorization': f'Bearer {token}' }
-        hostname = urlparse(urls).hostname
-        async with aiohttp.ClientSession(auth=NetrcAuth(hostname)) as session:
-            for url in url_list:
-                if url.find("opendap.earthdata.nasa.gov") > 0:
+        for url in url_list:
+            if url.find("opendap.earthdata.nasa.gov") > 0:
+                hostname = "urs.earthdata.nasa.gov" # urlparse(url).hostname
+                hostname_auth = NetrcAuth(hostname)
+                async with aiohttp.ClientSession(auth=hostname_auth) as session:
                     # dmr_result = await url_tester_dmr(session, url)
                     nc4_result = await url_tester_nc4(session, url)
                     # dap_result = await url_tester_dap(session, url)
