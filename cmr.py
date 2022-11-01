@@ -210,7 +210,7 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
     return entries_dict
 
 
-async def url_tester_dmr(url_address):
+async def url_tester_dmr(session, url_address):
     """
     Take in a url and test whether or not it has a dmr for testing purposes
     :param url_address: The url to be checked
@@ -220,18 +220,21 @@ async def url_tester_dmr(url_address):
     try:
         # TODO Maybe add a 'quiet' option... jhrg 10/21/22
         print(".", end="", flush=True)
-        r = requests.get(url_address + '.dmr')
-        if r.status_code == 200:
-            dmr_check = True
-            # Save the response to the local directory
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.dmr', 'w') as file:
-                file.write(r.text)
-        else:
-            print("F", end="", flush=True)
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.dmr.fail', 'w') as file:
-                file.write(f'Status: {r.status_code}: {r.text}')
+
+        # TODO FIX max_redirects
+        max_redirects = 5
+        async with session.request('GET', url_address + '.dap.nc4', max_redirects=max_redirects) as response:
+            if response.status_code == 200:
+                dmr_check = True
+                # Save the response to the local directory
+                base_name = url_address.split('/')[-1]
+                with open(base_name + '.dmr', 'w') as file:
+                    file.write(r.text)
+            else:
+                print("F", end="", flush=True)
+                base_name = url_address.split('/')[-1]
+                with open(base_name + '.dmr.fail', 'w') as file:
+                    file.write(f'Status: {r.status_code}: {r.text}')
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
@@ -243,7 +246,7 @@ async def url_tester_dmr(url_address):
         return "fail"
 
 
-async def url_tester_dap(url_address):
+async def url_tester_dap(session, url_address):
     """
     Take in a url and test whether or not it has a dmr for testing purposes
     :param url_address: The url to be checked
@@ -253,18 +256,21 @@ async def url_tester_dap(url_address):
     try:
         # TODO Maybe add a 'quiet' option... jhrg 10/21/22
         print(".", end="", flush=True)
-        r = requests.get(url_address + '.dap.nc4')
-        if r.status_code == 200:
-            dap_check = True
-            # Save the response to the local directory
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.dap.nc4', 'wb') as file:
-                file.write(r.content)
-        else:
-            print("F", end="", flush=True)
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.dap.nc4.fail', 'w') as file:
-                file.write(f'Status: {r.status_code}: {r.text}')
+
+        # TODO FIX max_redirects
+        max_redirects = 5
+        async with session.request('GET', url_address + '.dap.nc4', max_redirects=max_redirects) as response:
+            if response.status_code == 200:
+                dap_check = True
+                # Save the response to the local directory
+                base_name = url_address.split('/')[-1]
+                with open(base_name + '.dap.nc4', 'wb') as file:
+                    file.write(r.content)
+            else:
+                print("F", end="", flush=True)
+                base_name = url_address.split('/')[-1]
+                with open(base_name + '.dap.nc4.fail', 'w') as file:
+                    file.write(f'Status: {r.status_code}: {r.text}')
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
@@ -287,8 +293,9 @@ async def url_tester_nc4(session, url_address):
     try:
         # TODO Maybe add a 'quiet' option... jhrg 10/21/22
         print(".", end="", flush=True)
+
         # TODO Why does using '.dap.nc4' hang for requests that fail? jhrg 10/21/22
-        # r = requests.get(url_address + '.dap.nc4')
+        # OLD REQUEST: r = requests.get(url_address + '.dap.nc4')
         # TODO FIX max_redirects
         max_redirects = 5
         async with session.request('GET', url_address + '.dap.nc4', max_redirects=max_redirects) as response:
@@ -339,13 +346,13 @@ async def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.eart
         # headers = { 'Authorization': f'Bearer {token}' }
         for url in url_list:
             if url.find("opendap.earthdata.nasa.gov") > 0:
-                hostname = "urs.earthdata.nasa.gov" # urlparse(url).hostname
+                hostname = "urs.earthdata.nasa.gov"  # urlparse(url).hostname
                 hostname_auth = NetrcAuth(hostname)
                 async with aiohttp.ClientSession(auth=hostname_auth) as session:
-                    # dmr_result = await url_tester_dmr(session, url)
+                    dmr_result = await url_tester_dmr(session, url)
                     nc4_result = await url_tester_nc4(session, url)
-                    # dap_result = await url_tester_dap(session, url)
-                    url_dmr_test[url] = (nc4_result)
+                    dap_result = await url_tester_dap(session, url)
+                    url_dmr_test[url] = (dmr_result, dap_result, nc4_result)
                     # (response.url, response.status, await response.read())
 
     return url_dmr_test
