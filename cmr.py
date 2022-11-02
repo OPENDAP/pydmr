@@ -4,11 +4,21 @@ CMR Web API.
 """
 
 import requests
+import asyncio
+import aiohttp
+import netrc
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
 """
 verbose: bool = False
+
+
+# netrc authentication. Needed for aiohttp and asyncio
+class NetrcAuth(aiohttp.BasicAuth):
+    def __new__(cls, host):
+        login, account, password = netrc.netrc().authenticators(host)
+        return super().__new__(cls, login=login, password=password)
 
 
 class CMRException(Exception):
@@ -151,7 +161,7 @@ def convert(a: list) -> dict:
     return res_dct
 
 
-def process_request(cmr_query_url, response_processor, page_size=10, page_num=0):
+async def process_request(cmr_query_url, response_processor, session, page_size=10, page_num=0):
     """
     The generic part of a CMR request. Make the request, print some stuff
     and return the number of entries. The page_size parameter is there so that paged responses
@@ -159,6 +169,7 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
 
     :param cmr_query_url: The whole URL, query params and all
     :param response_processor: A function that will process the returned json response
+    :param session:
     :param page_size: The number of entries per page from CMR. The default is the CMR
         default value.
     :param page_num: Return an explicit page of the query response. If not given, gets all
@@ -170,25 +181,28 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
     while True:
         # By default, requests uses cookies, supports OAuth2 and reads username and password
         # from a ~/.netrc file.
-        r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
-        page += 1  # if page_num was explicitly set, this is not needed
+        # r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
+        max_redirects = 5
+        request_page = f'{cmr_query_url}&page_num={page}&page_size={page_size}'
+        async with session.request('GET', request_page, max_redirects=max_redirects) as response:
+            page += 1  # if page_num was explicitly set, this is not needed
 
-        if verbose > 0:
-            print(f'CMR Query URL: {cmr_query_url}')
-            print(f'Status code: {r.status_code}')
-            # print(f'text: {r.text}')
+            if verbose > 0:
+                print(f'CMR Query URL: {cmr_query_url}')
+                print(f'Status code: {response.status_code}')
+                # print(f'text: {r.text}')
 
-        if r.status_code != 200:
-            # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
-            raise CMRException(r.status_code, r.json()["errors"][0])
+            if response.status_code != 200:
+                # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
+                raise CMRException(response.status_code, response.json()["errors"][0])
 
-        json_resp = r.json()
-        if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
-            entries = len(json_resp["feed"]["entry"])
-        elif "items" in json_resp:  # 'items' is for json_umm
-            entries = len(json_resp["items"])
-        else:
-            raise CMRException(200, "cmr.process_request does not know how to decode the response")
+            json_resp = response.json()
+            if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
+                entries = len(json_resp["feed"]["entry"])
+            elif "items" in json_resp:  # 'items' is for json_umm
+                entries = len(json_resp["items"])
+            else:
+                raise CMRException(200, "cmr.process_request does not know how to decode the response")
 
         entries_pg = {}
         if entries > 0:
@@ -330,43 +344,50 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
     return url_dmr_test
 
 
-# TODO Change the name jhrg 10/21/22
 # TODO Add print(".'. end="") here where appropriate. jhrg 10/21/22
-def get_provider_collection_granules(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
+async def get_provider_collection_granules(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov',
+                                     urs='urs.earthdata.nasa.gov'):
     """
     Take the collections for a provider and get the first and last granule for each one.
 
     :param provider_id: The string ID for a given EDC provider (e.g., ORNL_CLOUD)
+    :param opendap:
+    :param pretty:
+    :param service:
+    :param urs:
     :return: A dictionary of entries formatted as 'Provider, Collection, Granule'
     """
     test_dict = {}
 
-    # Get the list of collections
-    pretty = '&pretty=true' if pretty else ''
-    opendap = '&has_opendap_url=true' if opendap else ''
-    cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
-    collect_dict = process_request(cmr_query_url, provider_collections_dict, page_size=500)
+    # Create a session with the urs
+    hostname_auth = NetrcAuth(urs)
+    async with aiohttp.ClientSession(auth=hostname_auth) as session:
+        # Get the list of collections
+        pretty = '&pretty=true' if pretty else ''
+        opendap = '&has_opendap_url=true' if opendap else ''
+        cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
+        collect_dict = await process_request(cmr_query_url, provider_collections_dict, session, page_size=500)
 
-    # Loop through the collections and get the first and last granule of each
-    i = 0
-    for collection in collect_dict.keys():
-        # by default, CMR returns results with "sort_key = +start_date"
-        cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{pretty}'
-        oldest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
-        if len(oldest_dict) == 1:
-            test_dict[i] = (oldest_dict, collection, provider_id)
-            if verbose:
-                print(f'{list(test_dict.items())[i]}')
-            i += 1
+        # Loop through the collections and get the first and last granule of each
+        i = 0
+        for collection in collect_dict.keys():
+            # by default, CMR returns results with "sort_key = +start_date"
+            cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{pretty}'
+            oldest_dict = await process_request(cmr_query_url, collection_granules_dict, session, page_size=1, page_num=1)
+            if len(oldest_dict) == 1:
+                test_dict[i] = (oldest_dict, collection, provider_id)
+                if verbose:
+                    print(f'{list(test_dict.items())[i]}')
+                i += 1
 
-        sort_key = '&sort_key=-start_date'
-        cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{sort_key}{pretty}'
-        newest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
-        if len(newest_dict) == 1:
-            test_dict[i] = (newest_dict, collection, provider_id)
-            if verbose:
-                print(f'{list(test_dict.items())[i]}')
-            i += 1
+            sort_key = '&sort_key=-start_date'
+            cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{sort_key}{pretty}'
+            newest_dict = await process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+            if len(newest_dict) == 1:
+                test_dict[i] = (newest_dict, collection, provider_id)
+                if verbose:
+                    print(f'{list(test_dict.items())[i]}')
+                i += 1
 
     return test_dict
 
@@ -385,7 +406,7 @@ def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthda
     url_results = {}
 
     print(".", end="", flush=True)
-    collection_info = get_provider_collection_granules(provider_id, opendap=opendap, pretty=pretty, service=service)
+    collection_info = asyncio.run(get_provider_collection_granules(provider_id, opendap=opendap, pretty=pretty, service=service))
 
     # Currently, the collection info gathered is formatted as:
     # Granule{first, last}, Collection, Provider
