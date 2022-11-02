@@ -189,12 +189,12 @@ async def process_request(cmr_query_url, response_processor, session, page_size=
 
             if verbose > 0:
                 print(f'CMR Query URL: {cmr_query_url}')
-                print(f'Status code: {response.status_code}')
+                print(f'Status code: {response.status}')
                 # print(f'text: {r.text}')
 
-            if response.status_code != 200:
+            if response.status != 200:
                 # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
-                raise CMRException(response.status_code, response.json()["errors"][0])
+                raise CMRException(response.status, response.json()["errors"][0])
 
             json_resp = response.json()
             if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
