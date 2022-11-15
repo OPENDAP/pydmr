@@ -181,10 +181,8 @@ async def process_request(cmr_query_url, response_processor, session, page_size=
     while True:
         # By default, requests uses cookies, supports OAuth2 and reads username and password
         # from a ~/.netrc file.
-        # r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
-        max_redirects = 5
         request_page = f'{cmr_query_url}&page_num={page}&page_size={page_size}'
-        async with session.request('GET', request_page, max_redirects=max_redirects) as response:
+        async with session.request('GET', request_page) as response:
             page += 1  # if page_num was explicitly set, this is not needed
 
             if verbose > 0:
@@ -193,8 +191,7 @@ async def process_request(cmr_query_url, response_processor, session, page_size=
                 # print(f'text: {r.text}')
 
             if response.status != 200:
-                # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
-                raise CMRException(response.status, response.json()["errors"][0])
+                raise CMRException(response.status, response.reason)
 
             json_resp = response.json()
             if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
@@ -361,7 +358,12 @@ async def get_provider_collection_granules(provider_id, opendap=True, pretty=Fal
 
     # Create a session with the urs
     hostname_auth = NetrcAuth(urs)
-    async with aiohttp.ClientSession(auth=hostname_auth) as session:
+    token = ""
+    with open("token.txt", 'rt') as f:
+        token = f.readline().strip()
+
+    headers = { 'Authorization': f'Bearer {token}' }
+    async with aiohttp.ClientSession(headers=headers) as session:
         # Get the list of collections
         pretty = '&pretty=true' if pretty else ''
         opendap = '&has_opendap_url=true' if opendap else ''

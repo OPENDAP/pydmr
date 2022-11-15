@@ -1,5 +1,8 @@
+#!/usr/bin/env python3
+
 import json
 
+import cmr
 import aiohttp
 import asyncio
 import funcy
@@ -27,7 +30,7 @@ def is_entry_feed(json_resp):
     """
     return len(json_resp) > 0 and "feed" in json_resp.keys() and "entry" in json_resp["feed"].keys()
 
-
+# TODO not used
 def provider_collections_dict(json_resp):
     """
     Extract collection IDs and Titles from CMR JSON. Optionally get the granule count.
@@ -48,7 +51,7 @@ def provider_collections_dict(json_resp):
 
     return dict_resp
 
-
+# TODO not used
 def collection_granules_dict(json_resp):
     """
     :param json_resp: CMR JSON response
@@ -73,6 +76,7 @@ def collection_granules_dict(json_resp):
 
 async def fetch(url, session, max_redirects):
     async with session.request('GET', url, max_redirects=max_redirects) as response:
+
         return (response.url, response.status, await response.read())
 
 
@@ -87,8 +91,8 @@ async def send(token, chunk):
             provider_urls.append(f'https://cmr.earthdata.nasa.gov/search/collections.json?provider={provider}&has_opendap_url=true&pretty=false')
         tasks = [asyncio.ensure_future(fetch(url, session, max_redirects)) for url in provider_urls]
         results = await asyncio.gather(*tasks)
-        print(f'{results[0][2]}')
-        print('Chunk statuses: ', [status for (url, status, text) in results])
+        # print(f'{results[0][2]}')
+        print('Chunk statuses: ', [status for (url, status, content) in results])
         for (url, status, content) in results:
             if status == 500:
                 print('--------------------------------')
@@ -97,7 +101,9 @@ async def send(token, chunk):
                 print(content)
 
         collections = {}
-        collections = collection_granules_dict(results[0][2])
+        for document in [content for (url, status, content) in results]:
+            collections = cmr.merge(collections, cmr.provider_collections_dict(json.loads(document.decode('utf8'))))
+
         for key, value in collections.items():
             print(f'{key}: {value}')
 
