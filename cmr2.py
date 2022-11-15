@@ -98,7 +98,11 @@ async def send(token, chunk):
 
         collections = {}
         collections = collection_granules_dict(results[0][2])
-        print(collections)
+        for key, value in collections.items():
+            print(f'{key}: {value}')
+
+        print(f'Total entries: {len(collections)}') if len(collections) > 1 else ''
+        #print(collections)
 
 
 async def main(token_fn, concurrent, providers):
