@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import time
 
 import cmr
 import aiohttp
@@ -74,13 +75,14 @@ def collection_granules_dict(json_resp):
     return dict_resp
 
 
-async def fetch(url, session, max_redirects):
+async def fetch(url, session, max_redirects, page, page_size):
+    url = f'{url}&page_num={page}&page_size={page_size}'
     async with session.request('GET', url, max_redirects=max_redirects) as response:
-
         return (response.url, response.status, await response.read())
 
 
 async def send(token, chunk):
+    start = time.time()
     max_redirects = len(chunk) * 8
     headers = { 'Authorization': f'Bearer {token}' }
 
@@ -88,28 +90,32 @@ async def send(token, chunk):
     async with aiohttp.ClientSession(headers=headers, connector=aiohttp.TCPConnector(ssl=False)) as session:
         provider_urls = []
         for provider in chunk:
+            provider = provider.rstrip()
             provider_urls.append(f'https://cmr.earthdata.nasa.gov/search/collections.json?provider={provider}&has_opendap_url=true&pretty=false')
-        tasks = [asyncio.ensure_future(fetch(url, session, max_redirects)) for url in provider_urls]
-        results = await asyncio.gather(*tasks)
-        # print(f'{results[0][2]}')
-        print('Chunk statuses: ', [status for (url, status, content) in results])
-        for (url, status, content) in results:
-            if status == 500:
-                print('--------------------------------')
-                print(f'URL: {url}')
-                print('Response content:')
-                print(content)
 
         collections = {}
-        for document in [content for (url, status, content) in results]:
-            collections = cmr.merge(collections, cmr.provider_collections_dict(json.loads(document.decode('utf8'))))
+        current_page = 1
+        while True:
+            tasks = [asyncio.ensure_future(fetch(url, session, max_redirects, current_page, 10)) for url in provider_urls]
+            results = await asyncio.gather(*tasks)
+            current_page += 1
+
+            # Entries: Keep track of how many entries per page.
+            # Collections: All entries concatenated into one dict
+            entries = {}
+            for document in [content for (url, status, content) in results]:
+                entries = cmr.provider_collections_dict(json.loads(document.decode('utf8')))
+                collections = cmr.merge(collections, entries)
+            if len(entries) < 10:
+                break
 
         for key, value in collections.items():
             print(f'{key}: {value}')
 
         print(f'Total entries: {len(collections)}') if len(collections) > 1 else ''
-        #print(collections)
 
+        duration = time.time() - start
+        print(f'Request time: {duration:.1f}s')
 
 async def main(token_fn, concurrent, providers):
     with open(token_fn, 'rt') as f:
