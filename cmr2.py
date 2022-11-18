@@ -31,6 +31,7 @@ def is_entry_feed(json_resp):
     """
     return len(json_resp) > 0 and "feed" in json_resp.keys() and "entry" in json_resp["feed"].keys()
 
+
 # TODO not used
 def provider_collections_dict(json_resp):
     """
@@ -51,6 +52,7 @@ def provider_collections_dict(json_resp):
             dict_resp[entry["id"]] = (entry["title"])
 
     return dict_resp
+
 
 # TODO not used
 def collection_granules_dict(json_resp):
@@ -76,38 +78,39 @@ def collection_granules_dict(json_resp):
 
 
 async def fetch(url, session, max_redirects, page, page_size):
-    url = f'{url}&page_num={page}&page_size={page_size}'
-    async with session.request('GET', url, max_redirects=max_redirects) as response:
-        return (response.url, response.status, await response.read())
+    content = []
+    while True:
+        page += 1
+        url = f'{url}&page_num={page}&page_size={page_size}'
+        async with session.request('GET', url, max_redirects=max_redirects) as response:
+            # Entries: Keep track of how many entries per page.
+            # Collections: All entries concatenated into one dict
+            entries = cmr.provider_collections_dict(response.read().json())
+            content[page - 1] = await response.read()
+            if len(entries) < page_size:
+                return content
 
 
 async def send(token, chunk):
     start = time.time()
     max_redirects = len(chunk) * 8
-    headers = { 'Authorization': f'Bearer {token}' }
+    headers = {'Authorization': f'Bearer {token}'}
 
-    #TODO: read the json file similar to 'response_processor' from cmr.py
+    # TODO: read the json file similar to 'response_processor' from cmr.py
     async with aiohttp.ClientSession(headers=headers, connector=aiohttp.TCPConnector(ssl=False)) as session:
         provider_urls = []
         for provider in chunk:
             provider = provider.rstrip()
-            provider_urls.append(f'https://cmr.earthdata.nasa.gov/search/collections.json?provider={provider}&has_opendap_url=true&pretty=false')
+            provider_urls.append(
+                f'https://cmr.earthdata.nasa.gov/search/collections.json?provider={provider}&has_opendap_url=true&pretty=false')
 
         collections = {}
-        current_page = 1
-        while True:
-            tasks = [asyncio.ensure_future(fetch(url, session, max_redirects, current_page, 10)) for url in provider_urls]
-            results = await asyncio.gather(*tasks)
-            current_page += 1
+        tasks = [asyncio.ensure_future(fetch(url, session, max_redirects, 0, 10)) for url in provider_urls]
+        results = await asyncio.gather(*tasks)
 
-            # Entries: Keep track of how many entries per page.
-            # Collections: All entries concatenated into one dict
-            entries = {}
-            for document in [content for (url, status, content) in results]:
-                entries = cmr.provider_collections_dict(json.loads(document.decode('utf8')))
-                collections = cmr.merge(collections, entries)
-            if len(entries) < 10:
-                break
+        for document in [content for (url, status, content) in results]:
+            entries = cmr.provider_collections_dict(json.loads(document.decode('utf8')))
+            collections = cmr.merge(collections, entries)
 
         for key, value in collections.items():
             print(f'{key}: {value}')
@@ -116,6 +119,7 @@ async def send(token, chunk):
 
         duration = time.time() - start
         print(f'Request time: {duration:.1f}s')
+
 
 async def main(token_fn, concurrent, providers):
     with open(token_fn, 'rt') as f:
