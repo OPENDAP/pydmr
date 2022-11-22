@@ -203,9 +203,10 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
 
 def url_tester_dmr(url_address):
     """
-    Take in a url and test whether or not it has a dmr for testing purposes
-    :param url_address: The url to be checked
-    :return: A pass/fail of whether or not the url passes
+    Take a url and test whether the server can return its DMR response
+
+    :param: url_address: The url to be checked
+    :return: A pass/fail of whether the url passes
     """
     dmr_check = False
     try:
@@ -214,6 +215,7 @@ def url_tester_dmr(url_address):
         r = requests.get(url_address + '.dmr')
         if r.status_code == 200:
             dmr_check = True
+            # TODO Modify this and the other checkers to optionally save the result.
             # Save the response to the local directory
             base_name = url_address.split('/')[-1]
             with open(base_name + '.dmr', 'w') as file:
@@ -301,12 +303,15 @@ def url_tester_nc4(url_address):
         return "fail"
 
 
-def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
-    """
-    Gather a list of urls and put them in an array/list to be tested
+def url_test_runner(url, dmr=True, dap=False, nc4=False):
+    # TODO Write documentation
+    test_results = {"dmr": url_tester_dmr(url) if dmr else "NA", "dap": url_tester_dap(url) if dap else "NA",
+                    "netcdf4": url_tester_nc4(url) if nc4 else "NA"}
+    return test_results
 
-    :return: A list of urls
-    """
+
+def get_granule_opendap_url(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
+    # TODO Write documentation
     url_list = []
     url_dmr_test = {}
 
@@ -316,22 +321,16 @@ def url_test_array(concept_id, granule_ur, pretty=False, service='cmr.earthdata.
     url_collection = process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
     # Store just the url value in the list
-    for urls in url_collection:
-        url_list.append(url_collection[urls])
+    for url in url_collection:
+        if url_collection[url].find("opendap.earthdata.nasa.gov") > 0:
+            url_list.append(url_collection[url])
 
-    # Run test but only on opendap.earthdata.nasa.gov urls
-    for url in url_list:
-        if url.find("opendap.earthdata.nasa.gov") > 0:
-            dmr_result = url_tester_dmr(url)
-            nc4_result = url_tester_nc4(url)
-            dap_result = url_tester_dap(url)
-            url_dmr_test[url] = (dmr_result, dap_result, nc4_result)
-
-    return url_dmr_test
+    return url_list
 
 
 # TODO Change the name jhrg 10/21/22
 # TODO Add print(".'. end="") here where appropriate. jhrg 10/21/22
+# TODO Not used. jhrg 11/21/22
 def get_provider_collection_granules(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Take the collections for a provider and get the first and last granule for each one.
@@ -401,6 +400,7 @@ def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthda
 
 
 def get_collection_granules_first_last(ccid, pretty=False, service='cmr.earthdata.nasa.gov'):
+    # TODO Write documentation
     pretty = '&pretty=true' if pretty else ''
 
     # by default, CMR returns results with "sort_key = +start_date" returning the oldest granule
