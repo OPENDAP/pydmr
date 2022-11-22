@@ -400,6 +400,25 @@ def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthda
     return url_results
 
 
+def get_collection_granules_first_last(ccid, pretty=False, service='cmr.earthdata.nasa.gov'):
+    pretty = '&pretty=true' if pretty else ''
+
+    # by default, CMR returns results with "sort_key = +start_date" returning the oldest granule
+    cmr_query_url = f'https://{service}/search/granules.json?concept_id={ccid}{pretty}'
+    oldest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+    if len(oldest_dict) != 1:
+        raise CMRException(500, f"Expected one response item from CMR, got {len(oldest_dict)} while asking about {ccid}")
+
+    # Use "-start-date" to get the newest granule
+    sort_key = '&sort_key=-start_date'
+    cmr_query_url = f'https://{service}/search/granules.json?concept_id={ccid}{sort_key}{pretty}'
+    newest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+    if len(newest_dict) != 1:
+        raise CMRException(500, f"Expected one response item from CMR, got {len(newest_dict)} while asking about {ccid}")
+
+    return merge(oldest_dict, newest_dict)
+
+
 def get_provider_collections(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Get all the collections for a given provider.
