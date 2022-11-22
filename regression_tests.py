@@ -9,7 +9,7 @@ The output of this test driver is an XML document that can be used as a document
 in its own right or rendered as an HTML web page.
 """
 
-import xml.dom.minidom
+import xml.dom.minidom as minidom
 import xml.dom
 import time
 import os
@@ -51,22 +51,53 @@ def main():
     try:
         start = time.time()
 
+        # make the response document
+        root = minidom.Document()
+        provider = root.createElement('Provider')
+        provider.setAttribute('name', args.provider)
+        provider.setAttribute('date', time.asctime())
+        root.appendChild(provider)
+
         # Get the collections for a given provider - this provides the CCID and title
         entries = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
+        # TODO Write an <Error ...> element if there are no entries.
+        #  Same for the Collection and Test elements. jhrg 11/22/22
 
         # For each collection...
         for ccid, title in entries.items():
             print(f'{ccid}: {title}') if args.verbose else ''
+
+            # XML element for the collection
+            collection = root.createElement('Collection')
+            collection.setAttribute('ccid', ccid)
+            collection.setAttribute('long_name', title)
+            provider.appendChild(collection)
+
             first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=args.pretty)
             for gid, granule_tuple in first_last_dict.items():
                 # The granule_tuple is the granule title and opendap url
                 test_results = opendap_tests.url_test_runner(granule_tuple[1], True, False, False)
                 print(f'{gid}: {test_results}') if args.verbose else ''
 
+                # Add XML for all the tests we ran
+                for name, result in test_results.items():
+                    if result != "NA":
+                        test = root.createElement('Test')
+                        test.setAttribute('name', name)
+                        test.setAttribute('url', granule_tuple[1])
+                        test.setAttribute('result', result)
+                        collection.appendChild(test)
+
         duration = time.time() - start
 
         print(f'Total collections tested: {len(entries)}') if len(entries) > 1 else ''
         print(f'Request time: {duration:.1f}s') if args.time else ''
+
+        # Save the XML
+        xml_str = root.toprettyxml(indent="\t")
+        save_path_file = args.provider + ".xml"
+        with open(save_path_file, "w") as f:
+            f.write(xml_str)
 
     except cmr.CMRException as e:
         print(e)
