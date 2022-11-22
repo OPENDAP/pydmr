@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 
 """
-Given a URL to a file (nominally in S3 and managed by the EDC, get the paired DMR++ document
+Given a URL to a file, nominally in S3 and managed by the EDC, get the paired DMR++ document.
+
+This is not a replacement for the get_dmrpp command we bundle with Hyrax - it literally gets
+a DMR++ document using HTTP. The command builds a DMR++ for a data file.
+
+This file is part of the code used to build DMR++ invariant documents from the cache invalidation
+objective of ESDIS NGAP PI 22.4.
 """
 
 import requests

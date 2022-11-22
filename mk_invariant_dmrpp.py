@@ -83,15 +83,14 @@ def clean_chunk_elements(root):
         element.parentNode.removeChild(element)
 
 
-# FIXME Refactor to one helper and two interface methods. jhrg 9/7/22
 def clean_element_except(root, elem_name, attrs_to_keep):
     """
     FIXME rewrite comment
-    For the <Dataset> element, remove all the attributes except "xmlns" and "xmlns:dmrpp"
+    For the <Dataset> element, remove all the attributes except the ones in 'attrs_to_keep.'
 
     :param: root: The root of the DMR++ XML document
     :param: elem_name: The name of element to clean. Cleans all that match
-    :param: attrs_to_keep: A Tuple of attributes (i.e., their names) to keep
+    :param: attrs_to_keep: A List/Tuple of attributes (i.e., their names) to keep
     :returns: Nothing; the DOM tree is modified
     """
     for dataset in root.getElementsByTagName(elem_name):
@@ -103,12 +102,11 @@ def clean_element_except(root, elem_name, attrs_to_keep):
 
 def clean_element(root, elem_name, attrs_to_remove):
     """
-    FIXME rewrite comment
-    For the <Dataset> element, remove all the attributes except "xmlns" and "xmlns:dmrpp"
+    For the <Dataset> element, remove all the attributes in the List/Tuple 'attrs_to_remove.'
 
     :param: root: The root of the DMR++ XML document
     :param: elem_name: The name of element to clean. Cleans all that match
-    :param: attrs_to_keep: A Tuple of attributes (i.e., their names) to keep
+    :param: attrs_to_remove: A List/Tuple of attributes (i.e., their names) to remove
     :returns: Nothing; the DOM tree is modified
     """
     for dataset in root.getElementsByTagName(elem_name):

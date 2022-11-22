@@ -1,0 +1,27 @@
+
+#All the opendap stuff in GES_DISC
+../ask_cmr.py -p GES_DISC -o  -t
+
+# All the opendap stuff in POCLOUD
+../ask_cmr.py -p POCLOUD -o  -t
+
+# Look for GHRSST collections
+../ask_cmr.py -p POCLOUD -o  | grep GHRSST
+
+# Look for all the granules... takes a bit longer
+../ask_cmr.py -c C2205105895-POCLOUD -o -t -g
+
+# for one granule, get the URL. NB: Use the collection, not granule id
+../ask_cmr.py -t -R C2205105895-POCLOUD:20221004120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1
+
+# OK, get the DMR++ and build an invariant
+
+## get the DMR++
+
+time burl -o 20221004120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1.nc.dmrpp https://archive.podaac.earthdata.nasa.gov/podaac-ops-cumulus-protected/MW_OI-REMSS-L4-GLOB-v5.1/20221004120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1.nc.dmrpp
+
+## Extract builder version
+../mk_invariant_dmrpp.py -l *.dmrpp
+
+## make invariant
+time ../mk_invariant_dmrpp.py -d 20221004120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1.nc.dmrpp
