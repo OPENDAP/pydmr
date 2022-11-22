@@ -48,7 +48,7 @@ def is_granule_item(json_resp):
 
 def collection_granules_dict(json_resp):
     """
-    :param json_resp: CMR JSON response
+    :param: json_resp: CMR JSON response
     :return: A dictionary with the Granule id indexing the producer granule id and granule title
     :rtype: dict
     """
@@ -56,11 +56,34 @@ def collection_granules_dict(json_resp):
         return {}
 
     dict_resp = {}
+    # Look for the entry id, title, producer_granule_id and OPeNDAP link. Build a
     for entry in json_resp["feed"]["entry"]:
         if "producer_granule_id" in entry:  # some granule records lack "producer_granule_id". jhrg 9/4/22
             dict_resp[entry["id"]] = (entry["title"], entry["producer_granule_id"])
         else:
             dict_resp[entry["id"]] = (entry["title"])
+
+    return dict_resp
+
+
+def collection_granule_and_url_dict(json_resp):
+    """
+    :param: json_resp: CMR JSON response
+    :return: A dictionary with the Granule id indexing the granule title and OPeNDAP URL
+    :rtype: dict
+    """
+    if not is_entry_feed(json_resp):
+        return {}
+
+    dict_resp = {}
+    # Look for the entry id, title, and OPeNDAP link.
+    for entry in json_resp["feed"]["entry"]:
+        if len(entry.keys() & ("id", "title", "links")) == 3:
+            # check for the OPeNDAP URL int eh 'links' array
+            for link in entry["links"]:
+                if "title" in link and link["title"].find("OPeNDAP") == 0:
+                    dict_resp[entry["id"]] = (entry["title"], link["href"])
+                    break
 
     return dict_resp
 
@@ -312,6 +335,7 @@ def url_test_runner(url, dmr=True, dap=False, nc4=False):
 
 def get_granule_opendap_url(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
     # TODO Write documentation
+    # TODO Is this function needed?
     url_list = []
     url_dmr_test = {}
 
@@ -328,91 +352,22 @@ def get_granule_opendap_url(concept_id, granule_ur, pretty=False, service='cmr.e
     return url_list
 
 
-# TODO Change the name jhrg 10/21/22
-# TODO Add print(".'. end="") here where appropriate. jhrg 10/21/22
-# TODO Not used. jhrg 11/21/22
-def get_provider_collection_granules(provider_id, opendap=True, pretty=False, service='cmr.earthdata.nasa.gov'):
-    """
-    Take the collections for a provider and get the first and last granule for each one.
-
-    :param provider_id: The string ID for a given EDC provider (e.g., ORNL_CLOUD)
-    :return: A dictionary of entries formatted as 'Provider, Collection, Granule'
-    """
-    test_dict = {}
-
-    # Get the list of collections
-    pretty = '&pretty=true' if pretty else ''
-    opendap = '&has_opendap_url=true' if opendap else ''
-    cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
-    collect_dict = process_request(cmr_query_url, provider_collections_dict, page_size=500)
-
-    # Loop through the collections and get the first and last granule of each
-    i = 0
-    for collection in collect_dict.keys():
-        # by default, CMR returns results with "sort_key = +start_date"
-        cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{pretty}'
-        oldest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
-        if len(oldest_dict) == 1:
-            test_dict[i] = (oldest_dict, collection, provider_id)
-            if verbose:
-                print(f'{list(test_dict.items())[i]}')
-            i += 1
-
-        sort_key = '&sort_key=-start_date'
-        cmr_query_url = f'https://{service}/search/granules.json?concept_id={collection}{sort_key}{pretty}'
-        newest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
-        if len(newest_dict) == 1:
-            test_dict[i] = (newest_dict, collection, provider_id)
-            if verbose:
-                print(f'{list(test_dict.items())[i]}')
-            i += 1
-
-    return test_dict
-
-
-def full_url_test(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):
-    """
-    Given a provider, gather the collections and the first and last granule of each collection.
-    Then run through them and test each url.
-    :param provider_id:
-    :param opendap:
-    :param pretty:
-    :param service:
-    :return:
-    """
-
-    url_results = {}
-
-    print(".", end="", flush=True)
-    collection_info = get_provider_collection_granules(provider_id, opendap=opendap, pretty=pretty, service=service)
-
-    # Currently, the collection info gathered is formatted as:
-    # Granule{first, last}, Collection, Provider
-    for index in collection_info:
-        collection_id = collection_info[index][1]
-        value = list(collection_info[index][0].values())[0]
-        url_results[index] = url_test_array(collection_id, value)
-
-    # TODO Maybe add a 'quiet' option... jhrg 10/21/22
-    print("", end="\n", flush=True)
-
-    return url_results
-
-
-def get_collection_granules_first_last(ccid, pretty=False, service='cmr.earthdata.nasa.gov'):
-    # TODO Write documentation
+def get_collection_granules_first_last(ccid, json_processor=collection_granule_and_url_dict, pretty=False,
+                                       service='cmr.earthdata.nasa.gov'):
+    # TODO Write documentation; esp. WRT using collection_granule_and_url_dict
     pretty = '&pretty=true' if pretty else ''
 
     # by default, CMR returns results with "sort_key = +start_date" returning the oldest granule
+    # TODO Change concept_id to collection_concept_id. jhrg 11/22/22
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={ccid}{pretty}'
-    oldest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+    oldest_dict = process_request(cmr_query_url, json_processor, page_size=1, page_num=1)
     if len(oldest_dict) != 1:
         raise CMRException(500, f"Expected one response item from CMR, got {len(oldest_dict)} while asking about {ccid}")
 
     # Use "-start-date" to get the newest granule
     sort_key = '&sort_key=-start_date'
     cmr_query_url = f'https://{service}/search/granules.json?concept_id={ccid}{sort_key}{pretty}'
-    newest_dict = process_request(cmr_query_url, collection_granules_dict, page_size=1, page_num=1)
+    newest_dict = process_request(cmr_query_url, json_processor, page_size=1, page_num=1)
     if len(newest_dict) != 1:
         raise CMRException(500, f"Expected one response item from CMR, got {len(newest_dict)} while asking about {ccid}")
 

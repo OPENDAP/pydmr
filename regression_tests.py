@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 
 """
-Command line tool for sending simple requests to CMR and printing the
-results to stdout. This command knows how to find all the collections
-for a given provider (and it will optionally limit them to only those with
-OPeNDAP URLs).
+Simple test driver for all Collections held by a NASA DAAC that have OPeNDAP
+URLS in the CMR catalog system. The test driver runs a suite of tests on the
+oldest and newest granules in each collection.
 
-It will also return all the granules for a given collection and
+The output of this test driver is an XML document that can be used as a document
+in its own right or rendered as an HTML web page.
 """
 
+import xml.dom.minidom
+import xml.dom
 import time
 import cmr
 
@@ -20,14 +22,14 @@ def main():
                                                  "stored in ~/.netrc are needed. See the requests package for details.")
 
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
-    parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true")
+    parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
 
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
     parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
     parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
 
-    group = parser.add_mutually_exclusive_group() # only one option in 'group' is allowed at a time
+    group = parser.add_mutually_exclusive_group(required=True)   # only one option in 'group' is allowed at a time
     group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
 
     args = parser.parse_args()
@@ -44,13 +46,11 @@ def main():
         for ccid, title in entries.items():
             print(f'{ccid}: {title}') if args.verbose else ''
             first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=args.pretty)
-            for gid, p_gr_title in first_last_dict.items():
-                print(f'{gid}: {p_gr_title}') if args.verbose else ''
-                urls = cmr.get_granule_opendap_url(ccid, p_gr_title)
-                print(f'URL: {urls}') if args.verbose else ''
-                for url in urls:
-                    test_results = cmr.url_test_runner(url)
-                    print(f'{gid}: {test_results}')
+            for gid, granule_tuple in first_last_dict.items():
+                print(f'{gid}: {granule_tuple}') if args.verbose else ''
+                # The granule_tuple is the granule title and opendap url
+                test_results = cmr.url_test_runner(granule_tuple[1])
+                print(f'{gid}: {test_results}')
 
         duration = time.time() - start
 
