@@ -12,7 +12,10 @@ in its own right or rendered as an HTML web page.
 import xml.dom.minidom
 import xml.dom
 import time
+import os
+
 import cmr
+import opendap_tests
 
 
 def main():
@@ -24,6 +27,10 @@ def main():
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
+    parser.add_argument("-q", "--quiet", help="quiet the tests. By default print a dot for each test run",
+                        action="store_true", default=False)
+    parser.add_argument("-s", "--save", help="directory to hold the test responses. Make the directory if needed.",
+                        default='')
 
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
     parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
@@ -36,6 +43,11 @@ def main():
 
     cmr.verbose = True if args.verbose else False
 
+    opendap_tests.quiet = args.quiet
+    opendap_tests.save = args.save
+    if args.save != '' and not os.path.exists(opendap_tests.save):
+        os.mkdir(opendap_tests.save)
+
     try:
         start = time.time()
 
@@ -47,10 +59,9 @@ def main():
             print(f'{ccid}: {title}') if args.verbose else ''
             first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=args.pretty)
             for gid, granule_tuple in first_last_dict.items():
-                print(f'{gid}: {granule_tuple}') if args.verbose else ''
                 # The granule_tuple is the granule title and opendap url
-                test_results = cmr.url_test_runner(granule_tuple[1])
-                print(f'{gid}: {test_results}')
+                test_results = opendap_tests.url_test_runner(granule_tuple[1], True, False, False)
+                print(f'{gid}: {test_results}') if args.verbose else ''
 
         duration = time.time() - start
 

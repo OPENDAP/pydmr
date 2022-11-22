@@ -224,116 +224,7 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
     return entries_dict
 
 
-def url_tester_dmr(url_address):
-    """
-    Take a url and test whether the server can return its DMR response
-
-    :param: url_address: The url to be checked
-    :return: A pass/fail of whether the url passes
-    """
-    dmr_check = False
-    try:
-        # TODO Maybe add a 'quiet' option... jhrg 10/21/22
-        print(".", end="", flush=True)
-        r = requests.get(url_address + '.dmr')
-        if r.status_code == 200:
-            dmr_check = True
-            # TODO Modify this and the other checkers to optionally save the result.
-            # Save the response to the local directory
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.dmr', 'w') as file:
-                file.write(r.text)
-        else:
-            print("F", end="", flush=True)
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.dmr.fail', 'w') as file:
-                file.write(f'Status: {r.status_code}: {r.text}')
-
-    # Ignore exception, the url_tester will return 'fail'
-    except requests.exceptions.InvalidSchema:
-        pass
-
-    if dmr_check:
-        return "pass"
-    else:
-        return "fail"
-
-
-def url_tester_dap(url_address):
-    """
-    Take in a url and test whether or not it has a dmr for testing purposes
-    :param url_address: The url to be checked
-    :return: A pass/fail of whether or not the url passes
-    """
-    dap_check = False
-    try:
-        # TODO Maybe add a 'quiet' option... jhrg 10/21/22
-        print(".", end="", flush=True)
-        r = requests.get(url_address + '.dap.nc4')
-        if r.status_code == 200:
-            dap_check = True
-            # Save the response to the local directory
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.dap.nc4', 'wb') as file:
-                file.write(r.content)
-        else:
-            print("F", end="", flush=True)
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.dap.nc4.fail', 'w') as file:
-                file.write(f'Status: {r.status_code}: {r.text}')
-
-    # Ignore exception, the url_tester will return 'fail'
-    except requests.exceptions.InvalidSchema:
-        pass
-
-    if dap_check:
-        return "pass"
-    else:
-        return "fail"
-
-
-def url_tester_nc4(url_address):
-    """
-    Take in a url and test whether or not it has a dmr for testing purposes
-    :param url_address: The url to be checked
-    :return: A pass/fail of whether or not the url passes
-    """
-    nc4_check = False
-    try:
-        # TODO Maybe add a 'quiet' option... jhrg 10/21/22
-        print(".", end="", flush=True)
-        # TODO Why does using '.dap.nc4' hang for requests that fail? jhrg 10/21/22
-        r = requests.get(url_address + '.dap.nc4')
-        if r.status_code == 200:
-            nc4_check = True
-            # Save the response to the local directory
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.nc4', 'wb') as file:
-                file.write(r.content)
-        else:
-            print("F", end="", flush=True)
-            base_name = url_address.split('/')[-1]
-            with open(base_name + '.nc4.fail', 'w') as file:
-                file.write(f'Status: {r.status_code}: {r.text}')
-
-    # Ignore exception, the url_tester will return 'fail'
-    except requests.exceptions.InvalidSchema:
-        pass
-
-    if nc4_check:
-        return "pass"
-    else:
-        return "fail"
-
-
-def url_test_runner(url, dmr=True, dap=False, nc4=False):
-    # TODO Write documentation
-    test_results = {"dmr": url_tester_dmr(url) if dmr else "NA", "dap": url_tester_dap(url) if dap else "NA",
-                    "netcdf4": url_tester_nc4(url) if nc4 else "NA"}
-    return test_results
-
-
-def get_granule_opendap_url(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
+def get_granule_opendap_url(ccid, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
     # TODO Write documentation
     # TODO Is this function needed?
     url_list = []
@@ -341,7 +232,7 @@ def get_granule_opendap_url(concept_id, granule_ur, pretty=False, service='cmr.e
 
     # Get the urls
     pretty = '&pretty=true' if pretty else ''
-    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={concept_id}&granule_ur={granule_ur}{pretty}'
+    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
     url_collection = process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
     # Store just the url value in the list
@@ -358,15 +249,14 @@ def get_collection_granules_first_last(ccid, json_processor=collection_granule_a
     pretty = '&pretty=true' if pretty else ''
 
     # by default, CMR returns results with "sort_key = +start_date" returning the oldest granule
-    # TODO Change concept_id to collection_concept_id. jhrg 11/22/22
-    cmr_query_url = f'https://{service}/search/granules.json?concept_id={ccid}{pretty}'
+    cmr_query_url = f'https://{service}/search/granules.json?collection_concept_id={ccid}{pretty}'
     oldest_dict = process_request(cmr_query_url, json_processor, page_size=1, page_num=1)
     if len(oldest_dict) != 1:
         raise CMRException(500, f"Expected one response item from CMR, got {len(oldest_dict)} while asking about {ccid}")
 
     # Use "-start-date" to get the newest granule
     sort_key = '&sort_key=-start_date'
-    cmr_query_url = f'https://{service}/search/granules.json?concept_id={ccid}{sort_key}{pretty}'
+    cmr_query_url = f'https://{service}/search/granules.json?collection_concept_id={ccid}{sort_key}{pretty}'
     newest_dict = process_request(cmr_query_url, json_processor, page_size=1, page_num=1)
     if len(newest_dict) != 1:
         raise CMRException(500, f"Expected one response item from CMR, got {len(newest_dict)} while asking about {ccid}")
@@ -391,11 +281,11 @@ def get_provider_collections(provider_id, opendap=False, pretty=False, service='
     return process_request(cmr_query_url, provider_collections_dict, page_size=500)
 
 
-def get_collection_entry(concept_id, pretty=False, count=False, service='cmr.earthdata.nasa.gov'):
+def get_collection_entry(ccid, pretty=False, count=False, service='cmr.earthdata.nasa.gov'):
     """
     Get the collection entry given a concept id.
 
-    :param concept_id: The string Collection (Concept) Id
+    :param ccid: The string Collection (Concept) Id
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param count: request the granule count for the collection
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
@@ -403,11 +293,11 @@ def get_collection_entry(concept_id, pretty=False, count=False, service='cmr.ear
     """
     pretty = '&pretty=true' if pretty else ''
     collection_count = '&include_granule_counts=true' if count else ''
-    cmr_query_url = f'https://{service}/search/collections.json?concept_id={concept_id}{collection_count}{pretty}'
+    cmr_query_url = f'https://{service}/search/collections.json?collection_concept_id={ccid}{collection_count}{pretty}'
     return process_request(cmr_query_url, provider_collections_dict, page_num=1)
 
 
-def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
+def get_related_urls(ccid, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
     """
     Search for a granules RelatedUrls using the collection concept id and granule ur.
     This provides a way to go from the REST form of a URL that the OPeNDAP server typically
@@ -418,15 +308,15 @@ def get_related_urls(concept_id, granule_ur, pretty=False, service='cmr.earthdat
         'USE SERVICE DATA.'
     """
     pretty = '&pretty=true' if pretty else ''
-    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={concept_id}&granule_ur={granule_ur}{pretty}'
+    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
     return process_request(cmr_query_url, granule_ur_dict, page_num=1)
 
 
-def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nasa.gov', descending=False):
+def get_collection_granules(ccid, pretty=False, service='cmr.earthdata.nasa.gov', descending=False):
     """
     Get granules for a collection
 
-    :param concept_id: The string Collection (Concept) Id
+    :param ccid: The string Collection (Concept) Id
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
     :param descending: If true, get the granules in newest first order, else oldest granule is first
@@ -434,7 +324,7 @@ def get_collection_granules(concept_id, pretty=False, service='cmr.earthdata.nas
     """
     pretty = '&pretty=true' if pretty else ''
     sort_key = '&sort_key=-start_date' if descending else ''
-    cmr_query_url = f'https://{service}/search/granules.json?concept_id={concept_id}{pretty}{sort_key}'
+    cmr_query_url = f'https://{service}/search/granules.json?collection_concept_id={ccid}{pretty}{sort_key}'
     return process_request(cmr_query_url, collection_granules_dict, page_size=500)
 
 
