@@ -6,7 +6,6 @@ accessible using OPeNDAP.
 """
 
 import xml.dom.minidom as minidom
-import xml.dom
 import time
 import os
 
@@ -22,6 +21,11 @@ def main():
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
+    parser.add_argument("-x", "--xml", help="time responses from CMR", action="store_true", default=True)
+    parser.add_argument("-V", "--version", help="increase output verbosity", action="store_true", default="1")
+
+    group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
+    group.add_argument("-e", "--environment", help="an environment, a placeholder for now. This only works for PROD.")
 
     args = parser.parse_args()
 
@@ -30,11 +34,12 @@ def main():
     try:
         start = time.time()
 
-        # Get the collections for a given provider - this provides the CCID and title
-        # cmr_endpoint = "https://cmr.earthdata.nasa.gov/search/collections.umm_json"
-        # cmr_base_query = "${cmr_endpoint}?pretty=true&has_opendap_url=true"
-
-        # entries = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
+        # make the response document
+        root = minidom.Document()
+        environment = root.createElement('Environment')
+        environment.setAttribute('name', args.environment)
+        environment.setAttribute('date', time.asctime())
+        root.appendChild(environment)
 
         pretty = '&pretty=true' if args.pretty else ''
         opendap = '&has_opendap_url=true'
@@ -51,6 +56,17 @@ def main():
 
         for provider in entries:
             print(provider)
+            # XML element for the collection
+            prov = root.createElement('Provider')
+            prov.setAttribute('name', provider)
+            environment.appendChild(prov)
+
+        # Save the XML
+        xml_str = root.toprettyxml(indent="\t")
+        time.strftime("%d.%m.%Y")
+        save_path_file = args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
+        with open(save_path_file, "w") as f:
+            f.write(xml_str)
 
     except cmr.CMRException as e:
         print(e)

@@ -10,7 +10,6 @@ in its own right or rendered as an HTML web page.
 """
 
 import xml.dom.minidom as minidom
-import xml.dom
 import time
 import os
 
@@ -35,6 +34,8 @@ def main():
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
     parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
     parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
+
+    parser.add_argument("-V", "--version", help="increase output verbosity", action="store_true", default="1")
 
     group = parser.add_mutually_exclusive_group(required=True)   # only one option in 'group' is allowed at a time
     group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
@@ -95,7 +96,8 @@ def main():
 
         # Save the XML
         xml_str = root.toprettyxml(indent="\t")
-        save_path_file = args.provider + ".xml"
+        time.strftime("%d.%m.%Y")
+        save_path_file = args.provider + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
         with open(save_path_file, "w") as f:
             f.write(xml_str)
 

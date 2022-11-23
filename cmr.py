@@ -120,14 +120,18 @@ def provider_collections_dict(json_resp):
 
 def provider_id(json_resp):
     """
-    Extract collection IDs and Titles from CMR JSON. Optionally get the granule count.
+    Extract Provider IDs from CMR JSON.
 
-    :param json_resp: CMR JSON response
-    :return: The provider ids in a list
-    :rtype: list
+    The JSON passed to this function is an Array of 'items' each of which holds
+    a dictionary with a single key 'meta'. The value of the 'meta' key is itself
+    a dictionary that holds lots of info, including the provider-id key-value pair.
+
+    :param: json_resp: CMR JSON response
+    :return: The provider ids in a set
+    :rtype: set
     """
     if not is_item_feed(json_resp):
-        return {}
+        return set()
 
     resp = set()
     for item in json_resp["items"]:
