@@ -37,6 +37,15 @@ def is_entry_feed(json_resp):
     return len(json_resp) > 0 and "feed" in json_resp.keys() and "entry" in json_resp["feed"].keys()
 
 
+def is_item_feed(json_resp):
+    """
+    Does this JSON object have the 'meta' key within a 'items' key/array?
+    This function is used to protect various response processors
+    from responses that contain no items or are malformed.
+    """
+    return len(json_resp) > 0 and "items" in json_resp.keys() and "meta" in json_resp["items"][0]
+
+
 def is_granule_item(json_resp):
     """
     Does this JSON object have the 'RelatedUrls' key within a 'umm' key?
@@ -109,6 +118,25 @@ def provider_collections_dict(json_resp):
     return dict_resp
 
 
+def provider_id(json_resp):
+    """
+    Extract collection IDs and Titles from CMR JSON. Optionally get the granule count.
+
+    :param json_resp: CMR JSON response
+    :return: The provider ids in a list
+    :rtype: list
+    """
+    if not is_item_feed(json_resp):
+        return {}
+
+    resp = set()
+    for item in json_resp["items"]:
+        if "provider-id" in item["meta"]:
+            resp.add(item["meta"]["provider-id"])
+
+    return resp
+
+
 def granule_ur_dict(json_resp):
     """
     Extract Related URLs from CMR JSON UMM
@@ -136,7 +164,7 @@ def granule_ur_dict(json_resp):
     return dict_resp
 
 
-def merge(dict1: dict, dict2: dict) -> dict:
+def merge_dict(dict1: dict, dict2: dict) -> dict:
     """
     Merge dictionaries, preserve key order
     See https://www.geeksforgeeks.org/python-merging-two-dictionaries/
@@ -190,6 +218,7 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
     """
     page = 1 if page_num == 0 else page_num
     entries_dict = {}
+    entries_set = set()
     while True:
         # By default, requests uses cookies, supports OAuth2 and reads username and password
         # from a ~/.netrc file.
@@ -207,21 +236,29 @@ def process_request(cmr_query_url, response_processor, page_size=10, page_num=0)
 
         json_resp = r.json()
         if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
-            entries = len(json_resp["feed"]["entry"])
+            entries_num = len(json_resp["feed"]["entry"])
         elif "items" in json_resp:  # 'items' is for json_umm
-            entries = len(json_resp["items"])
+            entries_num = len(json_resp["items"])
         else:
             raise CMRException(200, "cmr.process_request does not know how to decode the response")
 
-        entries_pg = {}
-        if entries > 0:
-            entries_pg = response_processor(json_resp)  # The response_processor() is passed in
-            entries_dict = merge(entries_dict, entries_pg)  # merge is smart if entries_dict is empty
+        if entries_num > 0:
+            entries_page = response_processor(json_resp)  # The response_processor() is passed in
 
-        if page_num != 0 or len(entries_pg) < page_size:
+            if type(entries_page) is dict:
+                entries_dict = merge_dict(entries_dict, entries_page)  # merge is smart if entries is empty
+            elif type(entries_page) is set:
+                entries_set.update(entries_page)
+
+        if page_num != 0 or entries_num < page_size:
             break
 
-    return entries_dict
+    if len(entries_dict) > 0:
+        return entries_dict
+    elif len(entries_set) > 0:
+        return entries_set
+    else:
+        return {}
 
 
 def get_granule_opendap_url(ccid, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
@@ -261,7 +298,7 @@ def get_collection_granules_first_last(ccid, json_processor=collection_granule_a
     if len(newest_dict) != 1:
         raise CMRException(500, f"Expected one response item from CMR, got {len(newest_dict)} while asking about {ccid}")
 
-    return merge(oldest_dict, newest_dict)
+    return merge_dict(oldest_dict, newest_dict)
 
 
 def get_provider_collections(provider_id, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov'):

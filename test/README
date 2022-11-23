@@ -1,5 +1,5 @@
 
-In this directory, and file called test_*.py will be run as a unit test
+In this directory, any file called test_*.py will be run as a unit test
 by the command 'python3 -m unittest' as long as it uses unittest.TestCase.
 
 This is a feature of python 3 and is enabled by the unittest package (a
