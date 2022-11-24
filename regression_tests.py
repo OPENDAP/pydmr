@@ -30,6 +30,8 @@ def main():
                         action="store_true", default=False)
     parser.add_argument("-s", "--save", help="directory to hold the test responses. Make the directory if needed.",
                         default='')
+    # parser.add_argument("-l", "--limit", help="limit the number of tests to the first N collections."
+    #                    "By default, run all the tests.", action="store_true", default=0)
 
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
     parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
