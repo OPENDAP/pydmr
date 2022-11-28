@@ -8,6 +8,8 @@ accessible using OPeNDAP.
 import xml.dom.minidom as minidom
 import time
 
+import requests
+
 import cmr
 
 
@@ -47,7 +49,7 @@ def main():
         cmr_query_url = f'https://{service}/search/collections.umm_json?{opendap}{pretty}'
 
         # this uses the new return value as a set feature of process_request
-        entries = cmr.process_request(cmr_query_url, cmr.provider_id, page_size=2000)
+        entries = cmr.process_request(cmr_query_url, cmr.provider_id, requests.Session(), page_size=2000)
 
         duration = time.time() - start
 
