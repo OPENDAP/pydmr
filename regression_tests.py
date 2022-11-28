@@ -44,7 +44,11 @@ def test_one_collection(ccid, title):
     # For each collection...
     print(f'{ccid}: {title}') if verbose else ''
 
-    first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=pretty)
+    try:
+        first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=pretty)
+    except cmr.CMRException as e:
+        return {ccid: (title, {"error": e.message})}
+
     collected_results = dict()
     for gid, granule_tuple in first_last_dict.items():
         # The granule_tuple is the granule title and opendap url
@@ -65,6 +69,11 @@ def write_xml_document(provider, version, results):
             ... }
            ),
     ... }
+    But, it might contain an error, like this:
+    {'C1371013470-GES_DISC': ('SRB/GEWEX evapotranspiration (Penman-Monteith) L4 3 hour 0.5 degree x 0.5 degree V1 (WC_PM_ET_050) at GES DISC',
+                              {'error': 'Expected one response item from CMR, got 0 while asking about C1371013470-GES_DISC'}
+                              )
+    }
 
     :param: provider: The name of the Provider as it appears in CMR.
     :param: version: The version number to use when naming the XML document.
@@ -91,14 +100,19 @@ def write_xml_document(provider, version, results):
         granule_results = results[ccid][1];
         # {G2224035357-POCLOUD: (URL, {'dmr': 'pass', 'dap': 'NA', 'netcdf4': 'NA'}), ...}
         for gid, tests in granule_results.items():
-            url = tests[0]
-            for name, result in tests[1].items():
-                if result != "NA":
-                    test = root.createElement('Test')
-                    test.setAttribute('name', name)
-                    test.setAttribute('url', url)
-                    test.setAttribute('result', result)
-                    collection.appendChild(test)
+            if gid == "error":
+                test = root.createElement('Error')
+                test.setAttribute('message', tests)
+                collection.appendChild(test)
+            else:
+                url = tests[0]
+                for name, result in tests[1].items():
+                    if result != "NA":
+                        test = root.createElement('Test')
+                        test.setAttribute('name', name)
+                        test.setAttribute('url', url)
+                        test.setAttribute('result', result)
+                        collection.appendChild(test)
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
