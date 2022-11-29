@@ -50,18 +50,32 @@ def test_one_collection(ccid, title):
         return {ccid: (title, {"error": e.message})}
 
     collected_results = dict()
-    for gid, granule_tuple in first_last_dict.items():
-        # The granule_tuple is the granule title and opendap url
-        test_results = opendap_tests.url_test_runner(granule_tuple[1], True, False, False)
-        print(f'{gid}: {test_results}') if verbose else ''
-        collected_results[gid] = (granule_tuple[1], test_results)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], True, False, False): gid
+                         for gid, granule_tuple in first_last_dict.items()}
+        for future in concurrent.futures.as_completed(future_to_gid):
+            gid = future_to_gid[future]
+            try:
+                test_results = future.result()
+            except Exception as exc:
+                print('%r generated an exception: %s' % (gid, exc))
+            else:
+                print(f'{gid}: {test_results}') if verbose else ''
+                # first_last_dict[gid][1] is the URL we tested
+                collected_results[gid] = (first_last_dict[gid][1], test_results)
+
+    # for gid, granule_tuple in first_last_dict.items():
+    #     # The granule_tuple is the granule title and opendap url
+    #     test_results = opendap_tests.url_test_runner(granule_tuple[1], True, False, False)
+    #     print(f'{gid}: {test_results}') if verbose else ''
+    #     collected_results[gid] = (granule_tuple[1], test_results)
 
     return {ccid: (title, collected_results)}
 
 
 def write_xml_document(provider, version, results):
     """
-    Write the collected results in an xml document.
+    Write the collected results in an XML document.
 
     The format of 'results' is:
     {CCID: (<title>,
