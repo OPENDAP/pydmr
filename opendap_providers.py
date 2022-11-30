@@ -7,8 +7,8 @@ accessible using OPeNDAP.
 
 import xml.dom.minidom as minidom
 import time
-
 import requests
+import subprocess
 
 import cmr
 
@@ -22,8 +22,12 @@ def main():
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
     # argparse.BooleanOptionalAction makes --xml/--no-xml work. The default is to make xml.
-    parser.add_argument("-x", "--xml", help="time responses from CMR", action=argparse.BooleanOptionalAction, default=True)
-    parser.add_argument("-V", "--version", help="version number for test results XML file", action="store_true", default="1")
+    parser.add_argument("-x", "--xml", help="time responses from CMR", action=argparse.BooleanOptionalAction,
+                        default=True)
+    parser.add_argument("-V", "--version", help="version number for test results XML file", action="store_true",
+                        default="1")
+    parser.add_argument("-T", "--tests", help="run the regression tests on the provider's collections",
+                        action="store_true", default=False)
 
     group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-e", "--environment", help="an environment, a placeholder for now. This only works for PROD.")
@@ -71,6 +75,14 @@ def main():
             save_path_file = args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
             with open(save_path_file, "w") as f:
                 f.write(xml_str)
+
+        if args.tests:
+            # once we have the list of providers, call regression_tests.py for each one
+            for provider in entries:
+                print(f"Running tests on {provider}'s collections...")
+                result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v"])
+                if result.returncode != 0:
+                    print(f"Error running regression_tests.py {result.args}")
 
     except cmr.CMRException as e:
         print(e)
