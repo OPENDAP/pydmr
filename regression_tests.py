@@ -194,10 +194,10 @@ def main():
                 #result_list = executor.map(test_one_collection, entries.keys(), entries.values())
                 #result_list = map(lambda x: executor.submit(test_one_collection, x), entries.keys(), entries.values())
                 future_to_ccid = {executor.submit(test_one_collection, ccid, entries[ccid]): ccid for ccid in entries}
-                for result in concurrent.futures.as_completed(future_to_ccid):
+                for future in concurrent.futures.as_completed(future_to_ccid):
                     try:
-                        print(f'Result from test: {result}') if args.verbose else ''
-                        results = cmr.merge_dict(results, result.result())
+                        print(f'Result from test: {future}') if args.verbose else ''
+                        results = cmr.merge_dict(results, future.result())
                     except Exception as exc:
                         print(f'Exception: {exc}')
         else:
