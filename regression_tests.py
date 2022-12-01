@@ -42,7 +42,7 @@ def test_one_collection(ccid, title):
         E.G: {CCID: (<title>, {G2224035357-POCLOUD: (URL, {'dmr': 'pass', 'dap': 'NA', 'netcdf4': 'NA'}), ... } ) }
     """
     # For each collection...
-    print(f'{ccid}: {title}') if verbose else ''
+    print(f'testing {ccid}: {title}') if verbose else ''
 
     try:
         first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=pretty)
@@ -191,8 +191,11 @@ def main():
         results = dict()
         if args.concurrent:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
-                result_list = executor.map(test_one_collection, entries.keys(), entries.values())
-                for result in result_list:
+                #result_list = executor.map(test_one_collection, entries.keys(), entries.values())
+                holder = 'MetOp-B ASCAT Level 2 25.0km Ocean Surface Wind Vectors in Full Orbit Swath'
+                result_list = {executor.submit(test_one_collection, key, entries[key]): key for key in entries}
+                #result_list = map(lambda x: executor.submit(test_one_collection, x), entries.keys(), entries.values())
+                for result in concurrent.futures.as_completed(result_list):
                     try:
                         print(f'Result from test: {result}') if args.verbose else ''
                         results = cmr.merge_dict(results, result)
