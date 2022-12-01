@@ -51,7 +51,7 @@ def test_one_collection(ccid, title):
 
     collected_results = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], True, False, False): gid
+        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], True, True, False): gid
                          for gid, granule_tuple in first_last_dict.items()}
         for future in concurrent.futures.as_completed(future_to_gid):
             gid = future_to_gid[future]
@@ -147,6 +147,8 @@ def main():
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true", default=False)
     parser.add_argument("-q", "--quiet", help="quiet the tests. By default print a dot for each test run",
                         action="store_true", default=False)
+    parser.add_argument("-a", "--all", help="save the output from all the tests, including the ones that pass",
+                        action="store_true", default=False)
     parser.add_argument("-s", "--save", help="directory to hold the test responses. Make the directory if needed.",
                         default='')
     # parser.add_argument("-l", "--limit", help="limit the number of tests to the first N collections."
@@ -159,7 +161,8 @@ def main():
     parser.add_argument("-V", "--version", help="increase output verbosity", default="1")
     parser.add_argument("-w", "--workers", help="if concurrent (the default), set the number of workers (default: 5)",
                         default=5, type=int)
-    parser.add_argument("-c", "--concurrent", help="run the tests concurrently", default=True,
+    # Use --no-concurrency to run the tests serially.
+    parser.add_argument("-c", "--concurrency", help="run the tests concurrently", default=True,
                         action=argparse.BooleanOptionalAction)
 
     group = parser.add_mutually_exclusive_group(required=True)   # only one option in 'group' is allowed at a time
@@ -177,6 +180,7 @@ def main():
     cmr.verbose = args.verbose
 
     opendap_tests.quiet = args.quiet
+    opendap_tests.save_all = args.all
     opendap_tests.save = args.save
     if args.save != '' and not os.path.exists(opendap_tests.save):
         os.mkdir(opendap_tests.save)
@@ -189,7 +193,7 @@ def main():
 
         # For each collection...
         results = dict()
-        if args.concurrent:
+        if args.concurrency:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
                 result_list = executor.map(test_one_collection, entries.keys(), entries.values())
                 for result in result_list:
@@ -205,7 +209,7 @@ def main():
 
         duration = time.time() - start
 
-        print(f'Total collections tested: {len(entries)}') if len(entries) > 1 else ''
+        print(f'\nTotal collections tested: {len(entries)}') if len(entries) > 1 else ''
         print(f'Request time: {duration:.1f}s') if args.time else ''
 
         write_xml_document(args.provider, args.version, results)

@@ -13,6 +13,7 @@ not null then the results are saved and the value of 'save' is the name of
 a subdir where the outputs are stored
 """
 quiet: bool = False
+save_all: bool = False
 save: str = ''
 
 
@@ -30,14 +31,17 @@ def url_tester_ext(url_address, ext='.dmr'):
         if r.status_code == 200:
             dmr_check = True
             # Save the response?
-            if save:
+            if save_all:
                 base_name = url_address.split('/')[-1]
-                with open(save + '/' + base_name + ext, 'w') as file:
+                if save:
+                    base_name = save + '/' + base_name
+                with open(base_name + ext, 'w') as file:
                     file.write(r.text)
         else:
             print("F", end="", flush=True) if not quiet else False
-            # TODO Always save fails? jhrg 11/22/22
             base_name = url_address.split('/')[-1]
+            if save:
+                base_name = save + '/' + base_name
             with open(base_name + ext + '.fail', 'w') as file:
                 file.write(f'Status: {r.status_code}: {r.text}')
 
