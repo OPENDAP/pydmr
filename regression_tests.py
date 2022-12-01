@@ -185,15 +185,14 @@ def main():
         start = time.time()
 
         # Get the collections for a given provider - this provides the CCID and title
-        entries = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
+        collections = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
 
         # For each collection...
         results = dict()
         if args.concurrent:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
-                #result_list = executor.map(test_one_collection, entries.keys(), entries.values())
-                #result_list = map(lambda x: executor.submit(test_one_collection, x), entries.keys(), entries.values())
-                future_to_ccid = {executor.submit(test_one_collection, ccid, entries[ccid]): ccid for ccid in entries}
+                # Old code: future_to_ccid = executor.map(test_one_collection, collections.keys(), collections.values())
+                future_to_ccid = {executor.submit(test_one_collection, ccid, collections[ccid]): ccid for ccid in collections}
                 for future in concurrent.futures.as_completed(future_to_ccid):
                     try:
                         print(f'Result from test: {future}') if args.verbose else ''
@@ -201,13 +200,13 @@ def main():
                     except Exception as exc:
                         print(f'Exception: {exc}')
         else:
-            for ccid, title in entries.items():
+            for ccid, title in collections.items():
                 r = test_one_collection(ccid, title)
                 results = cmr.merge_dict(results, r)
 
         duration = time.time() - start
 
-        print(f'Total collections tested: {len(entries)}') if len(entries) > 1 else ''
+        print(f'Total collections tested: {len(collections)}') if len(collections) > 1 else ''
         print(f'Request time: {duration:.1f}s') if args.time else ''
 
         write_xml_document(args.provider, args.version, results)
