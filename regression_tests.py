@@ -192,9 +192,8 @@ def main():
         if args.concurrent:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
                 #result_list = executor.map(test_one_collection, entries.keys(), entries.values())
-                holder = 'MetOp-B ASCAT Level 2 25.0km Ocean Surface Wind Vectors in Full Orbit Swath'
-                result_list = {executor.submit(test_one_collection, key, entries[key]): key for key in entries}
                 #result_list = map(lambda x: executor.submit(test_one_collection, x), entries.keys(), entries.values())
+                result_list = {executor.submit(test_one_collection, key, entries[key]): key for key in entries}
                 for result in concurrent.futures.as_completed(result_list):
                     try:
                         print(f'Result from test: {result}') if args.verbose else ''
