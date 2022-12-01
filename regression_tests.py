@@ -21,15 +21,8 @@ import cmr
 import opendap_tests
 
 
-"""
-Global variables. These ease getting values into functions that will be
-run using a ThreadExecutor.
-"""
-verbose: bool = False   # Verbose output here and in cmr.py
-pretty: bool = False    # Ask CMR for formatted JSON responses
 
-
-def test_one_collection(ccid, title):
+def test_one_collection(ccid, title, pretty, verbose):
     """
     For one collection, run all the configured tests
     :param: ccid: The collection concept Id
@@ -167,13 +160,6 @@ def main():
 
     args = parser.parse_args()
 
-    # These are here mostly to get the values of verbose and pretty into test_one_collection()
-    # which is run below using a ThreadPoolExecutor and map()
-    global verbose
-    verbose = args.verbose
-    global pretty
-    pretty = args.pretty
-
     cmr.verbose = args.verbose
 
     opendap_tests.quiet = args.quiet
@@ -192,7 +178,7 @@ def main():
         if args.concurrent:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
                 # Old code: future_to_ccid = executor.map(test_one_collection, collections.keys(), collections.values())
-                future_to_ccid = {executor.submit(test_one_collection, ccid, collections[ccid]): ccid for ccid in collections}
+                future_to_ccid = {executor.submit(test_one_collection, ccid, collections[ccid], args.pretty, args.verbose): ccid for ccid in collections}
                 for future in concurrent.futures.as_completed(future_to_ccid):
                     try:
                         print(f'Result from test: {future}') if args.verbose else ''
