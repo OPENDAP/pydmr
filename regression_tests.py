@@ -51,7 +51,7 @@ def test_one_collection(ccid, title):
 
     collected_results = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], True, True, False): gid
+        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], True, False, False): gid
                          for gid, granule_tuple in first_last_dict.items()}
         for future in concurrent.futures.as_completed(future_to_gid):
             gid = future_to_gid[future]
