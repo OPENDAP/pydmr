@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="details.xsl"?>
+<Provider name="LPCLOUD" date="Wed Nov 30 10:12:10 2022">
+	<Collection ccid="C1748066515-LPCLOUD" long_name="MODIS/Terra Vegetation Indices 16-Day L3 Global 250m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C1748066515-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2269056084-LPCLOUD" long_name="MODIS/Terra Land Surface Temperature/Emissivity 8-Day L3 Global 1km SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2269056084-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343114808-LPCLOUD" long_name="MODIS/Aqua Land Surface Temperature/Emissivity 5-Min L2 Swath 1km V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343114808-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2327962326-LPCLOUD" long_name="MODIS/Terra Vegetation Indices Monthly L3 Global 1km SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2327962326-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2202497474-LPCLOUD" long_name="MODIS/Terra Surface Reflectance Daily L2G Global 1km and 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2202497474-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C1748058432-LPCLOUD" long_name="MODIS/Terra Land Surface Temperature/Emissivity Daily L3 Global 1km SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C1748058432-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2307290656-LPCLOUD" long_name="MODIS/Aqua Vegetation Indices 16-Day L3 Global 250m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2307290656-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C1748046084-LPCLOUD" long_name="MODIS/Aqua Land Surface Temperature/Emissivity Daily L3 Global 1km SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C1748046084-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343111356-LPCLOUD" long_name="MODIS/Terra Surface Reflectance 8-Day L3 Global 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343111356-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2278860820-LPCLOUD" long_name="MODIS/Terra+Aqua BRDF/Albedo Albedo Daily L3 Global - 500m V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2278860820-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343115666-LPCLOUD" long_name="MODIS/Terra Surface Reflectance Daily L2G Global 250m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343115666-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2218777082-LPCLOUD" long_name="MODIS/Terra Leaf Area Index/FPAR 8-Day L4 Global 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2218777082-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2202498116-LPCLOUD" long_name="MODIS/Aqua Surface Reflectance Daily L2G Global 1km and 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2202498116-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2278858993-LPCLOUD" long_name="MODIS/Aqua Thermal Anomalies/Fire 5-Min L2 Swath 1km V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2278858993-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2271754179-LPCLOUD" long_name="MODIS/Terra Thermal Anomalies/Fire 5-Min L2 Swath 1km V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2271754179-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2218719731-LPCLOUD" long_name="MODIS/Terra+Aqua BRDF/Albedo Nadir BRDF-Adjusted Ref Daily L3 Global - 500m V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2218719731-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343112831-LPCLOUD" long_name="MODIS/Terra Surface Reflectance 8-Day L3 Global 250m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343112831-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343113232-LPCLOUD" long_name="MODIS/Terra Net Evapotranspiration 8-Day L4 Global 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343113232-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343109950-LPCLOUD" long_name="MODIS/Aqua Surface Reflectance Daily L2G Global 250m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343109950-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2484079608-LPCLOUD" long_name="MODIS/Terra+Aqua Land Cover Type Yearly L3 Global 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2484079608-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343110937-LPCLOUD" long_name="MODIS/Terra+Aqua Leaf Area Index/FPAR 4-Day L4 Global 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343110937-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2269057787-LPCLOUD" long_name="MODIS/Aqua Land Surface Temperature/Emissivity 8-Day L3 Global 1km SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2269057787-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2324689816-LPCLOUD" long_name="MODIS/Terra+Aqua Land Aerosol Optical Depth Daily L2G Global 1km SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2324689816-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343113743-LPCLOUD" long_name="MODIS/Aqua Surface Reflectance 8-Day L3 Global 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343113743-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343114343-LPCLOUD" long_name="MODIS/Aqua Surface Reflectance 8-Day L3 Global 250m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343114343-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2484078896-LPCLOUD" long_name="MODIS/Terra+Aqua Land Cover Type Yearly L3 Global 0.05Deg CMG V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2484078896-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2484079943-LPCLOUD" long_name="MODIS/Terra+Aqua Land Cover Dynamics Yearly L3 Global 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2484079943-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2222147000-LPCLOUD" long_name="MODIS/Terra+Aqua Leaf Area Index/FPAR 8-Day L4 Global 500m SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2222147000-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2343115255-LPCLOUD" long_name="MODIS/Terra Land Surface Temperature/Emissivity 5-Min L2 Swath 1km V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2343115255-LPCLOUD"/>
+	</Collection>
+	<Collection ccid="C2327957988-LPCLOUD" long_name="MODIS/Aqua Vegetation Indices Monthly L3 Global 1km SIN Grid V061">
+		<Error message="Expected one response item from CMR, got 0 while asking about C2327957988-LPCLOUD"/>
+	</Collection>
+</Provider>
