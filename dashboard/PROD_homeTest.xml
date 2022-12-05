@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="home.xsl"?>
+<Environment name="PROD" date="Wed Nov 30 12:24:58 2022">
+	<Provider name="LPCLOUD"/>
+	<Provider name="LARC_ASDC"/>
+	<Provider name="PODAAC"/>
+	<Provider name="GES_DISC"/>
+	<Provider name="LARC"/>
+	<Provider name="OB_DAAC"/>
+	<Provider name="LPDAAC_ECS"/>
+	<Provider name="LAADS"/>
+	<Provider name="SCIOPS"/>
+	<Provider name="POCLOUD"/>
+	<Provider name="GHRC_DAAC"/>
+</Environment>
