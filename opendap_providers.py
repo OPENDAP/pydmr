@@ -46,6 +46,10 @@ def main():
             environment.setAttribute('name', args.environment)
             environment.setAttribute('date', time.asctime())
             root.appendChild(environment)
+            # TODO This adds the <?xml-stylesheet ..?> element, but it's at the _end_
+            #  of the printed XML doc. Arrgh. jhrg 12/05/22
+            # xsl_element = root.createProcessingInstruction("xml-stylesheet", "type='text/xsl' href='home.xsl'")
+            # root.appendChild(xsl_element)
 
         pretty = '&pretty=true' if args.pretty else ''
         opendap = '&has_opendap_url=true'
@@ -65,7 +69,10 @@ def main():
             if args.xml:
                 # XML element for the collection
                 prov = root.createElement('Provider')
-                prov.setAttribute('name', provider)
+                # TODO The name here, below in the 'if args.xml' block and in regression-tests.py
+                #  are coupled in a very fragile way. Fix this so the name is made once and passed
+                #  into regression_tests.py, etc. jhrg 12/05/22
+                prov.setAttribute('name', provider + time.strftime("-%m.%d.%Y-") + args.version)
                 environment.appendChild(prov)
 
         if args.xml:
