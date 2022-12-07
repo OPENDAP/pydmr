@@ -94,9 +94,11 @@ def write_xml_document(provider, version, results):
     :param: results: a mess of dicts and tuples.
     """
     # make the response document
-    # TODO Write an <Error ...> element if there are no entries.
-    #  Same for the Collection and Test elements. jhrg 11/22/22
     root = minidom.Document()
+
+    xsl_element = root.createProcessingInstruction("xml-stylesheet", "type='text/xsl' href='details.xsl'")
+    root.appendChild(xsl_element)
+
     prov = root.createElement('Provider')
     prov.setAttribute('name', provider)
     prov.setAttribute('date', time.asctime())

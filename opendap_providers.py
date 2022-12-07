@@ -42,14 +42,13 @@ def main():
         # make the response document
         if args.xml:
             root = minidom.Document()
+            xsl_element = root.createProcessingInstruction("xml-stylesheet", "type='text/xsl' href='home.xsl'")
+            root.appendChild(xsl_element)
+
             environment = root.createElement('Environment')
             environment.setAttribute('name', args.environment)
             environment.setAttribute('date', time.asctime())
             root.appendChild(environment)
-            # TODO This adds the <?xml-stylesheet ..?> element, but it's at the _end_
-            #  of the printed XML doc. Arrgh. jhrg 12/05/22
-            # xsl_element = root.createProcessingInstruction("xml-stylesheet", "type='text/xsl' href='home.xsl'")
-            # root.appendChild(xsl_element)
 
         pretty = '&pretty=true' if args.pretty else ''
         opendap = '&has_opendap_url=true'
