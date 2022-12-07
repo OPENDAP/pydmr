@@ -42,7 +42,7 @@ def url_tester_ext(url_address, ext='.dmr'):
             base_name = url_address.split('/')[-1]
             if save:
                 base_name = save + '/' + base_name
-            with open(base_name + ext + '.fail', 'w') as file:
+            with open(base_name + ext + '.fail.txt', 'w') as file:
                 file.write(f'Status: {r.status_code}: {r.text}')
 
     # Ignore exception, the url_tester will return 'fail'
