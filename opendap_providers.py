@@ -21,9 +21,12 @@ def main():
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
-    # argparse.BooleanOptionalAction makes --xml/--no-xml work. The default is to make xml.
-    parser.add_argument("-x", "--xml", help="time responses from CMR", action=argparse.BooleanOptionalAction,
-                        default=True)
+
+    parser.add_argument('-x', '--xml', default=True, action='store_true')
+    parser.add_argument('--no-xml', dest='xml', action='store_false')
+    # argparse.BooleanOptionalAction makes --xml/--no-xml work. The default is to make xml. Requires Python 3.10.x
+    # parser.add_argument("-x", "--xml", help="time responses from CMR", action=argparse.BooleanOptionalAction,
+    #                     default=True)
     parser.add_argument("-V", "--version", help="version number for test results XML file", action="store_true",
                         default="1")
     parser.add_argument("-T", "--tests", help="run the regression tests on the provider's collections",

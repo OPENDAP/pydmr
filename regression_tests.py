@@ -164,8 +164,11 @@ def main():
     parser.add_argument("-w", "--workers", help="if concurrent (the default), set the number of workers (default: 5)",
                         default=5, type=int)
     # Use --no-concurrency to run the tests serially.
-    parser.add_argument("-c", "--concurrency", help="run the tests concurrently", default=True,
-                        action=argparse.BooleanOptionalAction)
+    parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
+    parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
+    # Requires Python 3.10.x which has its own set of issues
+    # parser.add_argument("-c", "--concurrency", help="run the tests concurrently", default=True,
+    #                     action=argparse.BooleanOptionalAction)
 
     group = parser.add_mutually_exclusive_group(required=True)   # only one option in 'group' is allowed at a time
     group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
