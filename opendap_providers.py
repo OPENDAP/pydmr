@@ -90,7 +90,7 @@ def main():
             save_dir_name = args.environment + time.strftime("-%m.%d.%Y-") + args.version
             for provider in entries:
                 print(f"Running tests on {provider}'s collections...")
-                result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v",
+                result = subprocess.run(["regression_tests.py", f"--provider={provider}", "-t",  "-v",
                                          f"--save={save_dir_name}"])
                 if result.returncode != 0:
                     print(f"Error running regression_tests.py {result.args}")
