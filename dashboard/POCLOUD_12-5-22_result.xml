@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="/NGAP-PROD-tests/details.xsl"?>
+<Provider name="POCLOUD" date="Mon Dec  5 15:45:40 2022">
+	<Collection ccid="C2075141559-POCLOUD" long_name="MetOp-B ASCAT Level 2 25.0km Ocean Surface Wind Vectors in Full Orbit Swath">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141559-POCLOUD/granules/ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141559-POCLOUD/granules/ascat_20221205_191200_metopb_53008_eps_o_250_3301_ovw.l2" result="pass"/>
+	</Collection>
+	<Collection ccid="C2075141638-POCLOUD" long_name="MetOp-C ASCAT Level 2 25.0km Ocean Surface Wind Vectors in Full Orbit Swath">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141638-POCLOUD/granules/ascat_20221205_182400_metopc_21165_eps_o_250_3301_ovw.l2" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141638-POCLOUD/granules/ascat_20191022_095700_metopc_04964_eps_o_250_3203_ovw.l2" result="pass"/>
+	</Collection>
+	<Collection ccid="C2075141684-POCLOUD" long_name="MetOp-C ASCAT Level 2 Ocean Surface Wind Vectors Optimized for Coastal Ocean">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141684-POCLOUD/granules/ascat_20221205_182400_metopc_21165_eps_o_coa_3301_ovw.l2" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141684-POCLOUD/granules/ascat_20191022_164200_metopc_04968_eps_o_coa_3203_ovw.l2" result="pass"/>
+	</Collection>
+	<Collection ccid="C2075141605-POCLOUD" long_name="MetOp-B ASCAT Level 2 Ocean Surface Wind Vectors Optimized for Coastal Ocean">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141605-POCLOUD/granules/ascat_20121029_010301_metopb_00588_eps_o_coa_2101_ovw.l2" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141605-POCLOUD/granules/ascat_20221205_191200_metopb_53008_eps_o_coa_3301_ovw.l2" result="pass"/>
+	</Collection>
+	<Collection ccid="C2251464384-POCLOUD" long_name="CYGNSS Level 1 Science Data Record Version 2.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2251464384-POCLOUD/granules/cyg01.ddmi.s20170318-000000-e20170318-235959.l1.power-brcs.a21.d21" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2251464384-POCLOUD/granules/cyg04.ddmi.s20221203-000000-e20221203-235959.l1.power-brcs.a21.d21" result="pass"/>
+	</Collection>
+	<Collection ccid="C2075141524-POCLOUD" long_name="MetOp-A ASCAT Level 2 25.0 km Ocean Surface Wind Vectors">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141524-POCLOUD/granules/ascat_20070328_000002_metopa_02263_eps_t_250_0100_ovw.l2" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2075141524-POCLOUD/granules/ascat_20211115_071200_metopa_78218_eps_o_250_3202_ovw.l2" result="pass"/>
+	</Collection>
+	<Collection ccid="C2205121485-POCLOUD" long_name="CYGNSS Level 2 Climate Data Record Version 1.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205121485-POCLOUD/granules/cyg.ddmi.s20180801-000000-e20180801-235959.l2.wind-mss-cdr.a11.d11" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205121485-POCLOUD/granules/cyg.ddmi.s20220228-000000-e20220228-235959.l2.wind-mss-cdr.a11.d11" result="pass"/>
+	</Collection>
+	<Collection ccid="C2205618975-POCLOUD" long_name="CYGNSS Level 2 Ocean Surface Heat Flux Climate Data Record Version 1.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205618975-POCLOUD/granules/cyg.ddmi.s20210131-000000-e20210131-235959.l2.surface-flux-cdr.a10.d10" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205618975-POCLOUD/granules/cyg.ddmi.s20170318-000000-e20170318-235959.l2.surface-flux-cdr.a10.d10" result="pass"/>
+	</Collection>
+	<Collection ccid="C2205121520-POCLOUD" long_name="CYGNSS Level 2 Ocean Surface Heat Flux Climate Data Record Version 1.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205121520-POCLOUD/granules/cyg.ddmi.s20180801-000000-e20180801-235959.l2.surface-flux-cdr.a11.d11" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205121520-POCLOUD/granules/cyg.ddmi.s20220430-000000-e20220430-235959.l2.surface-flux-cdr.a11.d11" result="pass"/>
+	</Collection>
+	<Collection ccid="C2247621105-POCLOUD" long_name="CYGNSS Level 2 Ocean Surface Heat Flux Science Data Record Version 2.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2247621105-POCLOUD/granules/cyg.ddmi.s20180801-000000-e20180801-235959.l2.surface-flux.a20.d20" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2247621105-POCLOUD/granules/cyg.ddmi.s20221128-000000-e20221128-235959.l2.surface-flux.a20.d20" result="pass"/>
+	</Collection>
+	<Collection ccid="C2205620319-POCLOUD" long_name="CYGNSS Level 2 Science Data Record Version 3.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205620319-POCLOUD/granules/cyg.ddmi.s20220806-000000-e20220806-235959.l2.wind-mss.a30.d31" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205620319-POCLOUD/granules/cyg.ddmi.s20180801-000000-e20180801-235959.l2.wind-mss.a30.d31" result="pass"/>
+	</Collection>
+	<Collection ccid="C2254232941-POCLOUD" long_name="NOAA CYGNSS Level 2 Science Wind Speed 25-km Product Version 1.2">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2254232941-POCLOUD/granules/cyg.ddmi.s20170501-000002-e20170501-235959.l2.wind_trackgridsize25km_NOAAv1.2_L1a21.d21" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2254232941-POCLOUD/granules/cyg.ddmi.s20221126-000001-e20221126-235959.l2.wind_trackgridsize25km_NOAAv1.2_L1a21.d21" result="fail"/>
+	</Collection>
+	<Collection ccid="C2036882397-POCLOUD" long_name="QuikSCAT Level 2B Ocean Wind Vectors in 12.5km Slice Composites Version 4.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882397-POCLOUD/granules/qs_l2b_01853_v4.1_199910271518" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882397-POCLOUD/granules/qs_l2b_54296_v4.1_200911212225" result="fail"/>
+	</Collection>
+	<Collection ccid="C2036882492-POCLOUD" long_name="QuikSCAT Level 2B Ocean Wind Vectors in 12.5km Slice Composites Version 3.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882492-POCLOUD/granules/qs_l2b_54296_v3.1_200911212225" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882492-POCLOUD/granules/qs_l2b_01853_v3.1_199910271518" result="fail"/>
+	</Collection>
+	<Collection ccid="C2036878103-POCLOUD" long_name="GHRSST Level 4 RAMSSA_9km Australian Regional Foundation Sea Surface Temperature Analysis v1.0 dataset (GDS2)">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036878103-POCLOUD/granules/20221204120000-ABOM-L4_GHRSST-SSTfnd-RAMSSA_09km-AUS-v02.0-fv01.0" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036878103-POCLOUD/granules/20060612120000-ABOM-L4_GHRSST-SSTfnd-RAMSSA_09km-AUS-v02.0-fv01.0" result="fail"/>
+	</Collection>
+	<Collection ccid="C2036877686-POCLOUD" long_name="MetOp-A ASCAT Level 2 12.5-km Ocean Surface Wind Vector Climate Data Record Optimized for Coastal Ocean">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036877686-POCLOUD/granules/ascat_20140331_230228_metopa_38646_eps_o_coa_ovw.l2" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036877686-POCLOUD/granules/ascat_20070101_010300_metopa_01042_eps_o_coa_ovw.l2" result="fail"/>
+	</Collection>
+	<Collection ccid="C2036882048-POCLOUD" long_name="CYGNSS Level 2 Climate Data Record Version 1.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882048-POCLOUD/granules/cyg.ddmi.s20170318-000000-e20170318-235959.l2.wind-mss-cdr.a10.d10" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882048-POCLOUD/granules/cyg.ddmi.s20210228-000000-e20210228-235959.l2.wind-mss-cdr.a10.d10" result="pass"/>
+	</Collection>
+	<Collection ccid="C2036882055-POCLOUD" long_name="CYGNSS Level 2 Ocean Surface Heat Flux Science Data Record Version 1.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882055-POCLOUD/granules/cyg.ddmi.s20200930-000000-e20200930-235959.l2.surface-flux.a10.d10" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882055-POCLOUD/granules/cyg.ddmi.s20170318-000000-e20170318-235959.l2.surface-flux.a10.d10" result="pass"/>
+	</Collection>
+	<Collection ccid="C2251464495-POCLOUD" long_name="CYGNSS Level 2 Science Data Record Version 2.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2251464495-POCLOUD/granules/cyg.ddmi.s20170318-000000-e20170318-235959.l2.wind-mss.a21.d21" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2251464495-POCLOUD/granules/cyg.ddmi.s20221203-000000-e20221203-235959.l2.wind-mss.a21.d21" result="pass"/>
+	</Collection>
+	<Collection ccid="C2036882064-POCLOUD" long_name="CYGNSS Level 3 Climate Data Record Version 1.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882064-POCLOUD/granules/cyg.ddmi.s20170318-003000-e20170318-233000.l3.grid-wind-cdr.a10.d10" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882064-POCLOUD/granules/cyg.ddmi.s20210228-003000-e20210228-233000.l3.grid-wind-cdr.a10.d10" result="pass"/>
+	</Collection>
+	<Collection ccid="C2205121540-POCLOUD" long_name="CYGNSS Level 3 Climate Data Record Version 1.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205121540-POCLOUD/granules/cyg.ddmi.s20180801-003000-e20180801-233000.l3.grid-wind-cdr.a11.d11" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205121540-POCLOUD/granules/cyg.ddmi.s20220228-003000-e20220228-233000.l3.grid-wind-cdr.a11.d11" result="pass"/>
+	</Collection>
+	<Collection ccid="C2205121698-POCLOUD" long_name="CYGNSS Level 3 Storm Centric Grid Science Data Record Version 1.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205121698-POCLOUD/granules/cyg.ddmi.JOHN.ep.2018.12.l3.storm-grid-wind.best.6hr.a10.d11" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2205121698-POCLOUD/granules/cyg.ddmi.IOTA.al.2020.31.l3.storm-grid-wind.best.6hr.a10.d11" result="pass"/>
+	</Collection>
+	<Collection ccid="C2251464847-POCLOUD" long_name="CYGNSS Level 3 Science Data Record Version 2.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2251464847-POCLOUD/granules/cyg.ddmi.s20170318-003000-e20170318-233000.l3.grid-wind.a10.d21" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2251464847-POCLOUD/granules/cyg.ddmi.s20221203-003000-e20221203-233000.l3.grid-wind.a10.d21" result="pass"/>
+	</Collection>
+	<Collection ccid="C2251464874-POCLOUD" long_name="CYGNSS Level 3 Science Data Record Version 3.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2251464874-POCLOUD/granules/cyg.ddmi.s20220806-003000-e20220806-233000.l3.grid-wind.a30.d31" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2251464874-POCLOUD/granules/cyg.ddmi.s20180801-003000-e20180801-233000.l3.grid-wind.a30.d31" result="pass"/>
+	</Collection>
+	<Collection ccid="C2036882072-POCLOUD" long_name="NOAA CYGNSS Level 2 Science Wind Speed 25-km Product Version 1.1">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882072-POCLOUD/granules/cyg.ddmi.s20170501-000000-e20170501-235959.l2.wind_trackgridsize25km_NOAAv1.1_L1a21.d21" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882072-POCLOUD/granules/cyg.ddmi.s20220528-000000-e20220528-235959.l2.wind_trackgridsize25km_NOAAv1.1_L1a21.d21" result="pass"/>
+	</Collection>
+	<Collection ccid="C2036877806-POCLOUD" long_name="GHRSST L3C hourly America Region sub-skin Sea Surface Temperature v1.0 from ABI on GOES16 produced by OSISAF">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20171214180000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20171214_180000-v02.0-fv01.0" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036877806-POCLOUD/granules/20221205210000-OSISAF-L3C_GHRSST-SSTsubskin-GOES16-ssteqc_goes16_20221205_210000-v02.0-fv01.0" result="fail"/>
+	</Collection>
+	<Collection ccid="C2036882482-POCLOUD" long_name="Oceansat-2 Scatterometer Level 2B Ocean Wind Vectors in 12.5km Slice Composites Version 2">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882482-POCLOUD/granules/os2_l2b2014051_23370_23371" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882482-POCLOUD/granules/os2_l2b2010016_01665_01666" result="pass"/>
+	</Collection>
+	<Collection ccid="C2036882499-POCLOUD" long_name="RapidScat Level 2B Climate Ocean Wind Vectors in 12.5km Footprints Version 2.0">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882499-POCLOUD/granules/rs_l2b_v2.0_climate_10827_201801290004" result="pass"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2036882499-POCLOUD/granules/rs_l2b_v2.0_climate_00228_201801260652" result="fail"/>
+	</Collection>
+	<Collection ccid="C2157151105-POCLOUD" long_name="GHRSST L3C hourly Atlantic reprocessed sub-skin sea surface temperature data record v1.0 from SEVIRI on MSG produced by OSISAF">
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2157151105-POCLOUD/granules/20121231230000-OSISAF-L3C_GHRSST-SSTsubskin-SEVIRI_SST-dr_ssteqc_meteosat09_20121231_230000-v02.0-fv01.0" result="fail"/>
+		<Test name="dmr" url="https://opendap.earthdata.nasa.gov/collections/C2157151105-POCLOUD/granules/20040119120000-OSISAF-L3C_GHRSST-SSTsubskin-SEVIRI_SST-dr_ssteqc_meteosat08_20040119_120000-v02.0-fv01.0" result="pass"/>
+	</Collection>
+</Provider>
