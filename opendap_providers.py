@@ -45,7 +45,8 @@ def main():
         # make the response document
         if args.xml:
             root = minidom.Document()
-            xsl_element = root.createProcessingInstruction("xml-stylesheet", "type='text/xsl' href='home.xsl'")
+            xsl_element = root.createProcessingInstruction("xml-stylesheet",
+                                                           "type='text/xsl' href='/NGAP-PROD-tests/home.xsl'")
             root.appendChild(xsl_element)
 
             environment = root.createElement('Environment')

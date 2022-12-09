@@ -96,7 +96,8 @@ def write_xml_document(provider, version, results):
     # make the response document
     root = minidom.Document()
 
-    xsl_element = root.createProcessingInstruction("xml-stylesheet", "type='text/xsl' href='details.xsl'")
+    xsl_element = root.createProcessingInstruction("xml-stylesheet",
+                                                   "type='text/xsl' href='/NGAP-PROD-tests/details.xsl'")
     root.appendChild(xsl_element)
 
     prov = root.createElement('Provider')
