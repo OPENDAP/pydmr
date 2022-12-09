@@ -6,12 +6,11 @@ accessible using OPeNDAP.
 """
 
 import xml.dom.minidom as minidom
-import xml.dom
 import time
-import os
+import requests
+import subprocess
 
 import cmr
-import opendap_tests
 
 
 def main():
@@ -23,6 +22,19 @@ def main():
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
 
+    parser.add_argument('-x', '--xml', default=True, action='store_true')
+    parser.add_argument('--no-xml', dest='xml', action='store_false')
+    # argparse.BooleanOptionalAction makes --xml/--no-xml work. The default is to make xml. Requires Python 3.10.x
+    # parser.add_argument("-x", "--xml", help="time responses from CMR", action=argparse.BooleanOptionalAction,
+    #                     default=True)
+    parser.add_argument("-V", "--version", help="version number for test results XML file", action="store_true",
+                        default="1")
+    parser.add_argument("-T", "--tests", help="run the regression tests on the provider's collections",
+                        action="store_true", default=False)
+
+    group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
+    group.add_argument("-e", "--environment", help="an environment, a placeholder for now. This only works for PROD.")
+
     args = parser.parse_args()
 
     cmr.verbose = True if args.verbose else False
@@ -30,11 +42,17 @@ def main():
     try:
         start = time.time()
 
-        # Get the collections for a given provider - this provides the CCID and title
-        # cmr_endpoint = "https://cmr.earthdata.nasa.gov/search/collections.umm_json"
-        # cmr_base_query = "${cmr_endpoint}?pretty=true&has_opendap_url=true"
+        # make the response document
+        if args.xml:
+            root = minidom.Document()
+            xsl_element = root.createProcessingInstruction("xml-stylesheet",
+                                                           "type='text/xsl' href='/NGAP-PROD-tests/home.xsl'")
+            root.appendChild(xsl_element)
 
-        # entries = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
+            environment = root.createElement('Environment')
+            environment.setAttribute('name', args.environment)
+            environment.setAttribute('date', time.asctime())
+            root.appendChild(environment)
 
         pretty = '&pretty=true' if args.pretty else ''
         opendap = '&has_opendap_url=true'
@@ -42,7 +60,7 @@ def main():
         cmr_query_url = f'https://{service}/search/collections.umm_json?{opendap}{pretty}'
 
         # this uses the new return value as a set feature of process_request
-        entries = cmr.process_request(cmr_query_url, cmr.provider_id, page_size=2000)
+        entries = cmr.process_request(cmr_query_url, cmr.provider_id, requests.Session(), page_size=2000)
 
         duration = time.time() - start
 
@@ -51,6 +69,32 @@ def main():
 
         for provider in entries:
             print(provider)
+            if args.xml:
+                # XML element for the collection
+                prov = root.createElement('Provider')
+                # TODO The name here, below in the 'if args.xml' block and in regression-tests.py
+                #  are coupled in a very fragile way. Fix this so the name is made once and passed
+                #  into regression_tests.py, etc. jhrg 12/05/22
+                prov.setAttribute('name', provider + time.strftime("-%m.%d.%Y-") + args.version)
+                environment.appendChild(prov)
+
+        if args.xml:
+            # Save the XML
+            xml_str = root.toprettyxml(indent="\t")
+            time.strftime("%d.%m.%Y")
+            save_path_file = args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
+            with open(save_path_file, "w") as f:
+                f.write(xml_str)
+
+        if args.tests:
+            # once we have the list of providers, call regression_tests.py for each one
+            save_dir_name = args.environment + time.strftime("-%m.%d.%Y-") + args.version
+            for provider in entries:
+                print(f"Running tests on {provider}'s collections...")
+                result = subprocess.run(["regression_tests.py", f"--provider={provider}", "-t",  "-v",
+                                         f"--save={save_dir_name}"])
+                if result.returncode != 0:
+                    print(f"Error running regression_tests.py {result.args}")
 
     except cmr.CMRException as e:
         print(e)

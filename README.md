@@ -4,6 +4,25 @@ PyDMR is a set of utilities to test the idea of a DMR++ invariant and ways that
 might be used in a DMR++ caching scheme.
 
 ## What's here
+This repository holds code for a testing framework for Hyrax in NGAP and for 
+a simple prototype system to determine if the DMR++ documents held in a cache
+are stale. The code is mixed together since some parts are shared by both systems.
+
+### The testing framework
+WIP
+
+#### Using the commands
+
+./regression_tests.py -p POCLOUD -t -v
+
+Run tests on all the collections from POCLOUD that have OPeNDAP URLs. Show verbose
+output and basic timing stats. The results are written to an XML file. See --help
+for more info.
+
+../opendap_providers.py 
+
+
+### DMR++ Caching
 This repository holds a set of functions that ask CMR various questions that
 enable reading DMR++ documents for granules using either the 'resty' OPeNDAP
 URL or a collection concept id (CCID) and granule title.
@@ -20,7 +39,7 @@ Also contained here are some commands that use that library. Those commands are:
     command can also extract the version information from a DMR++, so it can
     be used to test the idea of cache invalidation based on version numbers.
 
-## Testing out the commands
+#### Testing out the commands
 It can be tedious to figure out all the various providers IDs, Collection IDs,
 so here are some to start with.
 
