@@ -29,7 +29,7 @@ def url_tester_ext(url_address, ext='.dmr'):
         print(".", end="", flush=True) if not quiet else False
         r = requests.get(url_address + ext)
         if r.status_code == 200:
-            dmr_check = True
+            check = True
             # Save the response?
             if save_all:
                 base_name = url_address.split('/')[-1]
@@ -39,17 +39,20 @@ def url_tester_ext(url_address, ext='.dmr'):
                     file.write(r.text)
         else:
             print("F", end="", flush=True) if not quiet else False
+            check = False
             base_name = url_address.split('/')[-1]
             if save:
                 base_name = save + '/' + base_name
             with open(base_name + ext + '.fail.txt', 'w') as file:
-                file.write(f'Status: {r.status_code}: {r.text}')
+                file.write(f'Status: {r.status_code}\n')
+                file.write(f'Headers: {r.headers}\n')
+                file.write(f'Response: {r.response}\n')
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
 
-    if dmr_check:
+    if check:
         return "pass"
     else:
         return "fail"
