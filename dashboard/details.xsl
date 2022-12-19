@@ -75,7 +75,7 @@
 	    <td><xsl:value-of select="@result"/></td>
 	  </xsl:when>
 	  <xsl:otherwise> <!-- test failed, link to fail.txt -->
-	    <td><a href="logs/{substring-after(@url,'/granules/')}.{@name}.fail.text"><xsl:value-of select="@result"/></a></td>
+	    <td><a href="logs/{substring-after(@url,'/granules/')}.{@name}.fail.txt"><xsl:value-of select="@result"/></a></td>
 	  </xsl:otherwise>
 	</xsl:choose>  
             <td><xsl:value-of select="@name"/></td>
