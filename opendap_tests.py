@@ -46,9 +46,9 @@ def url_tester_ext(url_address, ext='.dmr'):
             with open(base_name + ext + '.fail.txt', 'w') as file:
                 file.write(f'Status: {r.status_code}\n')
                 for header, values in r.headers.items():
-                    file.write(f'{header}: {value}\n')
+                    file.write(f'{header}: {values}\n')
                 file.write('\n')
-                file.write(f'Response: {r.response}\n')
+                file.write(f'Response: {r.text}\n')
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:

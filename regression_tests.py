@@ -31,6 +31,7 @@ dmr: bool = True        # Three types of tests follow
 dap: bool = False
 netcdf4: bool = False
 
+
 def test_one_collection(ccid, title):
     """
     For one collection, run all the configured tests
