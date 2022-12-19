@@ -68,8 +68,16 @@
     
     
     <xsl:template match="Test">
-        <tr title="{../@long_name}" class="result-{@result}">
-            <td><xsl:value-of select="@result"/></td>
+      <tr title="{../@long_name}" class="result-{@result}">
+	 <xsl:variable name="pass_fail" select="@result"/>
+	<xsl:choose> <!-- test passed -->
+	  <xsl:when test="$pass_fail='pass'">
+	    <td><xsl:value-of select="@result"/></td>
+	  </xsl:when>
+	  <xsl:otherwise> <!-- test failed, link to fail.txt -->
+	    <td><a href="logs/{substring-after(@url,'/granules/')}.{@name}.fail.text"><xsl:value-of select="@result"/></a></td>
+	  </xsl:otherwise>
+	</xsl:choose>  
             <td><xsl:value-of select="@name"/></td>
             <td><a href="{@url}"><xsl:value-of select="@url"/></a></td>
         </tr>
