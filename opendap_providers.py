@@ -88,7 +88,7 @@ def main():
 
         if args.tests:
             # once we have the list of providers, call regression_tests.py for each one
-            save_dir_name = args.environment + time.strftime("-%m.%d.%Y-") + args.version
+            save_dir_name = "logs"
             for provider in entries:
                 print(f"Running tests on {provider}'s collections...")
                 result = subprocess.run(["regression_tests.py", f"--provider={provider}", "-t",  "-v",
