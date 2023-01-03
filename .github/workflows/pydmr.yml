@@ -22,9 +22,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: |
-          pip3 install -U pip setuptools
-          pip3 install -U numpy webtest gsw coards
-          pip3 install -U netCDF4 pytest numpy Webob Jinja2 docopt six beautifulsoup4 requests testresources
+        run: pip3 install -U requests
+          # pip3 install -U pip setuptools
+          # pip3 install -U numpy webtest gsw coards
+          # pip3 install -U netCDF4 pytest numpy Webob Jinja2 docopt six beautifulsoup4 requests testresources
       - name: Run tests with pytest
         run: python3 -m unittest
