@@ -32,7 +32,8 @@ def url_tester_ext(url_address, ext='.dmr'):
             # save the url for dap tests here
             """
                 pseudo code
-                add url to list of successful urls
+                add url to list/vector/dict of successful urls
+                
                 # /?\ how to return list /?\  
             """
             check = True
@@ -66,7 +67,7 @@ def url_tester_ext(url_address, ext='.dmr'):
         return "fail"
 
 
-def url_tester_ext(url_address, ext='.dap'):
+def var_tester(url_address, dmr_ext='.dmr', dap_ext='.dap'):
     """
     Take a url and test whether the server can return its DAP response
 
@@ -76,7 +77,7 @@ def url_tester_ext(url_address, ext='.dap'):
     check = False
     try:
         print(".", end="", flush=True) if not quiet else False
-        r = requests.get(url_address + ext)
+        r = requests.get(url_address + dmr_ext)
         if r.status_code == 200:
             dmr_check = True
             # Save the response?
@@ -84,14 +85,24 @@ def url_tester_ext(url_address, ext='.dap'):
                 base_name = url_address.split('/')[-1]
                 if save:
                     base_name = save + '/' + base_name
-                with open(base_name + ext, 'w') as file:
+                with open(base_name + dmr_ext, 'w') as file:
                     file.write(r.text)
+            """
+            :pseudo code:
+                parse the r.text using minidom
+                    retrieve the var type
+                    retrieve the var name from attribute 
+                use the var name and type to create dap url
+                p = request.get(dap_address + dap_ext)
+                check p.status_code == 200
+                    copy code from ln 82-89
+            """
         else:
             print("F", end="", flush=True) if not quiet else False
             base_name = url_address.split('/')[-1]
             if save:
                 base_name = save + '/' + base_name
-            with open(base_name + ext + '.fail.txt', 'w') as file:
+            with open(base_name + dmr_ext + '.fail.txt', 'w') as file:
                 file.write(f'Status: {r.status_code}: {r.text}')
 
     # Ignore exception, the url_tester will return 'fail'
@@ -109,12 +120,6 @@ def url_test_runner(url, dmr=True, dap=False, nc4=False):
     Common access point for all the tests.
     """
     test_results = {"dmr": url_tester_ext(url) if dmr else "NA",
-                    # retrieve list of successful urls from dmr test and pass to dap tests
-                    """
-                        pseudo code:
-                        foreach(url in url_list):
-                            "dap": url_tester_ext(url, '.dap') if dap else "NA",
-                    """ 
                     "dap": url_tester_ext(url, '.dap') if dap else "NA",
                     "netcdf4": url_tester_ext(url, '.dap.nc4') if nc4 else "NA"}
     return test_results
