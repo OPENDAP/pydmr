@@ -27,6 +27,9 @@ run using a ThreadExecutor.
 """
 verbose: bool = False   # Verbose output here and in cmr.py
 pretty: bool = False    # Ask CMR for formatted JSON responses
+dmr: bool = True        # Three types of tests follow
+dap: bool = False
+netcdf4: bool = False
 
 
 def test_one_collection(ccid, title):
@@ -51,7 +54,8 @@ def test_one_collection(ccid, title):
 
     collected_results = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], True, False, False): gid
+        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], 
+                                         dmr, dap, netcdf4): gid
                          for gid, granule_tuple in first_last_dict.items()}
         for future in concurrent.futures.as_completed(future_to_gid):
             gid = future_to_gid[future]
@@ -63,12 +67,6 @@ def test_one_collection(ccid, title):
                 print(f'{gid}: {test_results}') if verbose else ''
                 # first_last_dict[gid][1] is the URL we tested
                 collected_results[gid] = (first_last_dict[gid][1], test_results)
-
-    # for gid, granule_tuple in first_last_dict.items():
-    #     # The granule_tuple is the granule title and opendap url
-    #     test_results = opendap_tests.url_test_runner(granule_tuple[1], True, False, False)
-    #     print(f'{gid}: {test_results}') if verbose else ''
-    #     collected_results[gid] = (granule_tuple[1], test_results)
 
     return {ccid: (title, collected_results)}
 
@@ -178,10 +176,16 @@ def main():
 
     # These are here mostly to get the values of verbose and pretty into test_one_collection()
     # which is run below using a ThreadPoolExecutor and map()
-    global verbose
+    global verbose 
     verbose = args.verbose
-    global pretty
+    global pretty 
     pretty = args.pretty
+    global dmr 
+    dmr = args.dmr
+    global dap 
+    dap = args.dap
+    global nc4 
+    netcdf4 = args.netcdf4
 
     cmr.verbose = args.verbose
 
@@ -221,6 +225,8 @@ def main():
         write_xml_document(args.provider, args.version, results)
 
     except cmr.CMRException as e:
+        print(e)
+    except Exception as e:
         print(e)
 
 
