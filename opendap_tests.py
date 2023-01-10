@@ -4,6 +4,7 @@ A collection of tests for OPeNDAP URLs packaged as functions.
 """
 
 import requests
+from xml.dom.minidom import parse, parseString
 
 """
 set 'quiet' in main(), etc., and it affects various functions
@@ -19,7 +20,7 @@ save: str = ''
 
 def url_tester_ext(url_address, ext='.dmr'):
     """
-    Take a url and test whether the server can return its DMR response
+    Take an url and test whether the server can return its DMR response
 
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
@@ -30,12 +31,6 @@ def url_tester_ext(url_address, ext='.dmr'):
         r = requests.get(url_address + ext)
         if r.status_code == 200:
             # save the url for dap tests here
-            """
-                pseudo code
-                add url to list/vector/dict of successful urls
-                
-                # /?\ how to return list /?\  
-            """
             check = True
             # Save the response?
             if save_all:
@@ -67,9 +62,9 @@ def url_tester_ext(url_address, ext='.dmr'):
         return "fail"
 
 
-def var_tester(url_address, dmr_ext='.dmr', dap_ext='.dap'):
+def var_tester(url_address):
     """
-    Take a url and test whether the server can return its DAP response
+    Take an url and test whether the server can return its DAP response
 
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
@@ -77,32 +72,52 @@ def var_tester(url_address, dmr_ext='.dmr', dap_ext='.dap'):
     check = False
     try:
         print(".", end="", flush=True) if not quiet else False
-        r = requests.get(url_address + dmr_ext)
+        r = requests.get(url_address + '.dmr')
         if r.status_code == 200:
-            dmr_check = True
+            check = True
             # Save the response?
             if save_all:
                 base_name = url_address.split('/')[-1]
                 if save:
                     base_name = save + '/' + base_name
-                with open(base_name + dmr_ext, 'w') as file:
+                with open(base_name + '.dmr', 'w') as file:
                     file.write(r.text)
-            """
-            :pseudo code:
-                parse the r.text using minidom
-                    retrieve the var type
-                    retrieve the var name from attribute 
-                use the var name and type to create dap url
-                p = request.get(dap_address + dap_ext)
-                check p.status_code == 200
-                    copy code from ln 82-89
-            """
+
+            dmr_doc = parseString(r.text)
+            # get elements by types ( Byte, Int8[16,32,64], UInt8[16,32,64], Float32[64], String ) to find nodes
+            variables = dmr_doc.getElementsByTagName("Int32")
+            # variables = dmr_doc.getElementsByTagName("Float32")
+            # variables = dmr_doc.getElementsByTagName("Float64")
+            variables += dmr_doc.getElementsByTagName("String")
+            for v in variables:
+                t = build_leaf_path(v)
+                dap_url = url_address + '.dap?dap4.ce=/' + t
+                print(dap_url)
+                dap_r = requests.get(dap_url)
+                if dap_r.status_code == 200:
+                    print("success [*fireworks*]")
+                    check = True
+                    # Save the response?
+                    if save_all:
+                        base_name = url_address.split('/')[-1]
+                        if save:
+                            base_name = save + '/' + base_name
+                        with open(base_name + '.dap', 'w') as file:
+                            file.write(r.text)
+                else:
+                    print("failure [sad noises]")
+                    print("F", end="", flush=True) if not quiet else False
+                    base_name = url_address.split('/')[-1]
+                    if save:
+                        base_name = save + '/' + base_name
+                    with open(base_name + '.dmr' + '.fail.txt', 'w') as file:
+                        file.write(f'Status: {r.status_code}: {r.text}')
         else:
             print("F", end="", flush=True) if not quiet else False
             base_name = url_address.split('/')[-1]
             if save:
                 base_name = save + '/' + base_name
-            with open(base_name + dmr_ext + '.fail.txt', 'w') as file:
+            with open(base_name + '.dmr' + '.fail.txt', 'w') as file:
                 file.write(f'Status: {r.status_code}: {r.text}')
 
     # Ignore exception, the url_tester will return 'fail'
@@ -115,6 +130,20 @@ def var_tester(url_address, dmr_ext='.dmr', dap_ext='.dap'):
         return "fail"
 
 
+def build_leaf_path (var):
+    path = var.getAttribute("name")
+    print(path)
+    if var.parentNode.nodeName != "Dataset":
+        if var.parentNode.nodeName == "Group":
+            path = build_leaf_path(var.parentNode) + '/' + path
+        elif var.parentNode.nodeName == "Structure":
+            path = build_leaf_path(var.parentNode) + '.' + path
+        elif var.parentNode.nodeName == "Sequence":
+            path = build_leaf_path(var.parentNode) + '.' + path
+        print(path)
+    return path
+
+
 def url_test_runner(url, dmr=True, dap=False, nc4=False):
     """
     Common access point for all the tests.
@@ -122,5 +151,23 @@ def url_test_runner(url, dmr=True, dap=False, nc4=False):
     test_results = {"dmr": url_tester_ext(url) if dmr else "NA",
                     "dap": url_tester_ext(url, '.dap') if dap else "NA",
                     "netcdf4": url_tester_ext(url, '.dap.nc4') if nc4 else "NA"}
+    var_results = {"vars": var_tester(url)}
     return test_results
 
+
+def main():
+    import argparse
+
+    try:
+
+        # var_tester("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
+        # var_tester("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure test
+        # var_tester("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")  # group test
+        var_tester("http://test.opendap.org/opendap/data/ff/avhrr.dat")  # sequence test
+
+    except Exception as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    main()
