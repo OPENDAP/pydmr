@@ -1,0 +1,36 @@
+Status: 200: <?xml version="1.0" encoding="ISO-8859-1"?>
+<Dataset xmlns="http://xml.opendap.org/ns/DAP/4.0#" xml:base="http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5" dapVersion="4.0" dmrVersion="1.0" name="grid_1_2d.h5">
+    <Group name="HDFEOS">
+        <Group name="ADDITIONAL">
+            <Group name="FILE_ATTRIBUTES"/>
+        </Group>
+        <Group name="GRIDS">
+            <Group name="GeoGrid">
+                <Dimension name="XDim" size="8"/>
+                <Dimension name="YDim" size="4"/>
+                <Group name="Data_Fields">
+                    <Float32 name="temperature">
+                        <Dim name="/HDFEOS/GRIDS/GeoGrid/YDim"/>
+                        <Dim name="/HDFEOS/GRIDS/GeoGrid/XDim"/>
+                        <Attribute name="units" type="String">
+                            <Value>K</Value>
+                        </Attribute>
+                        <Attribute name="fullnamepath" type="String">
+                            <Value>/HDFEOS/GRIDS/GeoGrid/Data Fields/temperature</Value>
+                        </Attribute>
+                    </Float32>
+                </Group>
+            </Group>
+        </Group>
+    </Group>
+    <Group name="HDFEOS_INFORMATION">
+        <String name="StructMetadata_0">
+            <Attribute name="fullnamepath" type="String">
+                <Value>/HDFEOS INFORMATION/StructMetadata.0</Value>
+            </Attribute>
+        </String>
+        <Attribute name="HDFEOSVersion" type="String">
+            <Value>HDFEOS_5.1.13</Value>
+        </Attribute>
+    </Group>
+</Dataset>

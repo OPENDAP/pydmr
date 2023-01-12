@@ -83,20 +83,35 @@ def var_tester(url_address):
                 with open(base_name + '.dmr', 'w') as file:
                     file.write(r.text)
 
+            print("|", end="", flush=True) if not quiet else False
             dmr_doc = parseString(r.text)
             # get elements by types ( Byte, Int8[16,32,64], UInt8[16,32,64], Float32[64], String ) to find nodes
-            variables = dmr_doc.getElementsByTagName("Int32")
-            # variables = dmr_doc.getElementsByTagName("Float32")
-            # variables = dmr_doc.getElementsByTagName("Float64")
+            variables = dmr_doc.getElementsByTagName("Byte")
+
+            variables += dmr_doc.getElementsByTagName("Int8")
+            variables += dmr_doc.getElementsByTagName("Int16")
+            variables += dmr_doc.getElementsByTagName("Int32")
+            variables += dmr_doc.getElementsByTagName("Int64")
+
+            variables += dmr_doc.getElementsByTagName("UInt8")
+            variables += dmr_doc.getElementsByTagName("UInt16")
+            variables += dmr_doc.getElementsByTagName("UInt32")
+            variables += dmr_doc.getElementsByTagName("UInt64")
+
+            variables += dmr_doc.getElementsByTagName("Float32")
+            variables += dmr_doc.getElementsByTagName("Float64")
+
             variables += dmr_doc.getElementsByTagName("String")
+
+            results = {url_address : "data file"}
             for v in variables:
+                print(".", end="", flush=True) if not quiet else False
                 t = build_leaf_path(v)
                 dap_url = url_address + '.dap?dap4.ce=/' + t
-                print(dap_url)
+                #  print(dap_url)
                 dap_r = requests.get(dap_url)
                 if dap_r.status_code == 200:
-                    print("success [*fireworks*]")
-                    check = True
+                    results[dap_url] = "pass"
                     # Save the response?
                     if save_all:
                         base_name = url_address.split('/')[-1]
@@ -105,8 +120,8 @@ def var_tester(url_address):
                         with open(base_name + '.dap', 'w') as file:
                             file.write(r.text)
                 else:
-                    print("failure [sad noises]")
                     print("F", end="", flush=True) if not quiet else False
+                    results[dap_url] = "fail"
                     base_name = url_address.split('/')[-1]
                     if save:
                         base_name = save + '/' + base_name
@@ -124,15 +139,12 @@ def var_tester(url_address):
     except requests.exceptions.InvalidSchema:
         pass
 
-    if check:
-        return "pass"
-    else:
-        return "fail"
+    return results
 
 
 def build_leaf_path (var):
     path = var.getAttribute("name")
-    print(path)
+    # print(path)
     if var.parentNode.nodeName != "Dataset":
         if var.parentNode.nodeName == "Group":
             path = build_leaf_path(var.parentNode) + '/' + path
@@ -140,7 +152,7 @@ def build_leaf_path (var):
             path = build_leaf_path(var.parentNode) + '.' + path
         elif var.parentNode.nodeName == "Sequence":
             path = build_leaf_path(var.parentNode) + '.' + path
-        print(path)
+        # print(path)
     return path
 
 
@@ -160,10 +172,33 @@ def main():
 
     try:
 
-        # var_tester("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
-        # var_tester("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure test
+        results = var_tester("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
+        print()
+        keys = results.keys()
+        for k in keys:
+            print(results[k] + " | " + k)
+        print("/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/")
+
+        results = var_tester("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure test
+        print()
+        keys = results.keys()
+        for k in keys:
+            print(results[k] + " | " + k)
+        print("/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/")
+
+        results = var_tester("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")  # group test, few variables
         # var_tester("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")  # group test
-        var_tester("http://test.opendap.org/opendap/data/ff/avhrr.dat")  # sequence test
+        print()
+        keys = results.keys()
+        for k in keys:
+            print(results[k] + " | " + k)
+        print("/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/")
+
+        results = var_tester("http://test.opendap.org/opendap/data/ff/avhrr.dat")  # sequence test
+        print()
+        keys = results.keys()
+        for k in keys:
+            print(results[k] + " | " + k)
 
     except Exception as e:
         print(e)
