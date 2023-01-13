@@ -20,6 +20,12 @@ save: str = ''
 dmr_xml: str = ''
 
 
+class TestResult:
+    def __init__(self, result, status):
+        self.result = result
+        self.status = status
+
+
 def url_tester_ext(url_address, ext='.dmr'):
     """
     Take an url and test whether the server can return its DMR response
@@ -27,15 +33,17 @@ def url_tester_ext(url_address, ext='.dmr'):
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
     """
-    check = False
+    results = {"dmr_test": "fail"}
     global dmr_xml
     try:
         print(".", end="", flush=True) if not quiet else False
         r = requests.get(url_address + ext)
         if r.status_code == 200:
             dmr_xml = r.text
-            # save the url for dap tests here
-            check = True
+
+            tr = TestResult("pass", r.status_code)
+            results["dmr_test"] = tr
+
             # Save the response?
             if save_all:
                 base_name = url_address.split('/')[-1]
@@ -45,7 +53,10 @@ def url_tester_ext(url_address, ext='.dmr'):
                     file.write(r.text)
         else:
             print("F", end="", flush=True) if not quiet else False
-            check = False
+
+            tr = TestResult("fail", r.status_code)
+            results["dmr_test"] = tr
+
             base_name = url_address.split('/')[-1]
             if save:
                 base_name = save + '/' + base_name
@@ -60,10 +71,7 @@ def url_tester_ext(url_address, ext='.dmr'):
     except requests.exceptions.InvalidSchema:
         pass
 
-    if check:
-        return "pass"
-    else:
-        return "fail"
+    return results
 
 
 def dap_tester(url_address, ext='.dap'):
@@ -74,12 +82,14 @@ def dap_tester(url_address, ext='.dap'):
     :return: A pass/fail of whether the url passes
     """
     print("|", end="", flush=True) if not quiet else False
+    results = {"dap_test": "fail"}
     try:
         print(".", end="", flush=True) if not quiet else False
         r = requests.get(url_address + ext)
         if r.status_code == 200:
 
-            results = {"dap test": "pass"}
+            tr = TestResult("pass", r.status_code)
+            results["dap_test"] = tr
 
             # Save the response?
             if save_all:
@@ -91,7 +101,8 @@ def dap_tester(url_address, ext='.dap'):
         else:
             print("F", end="", flush=True) if not quiet else False
 
-            results = {"dap test": "fail"}
+            tr = TestResult("fail", r.status_code)
+            results["dap_test"] = tr
             var_tester(url_address, results)
 
             base_name = url_address.split('/')[-1]
@@ -118,7 +129,6 @@ def var_tester(url_address, results):
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
     """
-
     try:
         dmr_doc = parseString(dmr_xml)
         # get elements by types ( Byte, Int8[16,32,64], UInt8[16,32,64], Float32[64], String ) to find nodes
@@ -155,7 +165,10 @@ def var_tester(url_address, results):
                         file.write(dap_r.text)
             else:
                 print("F", end="", flush=True) if not quiet else False
-                results[dap_url] = "fail"
+
+                tr = TestResult("fail", dap_r.status_code)
+                results[dap_url] = tr
+
                 base_name = url_address.split('/')[-1]
                 if save:
                     base_name = save + '/' + base_name
@@ -189,7 +202,7 @@ def url_test_runner(url, dmr=True, dap=True, nc4=False):
     """
     if dmr:
         dmr_results = url_tester_ext(url)
-        if dap and dmr_results == "pass":
+        if dap and dmr_results["dmr_test"].result == "pass":
             dap_results = dap_tester(url)
         else:
             dap = False
@@ -205,13 +218,13 @@ def print_results(results):
     print()
     print("----- Results -----")
     dmr_results = results["dmr"]
-    print(dmr_results + " | dmr test")
+    print(dmr_results["dmr_test"].result + " | " + str(dmr_results["dmr_test"].status) + " | dmr test")
 
-    if dmr_results == "pass":
+    if dmr_results["dmr_test"].result == "pass":
         dap_results = results["dap"]
         keys = dap_results.keys()
         for k in keys:
-            print(dap_results[k] + " | " + k)
+            print(dap_results[k].result + " | " + str(dap_results[k].status) + " | " + k)
     print("/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/")
 
 
