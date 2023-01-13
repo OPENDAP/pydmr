@@ -66,16 +66,60 @@ def url_tester_ext(url_address, ext='.dmr'):
         return "fail"
 
 
-def var_tester(url_address):
+def dap_tester(url_address, ext='.dap'):
+    """
+    Take an url and test whether the server can return its DMR response
+
+    :param: url_address: The url to be checked
+    :return: A pass/fail of whether the url passes
+    """
+    print("|", end="", flush=True) if not quiet else False
+    try:
+        print(".", end="", flush=True) if not quiet else False
+        r = requests.get(url_address + ext)
+        if r.status_code == 200:
+
+            results = {"dap test": "pass"}
+
+            # Save the response?
+            if save_all:
+                base_name = url_address.split('/')[-1]
+                if save:
+                    base_name = save + '/' + base_name
+                with open(base_name + ext, 'w') as file:
+                    file.write(r.text)
+        else:
+            print("F", end="", flush=True) if not quiet else False
+
+            results = {"dap test": "fail"}
+            var_tester(url_address, results)
+
+            base_name = url_address.split('/')[-1]
+            if save:
+                base_name = save + '/' + base_name
+            with open(base_name + ext + '.fail.txt', 'w') as file:
+                file.write(f'Status: {r.status_code}\n')
+                for header, values in r.headers.items():
+                    file.write(f'{header}: {values}\n')
+                file.write('\n')
+                file.write(f'Response: {r.text}\n')
+
+    # Ignore exception, the url_tester will return 'fail'
+    except requests.exceptions.InvalidSchema:
+        pass
+
+    return results
+
+
+def var_tester(url_address, results):
     """
     Take an url and test whether the server can return its DAP response
 
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
     """
-    check = False
+
     try:
-        print("|", end="", flush=True) if not quiet else False
         dmr_doc = parseString(dmr_xml)
         # get elements by types ( Byte, Int8[16,32,64], UInt8[16,32,64], Float32[64], String ) to find nodes
         variables = dmr_doc.getElementsByTagName("Byte")
@@ -95,15 +139,13 @@ def var_tester(url_address):
 
         variables += dmr_doc.getElementsByTagName("String")
 
-        results = {url_address: "data file"}
         for v in variables:
-            print(".", end="", flush=True) if not quiet else False
+            print("-", end="", flush=True) if not quiet else False
             t = build_leaf_path(v)
             dap_url = url_address + '.dap?dap4.ce=/' + t
             #  print(dap_url)
             dap_r = requests.get(dap_url)
             if dap_r.status_code == 200:
-                results[dap_url] = "pass"
                 # Save the response?
                 if save_all:
                     base_name = url_address.split('/')[-1]
@@ -148,7 +190,7 @@ def url_test_runner(url, dmr=True, dap=True, nc4=False):
     if dmr:
         dmr_results = url_tester_ext(url)
         if dap and dmr_results == "pass":
-            dap_results = var_tester(url)
+            dap_results = dap_tester(url)
         else:
             dap = False
 
@@ -178,18 +220,18 @@ def main():
 
     try:
 
-        results = url_test_runner("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
+        # results = url_test_runner("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
+        # print_results(results)
+
+        # results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure test
+        # print_results(results)
+
+        # results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")  # group test, few variables
+        results = url_test_runner("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")  # group test, few variables
         print_results(results)
 
-        results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure test
-        print_results(results)
-
-        results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")  # group test, few variables
-        # var_tester("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")  # group test
-        print_results(results)
-
-        results = url_test_runner("http://test.opendap.org/opendap/data/ff/avhrr.dat")  # sequence test
-        print_results(results)
+        # results = url_test_runner("http://test.opendap.org/opendap/data/ff/avhrr.dat")  # sequence test
+        # print_results(results)
 
     except Exception as e:
         print(e)
