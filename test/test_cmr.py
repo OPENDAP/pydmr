@@ -77,6 +77,9 @@ class TestCMR(unittest.TestCase):
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, [], {'c': 'd'})
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, {'c': 'd'}, [])
 
+    def test_get_collection_granules_first_last(self):
+        self.assertEqual({}, cmr.get_collection_granules_first_last("C1238517289-GES_DISC"))
+
 
 if __name__ == '__main__':
     unittest.main()
