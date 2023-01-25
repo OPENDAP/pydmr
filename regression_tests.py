@@ -16,6 +16,7 @@ import xml.dom.minidom as minidom
 import time
 import concurrent.futures
 import os
+import itertools
 
 import cmr
 import opendap_tests
@@ -185,7 +186,7 @@ def main():
 
     parser.add_argument("-l", "--limit", help="limit the number of tests to the first N collections."
                                               "By default, run all the tests.",
-                        default=0)
+                        type=int, default=0)
 
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
     parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
@@ -236,6 +237,11 @@ def main():
 
         # Get the collections for a given provider - this provides the CCID and title
         entries = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
+
+        # Truncate the entries if --limit is used
+        # NB: itertools.islice(sequence, start, stop, step) or itertools.islice(sequence, stop)
+        if args.limit > 0:
+            entries = dict(itertools.islice(entries.items(), args.limit))
 
         # For each collection...
         results = dict()
