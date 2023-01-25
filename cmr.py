@@ -111,7 +111,7 @@ def collection_granule_and_url_dict(json_resp):
     # Look for the entry id, title, and OPeNDAP link.
     for entry in json_resp["feed"]["entry"]:
         if len(entry.keys() & ("id", "title", "links")) == 3:
-            # check for the OPeNDAP URL int eh 'links' array
+            # check for the OPeNDAP URL in the 'links' array
             for link in entry["links"]:
                 if "title" in link and link["title"].find("OPeNDAP") == 0:
                     dict_resp[entry["id"]] = (entry["title"], link["href"])

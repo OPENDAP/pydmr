@@ -30,6 +30,15 @@ pretty: bool = False    # Ask CMR for formatted JSON responses
 dmr: bool = True        # Three types of tests follow
 dap: bool = False
 netcdf4: bool = False
+umm_json: bool = True   # Use the newer (correct) technique to get granule information
+cloud_only: bool = True # By default, only test URLs for the cloud. If False, test all the OPeNDAP URLs
+
+
+def is_opendap_cloud_url(url):
+    """
+    Predicate to test for an OPeNDAP in the Cloud URL
+    """
+    return "opendap.earthdata.nasa.gov" in url
 
 
 def test_one_collection(ccid, title):
@@ -48,15 +57,23 @@ def test_one_collection(ccid, title):
     print(f'{ccid}: {title}') if verbose else ''
 
     try:
-        first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=pretty)
+        if umm_json:
+            first_last_dict = cmr.get_collection_granules_umm_first_last(ccid, pretty=pretty)
+        else:
+            first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=pretty)
+
     except cmr.CMRException as e:
         return {ccid: (title, {"error": e.message})}
 
     collected_results = dict()
+    future_to_gid = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], 
-                                         dmr, dap, netcdf4): gid
-                         for gid, granule_tuple in first_last_dict.items()}
+        for gid, granule_tuple in first_last_dict.items():
+            if not cloud_only or is_opendap_cloud_url(granule_tuple[1]):
+                future_to_gid = {
+                    executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, netcdf4): gid}
+        # future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, netcdf4): gid
+        #                 for gid, granule_tuple in first_last_dict.items()}
         for future in concurrent.futures.as_completed(future_to_gid):
             gid = future_to_gid[future]
             try:
@@ -152,8 +169,23 @@ def main():
                         action="store_true", default=False)
     parser.add_argument("-s", "--save", help="directory to hold the test responses. Make the directory if needed.",
                         default='')
-    # parser.add_argument("-l", "--limit", help="limit the number of tests to the first N collections."
-    #                    "By default, run all the tests.", action="store_true", default=0)
+    parser.add_argument("-u", "--umm", help="Use the granules.umm_json query instead of the granules.json."
+                                            "By default, this is true since it's the correct way to query CMR"
+                                            "for information about OPeNDAP URLs to collections. The code"
+                                            "used the non-umm json previously, which is less reliable. Use the"
+                                            "option -no-umm to get the old behavior.",
+                        action="store_true", default=True)
+    parser.add_argument('--no-umm', dest='umm', action='store_false')
+    parser.add_argument('-C', '--cloud', help="Only test URLs for data in the cloud. See --all-urls"
+                                              "for a way to test all the URLs for a given provider. For some"
+                                              "providers, this can take a long time since it will test all"
+                                              "their on-premises collections",
+                        default=True, action='store_true')
+    parser.add_argument('--all-urls', dest='cloud', action='store_false')
+
+    parser.add_argument("-l", "--limit", help="limit the number of tests to the first N collections."
+                                              "By default, run all the tests.",
+                        default=0)
 
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
     parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
@@ -184,8 +216,12 @@ def main():
     dmr = args.dmr
     global dap 
     dap = args.dap
-    global nc4 
+    global netcdf4
     netcdf4 = args.netcdf4
+    global umm_json
+    umm_json = args.umm
+    global cloud_only
+    cloud_only = args.cloud
 
     cmr.verbose = args.verbose
 

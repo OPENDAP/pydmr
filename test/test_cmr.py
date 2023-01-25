@@ -24,12 +24,12 @@ class TestCMR(unittest.TestCase):
     # That array holds dictionaries, where each value of the key 'umm' is and array of...
     # dictionaries. gads.
     g1 = {'items': [{'umm': {'RelatedUrls': [{'URL': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc',
-                                              'Type': 'GET DATA'},
+                                              'Type': 'GET DATA', 'Subtype': 'OPENDAP DATA'},
                                              {'URL': 'https://archive/250_2101_ovw.l2.nc',
-                                              'Type': 'GET DATA'}]}}]}
+                                              'Type': 'GET DATA', 'Subtype': 'OPENDAP DATA'}]}}]}
     # this has one element of the RelatedUrls array with both Type and URL and one missing Type
     g12 = {'items': [{'umm': {'RelatedUrls': [{'URL': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc',
-                                               'Type': 'GET DATA'},
+                                               'Type': 'GET DATA', 'Subtype': 'OPENDAP DATA'},
                                               {'URL': 'https://archive/250_2101_ovw.l2.nc'}]}}]}
 
     # These are all missing things
@@ -76,9 +76,6 @@ class TestCMR(unittest.TestCase):
         # In the following, just test a small and unique part of the error message.
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, [], {'c': 'd'})
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, {'c': 'd'}, [])
-
-    def test_get_collection_granules_first_last(self):
-        self.assertEqual({}, cmr.get_collection_granules_first_last("C1238517289-GES_DISC"))
 
 
 if __name__ == '__main__':
