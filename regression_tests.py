@@ -21,31 +21,61 @@ import itertools
 import cmr
 import opendap_tests
 
-
 """
 Global variables. These ease getting values into functions that will be
 run using a ThreadExecutor.
 """
-verbose: bool = False   # Verbose output here and in cmr.py
-pretty: bool = False    # Ask CMR for formatted JSON responses
-dmr: bool = True        # Three types of tests follow
+verbose: bool = False  # Verbose output here and in cmr.py
+pretty: bool = False  # Ask CMR for formatted JSON responses
+dmr: bool = True  # Three types of tests follow
 dap: bool = False
 netcdf4: bool = False
-umm_json: bool = True   # Use the newer (correct) technique to get granule information
-cloud_only: bool = True # By default, only test URLs for the cloud. If False, test all the OPeNDAP URLs
+umm_json: bool = True  # Use the newer (correct) technique to get granule information
+cloud_only: bool = True  # By default, only test URLs for the cloud. If False, test all the OPeNDAP URLs
 
 
-def is_opendap_cloud_url(url):
+def is_opendap_cloud_url(url) -> bool:
     """
     Predicate to test for an OPeNDAP in the Cloud URL
     """
     return "opendap.earthdata.nasa.gov" in url
 
 
+def has_only_cloud_opendap_urls(first_last_dict) -> bool:
+    """
+    :param first_last_dict: Dictionary of the form {ID1 : (Title1, URL1), ID2 : (Title2, URL2)}
+    :returns: True if all the URLs in the dictionary satisfy is_opendap_cloud_url()
+    """
+    # for value in first_last_dict.values():
+    #     if not is_opendap_cloud_url(value[1]):
+    #         return False
+    # return True
+    return all(is_opendap_cloud_url(value[1]) for value in first_last_dict.values())
+
+
+def formatted_urls(first_last_dict) -> str:
+    """
+    Extract the URLs from the first_last_dict and return them as a single
+    string of CSVs.
+    :param first_last_dict: Dictionary of the form {ID1 : (Title1, URL1), ID2 : (Title2, URL2)}
+    :returns: A formatted string
+    """
+    # urls = []
+    # for value in first_last_dict.values():
+    #     urls.append(value[1])
+    # return ", ".join(urls)
+    return ", ".join(value[1] for value in first_last_dict.values())
+
+
 def test_one_collection(ccid, title):
     """
-    For one collection, run all the configured tests
-    :param: ccid: The collection concept Id
+    For one collection, run all the configured tests. If no URLs are found, then an
+    error response is returned (not an exception, but a dictionary with an 'error'
+    message. If the global 'cloud_only' is true (indicating the caller only want to
+    test URLs for data in the cloud) but one or more non-cloud URLs are returned,
+    an 'info' message is returned that includes the URLs.
+
+    :param: ccid: The collection concept ID
     :param: title: The collections title
     :param: verbose: Should the verbose mode of the cmr.py module be used?
     :param: pretty: Request CMR return nicely formatted JSON
@@ -63,18 +93,29 @@ def test_one_collection(ccid, title):
         else:
             first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=pretty)
 
+    # test for cloud URLs here - throw but make it a warning? jhrg 1/25/23
     except cmr.CMRException as e:
         return {ccid: (title, {"error": e.message})}
+
+    # Test for cloud URLs and return an 'info' response if they are not present.
+    # What if there is one on-premises and one cloud URL?  For now, all the URLs
+    # must be cloud URLs if 'cloud_only' is true. jhrg 1/25/23
+    if cloud_only and not has_only_cloud_opendap_urls(first_last_dict):
+        return {ccid: (title, {"info": f'Expected one or more URLs to data in the cloud, but got '
+                                       f'{formatted_urls(first_last_dict)} instead'})}
 
     collected_results = dict()
     future_to_gid = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        for gid, granule_tuple in first_last_dict.items():
-            if not cloud_only or is_opendap_cloud_url(granule_tuple[1]):
-                future_to_gid = {
-                    executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, netcdf4): gid}
-        # future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, netcdf4): gid
-        #                 for gid, granule_tuple in first_last_dict.items()}
+        # for gid, granule_tuple in first_last_dict.items():
+        #     # Sorry for the double negative... not cloud_only == test all urls. jhrg 1/25/23
+        #     if not cloud_only or is_opendap_cloud_url(granule_tuple[1]):
+        #         future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, netcdf4):
+        #                          gid}
+
+        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, netcdf4): gid
+                         for gid, granule_tuple in first_last_dict.items()}
+
         for future in concurrent.futures.as_completed(future_to_gid):
             gid = future_to_gid[future]
             try:
@@ -86,7 +127,10 @@ def test_one_collection(ccid, title):
                 # first_last_dict[gid][1] is the URL we tested
                 collected_results[gid] = (first_last_dict[gid][1], test_results)
 
-    return {ccid: (title, collected_results)}
+    if collected_results.items() is None:
+        return {}
+    else:
+        return {ccid: (title, collected_results)}
 
 
 def write_xml_document(provider, version, results):
@@ -135,6 +179,10 @@ def write_xml_document(provider, version, results):
         for gid, tests in granule_results.items():
             if gid == "error":
                 test = root.createElement('Error')
+                test.setAttribute('message', tests)
+                collection.appendChild(test)
+            elif gid == "info":
+                test = root.createElement('Info')
                 test.setAttribute('message', tests)
                 collection.appendChild(test)
             else:
@@ -202,20 +250,20 @@ def main():
     # parser.add_argument("-c", "--concurrency", help="run the tests concurrently", default=True,
     #                     action=argparse.BooleanOptionalAction)
 
-    group = parser.add_mutually_exclusive_group(required=True)   # only one option in 'group' is allowed at a time
+    group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
 
     args = parser.parse_args()
 
     # These are here mostly to get the values of verbose and pretty into test_one_collection()
     # which is run below using a ThreadPoolExecutor and map()
-    global verbose 
+    global verbose
     verbose = args.verbose
-    global pretty 
+    global pretty
     pretty = args.pretty
-    global dmr 
+    global dmr
     dmr = args.dmr
-    global dap 
+    global dap
     dap = args.dap
     global netcdf4
     netcdf4 = args.netcdf4
