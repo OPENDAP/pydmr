@@ -24,7 +24,7 @@ def url_tester_ext(url_address, ext='.dmr'):
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
     """
-    dmr_check = False
+    check = False
     try:
         print(".", end="", flush=True) if not quiet else False
         r = requests.get(url_address + ext)
