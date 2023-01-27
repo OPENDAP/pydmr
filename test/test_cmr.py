@@ -1,9 +1,9 @@
-
 """
 Test functions in the pydmr cmr module.
 """
 import unittest
 import cmr
+from test import CMR_Responses
 
 
 class TestCMR(unittest.TestCase):
@@ -12,7 +12,8 @@ class TestCMR(unittest.TestCase):
                               {'id': 'C5678-Provider', 'title': 'Another title'}]}}
 
     # These include producer_granule_id and granule_count info
-    d2 = {'feed': {'entry': [{'id': 'C1234-Provider', 'title': 'A title with spaces', 'producer_granule_id': 'G1234', 'granule_count': 10}]}}
+    d2 = {'feed': {'entry': [
+        {'id': 'C1234-Provider', 'title': 'A title with spaces', 'producer_granule_id': 'G1234', 'granule_count': 10}]}}
     d22 = {'feed': {'entry': [{'id': 'C1234-Provider', 'title': 'A title with spaces', 'producer_granule_id': 'G1234'},
                               {'id': 'C5678-Provider', 'title': 'Another title', 'granule_count': 10}]}}
 
@@ -38,20 +39,29 @@ class TestCMR(unittest.TestCase):
     g3 = {'items': [{'umm': {}}]}
     g4 = {'items': []}
 
+    # Process request values
+    p1 = ["https://cmr.earthdata.nasa.gov/search/granules.json""?collection_concept_id=C2075141605-POCLOUD",
+          cmr.collection_granule_and_url_dict, cmr.get_session(), 1, 1]
+    p2 = ["C2075141559-POCLOUD", cmr.collection_granule_and_url_dict, False, 'cmr.earthdata.nasa.gov']
+
     def test_collection_granules_dict(self):
         self.assertEqual({'C1234-Provider': 'A title with spaces'}, cmr.collection_granules_dict(self.d1))
-        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': 'Another title'}, cmr.collection_granules_dict(self.d12))
+        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': 'Another title'},
+                         cmr.collection_granules_dict(self.d12))
         self.assertEqual({'C1234-Provider': ('A title with spaces', 'G1234')}, cmr.collection_granules_dict(self.d2))
-        self.assertEqual({'C1234-Provider': ('A title with spaces', 'G1234'), 'C5678-Provider': 'Another title'}, cmr.collection_granules_dict(self.d22))
+        self.assertEqual({'C1234-Provider': ('A title with spaces', 'G1234'), 'C5678-Provider': 'Another title'},
+                         cmr.collection_granules_dict(self.d22))
         self.assertEqual({}, cmr.collection_granules_dict(self.d3))
         self.assertEqual({}, cmr.collection_granules_dict(self.d4))
         self.assertEqual({}, cmr.collection_granules_dict(self.d5))
 
     def test_provider_collections_dict(self):
         self.assertEqual({'C1234-Provider': 'A title with spaces'}, cmr.provider_collections_dict(self.d1))
-        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': 'Another title'}, cmr.provider_collections_dict(self.d12))
+        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': 'Another title'},
+                         cmr.provider_collections_dict(self.d12))
         self.assertEqual({'C1234-Provider': (10, 'A title with spaces')}, cmr.provider_collections_dict(self.d2))
-        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': (10, 'Another title')}, cmr.provider_collections_dict(self.d22))
+        self.assertEqual({'C1234-Provider': 'A title with spaces', 'C5678-Provider': (10, 'Another title')},
+                         cmr.provider_collections_dict(self.d22))
         self.assertEqual({}, cmr.provider_collections_dict(self.d3))
         self.assertEqual({}, cmr.provider_collections_dict(self.d4))
         self.assertEqual({}, cmr.provider_collections_dict(self.d5))
@@ -76,6 +86,12 @@ class TestCMR(unittest.TestCase):
         # In the following, just test a small and unique part of the error message.
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, [], {'c': 'd'})
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, {'c': 'd'}, [])
+
+    def test_process_request(self):
+        self.assertEqual(CMR_Responses.p1, cmr.process_request(*self.p1))
+
+    def test_get_collection_granules_first_last(self):
+        self.assertEqual(CMR_Responses.p2, cmr.get_collection_granules_first_last(*self.p2))
 
 
 if __name__ == '__main__':

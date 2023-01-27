@@ -1,3 +1,10 @@
+p1 = {'G2081656126-POCLOUD':
+          ('ascat_20121029_010301_metopb_00588_eps_o_coa_2101_ovw.l2',
+           'https://opendap.earthdata.nasa.gov/collections/C2075141605-POCLOUD/granules/ascat_20121029_010301_metopb_00588_eps_o_coa_2101_ovw.l2')}
+p2 = {'G2081588885-POCLOUD': ('ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2',
+                              'https://opendap.earthdata.nasa.gov/collections/C2075141559-POCLOUD/granules/ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2'),
+      'G2597212589-POCLOUD': ('ascat_20230127_040300_metopb_53752_eps_o_250_3301_ovw.l2',
+                              'https://opendap.earthdata.nasa.gov/collections/C2075141559-POCLOUD/granules/ascat_20230127_040300_metopb_53752_eps_o_250_3301_ovw.l2')}
 
 g1 = {'hits': 1, 'took': 152, 'items': [{'meta': {'concept-type': 'granule', 'concept-id': 'G2081588885-POCLOUD',
                                                  'revision-id': 4,
