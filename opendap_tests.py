@@ -33,6 +33,7 @@ def url_tester_ext(url_address, ext='.dmr'):
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
     """
+
     results = {"dmr_test": "fail"}
     global dmr_xml
     try:

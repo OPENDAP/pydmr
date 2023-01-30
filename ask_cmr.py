@@ -54,7 +54,9 @@ def main():
         if args.collection and granules:
             entries = cmr.get_collection_granules(args.collection, pretty=pretty, descending=args.descending)
         elif args.collection and firstlast:
-            entries = cmr.get_collection_granules(args.collection, pretty=pretty)
+            entries = cmr.get_collection_granules_umm_first_last(args.collection, pretty=pretty)
+            #entries = cmr.get_collection_granules_first_last(args.collection, pretty=pretty)
+            # entries = cmr.get_collection_granules(args.collection, pretty=pretty)
         elif args.collection:
             entries = cmr.get_collection_entry(args.collection, pretty=pretty, count=args.count)
         elif args.resty_path:
