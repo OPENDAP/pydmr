@@ -27,7 +27,7 @@ def main():
     # argparse.BooleanOptionalAction makes --xml/--no-xml work. The default is to make xml. Requires Python 3.10.x
     # parser.add_argument("-x", "--xml", help="time responses from CMR", action=argparse.BooleanOptionalAction,
     #                     default=True)
-    parser.add_argument("-V", "--version", help="version number for test results XML file", action="store_true",
+    parser.add_argument("-V", "--version", help="version number for unit_tests results XML file", action="store_true",
                         default="1")
     parser.add_argument("-T", "--tests", help="run the regression tests on the provider's collections",
                         action="store_true", default=False)

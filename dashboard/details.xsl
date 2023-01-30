@@ -70,11 +70,11 @@
     <xsl:template match="Test">
       <tr title="{../@long_name}" class="result-{@result}">
 	 <xsl:variable name="pass_fail" select="@result"/>
-	<xsl:choose> <!-- test passed -->
+	<xsl:choose> <!-- unit_tests passed -->
 	  <xsl:when test="$pass_fail='pass'">
 	    <td><xsl:value-of select="@result"/></td>
 	  </xsl:when>
-	  <xsl:otherwise> <!-- test failed, link to fail.txt -->
+	  <xsl:otherwise> <!-- unit_tests failed, link to fail.txt -->
 	    <td><a href="logs/{substring-after(@url,'/granules/')}.{@name}.fail.txt"><xsl:value-of select="@result"/></a></td>
 	  </xsl:otherwise>
 	</xsl:choose>  

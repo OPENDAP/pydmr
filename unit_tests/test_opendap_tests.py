@@ -59,9 +59,9 @@ class MyTestCase(unittest.TestCase):
                 var = opendap_tests.build_leaf_path(f32s[0])
                 self.assertEqual(var, "HDFEOS/GRIDS/GeoGrid/Data_Fields/temperature")
             else:
-                self.fail("Could not reach test file")
+                self.fail("Could not reach unit_tests file")
         except requests.exceptions.RequestException:
-            self.fail("exception thrown in test: test_build_leaf_path_groups")
+            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
 
     def test_build_leaf_path_structure(self):
         opendap_tests.quiet = True
@@ -74,9 +74,9 @@ class MyTestCase(unittest.TestCase):
                 var = opendap_tests.build_leaf_path(f32s[0])
                 self.assertEqual(var, "obs.relhum")
             else:
-                self.fail("Could not reach test file")
+                self.fail("Could not reach unit_tests file")
         except requests.exceptions.RequestException:
-            self.fail("exception thrown in test: test_build_leaf_path_groups")
+            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
 
     def test_build_leaf_path_sequence(self):
         opendap_tests.quiet = True
@@ -89,9 +89,9 @@ class MyTestCase(unittest.TestCase):
                 var = opendap_tests.build_leaf_path(i32s[0])
                 self.assertEqual(var, "URI_Avhrr.year")
             else:
-                self.fail("Could not reach test file")
+                self.fail("Could not reach unit_tests file")
         except requests.exceptions.RequestException:
-            self.fail("exception thrown in test: test_build_leaf_path_groups")
+            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
 
     def test_build_leaf_path_default(self):
         opendap_tests.quiet = True
@@ -104,9 +104,9 @@ class MyTestCase(unittest.TestCase):
                 var = opendap_tests.build_leaf_path(f32s[0])
                 self.assertEqual(var, "d_16_chunks")
             else:
-                self.fail("Could not reach test file")
+                self.fail("Could not reach unit_tests file")
         except requests.exceptions.RequestException:
-            self.fail("exception thrown in test: test_build_leaf_path_groups")
+            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
 
 
 if __name__ == '__main__':

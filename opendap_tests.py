@@ -26,7 +26,7 @@ class TestResult:
 
 def dmr_tester(url_address):
     """
-    Take an url and test whether the server can return its DMR response
+    Take an url and unit_tests whether the server can return its DMR response
 
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
@@ -74,7 +74,7 @@ def dmr_tester(url_address):
 
 def dap_tester(url_address, var_test=True):
     """
-    Take an url and test whether the server can return its DMR response
+    Take an url and unit_tests whether the server can return its DMR response
 
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
@@ -125,7 +125,7 @@ def dap_tester(url_address, var_test=True):
 
 def var_tester(url_address, results, save_passes=False):
     """
-    Take an url and test whether the server can return its DAP response
+    Take an url and unit_tests whether the server can return its DAP response
     def dap_tester(url_address, ext='.dap'):
     """
     try:
@@ -247,14 +247,14 @@ def main():
         results = url_test_runner("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
         print_results(results)
 
-    # results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure test
+    # results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure unit_tests
         # print_results(results)
 
-    # results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")  # group test, few variables
+    # results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")  # group unit_tests, few variables
     # results = url_test_runner("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")
         # print_results(results)
 
-        # results = url_test_runner("http://test.opendap.org/opendap/data/ff/avhrr.dat")  # sequence test
+        # results = url_test_runner("http://test.opendap.org/opendap/data/ff/avhrr.dat")  # sequence unit_tests
         # print_results(results)
 
     except Exception as e:

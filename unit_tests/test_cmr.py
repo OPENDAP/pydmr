@@ -140,7 +140,7 @@ class TestCMR(unittest.TestCase):
         self.assertEqual({'a': 'b'}, cmr.merge_dict({'a': 'b'}, {}))
         self.assertEqual({'c': 'd'}, cmr.merge_dict({}, {'c': 'd'}))
         self.assertEqual({}, cmr.merge_dict({}, {}))
-        # In the following, just test a small and unique part of the error message.
+        # In the following, just unit_tests a small and unique part of the error message.
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, [], {'c': 'd'})
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, {'c': 'd'}, [])
 
