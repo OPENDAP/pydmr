@@ -31,6 +31,7 @@ def dmr_tester(url_address):
     :param: url_address: The url to be checked
     :return: A pass/fail of whether the url passes
     """
+
     ext = '.dmr'
     tr = TestResult("fail", 500)
     results = {"dmr_test": tr}
@@ -125,9 +126,7 @@ def dap_tester(url_address, var_test=True):
 def var_tester(url_address, results, save_passes=False):
     """
     Take an url and test whether the server can return its DAP response
-
-    :param: url_address: The url to be checked
-    :return: A pass/fail of whether the url passes
+    def dap_tester(url_address, ext='.dap'):
     """
     try:
         r = requests.get(url_address + ".dmr")
@@ -195,7 +194,7 @@ def var_tester(url_address, results, save_passes=False):
     return results
 
 
-def build_leaf_path (var):
+def build_leaf_path(var):
     path = var.getAttribute("name")
     # print(path)
     if var.parentNode.nodeName != "Dataset":
@@ -222,7 +221,7 @@ def url_test_runner(url, dmr=True, dap=True, nc4=False):
 
     test_results = {"dmr": dmr_results if dmr else "NA",
                     "dap": dap_results if dap else "NA",
-                    "netcdf4": dmr_tester(url, '.dap.nc4') if nc4 else "NA"}
+                    "netcdf4": dmr_tester(url) if nc4 else "NA"}
 
     return test_results
 
@@ -245,7 +244,6 @@ def main():
     import argparse
 
     try:
-
         results = url_test_runner("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
         print_results(results)
 
