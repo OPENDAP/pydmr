@@ -12,27 +12,30 @@
                 border: 1px solid black;
                 border-collapse: collapse;
                 }
-		th, td {
-		padding-top: 2px;
-		padding-bottom: 2px;
-		padding-left: 10px;
-		padding-right: 10px;
-		}
-		th, #ccid {
-		text-align: left;
-		}
-		td {
-		text-align: center;
-		}
-		.result-pass {
-		background-color: #ccffcc
-		}
-		.result-fail {
-		background-color: #ffcccc
-		}
-		.result-error {
-		background-color: #ffdab3
-		}
+                th, td {
+                padding-top: 2px;
+                padding-bottom: 2px;
+                padding-left: 10px;
+                padding-right: 10px;
+                }
+                th, #ccid {
+                text-align: left;
+                }
+                td {
+                text-align: center;
+                }
+                .result-pass {
+                background-color: #ccffcc
+                }
+                .result-fail {
+                background-color: #ffcccc
+                }
+                .result-error {
+                background-color: #ffdab3
+                }
+                .result-info {
+                background-color: #b3daff
+                }
             </style>
             </head>
             <body>
@@ -89,6 +92,23 @@
 	    <td>...</td>
             <td><xsl:value-of select="@message"/></td>
       </tr>
+    </xsl:template>
+
+    <!--
+    <?xml version="1.0" ?>
+    <?xml-stylesheet type='text/xsl' href='/NGAP-PROD-tests/details.xsl'?>
+    <Provider name="GES_DISC" date="Wed Jan 25 17:37:58 2023">
+    <Collection ccid="C1238517289-GES_DISC" long_name="AIRS/Aqua L3 Daily Standard Physical Retrieval (AIRS-only) 1 degree x 1 degree V006 (AIRS3STD) at GES DISC">
+        <Info message="Expected one or more URLs to data in the cloud, but got https://acdisc.gesdisc.eosdis.nasa.gov/opendap/Aqua_AIRS_Level3/AIRS3STD.006/2002/AIRS.2002.08.31.L3.RetStd_IR001.v6.0.9.0.G13214161357.hdf, https://acdisc.gesdisc.eosdis.nasa.gov/opendap/Aqua_AIRS_Level3/AIRS3STD.006/2023/AIRS.2023.01.24.L3.RetStd_IR001.v6.0.33.0.G23025130618.hdf instead"/>
+    </Collection>
+    -->
+
+    <xsl:template match="Info">
+        <tr title="{../@long_name}" class="result-info">
+            <td>Info</td>
+            <td>...</td>
+            <td><xsl:value-of select="@message"/></td>
+        </tr>
     </xsl:template>
     
 </xsl:stylesheet>
