@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 """
-Simple test driver for all Collections held by a NASA DAAC that have OPeNDAP
-URLS in the CMR catalog system. The test driver runs a suite of tests on the
+Simple unit_tests driver for all Collections held by a NASA DAAC that have OPeNDAP
+URLS in the CMR catalog system. The unit_tests driver runs a suite of tests on the
 oldest and newest granules in each collection.
 
 Now supports limit concurrency via futures. Several collections can be tested
 at once.
 
-The output of this test driver is an XML document that can be used as a document
+The output of this unit_tests driver is an XML document that can be used as a document
 in its own right or rendered as an HTML web page.
 """
 
@@ -31,7 +31,7 @@ dmr: bool = True  # Three types of tests follow
 dap: bool = False
 netcdf4: bool = False
 umm_json: bool = True  # Use the newer (correct) technique to get granule information
-cloud_only: bool = True  # By default, only test URLs for the cloud. If False, test all the OPeNDAP URLs
+cloud_only: bool = True  # By default, only unit_tests URLs for the cloud. If False, unit_tests all the OPeNDAP URLs
 
 
 def is_opendap_cloud_url(url) -> bool:
@@ -72,14 +72,14 @@ def test_one_collection(ccid, title):
     For one collection, run all the configured tests. If no URLs are found, then an
     error response is returned (not an exception, but a dictionary with an 'error'
     message. If the global 'cloud_only' is true (indicating the caller only want to
-    test URLs for data in the cloud) but one or more non-cloud URLs are returned,
+    unit_tests URLs for data in the cloud) but one or more non-cloud URLs are returned,
     an 'info' message is returned that includes the URLs.
 
     :param: ccid: The collection concept ID
     :param: title: The collections title
     :param: verbose: Should the verbose mode of the cmr.py module be used?
     :param: pretty: Request CMR return nicely formatted JSON
-    :return: A dictionary with ccid as key and the title and collected test
+    :return: A dictionary with ccid as key and the title and collected unit_tests
         tuple results as a value. The collected results are also a dictionary
         that holds the GID and yet another python dict of tests and their status.
         E.G: {CCID: (<title>, {G2224035357-POCLOUD: (URL, {'dmr': 'pass', 'dap': 'NA', 'netcdf4': 'NA'}), ... } ) }
@@ -93,7 +93,7 @@ def test_one_collection(ccid, title):
         else:
             first_last_dict = cmr.get_collection_granules_first_last(ccid, pretty=pretty)
 
-    # test for cloud URLs here - throw but make it a warning? jhrg 1/25/23
+    # unit_tests for cloud URLs here - throw but make it a warning? jhrg 1/25/23
     except cmr.CMRException as e:
         return {ccid: (title, {"error": e.message})}
 
@@ -208,11 +208,11 @@ def main():
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true", default=False)
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true", default=False)
-    parser.add_argument("-q", "--quiet", help="quiet the tests. By default print a dot for each test run",
+    parser.add_argument("-q", "--quiet", help="quiet the tests. By default print a dot for each unit_tests run",
                         action="store_true", default=False)
     parser.add_argument("-a", "--all", help="save the output from all the tests, including the ones that pass",
                         action="store_true", default=False)
-    parser.add_argument("-s", "--save", help="directory to hold the test responses. Make the directory if needed.",
+    parser.add_argument("-s", "--save", help="directory to hold the unit_tests responses. Make the directory if needed.",
                         default='')
     parser.add_argument("-u", "--umm", help="Use the granules.umm_json query instead of the granules.json."
                                             "By default, this is true since it's the correct way to query CMR"
@@ -221,9 +221,9 @@ def main():
                                             "option -no-umm to get the old behavior.",
                         action="store_true", default=True)
     parser.add_argument('--no-umm', dest='umm', action='store_false')
-    parser.add_argument('-C', '--cloud', help="Only test URLs for data in the cloud. See --all-urls"
-                                              "for a way to test all the URLs for a given provider. For some"
-                                              "providers, this can take a long time since it will test all"
+    parser.add_argument('-C', '--cloud', help="Only unit_tests URLs for data in the cloud. See --all-urls"
+                                              "for a way to unit_tests all the URLs for a given provider. For some"
+                                              "providers, this can take a long time since it will unit_tests all"
                                               "their on-premises collections",
                         default=True, action='store_true')
     parser.add_argument('--all-urls', dest='cloud', action='store_false')
@@ -294,7 +294,7 @@ def main():
                 result_list = executor.map(test_one_collection, entries.keys(), entries.values())
                 for result in result_list:
                     try:
-                        print(f'Result from test: {result}') if args.verbose else ''
+                        print(f'Result from unit_tests: {result}') if args.verbose else ''
                         results = cmr.merge_dict(results, result)
                     except Exception as exc:
                         print(f'Exception: {exc}')

@@ -36,10 +36,10 @@ def main():
     parser.add_argument("-d", "--descending", help="for a list of granules, get the newest first (the 'last' granule)."
                                                     "By default, the granules are listed in ascending order (oldest first)", action="store_true")
 
-    parser.add_argument("-T", "--test-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
+    parser.add_argument("-T", "--unit_tests-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
     parser.add_argument("-f", "--firstlast", help="get the first and last granule of a collection", action="store_true")
-    parser.add_argument("-u", "--url-test", help="find out which urls from a collection have a valid dmr")
-    parser.add_argument("-U", "--full-test", help="Given a provider, run the tests on the first and last granule of each collection", action="store_true")
+    parser.add_argument("-u", "--url-unit_tests", help="find out which urls from a collection have a valid dmr")
+    parser.add_argument("-U", "--full-unit_tests", help="Given a provider, run the tests on the first and last granule of each collection", action="store_true")
 
     args = parser.parse_args()
 

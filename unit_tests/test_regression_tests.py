@@ -42,3 +42,4 @@ class TestRegressionTests(unittest.TestCase):
         self.assertEqual(regression_tests.formatted_urls(self.fail3),
                          "https://opendap.earthdata.nasa.gov/foo/bar.h5, https://podaac.machine.domain.tld/hello/world.h5",
                          "Should pass")
+
