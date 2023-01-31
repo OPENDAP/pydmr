@@ -39,8 +39,8 @@ class TestCMR(unittest.TestCase):
     g3 = {'items': [{'umm': {}}]}
     g4 = {'items': []}
 
-    # Process request values
-    p1 = ["https://cmr.earthdata.nasa.gov/search/granules.json""?collection_concept_id=C2075141605-POCLOUD",
+    # Method values
+    p1 = ["https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2075141559-POCLOUD",
           cmr.collection_granule_and_url_dict, cmr.get_session(), 1, 1]
     p2 = ["C2075141559-POCLOUD", cmr.collection_granule_and_url_dict, False, 'cmr.earthdata.nasa.gov']
 
