@@ -28,7 +28,7 @@ run using a ThreadExecutor.
 verbose: bool = False  # Verbose output here and in cmr.py
 pretty: bool = False  # Ask CMR for formatted JSON responses
 dmr: bool = True  # Three types of tests follow
-dap: bool = False
+dap: bool = True
 netcdf4: bool = False
 umm_json: bool = True  # Use the newer (correct) technique to get granule information
 cloud_only: bool = True  # By default, only unit_tests URLs for the cloud. If False, unit_tests all the OPeNDAP URLs
@@ -172,6 +172,11 @@ def write_xml_document(provider, version, results):
         # Add XML for all the tests we ran
         granule_results = results[ccid][1];
         # {G2224035357-POCLOUD: (URL, {'dmr': 'pass', 'dap': 'NA', 'netcdf4': 'NA'}), ...}
+        # ..G2599786095-POCLOUD: {'dmr': {'dmr_test': <opendap_tests.TestResult object at 0x7f06591abc88>},
+        #                         'dap': 'NA',
+        #                         'netcdf4': 'NA'}
+
+        # for gid, tests in granule_results.items():
         for gid, tests in granule_results.items():
             if gid == "error":
                 test = root.createElement('Error')
@@ -184,11 +189,18 @@ def write_xml_document(provider, version, results):
             else:
                 url = tests[0]
                 for name, result in tests[1].items():
+                    print(result)
                     if result != "NA":
+                        if "dmr_test" in result.keys():
+                            test_result = result.get("dmr_test")
+                        elif "dap_test" in result.keys():
+                            test_result = result.get("dap_test")
+
                         test = root.createElement('Test')
                         test.setAttribute('name', name)
                         test.setAttribute('url', url)
-                        test.setAttribute('result', result)
+                        test.setAttribute('result', test_result.result)
+                        test.setAttribute('status', str(test_result.status))
                         collection.appendChild(test)
 
     # Save the XML
@@ -233,7 +245,7 @@ def main():
                         type=int, default=0)
 
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
-    parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
+    parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true", default=True)
     parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
 
     parser.add_argument("-V", "--version", help="increase output verbosity", default="1")
