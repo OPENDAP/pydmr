@@ -214,7 +214,7 @@ def url_test_runner(url, dmr=True, dap=True, dap_vars=True, nc4=False):
         dmr_results = dmr_tester(url)
         if dap and dmr_results["dmr_test"].result == "pass":
             dap_results = dap_tester(url)
-            if dap_vars:  # and dap_results["dap_test"].result == "fail":
+            if dap_vars and dap_results["dap_test"].result == "fail":
                 var_results = var_tester(url, True)
             else:
                 dap_vars = False
