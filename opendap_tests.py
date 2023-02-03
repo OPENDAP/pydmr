@@ -72,7 +72,7 @@ def dmr_tester(url_address):
     return results
 
 
-def dap_tester(url_address, var_test=True):
+def dap_tester(url_address):
     """
     Take an url and unit_tests whether the server can return its DMR response
 
@@ -103,9 +103,6 @@ def dap_tester(url_address, var_test=True):
 
             results["dap_test"].status = r.status_code
 
-            if var_test:
-                var_tester(url_address, results)
-
             base_name = url_address.split('/')[-1]
             if save:
                 base_name = save + '/' + base_name
@@ -123,11 +120,12 @@ def dap_tester(url_address, var_test=True):
     return results
 
 
-def var_tester(url_address, results, save_passes=False):
+def var_tester(url_address, save_passes=False):
     """
     Take an url and unit_tests whether the server can return its DAP response
     def dap_tester(url_address, ext='.dap'):
     """
+    results = {}
     try:
         r = requests.get(url_address + ".dmr")
         if r.status_code == 200:
@@ -208,7 +206,7 @@ def build_leaf_path(var):
     return path
 
 
-def url_test_runner(url, dmr=True, dap=True, nc4=False):
+def url_test_runner(url, dmr=True, dap=True, dap_vars=True, nc4=False):
     """
     Common access point for all the tests.
     """
@@ -216,11 +214,17 @@ def url_test_runner(url, dmr=True, dap=True, nc4=False):
         dmr_results = dmr_tester(url)
         if dap and dmr_results["dmr_test"].result == "pass":
             dap_results = dap_tester(url)
+            if dap_vars:  # and dap_results["dap_test"].result == "fail":
+                var_results = var_tester(url, True)
+            else:
+                dap_vars = False
         else:
             dap = False
+            dap_vars = False
 
     test_results = {"dmr": dmr_results if dmr else "NA",
                     "dap": dap_results if dap else "NA",
+                    "dap_vars": var_results if dap_vars else "NA",
                     "netcdf4": dmr_tester(url) if nc4 else "NA"}
 
     return test_results
@@ -232,11 +236,15 @@ def print_results(results):
     dmr_results = results["dmr"]
     print(dmr_results["dmr_test"].result + " | " + str(dmr_results["dmr_test"].status) + " | dmr_test")
 
-    if dmr_results["dmr_test"].result == "pass":
+    if results["dap"] != "NA" and dmr_results["dmr_test"].result == "pass":
         dap_results = results["dap"]  # getting the dap inner dictionary from outer dictionary
-        keys = dap_results.keys()
-        for k in keys:
-            print(dap_results[k].result + " | " + str(dap_results[k].status) + " | " + k)
+        print(dap_results["dap_test"].result + " | " + str(dap_results["dap_test"].status) + " | dap_test")
+
+        if results["vars"] != "NA":
+            var_results = results["vars"]
+            keys = var_results.keys()
+            for k in keys:
+                print(var_results[k].result + " | " + str(var_results[k].status) + " | " + k)
     print("/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/")
 
 

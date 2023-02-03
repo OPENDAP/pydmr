@@ -29,6 +29,7 @@ verbose: bool = False  # Verbose output here and in cmr.py
 pretty: bool = False  # Ask CMR for formatted JSON responses
 dmr: bool = True  # Three types of tests follow
 dap: bool = True
+dap_var: bool = True
 netcdf4: bool = False
 umm_json: bool = True  # Use the newer (correct) technique to get granule information
 cloud_only: bool = True  # By default, only unit_tests URLs for the cloud. If False, unit_tests all the OPeNDAP URLs
@@ -109,7 +110,7 @@ def test_one_collection(ccid, title):
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         # future_to_gid is a dictionary where the key is a future that will return
         # the results of running tests on a granule and the value is the granule's concept ID
-        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, netcdf4): gid
+        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, dap_var, netcdf4): gid
                          for gid, granule_tuple in first_last_dict.items()}
 
         for future in concurrent.futures.as_completed(future_to_gid):
@@ -191,17 +192,18 @@ def write_xml_document(provider, version, results):
                 for name, result in tests[1].items():
                     print(result)
                     if result != "NA":
-                        if "dmr_test" in result.keys():
+                        if name == "dmr":
                             test_result = result.get("dmr_test")
-                        elif "dap_test" in result.keys():
+                            test = create_attribute(root, name, url, test_result)
+                            collection.appendChild(test)
+                        elif name == "dap":
                             test_result = result.get("dap_test")
-
-                        test = root.createElement('Test')
-                        test.setAttribute('name', name)
-                        test.setAttribute('url', url)
-                        test.setAttribute('result', test_result.result)
-                        test.setAttribute('status', str(test_result.status))
-                        collection.appendChild(test)
+                            test = create_attribute(root, name, url, test_result)
+                            collection.appendChild(test)
+                        elif name == "dap_vars":
+                            for key, tr in result.items():
+                                test = create_attribute(root, name, key, tr)
+                                collection.appendChild(test)
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
@@ -209,6 +211,15 @@ def write_xml_document(provider, version, results):
     save_path_file = provider + time.strftime("-%m.%d.%Y-") + version + ".xml"
     with open(save_path_file, "w") as f:
         f.write(xml_str)
+
+
+def create_attribute(root, name, url, result):
+    test = root.createElement('Test')
+    test.setAttribute('name', name)
+    test.setAttribute('url', url)
+    test.setAttribute('result', result.result)
+    test.setAttribute('status', str(result.status))
+    return test
 
 
 def main():
@@ -273,6 +284,8 @@ def main():
     dmr = args.dmr
     global dap
     dap = args.dap
+    global dap_var
+    dap_var = True
     global netcdf4
     netcdf4 = args.netcdf4
     global umm_json

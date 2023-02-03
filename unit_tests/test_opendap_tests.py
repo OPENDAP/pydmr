@@ -28,14 +28,13 @@ class MyTestCase(unittest.TestCase):
 
     def test_dap_tester_fail(self):
         opendap_tests.quiet = True
-        result = opendap_tests.dap_tester("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h", False)
+        result = opendap_tests.dap_tester("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h")
         self.assertEqual(result["dap_test"].result, "fail")
         self.assertEqual(result["dap_test"].status, 404)
 
     def test_var_tester_pass(self):
         opendap_tests.quiet = True
-        results = {}
-        result = opendap_tests.var_tester("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5", results, True)
+        result = opendap_tests.var_tester("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5", True)
         key = next(iter(result))
         self.assertEqual(result[str(key)].result, "pass")
         self.assertEqual(result[str(key)].status, 200)

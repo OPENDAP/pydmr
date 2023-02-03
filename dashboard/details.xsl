@@ -71,18 +71,27 @@
     
     
     <xsl:template match="Test">
-      <tr title="{../@long_name}" class="result-{@result}">
-	 <xsl:variable name="pass_fail" select="@result"/>
-	<xsl:choose> <!-- unit_tests passed -->
-	  <xsl:when test="$pass_fail='pass'">
-	    <td><xsl:value-of select="@result"/></td>
-	  </xsl:when>
-	  <xsl:otherwise> <!-- unit_tests failed, link to fail.txt -->
-	    <td><a href="logs/{substring-after(@url,'/granules/')}.{@name}.fail.txt"><xsl:value-of select="@result"/></a></td>
-	  </xsl:otherwise>
-	</xsl:choose>  
+        <tr title="{../@long_name}" class="result-{@result}">
+            <xsl:variable name="pass_fail" select="@result"/>
+            <xsl:variable name="name" select="@name"/>
+            <xsl:choose> <!-- unit_tests passed -->
+                <xsl:when test="$pass_fail='pass'">
+                    <td><xsl:value-of select="concat(@result, ' : ', @status)"/></td>
+                </xsl:when>
+                <xsl:otherwise> <!-- unit_tests failed, link to fail.txt -->
+                    <td><a href="logs/{substring-after(@url,'/granules/')}.{@name}.fail.txt"><xsl:value-of select="@result"/></a></td>
+                </xsl:otherwise>
+            </xsl:choose>
             <td><xsl:value-of select="@name"/></td>
-            <td><a href="{@url}"><xsl:value-of select="@url"/></a></td>
+            <xsl:choose>
+                <xsl:when test="$name='dap_vars'">
+                    <xsl:variable name="var_url" select="substring-after(@url,'?dap4.ce=/')"/>
+                    <td><a href="{@url}"><xsl:value-of select="$var_url"/></a></td>
+                </xsl:when>
+                <xsl:otherwise>
+                    <td><a href="{@url}"><xsl:value-of select="@url"/></a></td>
+                </xsl:otherwise>
+            </xsl:choose>
         </tr>
     </xsl:template>
 
