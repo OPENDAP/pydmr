@@ -2,6 +2,10 @@
 Test functions in the pydmr cmr module.
 """
 import unittest
+
+import requests
+import responses
+
 import cmr
 from test import CMR_Responses
 
@@ -39,10 +43,11 @@ class TestCMR(unittest.TestCase):
     g3 = {'items': [{'umm': {}}]}
     g4 = {'items': []}
 
-    # Method values
-    p1 = ["https://cmr.earthdata.nasa.gov/search/granules.json?collection_concept_id=C2075141559-POCLOUD",
-          cmr.collection_granule_and_url_dict, cmr.get_session(), 1, 1]
-    p2 = ["C2075141559-POCLOUD", cmr.collection_granule_and_url_dict, False, 'cmr.earthdata.nasa.gov']
+    # Test granule (taken from collection:2075141559-POCLOUD)
+    p1 = {'G2081588885-POCLOUD': ('ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2',
+                                       'https://opendap.earthdata.nasa.gov/collections/C2075141559-POCLOUD/granules'
+                                       '/ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2')}
+
 
     def test_collection_granules_dict(self):
         self.assertEqual({'C1234-Provider': 'A title with spaces'}, cmr.collection_granules_dict(self.d1))
@@ -87,11 +92,43 @@ class TestCMR(unittest.TestCase):
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, [], {'c': 'd'})
         self.assertRaisesRegex(TypeError, ".*cmr.merge.*", cmr.merge_dict, {'c': 'd'}, [])
 
+    @responses.activate
     def test_process_request(self):
-        self.assertEqual(CMR_Responses.p1, cmr.process_request(*self.p1))
+        # Make a mock url to store the test response data
+        responses.add(responses.GET, 'http://testcmr.com/api/1/foobar&page_num=1&page_size=1',
+                      json=CMR_Responses.g1, status=200)
 
+        resp = requests.get('http://testcmr.com/api/1/foobar&page_num=1&page_size=1')
+
+        # Make sure the responses are setup correctly
+        assert resp.json() == CMR_Responses.g1
+        assert len(responses.calls) == 1
+        assert responses.calls[0].request.url == 'http://testcmr.com/api/1/foobar&page_num=1&page_size=1'
+
+        # Use mock url to compare that process request reads the json properly
+        self.assertEqual(cmr.process_request('http://testcmr.com/api/1/foobar', cmr.collection_granule_and_url_dict,
+                                             cmr.get_session(), 1, 1), self.p1)
+
+    @responses.activate
     def test_get_collection_granules_first_last(self):
-        self.assertEqual(CMR_Responses.p2, cmr.get_collection_granules_first_last(*self.p2))
+        # ccid = "TESTID"
+        # granule1 = {'G2081588885-POCLOUD': ['ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2',
+        #                                    'https://opendap.earthdata.nasa.gov/collections/C2075141559-POCLOUD/granules/ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2']}
+        # granule2 = {'G2600391229-POCLOUD': ['ascat_20230131_193300_metopb_53818_eps_o_250_3301_ovw.l2',
+        #                                    'https://opendap.earthdata.nasa.gov/collections/C2075141559-POCLOUD/granules/ascat_20230131_193300_metopb_53818_eps_o_250_3301_ovw.l2']}
+
+        # Setup two urls because the 'get_collection_granules_first_last' uses the same url but with
+        # '&sort_key=-start_date' to get the newest granule
+        responses.add(responses.GET,
+                      'https://test_service/search/granules.json?collection_concept_id=TESTID&page_num=1&page_size=1',
+                      json=CMR_Responses.g1, status=200)
+        responses.add(responses.GET,
+                      'https://test_service/search/granules.json?collection_concept_id=TESTID&sort_key=-start_date'
+                      '&page_num=1&page_size=1',
+                      json=CMR_Responses.g1, status=200)
+
+        self.assertEqual(cmr.get_collection_granules_first_last("TESTID", cmr.collection_granule_and_url_dict, False,
+                                                                'test_service'), self.p1)
 
 
 if __name__ == '__main__':
