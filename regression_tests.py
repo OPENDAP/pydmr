@@ -257,6 +257,7 @@ def main():
 
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
     parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true", default=True)
+    parser.add_argument("--no-dap", dest="dap", help="Test getting the DAP response", action="store_false")
     parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
 
     parser.add_argument("-V", "--version", help="increase output verbosity", default="1")
