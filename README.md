@@ -1,7 +1,8 @@
 
 # PyDMR
-PyDMR is a set of utilities to test the idea of a DMR++ invariant and ways that 
-might be used in a DMR++ caching scheme.
+PyDMR is a set of utilities that implement a regression testing framework for OPeNDAP data 
+held in the NASA Earthdata Cloud system. It also can be used to test the idea of a DMR++ 
+invariant and ways that might be used in a DMR++ caching scheme.
 
 ## What's here
 This repository holds code for a testing framework for Hyrax in NGAP and for 
@@ -19,7 +20,10 @@ Run tests on all the collections from POCLOUD that have OPeNDAP URLs. Show verbo
 output and basic timing stats. The results are written to an XML file. See --help
 for more info.
 
-../opendap_providers.py 
+./opendap_providers.py 
+
+Query CMR to find all of the providers that have collections with the _has\_opendap\_url_
+property
 
 
 ### DMR++ Caching
