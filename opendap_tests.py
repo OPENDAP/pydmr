@@ -22,6 +22,7 @@ class TestResult:
     def __init__(self, result, status):
         self.result = result
         self.status = status
+        self.payload = ''
 
 
 def dmr_tester(url_address):
@@ -90,6 +91,7 @@ def dap_tester(url_address):
 
             results["dap_test"].result = "pass"
             results["dap_test"].status = r.status_code
+            results["dap_test"].payload = "100%"
 
             # Save the response?
             if save_all:
@@ -149,6 +151,8 @@ def var_tester(url_address, save_passes=False):
 
             variables += dmr_doc.getElementsByTagName("String")
 
+            var_length = len(variables)
+
             for v in variables:
                 print("-", end="", flush=True) if not quiet else False
                 t = build_leaf_path(v)
@@ -189,6 +193,10 @@ def var_tester(url_address, save_passes=False):
     except requests.exceptions.InvalidSchema:
         pass
 
+    fail_length = len(results)
+    percent = str(round(fail_length / var_length * 100, 2)) + "%"
+    results["percent"] = percent
+
     return results
 
 
@@ -216,6 +224,7 @@ def url_test_runner(url, dmr=True, dap=True, dap_vars=True, nc4=False):
             dap_results = dap_tester(url)
             if dap_vars and dap_results["dap_test"].result == "fail":
                 var_results = var_tester(url, True)
+                dap_results["dap_test"].payload == var_results["percent"]
             else:
                 dap_vars = False
         else:
@@ -238,9 +247,9 @@ def print_results(results):
 
     if results["dap"] != "NA" and dmr_results["dmr_test"].result == "pass":
         dap_results = results["dap"]  # getting the dap inner dictionary from outer dictionary
-        print(dap_results["dap_test"].result + " | " + str(dap_results["dap_test"].status) + " | dap_test")
+        print(dap_results["dap_test"].result + " - " + dap_results["dap_test"].payload + " | " + str(dap_results["dap_test"].status) + " | dap_test")
 
-        if results["vars"] != "NA":
+        if results["dap_vars"] != "NA":
             var_results = results["vars"]
             keys = var_results.keys()
             for k in keys:
@@ -252,15 +261,15 @@ def main():
     import argparse
 
     try:
-        results = url_test_runner("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
-        print_results(results)
+        # results = url_test_runner("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
+        # print_results(results)
 
     # results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure unit_tests
         # print_results(results)
 
     # results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")  # group unit_tests, few variables
-    # results = url_test_runner("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")
-        # print_results(results)
+        results = url_test_runner("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")
+        print_results(results)
 
         # results = url_test_runner("http://test.opendap.org/opendap/data/ff/avhrr.dat")  # sequence unit_tests
         # print_results(results)

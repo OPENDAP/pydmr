@@ -5,6 +5,7 @@
     <xsl:variable name="pass_count" select="count(Collection/Test[@result='pass'])"/>
     <xsl:variable name="fail_count" select="count(Collection/Test[@result!='pass'])"/>
     <xsl:variable name="error_count" select="count(Collection/Error)"/>
+    <xsl:variable name="info_count" select="count(Collection/Info)"/>
         <html>
             <head>
             <style>
@@ -46,6 +47,7 @@
 		  Passed: <xsl:value-of select="$pass_count"/> <br />
 		  Failed: <xsl:value-of select="$fail_count"/> <br />
 		  Errors: <xsl:value-of select="$error_count"/> <br />
+          Info: <xsl:value-of select="$info_count"/> <br />  
 		</p>
                 <table>
                     <tr bgcolor="#9acd32">
