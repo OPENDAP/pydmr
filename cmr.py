@@ -2,6 +2,7 @@
 Access information about data in NASA's EarthData Cloud system using the
 CMR Web API.
 """
+from typing import Dict, Any, Set
 
 import requests
 import threading
@@ -201,7 +202,7 @@ def granule_ur_dict(json_resp: dict) -> dict:
     return dict_resp
 
 
-def granule_ur_dict_2(json_resp: dict) -> dict:
+def granule_ur_dict_2(json_resp: dict) -> dict[str: (str, str)]:
     """
     Extract Related URLs from CMR JSON UMM. This version returns a dictionary with
     an ID, Title and URL like {ID : (Title, URL)}.
@@ -227,7 +228,6 @@ def granule_ur_dict_2(json_resp: dict) -> dict:
         return {}
 
     dict_resp = {}
-    i = 1
     for item in json_resp["items"]:
         if not (is_meta_item(item) and is_granule_item(item)):
             continue
@@ -241,7 +241,6 @@ def granule_ur_dict_2(json_resp: dict) -> dict:
             if "Type" in r_url and r_url["Type"] in ('GET DATA', 'USE SERVICE API') \
                     and "Subtype" in r_url and r_url["Subtype"] == 'OPENDAP DATA':
                 dict_resp[concept_id] = (native_id, r_url["URL"])
-                i += 1
 
     return dict_resp
 
@@ -284,8 +283,8 @@ def convert(a: list) -> dict:
     return res_dct
 
 
-def process_request(cmr_query_url: str, response_processor: callable(dict), session: object, page_size=10,
-                    page_num=0) -> dict:
+def process_request(cmr_query_url: str, response_processor: callable[dict, dict], session: object, page_size=10,
+                    page_num=0) -> dict | dict[Any, Any] | set[Any]:
     """
     The generic part of a CMR request. Make the request, print some stuff
     and return the number of entries. The page_size parameter is there so that paged responses
@@ -402,27 +401,27 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
 #         return {}
 
 
-def get_granule_opendap_url(ccid: str, granule_ur: str, pretty=False, service='cmr.earthdata.nasa.gov'):
-    """
-    Get all the
-    """
-    url_list = []
-    url_dmr_test = {}
+# def get_granule_opendap_url(ccid: str, granule_ur: str, pretty=False, service='cmr.earthdata.nasa.gov') -> list[str]:
+#     """
+#     Get all the 'opendap.earthdata.nasa.gov' URLs in for a particular granule_ur
+#     and return then in a list.
+#     """
+#     url_list = []
+#
+#     # Get the urls
+#     pretty = '&pretty=true' if pretty else ''
+#     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
+#     url_collection = process_request(cmr_query_url, granule_ur_dict, get_session(), page_num=1)
+#
+#     # Store just the url value in the list
+#     for url in url_collection:
+#         if url_collection[url].find("opendap.earthdata.nasa.gov") > 0:
+#             url_list.append(url_collection[url])
+#
+#     return url_list
 
-    # Get the urls
-    pretty = '&pretty=true' if pretty else ''
-    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
-    url_collection = process_request(cmr_query_url, granule_ur_dict, get_session(), page_num=1)
 
-    # Store just the url value in the list
-    for url in url_collection:
-        if url_collection[url].find("opendap.earthdata.nasa.gov") > 0:
-            url_list.append(url_collection[url])
-
-    return url_list
-
-
-"""Used to ensure that each thread has its own session for the HTTP Requests package"""
+""" Used to ensure that each thread has its own session for the HTTP Requests package """
 thread_local = threading.local()
 
 
@@ -463,8 +462,8 @@ def get_session() -> object:
 #     return merge_dict(oldest_dict, newest_dict)
 
 
-def get_collection_granules_umm_first_last(ccid, json_processor=granule_ur_dict_2, pretty=False,
-                                           service='cmr.earthdata.nasa.gov'):
+def get_collection_granules_umm_first_last(ccid: str, json_processor=granule_ur_dict_2, pretty=False,
+                                           service='cmr.earthdata.nasa.gov') -> dict:
     """
     This method uses the granules.umm_json_v1_4 response and finds the first and
     last granules for a collection using the 'items' response from CMR.
@@ -512,7 +511,7 @@ def get_provider_collections(provider_id: str, opendap=False, pretty=False, serv
     return process_request(cmr_query_url, provider_collections_dict, get_session(), page_size=500)
 
 
-def get_collection_entry(ccid, pretty=False, count=False, service='cmr.earthdata.nasa.gov'):
+def get_collection_entry(ccid: str, pretty=False, count=False, service='cmr.earthdata.nasa.gov') -> dict:
     """
     Get the collection entry given a concept id.
 
@@ -528,7 +527,7 @@ def get_collection_entry(ccid, pretty=False, count=False, service='cmr.earthdata
     return process_request(cmr_query_url, provider_collections_dict, get_session(), page_num=1)
 
 
-def get_related_urls(ccid, granule_ur, pretty=False, service='cmr.earthdata.nasa.gov'):
+def get_related_urls(ccid: str, granule_ur: str, pretty=False, service='cmr.earthdata.nasa.gov') -> dict:
     """
     Search for a granules RelatedUrls using the collection concept id and granule ur.
     This provides a way to go from the REST form of a URL that the OPeNDAP server typically
@@ -542,7 +541,7 @@ def get_related_urls(ccid, granule_ur, pretty=False, service='cmr.earthdata.nasa
     return process_request(cmr_query_url, granule_ur_dict, get_session(), page_num=1)
 
 
-def get_collection_granules(ccid, pretty=False, service='cmr.earthdata.nasa.gov', descending=False):
+def get_collection_granules(ccid: str, pretty=False, service='cmr.earthdata.nasa.gov', descending=False) -> dict:
     """
     Get granules for a collection
 
