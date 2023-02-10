@@ -454,7 +454,7 @@ def get_collection_granules(ccid: str, pretty=False, service='cmr.earthdata.nasa
     return process_request(cmr_query_url, collection_granules_dict, get_session(), page_size=500)
 
 
-def decompose_resty_url(url: str, pretty=False) -> dict[str, str]:
+def decompose_resty_url(url: str, pretty=False) -> dict:
     """
     Extract the collection concept id and granule ur. Use this information to
     get the actual URLs that lead to the data. If a 'provider - collection name'
