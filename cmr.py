@@ -283,8 +283,8 @@ def convert(a: list) -> dict:
     return res_dct
 
 
-def process_request(cmr_query_url: str, response_processor: callable[dict, dict], session: object, page_size=10,
-                    page_num=0) -> dict | dict[Any, Any] | set[Any]:
+def process_request(cmr_query_url: str, response_processor: callable(dict), session: object, page_size=10,
+                    page_num=0) -> dict | set:
     """
     The generic part of a CMR request. Make the request, print some stuff
     and return the number of entries. The page_size parameter is there so that paged responses
