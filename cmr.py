@@ -5,6 +5,7 @@ CMR Web API.
 
 # from typing import Dict, Any, Set
 
+import typing
 import requests
 import threading
 
