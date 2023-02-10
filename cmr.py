@@ -2,7 +2,8 @@
 Access information about data in NASA's EarthData Cloud system using the
 CMR Web API.
 """
-from typing import Dict, Any, Set
+
+# from typing import Dict, Any, Set
 
 import requests
 import threading
@@ -343,84 +344,6 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
         return {}
 
 
-# def process_request_old(cmr_query_url, response_processor, page_size=10, page_num=0):
-#     """
-#     The generic part of a CMR request. Make the request, print some stuff
-#     and return the number of entries. The page_size parameter is there so that paged responses
-#     can be handled. By default, CMR returns 10 entry items per page.
-#
-#     :param cmr_query_url: The whole URL, query params and all
-#     :param response_processor: A function that will process the returned json response
-#     :param page_size: The number of entries per page from CMR. The default is the CMR default value.
-#     :param page_num: Return an explicit page of the query response. If not given, gets all the pages
-#     :returns: A dictionary of entries
-#     :deprecated: See process_request()
-#     """
-#     page = 1 if page_num == 0 else page_num
-#     entries_dict = {}
-#     entries_set = set()
-#     while True:
-#         # By default, requests uses cookies, supports OAuth2 and reads username and password
-#         # from a ~/.netrc file.
-#         r = requests.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
-#         page += 1  # if page_num was explicitly set, this is not needed
-#
-#         if verbose > 0:
-#             print(f'CMR Query URL: {cmr_query_url}')
-#             print(f'Status code: {r.status_code}')
-#             # print(f'text: {r.text}')
-#
-#         if r.status_code != 200:
-#             # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
-#             raise CMRException(r.status_code, r.json()["errors"][0])
-#
-#         json_resp = r.json()
-#         if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
-#             entries_num = len(json_resp["feed"]["entry"])
-#         elif "items" in json_resp:  # 'items' is for json_umm
-#             entries_num = len(json_resp["items"])
-#         else:
-#             raise CMRException(200, "cmr.process_request does not know how to decode the response")
-#
-#         if entries_num > 0:
-#             entries_page = response_processor(json_resp)  # The response_processor() is passed in
-#
-#             if type(entries_page) is dict:
-#                 entries_dict = merge_dict(entries_dict, entries_page)  # merge is smart if entries is empty
-#             elif type(entries_page) is set:
-#                 entries_set.update(entries_page)
-#
-#         if page_num != 0 or entries_num < page_size:
-#             break
-#
-#     if len(entries_dict) > 0:
-#         return entries_dict
-#     elif len(entries_set) > 0:
-#         return entries_set
-#     else:
-#         return {}
-
-
-# def get_granule_opendap_url(ccid: str, granule_ur: str, pretty=False, service='cmr.earthdata.nasa.gov') -> list[str]:
-#     """
-#     Get all the 'opendap.earthdata.nasa.gov' URLs in for a particular granule_ur
-#     and return then in a list.
-#     """
-#     url_list = []
-#
-#     # Get the urls
-#     pretty = '&pretty=true' if pretty else ''
-#     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
-#     url_collection = process_request(cmr_query_url, granule_ur_dict, get_session(), page_num=1)
-#
-#     # Store just the url value in the list
-#     for url in url_collection:
-#         if url_collection[url].find("opendap.earthdata.nasa.gov") > 0:
-#             url_list.append(url_collection[url])
-#
-#     return url_list
-
-
 """ Used to ensure that each thread has its own session for the HTTP Requests package """
 thread_local = threading.local()
 
@@ -433,33 +356,6 @@ def get_session() -> object:
     if not hasattr(thread_local, "session"):
         thread_local.session = requests.Session()
     return thread_local.session
-
-
-# def get_collection_granules_first_last(ccid, json_processor=collection_granule_and_url_dict, pretty=False,
-#                                        service='cmr.earthdata.nasa.gov'):
-#     """
-#     This method uses the 'granules.json' response which is probably not
-#     the right way to ask about these granules.
-#
-#     :deprecated: See get_collection_granules_umm_first_last(). jhrg 1/23/23
-#     """
-#
-#     pretty = '&pretty=true' if pretty else ''
-#
-#     # by default, CMR returns results with "sort_key = +start_date" returning the oldest granule
-#     cmr_query_url = f'https://{service}/search/granules.json?collection_concept_id={ccid}{pretty}'
-#     oldest_dict = process_request(cmr_query_url, json_processor, get_session(), page_size=1, page_num=1)
-#
-#     # Use "-start-date" to get the newest granule
-#     sort_key = '&sort_key=-start_date'
-#     cmr_query_url = f'https://{service}/search/granules.json?collection_concept_id={ccid}{sort_key}{pretty}'
-#     newest_dict = process_request(cmr_query_url, json_processor, get_session(), page_size=1, page_num=1)
-#
-#     if len(newest_dict) != 1 and len(oldest_dict) != 1:
-#         raise CMRException(500, f"Expected at least one response item from CMR, got {len(newest_dict)+len(oldest_dict)}"
-#                                 f" while asking about {ccid}.")
-#
-#     return merge_dict(oldest_dict, newest_dict)
 
 
 def get_collection_granules_umm_first_last(ccid: str, json_processor=granule_ur_dict_2, pretty=False,
