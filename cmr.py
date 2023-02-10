@@ -204,7 +204,7 @@ def granule_ur_dict(json_resp: dict) -> dict:
     return dict_resp
 
 
-def granule_ur_dict_2(json_resp: dict) -> dict[str: (str, str)]:
+def granule_ur_dict_2(json_resp: dict) -> dict:
     """
     Extract Related URLs from CMR JSON UMM. This version returns a dictionary with
     an ID, Title and URL like {ID : (Title, URL)}.
