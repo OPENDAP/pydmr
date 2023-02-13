@@ -43,3 +43,6 @@ class TestRegressionTests(unittest.TestCase):
                          "https://opendap.earthdata.nasa.gov/foo/bar.h5, https://podaac.machine.domain.tld/hello/world.h5",
                          "Should pass")
 
+
+if __name__ == '__main__':
+    unittest.main()
