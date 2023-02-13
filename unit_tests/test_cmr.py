@@ -172,7 +172,7 @@ class TestCMR(unittest.TestCase):
                                              cmr.get_session(), 1, 1), self.p1)
 
     @responses.activate
-    def test_get_collection_granules_first_last(self):
+    def test_get_collection_granules_umm_first_last(self):
         # ccid = "TESTID"
         # granule1 = {'G2081588885-POCLOUD': ['ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2',
         #                                    'https://opendap.earthdata.nasa.gov/collections/C2075141559-POCLOUD/granules/ascat_20121029_010001_metopb_00588_eps_o_250_2101_ovw.l2']}
@@ -189,7 +189,7 @@ class TestCMR(unittest.TestCase):
                       '&page_num=1&page_size=1',
                       json=CMR_Responses.g3, status=200)
 
-        self.assertEqual(cmr.get_collection_granules_first_last("TESTID", cmr.collection_granule_and_url_dict, False,
+        self.assertEqual(cmr.get_collection_granules_umm_first_last("TESTID", cmr.collection_granule_and_url_dict, False,
                                                                 'test_service'), self.p1)
 
 
