@@ -182,10 +182,10 @@ class TestCMR(unittest.TestCase):
         # Setup two urls because the 'get_collection_granules_first_last' uses the same url but with
         # '&sort_key=-start_date' to get the newest granule
         responses.add(responses.GET,
-                      'https://test_service/search/granules.json?collection_concept_id=TESTID&page_num=1&page_size=1',
+                      'https://test_service/search/granules.umm_json_v1_4?collection_concept_id=TESTID&page_num=1&page_size=1',
                       json=CMR_Responses.g3, status=200)
         responses.add(responses.GET,
-                      'https://test_service/search/granules.json?collection_concept_id=TESTID&sort_key=-start_date'
+                      'https://test_service/search/granules.umm_json_v1_4?collection_concept_id=TESTID&sort_key=-start_date'
                       '&page_num=1&page_size=1',
                       json=CMR_Responses.g3, status=200)
 
