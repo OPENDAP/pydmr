@@ -81,7 +81,7 @@
                     <td><xsl:value-of select="concat(@result, ' : ', @status)"/></td>
                 </xsl:when>
                 <xsl:otherwise> <!-- unit_tests failed, link to fail.txt -->
-                    <td><a href="logs/{substring-after(@url,'/granules/')}.{@name}.fail.txt"><xsl:value-of select="@result"/></a></td>
+                    <td><a href="logs/{substring-after(@url,'/granules/')}.{@name}.fail.txt"><xsl:value-of select="concat(@result, ' : ', @status)"/></a></td>
                 </xsl:otherwise>
             </xsl:choose>
             <td><xsl:value-of select="@name"/></td>
