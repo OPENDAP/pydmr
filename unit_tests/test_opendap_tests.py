@@ -48,6 +48,85 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(result[str(key)].status, 404)
         self.assertEqual(result["percent"], "0.0%")
 
+    def test_var_tester_helper_1(self):
+        opendap_tests.quiet = True
+        try:
+            url = "http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc"
+            r = requests.get(url + ".dmr")
+            if r.status_code == 200:
+                dmr_xml = r.text
+                dmr_vars = opendap_tests.parse_variables(dmr_xml)
+                var_len = len(dmr_vars)
+
+                name = dmr_vars[1].getAttribute("name")
+                name += "z"
+                dmr_vars[1].setAttribute("name", name)
+
+                results = {}
+                opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
+                fail_len = len(results)
+                percent = str(round(fail_len / var_len * 100, 2)) + "%"
+
+                self.assertEqual(percent, "20.0%")
+            else:
+                self.fail("Could not reach unit_tests file")
+        except requests.exceptions.RequestException:
+            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
+
+    def test_var_tester_helper_2(self):
+        opendap_tests.quiet = True
+        try:
+            url = "http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc"
+            r = requests.get(url + ".dmr")
+            if r.status_code == 200:
+                dmr_xml = r.text
+                dmr_vars = opendap_tests.parse_variables(dmr_xml)
+                var_len = len(dmr_vars)
+
+                name = dmr_vars[1].getAttribute("name")
+                name += "z"
+                dmr_vars[1].setAttribute("name", name)
+
+                name = dmr_vars[2].getAttribute("name")
+                name += "z"
+                dmr_vars[2].setAttribute("name", name)
+
+                results = {}
+                opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
+                fail_len = len(results)
+                percent = str(round(fail_len / var_len * 100, 2)) + "%"
+
+                self.assertEqual(percent, "40.0%")
+            else:
+                self.fail("Could not reach unit_tests file")
+        except requests.exceptions.RequestException:
+            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
+
+    def test_var_tester_helper_3(self):
+        opendap_tests.quiet = True
+        try:
+            url = "http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5"
+            r = requests.get(url + ".dmr")
+            if r.status_code == 200:
+                dmr_xml = r.text
+                dmr_vars = opendap_tests.parse_variables(dmr_xml)
+                var_len = len(dmr_vars)
+
+                name = dmr_vars[0].getAttribute("name")
+                name += "z"
+                dmr_vars[0].setAttribute("name", name)
+
+                results = {}
+                opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
+                fail_len = len(results)
+                percent = str(round(fail_len / var_len * 100, 2)) + "%"
+
+                self.assertEqual(percent, "100.0%")
+            else:
+                self.fail("Could not reach unit_tests file")
+        except requests.exceptions.RequestException:
+            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
+
     def test_build_leaf_path_group(self):
         opendap_tests.quiet = True
         try:
