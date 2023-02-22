@@ -116,29 +116,7 @@ def var_tester(url_address, save_passes=False):
             var_length = len(variables)
             # print("length of variables: " + str(var_length))
 
-            for v in variables:
-                print("-", end="", flush=True) if not quiet else False
-                t = build_leaf_path(v)
-                dap_url = url_address + '.dap?dap4.ce=/' + t
-                #  print(dap_url)
-                dap_r = requests.get(dap_url)
-                if dap_r.status_code == 200:
-
-                    if save_passes:
-                        tr = TestResult("pass", dap_r.status_code)
-                        results[dap_url] = tr
-
-                    # Save the response?
-                    if save_all:
-                        save_response(url_address, ext, dap_r)
-                else:
-                    print("F", end="", flush=True) if not quiet else False
-
-                    tr = TestResult("fail", dap_r.status_code)
-                    results[dap_url] = tr
-
-                    if save:
-                        write_error_file(url_address, ext, r)
+            var_tester_helper(url_address, variables, results, ext, r, save_passes)
         else:
             print("F", end="", flush=True) if not quiet else False
 
@@ -157,6 +135,32 @@ def var_tester(url_address, save_passes=False):
     results["percent"] = percent
 
     return results
+
+
+def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
+    for v in variables:
+        print("-", end="", flush=True) if not quiet else False
+        t = build_leaf_path(v)
+        dap_url = url_address + '.dap?dap4.ce=/' + t
+        #  print(dap_url)
+        dap_r = requests.get(dap_url)
+        if dap_r.status_code == 200:
+
+            if save_passes:
+                tr = TestResult("pass", dap_r.status_code)
+                results[dap_url] = tr
+
+            # Save the response?
+            if save_all:
+                save_response(url_address, ext, dap_r)
+        else:
+            print("F", end="", flush=True) if not quiet else False
+
+            tr = TestResult("fail", dap_r.status_code)
+            results[dap_url] = tr
+
+            if save:
+                write_error_file(url_address, ext, dmr_r)
 
 
 def save_response(url_address, ext, r):
