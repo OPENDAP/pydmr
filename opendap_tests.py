@@ -129,6 +129,8 @@ def var_tester(url_address, save_passes=False):
 
     if var_length == 0:
         percent = "0.0%"
+    elif var_length == len(results) and not save_passes:
+        percent = "0.0%"
     else:
         fail_length = len(results)
         percent = str(round(fail_length / var_length * 100, 2)) + "%"

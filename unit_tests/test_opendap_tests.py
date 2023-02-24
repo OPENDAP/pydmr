@@ -65,7 +65,10 @@ class MyTestCase(unittest.TestCase):
                 results = {}
                 opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
                 fail_len = len(results)
-                percent = str(round(fail_len / var_len * 100, 2)) + "%"
+                if var_len == fail_len:
+                    percent = "0.0%"
+                else:
+                    percent = str(round(fail_len / var_len * 100, 2)) + "%"
 
                 self.assertEqual(percent, "20.0%")
             else:
@@ -94,7 +97,10 @@ class MyTestCase(unittest.TestCase):
                 results = {}
                 opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
                 fail_len = len(results)
-                percent = str(round(fail_len / var_len * 100, 2)) + "%"
+                if var_len == fail_len:
+                    percent = "0.0%"
+                else:
+                    percent = str(round(fail_len / var_len * 100, 2)) + "%"
 
                 self.assertEqual(percent, "40.0%")
             else:
@@ -119,9 +125,12 @@ class MyTestCase(unittest.TestCase):
                 results = {}
                 opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
                 fail_len = len(results)
-                percent = str(round(fail_len / var_len * 100, 2)) + "%"
+                if var_len == fail_len:
+                    percent = "0.0%"
+                else:
+                    percent = str(round(fail_len / var_len * 100, 2)) + "%"
 
-                self.assertEqual(percent, "100.0%")
+                self.assertEqual(percent, "0.0%")
             else:
                 self.fail("Could not reach unit_tests file")
         except requests.exceptions.RequestException:
