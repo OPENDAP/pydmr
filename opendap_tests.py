@@ -38,7 +38,10 @@ def dmr_tester(url_address):
     results = {"dmr_test": tr}
     try:
         print(".", end="", flush=True) if not quiet else False
-        r = requests.get(url_address + ext)
+
+        headers = requests.utils.default_headers()
+        headers.update({'User-Agent': 'pydmr/1.0.0', })
+        r = requests.get(url_address + ext, headers=headers)
         if r.status_code == 200:
 
             results["dmr_test"].result = "pass"
@@ -75,7 +78,10 @@ def dap_tester(url_address):
     results = {"dap_test": tr}
     try:
         print(".", end="", flush=True) if not quiet else False
-        r = requests.get(url_address + ext)
+
+        headers = requests.utils.default_headers()
+        headers.update({'User-Agent': 'pydmr/1.0.0', })
+        r = requests.get(url_address + ext, headers=headers)
         if r.status_code == 200:
 
             results["dap_test"].result = "pass"
@@ -145,7 +151,9 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
         t = build_leaf_path(v)
         dap_url = url_address + '.dap?dap4.ce=/' + t
         #  print(dap_url)
-        dap_r = requests.get(dap_url)
+        headers = requests.utils.default_headers()
+        headers.update({'User-Agent': 'pydmr/1.0.0', })
+        dap_r = requests.get(dap_url, headers=headers)
         if dap_r.status_code == 200:
 
             if save_passes:
@@ -171,6 +179,14 @@ def save_response(url_address, ext, r):
         base_name = save + '/' + base_name
     with open(base_name + ext, 'w') as file:
         file.write(r.text)
+    with open(base_name + ext + ".h", 'w') as header:
+        header.write("/!\\ REQUEST HEADERS: /!\\ \n")
+        for k, v in r.request.headers.items():
+            header.write(k + " : " + v + "\n")
+        header.write("\n/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-\n\n")
+        header.write("/!\\ RESPONSE HEADERS: /!\\ \n")
+        for k, v in r.headers.items():
+            header.write(k + " : " + v + "\n")
 
 
 def write_error_file(url_address, ext, r):
