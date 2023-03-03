@@ -39,9 +39,7 @@ def dmr_tester(url_address):
     try:
         print(".", end="", flush=True) if not quiet else False
 
-        headers = requests.utils.default_headers()
-        headers.update({'User-Agent': 'pydmr/1.0.0', })
-        r = requests.get(url_address + ext, headers=headers)
+        r = requests.get(url_address + ext, headers=pydmr_headers())
         if r.status_code == 200:
 
             results["dmr_test"].result = "pass"
@@ -79,9 +77,7 @@ def dap_tester(url_address):
     try:
         print(".", end="", flush=True) if not quiet else False
 
-        headers = requests.utils.default_headers()
-        headers.update({'User-Agent': 'pydmr/1.0.0', })
-        r = requests.get(url_address + ext, headers=headers)
+        r = requests.get(url_address + ext, headers=pydmr_headers())
         if r.status_code == 200:
 
             results["dap_test"].result = "pass"
@@ -121,7 +117,6 @@ def var_tester(url_address, save_passes=False):
             variables = parse_variables(dmr_xml)
             var_length = len(variables)
             # print("length of variables: " + str(var_length))
-
             var_tester_helper(url_address, variables, results, ext, r, save_passes)
         else:
             print("F", end="", flush=True) if not quiet else False
@@ -151,9 +146,7 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
         t = build_leaf_path(v)
         dap_url = url_address + '.dap?dap4.ce=/' + t
         #  print(dap_url)
-        headers = requests.utils.default_headers()
-        headers.update({'User-Agent': 'pydmr/1.0.0', })
-        dap_r = requests.get(dap_url, headers=headers)
+        dap_r = requests.get(dap_url, headers=pydmr_headers())
         if dap_r.status_code == 200:
 
             if save_passes:
@@ -172,6 +165,11 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
             if save:
                 write_error_file(url_address, ext, dmr_r)
 
+
+def pydmr_headers():
+    headers = requests.utils.default_headers()
+    headers.update({'User-Agent': 'pydmr/1.0.0', })
+    return headers
 
 def save_response(url_address, ext, r):
     base_name = url_address.split('/')[-1]
