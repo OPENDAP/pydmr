@@ -38,7 +38,8 @@ def dmr_tester(url_address):
     results = {"dmr_test": tr}
     try:
         print(".", end="", flush=True) if not quiet else False
-        r = requests.get(url_address + ext)
+
+        r = requests.get(url_address + ext, headers=pydmr_headers())
         if r.status_code == 200:
 
             results["dmr_test"].result = "pass"
@@ -75,7 +76,8 @@ def dap_tester(url_address):
     results = {"dap_test": tr}
     try:
         print(".", end="", flush=True) if not quiet else False
-        r = requests.get(url_address + ext)
+
+        r = requests.get(url_address + ext, headers=pydmr_headers())
         if r.status_code == 200:
 
             results["dap_test"].result = "pass"
@@ -115,7 +117,6 @@ def var_tester(url_address, save_passes=False):
             variables = parse_variables(dmr_xml)
             var_length = len(variables)
             # print("length of variables: " + str(var_length))
-
             var_tester_helper(url_address, variables, results, ext, r, save_passes)
         else:
             print("F", end="", flush=True) if not quiet else False
@@ -145,7 +146,7 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
         t = build_leaf_path(v)
         dap_url = url_address + '.dap?dap4.ce=/' + t
         #  print(dap_url)
-        dap_r = requests.get(dap_url)
+        dap_r = requests.get(dap_url, headers=pydmr_headers())
         if dap_r.status_code == 200:
 
             if save_passes:
@@ -165,12 +166,25 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
                 write_error_file(url_address, ext, dmr_r)
 
 
+def pydmr_headers():
+    headers = requests.utils.default_headers()
+    headers.update({'User-Agent': 'pydmr/1.0.0', })
+    return headers
+
 def save_response(url_address, ext, r):
     base_name = url_address.split('/')[-1]
     if save:
         base_name = save + '/' + base_name
     with open(base_name + ext, 'w') as file:
         file.write(r.text)
+    with open(base_name + ext + ".h", 'w') as header:
+        header.write("/!\\ REQUEST HEADERS: /!\\ \n")
+        for k, v in r.request.headers.items():
+            header.write(k + " : " + v + "\n")
+        header.write("\n/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-\n\n")
+        header.write("/!\\ RESPONSE HEADERS: /!\\ \n")
+        for k, v in r.headers.items():
+            header.write(k + " : " + v + "\n")
 
 
 def write_error_file(url_address, ext, r):
