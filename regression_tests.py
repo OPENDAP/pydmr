@@ -222,86 +222,7 @@ def create_attribute(root, name, url, result):
     return test
 
 
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description="Query CMR and get information about Collections and Granules, "
-                                                 "especially as that information relates to OPeNDAP. EDC credentials "
-                                                 "stored in ~/.netrc are needed. See the requests package for details.")
-
-    parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true", default=False)
-    parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
-    parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true", default=False)
-    parser.add_argument("-q", "--quiet", help="quiet the tests. By default print a dot for each unit_tests run",
-                        action="store_true", default=False)
-    parser.add_argument("-a", "--all", help="save the output from all the tests, including the ones that pass",
-                        action="store_true", default=False)
-    parser.add_argument("-s", "--save", help="directory to hold the unit_tests responses. Make the directory if needed.",
-                        default='')
-    parser.add_argument("-u", "--umm", help="Use the granules.umm_json query instead of the granules.json."
-                                            "By default, this is true since it's the correct way to query CMR"
-                                            "for information about OPeNDAP URLs to collections. The code"
-                                            "used the non-umm json previously, which is less reliable. Use the"
-                                            "option -no-umm to get the old behavior.",
-                        action="store_true", default=True)
-    parser.add_argument('--no-umm', dest='umm', action='store_false')
-    parser.add_argument('-C', '--cloud', help="Only unit_tests URLs for data in the cloud. See --all-urls"
-                                              "for a way to unit_tests all the URLs for a given provider. For some"
-                                              "providers, this can take a long time since it will unit_tests all"
-                                              "their on-premises collections",
-                        default=True, action='store_true')
-    parser.add_argument('--all-urls', dest='cloud', action='store_false')
-
-    parser.add_argument("-l", "--limit", help="limit the number of tests to the first N collections."
-                                              "By default, run all the tests.",
-                        type=int, default=0)
-
-    parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
-    parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true", default=True)
-    parser.add_argument("--no-dap", dest="dap", help="Test getting the DAP response", action="store_false")
-    parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
-
-    parser.add_argument("-V", "--version", help="increase output verbosity", default="1")
-    parser.add_argument("-w", "--workers", help="if concurrent (the default), set the number of workers (default: 5)",
-                        default=5, type=int)
-    # Use --no-concurrency to run the tests serially.
-    parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
-    parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
-    # Requires Python 3.10.x which has its own set of issues
-    # parser.add_argument("-c", "--concurrency", help="run the tests concurrently", default=True,
-    #                     action=argparse.BooleanOptionalAction)
-
-    group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
-    group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
-
-    args = parser.parse_args()
-
-    # These are here mostly to get the values of verbose and pretty into test_one_collection()
-    # which is run below using a ThreadPoolExecutor and map()
-    global verbose
-    verbose = args.verbose
-    global pretty
-    pretty = args.pretty
-    global dmr
-    dmr = args.dmr
-    global dap
-    dap = args.dap
-    global dap_var
-    dap_var = True
-    global netcdf4
-    netcdf4 = args.netcdf4
-    global umm_json
-    umm_json = args.umm
-    global cloud_only
-    cloud_only = args.cloud
-
-    cmr.verbose = args.verbose
-
-    opendap_tests.quiet = args.quiet
-    opendap_tests.save_all = args.all
-    opendap_tests.save = args.save
-    if args.save != '' and not os.path.exists(opendap_tests.save):
-        os.mkdir(opendap_tests.save)
-
+def run_provider_tests(args):
     try:
         start = time.time()
 
@@ -340,6 +261,119 @@ def main():
         print(e)
     except Exception as e:
         print(e)
+
+
+def run_collection_test(args):
+    try:
+        start = time.time()
+
+        ccid = args.ccid
+        results = test_one_collection(ccid, "Single Collection Test")
+        try:
+            print(f'Result from unit_tests: {results}') if args.verbose else ''
+        except Exception as exc:
+            print(f'Exception: {exc}')
+
+        duration = time.time() - start
+
+        print(f'Request time: {duration:.1f}s') if args.time else ''
+
+        index = ccid.index("-") + 1
+        provider = ccid[index:]
+        print(f'Provider: {provider}') if args.verbose else ''
+        write_xml_document(provider, args.version, results)
+
+    except cmr.CMRException as e:
+        print(e)
+    except Exception as e:
+        print(e)
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Query CMR and get information about Collections and Granules, "
+                                                 "especially as that information relates to OPeNDAP. EDC credentials "
+                                                 "stored in ~/.netrc are needed. See the requests package for details.")
+
+    parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true", default=False)
+    parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
+    parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true", default=False)
+    parser.add_argument("-q", "--quiet", help="quiet the tests. By default print a dot for each unit_tests run",
+                        action="store_true", default=False)
+    parser.add_argument("-a", "--all", help="save the output from all the tests, including the ones that pass",
+                        action="store_true", default=False)
+    parser.add_argument("-s", "--save", help="directory to hold the unit_tests responses. Make the directory if needed.",
+                        default='')
+    parser.add_argument("-u", "--umm", help="Use the granules.umm_json query instead of the granules.json."
+                                            "By default, this is true since it's the correct way to query CMR"
+                                            "for information about OPeNDAP URLs to collections. The code"
+                                            "used the non-umm json previously, which is less reliable. Use the"
+                                            "option -no-umm to get the old behavior.",
+                        action="store_true", default=True)
+    parser.add_argument('--no-umm', dest='umm', action='store_false')
+    parser.add_argument('-C', '--cloud', help="Only unit_tests URLs for data in the cloud. See --all-urls"
+                                              "for a way to unit_tests all the URLs for a given provider. For some"
+                                              "providers, this can take a long time since it will unit_tests all"
+                                              "their on-premises collections",
+                        default=True, action='store_true')
+    parser.add_argument('--all-urls', dest='cloud', action='store_false')
+
+    parser.add_argument("-l", "--limit", help="limit the number of tests to the first N collections."
+                                              "By default, run all the tests.",
+                        type=int, default=0)
+
+    parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
+    parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
+    parser.add_argument("--no-dap", dest="dap", help="Test getting the DAP response", action="store_false")
+    parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
+
+    parser.add_argument("-V", "--version", help="increase output verbosity", default="1")
+    parser.add_argument("-w", "--workers", help="if concurrent (the default), set the number of workers (default: 5)",
+                        default=5, type=int)
+    # Use --no-concurrency to run the tests serially.
+    parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
+    parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
+    # Requires Python 3.10.x which has its own set of issues
+    # parser.add_argument("-c", "--concurrency", help="run the tests concurrently", default=True,
+    #                     action=argparse.BooleanOptionalAction)
+
+    group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
+    group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
+    group.add_argument("-e", "--ccid", help="a collection id (ccid), by itself, print the single collection")
+
+    args = parser.parse_args()
+
+    # These are here mostly to get the values of verbose and pretty into test_one_collection()
+    # which is run below using a ThreadPoolExecutor and map()
+    global verbose
+    verbose = args.verbose
+    global pretty
+    pretty = args.pretty
+    global dmr
+    dmr = args.dmr
+    global dap
+    dap = args.dap
+    global dap_var
+    dap_var = True
+    global netcdf4
+    netcdf4 = args.netcdf4
+    global umm_json
+    umm_json = args.umm
+    global cloud_only
+    cloud_only = args.cloud
+
+    cmr.verbose = args.verbose
+
+    opendap_tests.quiet = args.quiet
+    opendap_tests.save_all = args.all
+    opendap_tests.save = args.save
+    if args.save != '' and not os.path.exists(opendap_tests.save):
+        os.mkdir(opendap_tests.save)
+
+    if args.provider is not None:
+        run_provider_tests(args)
+    elif args.ccid is not None:
+        run_collection_test(args)
 
 
 if __name__ == "__main__":
