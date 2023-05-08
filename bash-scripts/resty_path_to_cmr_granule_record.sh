@@ -12,7 +12,7 @@
 # If it's not set then it will try to use the one in my home 
 # directory :) (You could change it)
 #
-export netrc_file=${netrc_file:-"/Users/ndp/.netrc"}
+export netrc_file=${netrc_file:-"/Users/dan/.netrc"}
 
 ####################################################################
 #

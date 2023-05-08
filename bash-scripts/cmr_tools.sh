@@ -9,20 +9,20 @@
 # cmr_provider_collections_json uat ORNL_CLOUD | jq '.feed.entry[] | [.id, .dataset_id, .summary]'
 #
 function cmr_provider_collections_json(){
-    local ngap_env="${1}";
-    local provider_id="${2}";
+    local target_ngap_env="${1}";
+    local target_provider_id="${2}";
 
     # echo "ngap_env: ${target_ngap_env}" >&2;
     # echo "provider_id: ${target_provider_id}" >&2;
 
-    if [ -n "${ngap_env}" ]; then  ngap_env="${ngap_env}."; fi
+    if [ -n "${target_ngap_env}" ]; then  ngap_env="${target_ngap_env}."; else ngap_env=;  fi
    
-    local cmr_query_url="https://cmr.${ngap_env}earthdata.nasa.gov/search/collections.json?provider=${provider_id}"
+    local cmr_query_url="https://cmr.${ngap_env}earthdata.nasa.gov/search/collections.json?provider=${target_provider_id}"
     echo "# cmr_url: ${cmr_query_url}" >&2
     local provider_json=""
     provider_json=$(burl -s "${cmr_query_url}")
     # echo "collections_doc:" >&2 
-    echo "${provider_json}" | jq '.'
+    sed 's/\\n//g' <<< ${provider_json} | jq '.'
 }
 
 
@@ -40,7 +40,7 @@ function cmr_get_granule_entry_json() {
     
    if [ -n "${target_ngap_env}" ]; then  ngap_env="${target_ngap_env}."; else ngap_env=;  fi
 
-    granule_doc=`curl -s "https://cmr.${target_ngap_env}earthdata.nasa.gov/search/granules.json?concept_id=${target_granule_concept_id}&pretty=true"`
+    granule_doc=`curl -s "https://cmr.${ngap_env}earthdata.nasa.gov/search/granules.json?concept_id=${target_granule_concept_id}&pretty=true"`
     #echo "granule_doc: "; 
     echo "${granule_doc}";
 }
@@ -57,7 +57,7 @@ function cmr_get_granule_entry_json_umm_v1_4() {
     
    if [ -n "${target_ngap_env}" ]; then  ngap_env="${target_ngap_env}."; else ngap_env=;  fi
 
-    cmr_query_url="https://cmr.${target_ngap_env}earthdata.nasa.gov/search/granules.umm_json_v1_4?concept_id=${target_granule_concept_id}&pretty=true";
+    cmr_query_url="https://cmr.${ngap_env}earthdata.nasa.gov/search/granules.umm_json_v1_4?concept_id=${target_granule_concept_id}&pretty=true";
     # echo "        cmr_query_url=\"${cmr_query_url}\"" >&2
     granule_doc=`curl -s "${cmr_query_url}"`
     echo "${granule_doc}"
@@ -84,7 +84,7 @@ function cmr_get_granule_entry_json_umm_v1_4_from_resty_path() {
         
     if [ -n "${target_ngap_env}" ]; then  ngap_env="${target_ngap_env}."; else ngap_env=;  fi
 
-    cmr_query_url="https://cmr.${target_ngap_env}earthdata.nasa.gov/search/granules.umm_json_v1_4?collection_concept_id=${target_collection_concept_id}&granule_ur=${target_granule_ur}&pretty=true";
+    cmr_query_url="https://cmr.${ngap_env}earthdata.nasa.gov/search/granules.umm_json_v1_4?collection_concept_id=${target_collection_concept_id}&granule_ur=${target_granule_ur}&pretty=true";
     echo "        cmr_query_url=\"${cmr_query_url}\"" >&2
     if test -n "${target_edl_token}"; then
         granule_doc=`curl -L -H "${target_edl_token}" -s "${cmr_query_url}"`
@@ -119,8 +119,7 @@ function cmr_get_granule_entry_json_umm_v1_4_from_resty_path() {
 
 
 
-export netrc_file="/Users/ndp/.netrc
-
+export netrc_file="/Users/dan/.netrc"
 ####################################################################
 #
 # get_edl_authorization_header_from_hyrax()
@@ -223,7 +222,7 @@ function cmr_get_collection_entry_json() {
     
    if [ -n "${target_ngap_env}" ]; then  ngap_env="${target_ngap_env}."; else ngap_env=;  fi
 
-    collection_doc=`curl -s "https://cmr.${target_ngap_env}earthdata.nasa.gov/search/collections.json?concept_id=${target_collection_concept_id}&pretty=true"`
+    collection_doc=`curl -s "https://cmr.${ngap_env}earthdata.nasa.gov/search/collections.json?concept_id=${target_collection_concept_id}&pretty=true"`
     #echo "collection_doc: "; 
     echo "${collection_doc}";
 }
@@ -240,7 +239,7 @@ function cmr_get_collection_granules_json() {
     
    if [ -n "${target_ngap_env}" ]; then  ngap_env="${target_ngap_env}."; else ngap_env=;  fi
 
-    collection_doc=`curl -s "https://cmr.${target_ngap_env}earthdata.nasa.gov/search/granules.json?concept_id=${target_collection_concept_id}&pretty=true"`
+    collection_doc=`curl -s "https://cmr.${ngap_env}earthdata.nasa.gov/search/granules.json?concept_id=${target_collection_concept_id}&pretty=true"`
     #echo "collection_doc: "; 
     echo "${collection_doc}";
 }
