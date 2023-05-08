@@ -309,7 +309,7 @@ function get_collections_with_opendap_url(){
     matching_doc=`curl -s "https://cmr.${ngap_env}earthdata.nasa.gov/search/collections.json?has_opendap_url=true&pretty=true"`;
     #set +x
     #echo "Matching Doc: ${matching_doc}";
-    echo $matching_doc |  jq -r ".feed.entry[].id";
+    sed 's/\\n//g' <<< $matching_doc |  jq -r ".feed.entry[].id";
     
 }
 
