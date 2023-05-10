@@ -165,6 +165,44 @@ def provider_id(json_resp: dict) -> set:
 
     return resp
 
+def granule_data_url_dict(json_resp: dict) -> dict:
+    """
+    Extract Related URLs from CMR JSON UMM.
+
+    This function processes the return information from a granules.umm_json request.
+    Do not use it for a granules.json request.
+
+    Only http URLs that are NOT marks with Subtype 'OPENDAP DATA' are returned. This
+    has been added (jhrg 5/4/23) so that the ask_cmr.py -r option will work, returning
+    the underlying URL to the data. Access to the data using that URL will nominally
+    require auth using TEA or S3 signing.
+
+    :param json_resp: CMR JSON UMM response
+    :returns: The granule UR related URL info in a dictionary. Only Type 'GET DATA'
+        or 'USE SERVICE API' without Subtype 'OPENDAP DATA' type URLs are included.
+        Each is indexed using 'URL1', ..., 'URLn.' The dictionaries look like:
+        {'URL1': 's3://podaac/metopb_00588_eps_o_250_2101_ovw.l2.nc',
+         'URL2': 'https://archive/250_2101_ovw.l2.nc'}
+    :rtype: dict
+    """
+    # Check json_resp as above but for items, etc. jhrg 10/11/22
+    if "items" not in json_resp.keys():
+        return {}
+
+    dict_resp = {}
+    i = 1
+    for item in json_resp["items"]:
+        if not is_granule_item(item):
+            continue
+        for r_url in item["umm"]["RelatedUrls"]:
+            if "Type" not in r_url or "URL" not in r_url:
+                continue
+            if "Type" in r_url and r_url["Type"] in ('GET DATA', 'USE SERVICE API') and "Subtype" not in r_url:
+                dict_resp[f'URL{i}'] = (r_url["URL"])
+                i += 1
+
+    return dict_resp
+
 
 def granule_ur_dict(json_resp: dict) -> dict:
     """
@@ -435,7 +473,7 @@ def get_related_urls(ccid: str, granule_ur: str, pretty=False, service='cmr.eart
     """
     pretty = '&pretty=true' if pretty else ''
     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
-    return process_request(cmr_query_url, granule_ur_dict, get_session(), page_num=1)
+    return process_request(cmr_query_url, granule_data_url_dict, get_session(), page_num=1)
 
 
 def get_collection_granules(ccid: str, pretty=False, service='cmr.earthdata.nasa.gov', descending=False) -> dict:
