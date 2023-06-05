@@ -36,11 +36,12 @@ def main():
     parser.add_argument("-d", "--descending", help="for a list of granules, get the newest first (the 'last' granule)."
                                                     "By default, the granules are listed in ascending order (oldest first)", action="store_true")
 
-    parser.add_argument("-T", "--unit_tests-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
+    parser.add_argument("-T", "--unit_tests_format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
     parser.add_argument("-f", "--firstlast", help="get the first and last granule of a collection", action="store_true")
-    parser.add_argument("-u", "--url-unit_tests", help="find out which urls from a collection have a valid dmr")
-    parser.add_argument("-U", "--full-unit_tests", help="Given a provider, run the tests on the first and last granule of each collection", action="store_true")
+    parser.add_argument("-u", "--url_unit_tests", help="find out which urls from a collection have a valid dmr")
+    parser.add_argument("-U", "--full_unit_tests", help="Given a provider, run the tests on the first and last granule of each collection", action="store_true")
 
+    parser.add_argument("-b", "--build_bescmd", help="Create a BESCMD XML document to return a DMRPP a CMR collection concept id and granule title")
     args = parser.parse_args()
 
     cmr.verbose = True if args.verbose else False
@@ -60,17 +61,20 @@ def main():
         elif args.collection:
             entries = cmr.get_collection_entry(args.collection, pretty=pretty, count=args.count)
         elif args.resty_path:
+            print(args.resty_path)
             entries = cmr.decompose_resty_url(args.resty_path, pretty=pretty)
         elif args.collection_and_title:
             collection, title = args.collection_and_title.split(':')
             entries = cmr.get_related_urls(collection, title, pretty=pretty)
-        elif args.url_test:
+        elif args.url_unit_tests:
             collection, title = args.url_test.split(':')
             entries = cmr.url_test_array(collection, title, pretty=pretty)
-        elif args.full_test:
+        elif args.full_unit_tests:
             entries = cmr.full_url_test(args.provider, opendap, pretty=pretty)
-        elif args.test_format and args.provider:
+        elif args.unit_tests_format and args.provider:
             entries = cmr.get_provider_collection_granules(args.provider, opendap, pretty=pretty)
+        elif args.build_bescmd:
+            entries = cmr.build_bescmd(args.build_bescmd)
         else:
             entries = cmr.get_provider_collections(args.provider, opendap, pretty=pretty)
         duration = time.time() - start

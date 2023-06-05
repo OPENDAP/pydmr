@@ -143,6 +143,7 @@ def main():
         else:
             remove_elements_by_name(root, "Attribute")
             remove_elements_by_name(root, "dmrpp:chunk")
+            remove_elements_by_name(root, "dmrpp:chunks")
             clean_element_except(root, "Dataset", ("xmlns", "xmlns:dmrpp"))
             if args.dimensions:
                 remove_elements_by_name(root, "dmrpp:chunkDimensionSizes")

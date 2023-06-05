@@ -8,8 +8,12 @@ granules_file=C2152045877-POCLOUD-10.txt
 ccid=$1   # C2152045877-POCLOUD
 ask_cmr=../ask_cmr.py
 get_dmrpp=../get_dmrpp.py
+get_dataurl=../get_data_url.py
 mk_invariant=../mk_invariant_dmrpp.py
 mk_inv_option=-d
+
+besstandalone=$prefix/bin/besstandalone
+
 
 # get the DMR++
 # cat $granules_file | while IFS= read -r
@@ -25,4 +29,13 @@ do
 
   echo "Building the DMR++ Invariant"
   $mk_invariant $mk_inv_option "$granule".dmrpp > "$granule".dmrpp.inv
+
+  echo "Create a builddmrpp BESCMD XML document"
+  $ask_cmr -b "$ccid":"$granule"
+
+  echo "Use besstandalone to create new DMRPP"
+  $besstandalone -c $prefix/etc/bes/bes.conf -i "$granule".bescmd > "$granule".builddmrpp
+
+  echo "Building the DMR++ Invariant"
+  $mk_invariant $mk_inv_option "$granule".builddmrpp > "$granule".builddmrpp.inv
 done

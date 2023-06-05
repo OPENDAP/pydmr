@@ -196,8 +196,7 @@ def granule_ur_dict(json_resp: dict) -> dict:
         for r_url in item["umm"]["RelatedUrls"]:
             if "Type" not in r_url or "URL" not in r_url:
                 continue
-            if "Type" in r_url and r_url["Type"] in ('GET DATA', 'USE SERVICE API') \
-                    and "Subtype" in r_url and r_url["Subtype"] == 'OPENDAP DATA':
+            if "Type" in r_url and r_url["Type"] in ('GET DATA'):
                 dict_resp[f'URL{i}'] = (r_url["URL"])
                 i += 1
 
@@ -285,6 +284,38 @@ def convert(a: list) -> dict:
     return res_dct
 
 
+def build_bescmd(collection_and_title: str) -> dict:
+    """
+        Given a string containing a CMR Collection_Concept_ID:Granule_Concept_ID
+        build a BESCMD XML document for use by besstandalone to generate a DMRPP.
+
+        :param collection_and_title: A string containing the Collection Concept_ID : Granule UR
+        :rtype: dict
+        """
+
+    query_elements = collection_and_title.split(':')
+
+    if len(query_elements) != 2:
+        raise IndexError(f"Expected string Collection:Granule got {collection_and_title}")
+
+    filename = query_elements[1] + '.bescmd'
+
+    with open(filename, mode='w') as bescmd:
+        bescmd.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        bescmd.write('<request xmlns:bes="http://xml.opendap.org/ns/bes/1.0#" reqID="[thread:http-nio-8080-exec-4-42][bes_client:/-2]">\n')
+        bescmd.write('\t<setContext name="dap_format">dap4</setContext>\n')
+        bescmd.write('\t<setContainer name="c" space="builddmrpp">/collections/{}/granules/{}</setContainer>\n'.format(query_elements[0], query_elements[1]))
+        bescmd.write('\t<define name="d">\n')
+        bescmd.write('\t\t<container name="c" />\n')
+        bescmd.write('\t</define>\n')
+        bescmd.write('\t<get type="dap" definition="d" returnAs="dmrpp"/>\n')
+        bescmd.write('</request>\n')
+
+    if verbose > 0:
+        print(f'BESCMD File: {filename}')
+
+    return {}
+
 def process_request(cmr_query_url: str, response_processor: callable(dict), session: object, page_size=10,
                     page_num=0) -> dict:
     """
@@ -300,6 +331,7 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
     :returns: A dictionary of entries
     :rtype: dict or set
     """
+
     page = 1 if page_num == 0 else page_num
     entries_dict = {}
     entries_set = set()
@@ -319,6 +351,7 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
             raise CMRException(r.status_code, r.json()["errors"][0])
 
         json_resp = r.json()
+        #print(json_resp)
         if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
             entries_num = len(json_resp["feed"]["entry"])
         elif "items" in json_resp:  # 'items' is for json_umm
@@ -328,9 +361,11 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
 
         if entries_num > 0:
             entries_page = response_processor(json_resp)  # The response_processor() is passed in
-
             if type(entries_page) is dict:
                 entries_dict = merge_dict(entries_dict, entries_page)  # merge is smart if entries is empty
+
+
+
             elif type(entries_page) is set:
                 entries_set.update(entries_page)
 
@@ -466,7 +501,9 @@ def decompose_resty_url(url: str, pretty=False) -> dict:
     :returns: A dictionary of the URLs, indexed as 'URL1', ..., 'URLn.'
     """
     url_pieces = url.split('/')[3:]
+    print(url_pieces)
     url_dict = convert(url_pieces)  # convert the array to a dictionary
+    print(url_dict)
     print(f'URL parts: {url_dict}') if verbose else ''
 
     items = get_related_urls(url_dict['collections'], url_dict['granules'], pretty=pretty)
