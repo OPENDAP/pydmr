@@ -1,0 +1,3 @@
+[urls]
+src_dir = /home/slloyd/Documents/Testing
+dst_dir = /home/slloyd/Documents/html
