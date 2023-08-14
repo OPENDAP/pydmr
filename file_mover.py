@@ -19,7 +19,7 @@ home_html_template_begin = """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 
 <body>
 <h1>NGAP PROD environment test results by month</h1>
-<p>Months:</p>
+<p>Test Results:</p>
 <ul>
 
 """
@@ -71,19 +71,19 @@ def load_config():
 
 def scan_dir(dir_path, pattern, file=False):
     dir_list = []
-    print("path: "+dir_path)
+    # print("path: "+dir_path)
     for path in os.listdir(dir_path):
         # check if current path is dir
-        print("path: " + path)
+        # print("path: " + path)
         if not file:
             if os.path.isdir(os.path.join(dir_path, path)):
                 if re.match(pattern, path):
-                    print("match found: " + path)
+                    # print("match found: " + path)
                     dir_list.append(path)
         else:
             if os.path.isfile(os.path.join(dir_path, path)):
                 if re.match(pattern, path):
-                    print("match found: " + path)
+                    # print("match found: " + path)
                     dir_list.append(path)
     return dir_list
 
@@ -142,9 +142,11 @@ def update_html():
     month_dir = os.path.join(dst_dir, month)
     month_list = scan_dir(month_dir, "\d{2}\.\d{2}\.\d{2}")
     month_page = month_html_template_begin
+    most_recent = ""
     for m in month_list:
         ppath = scan_dir(os.path.join(month_dir, m), "PROD.*\.xml", True)
         link = os.path.join(m, ppath[0])
+        most_recent = os.path.join(month, link)
         month_page += make_html_li(link, m)
     month_page += html_template_end
 
@@ -152,12 +154,19 @@ def update_html():
         f.write(month_page)
     f.close()
 
-    # update home html
-    # - query month dirs
-    # - add most recent path and name to html
-    # - add "<li>Months:</li>"
-    # - add dirs path and names to html
-    # - write html to file in home dir
+    home_dir = dst_dir
+    home_list = scan_dir(home_dir, ".*_\d{2}")
+    home_page = home_html_template_begin
+    home_page += make_html_li(most_recent, "Most Recent")
+    home_page += "<li><a>Months:</a></li>\n"
+    for h in home_list:
+        link = os.path.join(h, "month.html")
+        home_page += make_html_li(link, h)
+    home_page += html_template_end
+
+    with open(os.path.join(home_dir, "home.html"), "w") as f:
+        f.write(home_page)
+    f.close()
 
 
 def main():
