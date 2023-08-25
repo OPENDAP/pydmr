@@ -16,6 +16,7 @@ a subdir where the outputs are stored
 quiet: bool = False
 save_all: bool = False
 save: str = ''
+s = requests.session()
 
 
 class TestResult:
@@ -39,7 +40,7 @@ def dmr_tester(url_address):
     try:
         print(".", end="", flush=True) if not quiet else False
 
-        r = requests.get(url_address + ext, headers=pydmr_headers())
+        r = requests.get(url_address + ext)
         if r.status_code == 200:
 
             results["dmr_test"].result = "pass"
@@ -77,7 +78,7 @@ def dap_tester(url_address):
     try:
         print(".", end="", flush=True) if not quiet else False
 
-        r = requests.get(url_address + ext, headers=pydmr_headers())
+        r = requests.get(url_address + ext)
         if r.status_code == 200:
 
             results["dap_test"].result = "pass"
@@ -146,7 +147,7 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
         t = build_leaf_path(v)
         dap_url = url_address + '.dap?dap4.ce=/' + t
         #  print(dap_url)
-        dap_r = requests.get(dap_url, headers=pydmr_headers())
+        dap_r = requests.get(dap_url)
         if dap_r.status_code == 200:
 
             if save_passes:
@@ -170,6 +171,7 @@ def pydmr_headers():
     headers = requests.utils.default_headers()
     headers.update({'User-Agent': 'pydmr/1.0.0', })
     return headers
+
 
 def save_response(url_address, ext, r):
     base_name = url_address.split('/')[-1]
@@ -239,6 +241,7 @@ def url_test_runner(url, dmr=True, dap=True, dap_vars=True, nc4=False):
     """
     Common access point for all the tests.
     """
+    s.headers = pydmr_headers()
     if dmr:
         dmr_results = dmr_tester(url)
         if dap and dmr_results["dmr_test"].result == "pass":

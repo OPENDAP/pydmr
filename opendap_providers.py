@@ -9,6 +9,7 @@ import xml.dom.minidom as minidom
 import time
 import requests
 import subprocess
+import os
 
 import cmr
 
@@ -81,8 +82,12 @@ def main():
         if args.xml:
             # Save the XML
             xml_str = root.toprettyxml(indent="\t")
-            time.strftime("%d.%m.%Y")
-            save_path_file = args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
+            directory = "Exports/" + time.strftime("%m.%d.%y") + "/"
+            isExist = os.path.exists(directory)
+            if not isExist:
+                os.makedirs(directory)
+
+            save_path_file = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
             with open(save_path_file, "w") as f:
                 f.write(xml_str)
 
@@ -91,7 +96,7 @@ def main():
             save_dir_name = "logs"
             for provider in entries:
                 print(f"Running tests on {provider}'s collections...")
-                result = subprocess.run(["regression_tests.py", f"--provider={provider}", "-t",  "-v",
+                result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v",
                                          f"--save={save_dir_name}"])
                 if result.returncode != 0:
                     print(f"Error running regression_tests.py {result.args}")

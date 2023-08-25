@@ -1,3 +1,8 @@
 [urls]
+src_dir = /home/slloyd/git/pydmr/Exports
+dst_dir = /var/www/html/NGAP-PROD-tests
+log_dir = /home/slloyd/git/pydmr/logs
+
+[testing]
 src_dir = /home/slloyd/Documents/Testing
 dst_dir = /home/slloyd/Documents/html

@@ -5,6 +5,7 @@ import shutil
 
 src_dir = ''
 dst_dir = ''
+log_dir = ''
 recent = ''
 month = ''
 
@@ -68,6 +69,10 @@ def load_config():
     dst_dir = parser.get("urls", "dst_dir")
     print("dest dir: " + dst_dir)
 
+    global log_dir
+    log_dir = parser.get("urls", "log_dir")
+    print("log dir: " + log_dir)
+
 
 def scan_dir(dir_path, pattern, file=False):
     dir_list = []
@@ -99,11 +104,11 @@ def move_dir(path):
         global month
         month = date
         month_dir = os.path.join(dst_dir, date)
-        # print("modified dest: " + dst_dir)
-        if not os.path.exists(month_dir):
-            os.mkdir(month_dir)
-    dest = shutil.move(os.path.join(src_dir, path), os.path.join(month_dir, path), copy_function=shutil.copytree)
-    # print("destination: " + dest)
+    #    print("modified dest: " + month_dir)
+    dest = shutil.copytree(os.path.join(src_dir, path), os.path.join(month_dir, path))
+    # print("Dest: " + dest)
+    if os.path.exists(os.path.join(month_dir, path)):
+        shutil.rmtree(os.path.join(src_dir, path))
     global recent
     recent = dest
 
@@ -169,12 +174,22 @@ def update_html():
     f.close()
 
 
+def move_logs():
+    shutil.copytree(log_dir, os.path.join(recent, "logs"))
+    log_list = scan_dir(log_dir, ".*\.fail\.txt", True)
+    for path in log_list:
+        # print("\tpath: " + path)
+        os.remove(os.path.join(log_dir, path))
+        # os.remove(path)
+
+
 def main():
     load_config()
     dir_list = scan_dir(src_dir, "\d{2}\.\d{2}\.\d{2}")
     for path in dir_list:
         move_dir(path)
         update_html()
+    move_logs()
 
 
 if __name__ == "__main__":

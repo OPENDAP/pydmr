@@ -207,8 +207,12 @@ def write_xml_document(provider, version, results):
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
-    time.strftime("%d.%m.%Y")
-    save_path_file = provider + time.strftime("-%m.%d.%Y-") + version + ".xml"
+    directory = "Exports/" + time.strftime("%m.%d.%y") + "/"
+    isExist = os.path.exists(directory)
+    if not isExist:
+        os.makedirs(directory)
+
+    save_path_file = directory + provider + time.strftime("-%m.%d.%Y-") + version + ".xml"
     with open(save_path_file, "w") as f:
         f.write(xml_str)
 
