@@ -1,5 +1,4 @@
 import os
-import regex as re
 import shutil
 import subprocess
 
