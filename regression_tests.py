@@ -19,7 +19,6 @@ import os
 import itertools
 
 import requests.exceptions
-import urllib3.connection
 
 import cmr
 import opendap_tests

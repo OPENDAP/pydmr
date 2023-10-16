@@ -2,7 +2,6 @@
 """
 A collection of tests for OPeNDAP URLs packaged as functions.
 """
-import urllib3.connection
 
 import requests
 from xml.dom.minidom import parseString
@@ -63,10 +62,6 @@ def dmr_tester(url_address):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
-    except urllib3.connection.HTTPConnection:
-        print("\n/!\\ \tCaught DMR HttpConnection Error /!\\ \n")
-        results["dmr_test"].result = "exception"
-        results["dmr_test"].status = 500
     finally:
         return results
 
@@ -106,10 +101,6 @@ def dap_tester(url_address):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
-    except urllib3.connection.HTTPConnection:
-        print("\n/!\\ \t`Caught DAP HttpConnection Error /!\\ \n")
-        results["dmr_test"].result = "exception"
-        results["dmr_t  `est"].status = 500
     finally:
         return results
 
