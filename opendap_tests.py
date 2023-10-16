@@ -2,9 +2,12 @@
 """
 A collection of tests for OPeNDAP URLs packaged as functions.
 """
+import urllib3.connection
 
 import requests
 from xml.dom.minidom import parseString
+
+from urllib3.exceptions import NameResolutionError
 
 """
 set 'quiet' in main(), etc., and it affects various functions
@@ -60,8 +63,12 @@ def dmr_tester(url_address):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
-
-    return results
+    except urllib3.connection.HTTPConnection:
+        print("\n/!\\ \tCaught DMR HttpConnection Error /!\\ \n")
+        results["dmr_test"].result = "exception"
+        results["dmr_test"].status = 500
+    finally:
+        return results
 
 
 def dap_tester(url_address):
@@ -99,8 +106,12 @@ def dap_tester(url_address):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
-
-    return results
+    except urllib3.connection.HTTPConnection:
+        print("\n/!\\ \t`Caught DAP HttpConnection Error /!\\ \n")
+        results["dmr_test"].result = "exception"
+        results["dmr_t  `est"].status = 500
+    finally:
+        return results
 
 
 def var_tester(url_address, save_passes=False):
@@ -241,6 +252,7 @@ def url_test_runner(url, dmr=True, dap=True, dap_vars=True, nc4=False):
     """
     Common access point for all the tests.
     """
+
     s.headers = pydmr_headers()
     if dmr:
         dmr_results = dmr_tester(url)

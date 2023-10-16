@@ -341,39 +341,45 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
     page = 1 if page_num == 0 else page_num
     entries_dict = {}
     entries_set = set()
-    while True:
-        # By default, requests uses cookies, supports OAuth2 and reads username and password
-        # from a ~/.netrc file.
-        r = session.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
-        page += 1  # if page_num was explicitly set, this is not needed
+    try:
+        while True:
+            # By default, requests uses cookies, supports OAuth2 and reads username and password
+            # from a ~/.netrc file.
+            print("\t" + cmr_query_url)
+            r = session.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')  # <--- I break things
+            page += 1  # if page_num was explicitly set, this is not needed
 
-        if verbose > 0:
-            print(f'CMR Query URL: {cmr_query_url}')
-            print(f'Status code: {r.status_code}')
-            # print(f'text: {r.text}')
+            print("-", end="", flush=True)
+            if verbose > 0:
+                print(f'CMR Query URL: {cmr_query_url}')
+                print(f'Status code: {r.status_code}')
+                # print(f'text: {r.text}')
 
-        if r.status_code != 200:
-            # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
-            raise CMRException(r.status_code, r.json()["errors"][0])
+            if r.status_code != 200:
+                # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
+                raise CMRException(r.status_code, r.json()["errors"][0])
 
-        json_resp = r.json()
-        if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
-            entries_num = len(json_resp["feed"]["entry"])
-        elif "items" in json_resp:  # 'items' is for json_umm
-            entries_num = len(json_resp["items"])
-        else:
-            raise CMRException(200, "cmr.process_request does not know how to decode the response")
+            json_resp = r.json()
+            if "feed" in json_resp and "entry" in json_resp["feed"]:  # 'feed' is for the json response
+                entries_num = len(json_resp["feed"]["entry"])
+            elif "items" in json_resp:  # 'items' is for json_umm
+                entries_num = len(json_resp["items"])
+            else:
+                raise CMRException(200, "cmr.process_request does not know how to decode the response")
 
-        if entries_num > 0:
-            entries_page = response_processor(json_resp)  # The response_processor() is passed in
+            if entries_num > 0:
+                entries_page = response_processor(json_resp)  # The response_processor() is passed in
 
-            if type(entries_page) is dict:
-                entries_dict = merge_dict(entries_dict, entries_page)  # merge is smart if entries is empty
-            elif type(entries_page) is set:
-                entries_set.update(entries_page)
+                if type(entries_page) is dict:
+                    entries_dict = merge_dict(entries_dict, entries_page)  # merge is smart if entries is empty
+                elif type(entries_page) is set:
+                    entries_set.update(entries_page)
 
-        if page_num != 0 or entries_num < page_size:
-            break
+            if page_num != 0 or entries_num < page_size:
+                break
+
+    except requests.exceptions.ConnectionError:
+        print("\n/!\\ \tCaught CMR HttpConnection Error /!\\ \n")
 
     if len(entries_dict) > 0:
         return entries_dict

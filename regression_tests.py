@@ -18,6 +18,9 @@ import concurrent.futures
 import os
 import itertools
 
+import requests.exceptions
+import urllib3.connection
+
 import cmr
 import opendap_tests
 
@@ -263,6 +266,8 @@ def run_provider_tests(args):
 
     except cmr.CMRException as e:
         print(e)
+    except requests.exceptions.ConnectionError:
+        print("\n/!\\ \tCaught HttpConnection Error /!\\ \n")
     except Exception as e:
         print(e)
 

@@ -19,7 +19,7 @@ def main():
     parser = argparse.ArgumentParser(description="Query CMR and get information about Providers with Collections "
                                                  "accessible using OPeNDAP.")
 
-    parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
+    parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true", default=False)
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
 
@@ -38,7 +38,8 @@ def main():
 
     args = parser.parse_args()
 
-    cmr.verbose = True if args.verbose else False
+    # cmr.verbose = True if args.verbose else False
+    cmr.verbose = args.verbose
 
     try:
         start = time.time()
@@ -65,11 +66,12 @@ def main():
 
         duration = time.time() - start
 
-        print(f'Total providers found: {len(entries)}') if len(entries) > 1 else ''
-        print(f'Request time: {duration:.1f}s') if args.time else ''
+        if args.verbose:
+            print(f'Total providers found: {len(entries)}') if len(entries) > 1 else ''
+            print(f'Request time: {duration:.1f}s') if args.time else ''
 
         for provider in entries:
-            print(provider)
+            print(provider) if args.verbose else ''
             if args.xml:
                 # XML element for the collection
                 prov = root.createElement('Provider')
@@ -96,7 +98,7 @@ def main():
             save_dir_name = "logs"
             for provider in entries:
                 print(f"Running tests on {provider}'s collections...")
-                result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v",
+                result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  # "-v",
                                          f"--save={save_dir_name}"])
                 if result.returncode != 0:
                     print(f"Error running regression_tests.py {result.args}")
