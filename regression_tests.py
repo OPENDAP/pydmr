@@ -192,7 +192,7 @@ def write_xml_document(provider, version, results):
             else:
                 url = tests[0]
                 for name, result in tests[1].items():
-                    print(result)
+                    print(result) if verbose else ''
                     if result != "NA":
                         if name == "dmr":
                             test_result = result.get("dmr_test")

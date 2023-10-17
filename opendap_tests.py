@@ -6,8 +6,6 @@ A collection of tests for OPeNDAP URLs packaged as functions.
 import requests
 from xml.dom.minidom import parseString
 
-from urllib3.exceptions import NameResolutionError
-
 """
 set 'quiet' in main(), etc., and it affects various functions
 
@@ -62,6 +60,8 @@ def dmr_tester(url_address):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
+    except requests.exceptions.ConnectionError:
+        print("DmrE", end="", flush=True)
     finally:
         return results
 
@@ -101,6 +101,8 @@ def dap_tester(url_address):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
+    except requests.exceptions.ConnectionError:
+        print("DapE", end="", flush=True)
     finally:
         return results
 
@@ -130,6 +132,8 @@ def var_tester(url_address, save_passes=False):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
+    except requests.exceptions.ConnectionError:
+        print("VarE", end="", flush=True)
 
     if var_length == 0:
         percent = "0.0%"
@@ -274,7 +278,8 @@ def print_results(results):
 
     if results["dap"] != "NA" and dmr_results["dmr_test"].result == "pass":
         dap_results = results["dap"]  # getting the dap inner dictionary from outer dictionary
-        print(dap_results["dap_test"].result + " - " + dap_results["dap_test"].payload + " | " + str(dap_results["dap_test"].status) + " | dap_test")
+        print(dap_results["dap_test"].result + " - " + dap_results["dap_test"].payload + " | " +
+              str(dap_results["dap_test"].status) + " | dap_test")
 
         if results["dap_vars"] != "NA":
             var_results = results["vars"]
@@ -291,10 +296,12 @@ def main():
         # results = url_test_runner("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
         # print_results(results)
 
-    # results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure unit_tests
+        # structure unit_tests
+        # results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")
         # print_results(results)
 
-    # results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")  # group unit_tests, few variables
+        # group unit_tests, few variables
+        # results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")
         results = url_test_runner("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")
         print_results(results)
 

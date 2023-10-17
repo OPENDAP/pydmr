@@ -94,9 +94,11 @@ def scan_dir(dir_path, pattern, file=False):
 
 
 def move_dir(path):
-    match = re.search("(\d{2})\.\d{2}\.(\d{2})", path)
+
     global dst_dir
     month_dir = ''
+
+    match = re.search("(\d{2})\.\d{2}\.(\d{2})", path)
     if match:
         mon = match.group(1).strip()
         year = match.group(2).strip()
@@ -105,10 +107,23 @@ def move_dir(path):
         month = date
         month_dir = os.path.join(dst_dir, date)
     #    print("modified dest: " + month_dir)
-    dest = shutil.copytree(os.path.join(src_dir, path), os.path.join(month_dir, path))
+
+    src_path = path
+    if os.path.exists(os.path.join(month_dir, path)):
+        kosher = False
+        ver = 1
+        while kosher is not True:
+            temp = path + "_" + str(ver)
+            if os.path.exists(os.path.join(month_dir, temp)):
+                ver += 1
+            else:
+                path = temp
+                kosher = True
+
+    dest = shutil.copytree(os.path.join(src_dir, src_path), os.path.join(month_dir, path))
     # print("Dest: " + dest)
     if os.path.exists(os.path.join(month_dir, path)):
-        shutil.rmtree(os.path.join(src_dir, path))
+        shutil.rmtree(os.path.join(src_dir, src_path))
     global recent
     recent = dest
 

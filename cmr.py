@@ -345,7 +345,7 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
         while True:
             # By default, requests uses cookies, supports OAuth2 and reads username and password
             # from a ~/.netrc file.
-            print("\t" + cmr_query_url)
+            # print("\t" + cmr_query_url)
             r = session.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')  # <--- I break things
             page += 1  # if page_num was explicitly set, this is not needed
 
@@ -379,7 +379,8 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
                 break
 
     except requests.exceptions.ConnectionError:
-        print("\n/!\\ \tCaught CMR HttpConnection Error /!\\ \n")
+        #  print("\n/!\\ \tCaught CMR HttpConnection Error /!\\ \n")
+        print("E", end="", flush=True)
 
     if len(entries_dict) > 0:
         return entries_dict
