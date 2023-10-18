@@ -18,6 +18,8 @@ import concurrent.futures
 import os
 import itertools
 
+import requests.exceptions
+
 import cmr
 import opendap_tests
 
@@ -190,7 +192,7 @@ def write_xml_document(provider, version, results):
             else:
                 url = tests[0]
                 for name, result in tests[1].items():
-                    print(result)
+                    print(result) if verbose else ''
                     if result != "NA":
                         if name == "dmr":
                             test_result = result.get("dmr_test")
@@ -207,8 +209,12 @@ def write_xml_document(provider, version, results):
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
-    time.strftime("%d.%m.%Y")
-    save_path_file = provider + time.strftime("-%m.%d.%Y-") + version + ".xml"
+    directory = "Exports/" + time.strftime("%m.%d.%y") + "/"
+    isExist = os.path.exists(directory)
+    if not isExist:
+        os.makedirs(directory)
+
+    save_path_file = directory + provider + time.strftime("-%m.%d.%Y-") + version + ".xml"
     with open(save_path_file, "w") as f:
         f.write(xml_str)
 
@@ -259,6 +265,8 @@ def run_provider_tests(args):
 
     except cmr.CMRException as e:
         print(e)
+    except requests.exceptions.ConnectionError:
+        print("\n/!\\ \tCaught HttpConnection Error /!\\ \n")
     except Exception as e:
         print(e)
 

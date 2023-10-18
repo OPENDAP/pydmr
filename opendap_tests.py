@@ -16,6 +16,7 @@ a subdir where the outputs are stored
 quiet: bool = False
 save_all: bool = False
 save: str = ''
+s = requests.session()
 
 
 class TestResult:
@@ -39,7 +40,7 @@ def dmr_tester(url_address):
     try:
         print(".", end="", flush=True) if not quiet else False
 
-        r = requests.get(url_address + ext, headers=pydmr_headers())
+        r = requests.get(url_address + ext)
         if r.status_code == 200:
 
             results["dmr_test"].result = "pass"
@@ -59,8 +60,10 @@ def dmr_tester(url_address):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
-
-    return results
+    except requests.exceptions.ConnectionError:
+        print("DmrE", end="", flush=True)
+    finally:
+        return results
 
 
 def dap_tester(url_address):
@@ -77,7 +80,7 @@ def dap_tester(url_address):
     try:
         print(".", end="", flush=True) if not quiet else False
 
-        r = requests.get(url_address + ext, headers=pydmr_headers())
+        r = requests.get(url_address + ext)
         if r.status_code == 200:
 
             results["dap_test"].result = "pass"
@@ -98,8 +101,10 @@ def dap_tester(url_address):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
-
-    return results
+    except requests.exceptions.ConnectionError:
+        print("DapE", end="", flush=True)
+    finally:
+        return results
 
 
 def var_tester(url_address, save_passes=False):
@@ -127,6 +132,8 @@ def var_tester(url_address, save_passes=False):
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
         pass
+    except requests.exceptions.ConnectionError:
+        print("VarE", end="", flush=True)
 
     if var_length == 0:
         percent = "0.0%"
@@ -146,7 +153,7 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
         t = build_leaf_path(v)
         dap_url = url_address + '.dap?dap4.ce=/' + t
         #  print(dap_url)
-        dap_r = requests.get(dap_url, headers=pydmr_headers())
+        dap_r = requests.get(dap_url)
         if dap_r.status_code == 200:
 
             if save_passes:
@@ -170,6 +177,7 @@ def pydmr_headers():
     headers = requests.utils.default_headers()
     headers.update({'User-Agent': 'pydmr/1.0.0', })
     return headers
+
 
 def save_response(url_address, ext, r):
     base_name = url_address.split('/')[-1]
@@ -239,6 +247,8 @@ def url_test_runner(url, dmr=True, dap=True, dap_vars=True, nc4=False):
     """
     Common access point for all the tests.
     """
+
+    s.headers = pydmr_headers()
     if dmr:
         dmr_results = dmr_tester(url)
         if dap and dmr_results["dmr_test"].result == "pass":
@@ -268,7 +278,8 @@ def print_results(results):
 
     if results["dap"] != "NA" and dmr_results["dmr_test"].result == "pass":
         dap_results = results["dap"]  # getting the dap inner dictionary from outer dictionary
-        print(dap_results["dap_test"].result + " - " + dap_results["dap_test"].payload + " | " + str(dap_results["dap_test"].status) + " | dap_test")
+        print(dap_results["dap_test"].result + " - " + dap_results["dap_test"].payload + " | " +
+              str(dap_results["dap_test"].status) + " | dap_test")
 
         if results["dap_vars"] != "NA":
             var_results = results["vars"]
@@ -285,10 +296,12 @@ def main():
         # results = url_test_runner("http://test.opendap.org/opendap/data/dmrpp/chunked_fourD.h5")
         # print_results(results)
 
-    # results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")  # structure unit_tests
+        # structure unit_tests
+        # results = url_test_runner("http://test.opendap.org/opendap/nc4_test_files/ref_tst_compounds.nc")
         # print_results(results)
 
-    # results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")  # group unit_tests, few variables
+        # group unit_tests, few variables
+        # results = url_test_runner("http://test.opendap.org/opendap/data/hdf5/grid_1_2d.h5")
         results = url_test_runner("http://test.opendap.org:8080/opendap/NSIDC/ATL03_20181027044307_04360108_002_01.h5")
         print_results(results)
 
