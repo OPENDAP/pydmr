@@ -144,7 +144,7 @@ class MyTestCase(unittest.TestCase):
                 dmr_xml = r.text
                 dmr_doc = parseString(dmr_xml)
                 f32s = dmr_doc.getElementsByTagName("Float32")
-                var = opendap_tests.build_leaf_path(f32s[0])
+                var = opendap_tests.build_leaf_path(f32s[2])
                 self.assertEqual(var, "HDFEOS/GRIDS/GeoGrid/Data_Fields/temperature")
             else:
                 self.fail("Could not reach unit_tests file")
