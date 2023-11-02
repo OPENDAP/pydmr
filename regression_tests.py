@@ -112,7 +112,7 @@ def test_one_collection(ccid, title):
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         # future_to_gid is a dictionary where the key is a future that will return
         # the results of running tests on a granule and the value is the granule's concept ID
-        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, dap_var, netcdf4): gid
+        future_to_gid = {executor.submit(opendap_tests.url_test_runner, w, dmr, dap, dap_var, netcdf4): gid
                          for gid, granule_tuple in first_last_dict.items()}
 
         for future in concurrent.futures.as_completed(future_to_gid):
