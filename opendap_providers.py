@@ -35,6 +35,11 @@ def main():
                         action="store_true", default=False)
     parser.add_argument("-s", "--search", help="search for the provided string in all "
                                                "collections and write out collection names.")
+    parser.add_argument("-w", "--workers", help="if concurrent (the default), set the number of workers (default: 5)",
+                        default=5, type=int)
+    # Use --no-concurrency to run the tests serially.
+    parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
+    parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
 
     group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-e", "--environment", help="an environment, a placeholder for now. This only works for PROD.")
@@ -86,7 +91,7 @@ def main():
 
         if args.search:
             print("\nsearch string: " + args.search)
-            string_search.run_search(entries, args.search)
+            string_search.run_search(entries, args.search, args.concurrency, args.workers)
         else:
             if args.xml:
                 # Save the XML
