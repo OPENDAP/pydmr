@@ -35,9 +35,13 @@ def search(ccid, title):
         return {ccid: (title, {"error": e.message})}
 
     for gid, granule_tuple in first_last_dict.items():
-        url_address = granule_tuple[1]
+        # url_address = granule_tuple[1]
 
-        ext = '.dmr'
+        entries = cmr.get_related_urls(ccid, granule_tuple[0], pretty=True)
+        if (entries['URL1'] == 'https')
+            # assign url_address...
+
+        ext = '.dmrpp'
         try:
             # print(".", end="", flush=True)
 
@@ -61,7 +65,7 @@ def run_search(providers, search_str, concurrency, workers):
         pros = len(providers)
         pro_done = 1
         for provider in providers:
-            if provider == "LAADS": # <-- remove me, im only here for testing!!!
+            if provider == "POCLOUD": # <-- remove me, im only here for testing!!!
                 print("[ " + str(pro_done) + " / " + str(pros) + " ] searching " + provider + " files for \'"
                       + search_string + "\'")
                 file.write(f'Provider: {provider}\n')
