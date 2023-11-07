@@ -30,10 +30,13 @@ def search(ccid, title):
 
     try:
         first_last_dict = cmr.get_collection_granules_umm_first_last(ccid, pretty=True)
+        # print("size: " + str(len(first_last_dict)))
 
     except cmr.CMRException as e:
-        return {ccid: (title, {"error": e.message})}
+        return {ccid: (title, "error")}
+        #return {ccid: (title, {"error": e.message})}
 
+    url_address = ""
     for gid, granule_tuple in first_last_dict.items():
         url_address = granule_tuple[1]
 
@@ -51,7 +54,9 @@ def search(ccid, title):
         except requests.exceptions.ConnectionError:
             print("DmrE", end="", flush=True)
 
-    return {ccid: (title, found)}
+        break
+
+    return {ccid: (url_address, found)}
 
 
 def run_search(providers, search_str, concurrency, workers):
@@ -61,7 +66,7 @@ def run_search(providers, search_str, concurrency, workers):
         pros = len(providers)
         pro_done = 1
         for provider in providers:
-            if provider == "LAADS": # <-- remove me, im only here for testing!!!
+            if provider == "LPCLOUD": # <-- remove me, im only here for testing!!!
                 print("[ " + str(pro_done) + " / " + str(pros) + " ] searching " + provider + " files for \'"
                       + search_string + "\'")
                 file.write(f'Provider: {provider}\n')
@@ -86,7 +91,7 @@ def run_search(providers, search_str, concurrency, workers):
                 print('\n')
                 for ccid, result in results.items():
                     # print(str(result[1]) + " - " + ccid + ": " + result[0])
-                    print(str(result[1]) + " - " + ccid)
+                    print("\t" + str(result[1]) + "\n\t\t" + ccid + "\n\t\t" + result[0])
                     if result[1] is True:
                         file.write(f'\t {ccid}: {result[0]}\n')
             pro_done += 1
