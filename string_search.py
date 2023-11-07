@@ -34,13 +34,22 @@ def search(ccid, title):
 
     except cmr.CMRException as e:
         return {ccid: (title, "error")}
-        #return {ccid: (title, {"error": e.message})}
+        # return {ccid: (title, {"error": e.message})}
 
     url_address = ""
     for gid, granule_tuple in first_last_dict.items():
-        url_address = granule_tuple[1]
+        # url_address = granule_tuple[1]
 
-        ext = '.dmr'
+        entries = cmr.get_related_urls(ccid, granule_tuple[0], pretty=True)
+        print("\tURL1: " + entries['URL1'])
+        print("\tURL2: " + entries['URL2'])
+        if entries['URL1'] == 'https':
+            url_address = entries['URL1']
+        elif entries['URL2'] == 'https':
+            url_address = entries['URL2']
+            # assign url_address...
+
+        ext = '.dmrpp'
         try:
             # print(".", end="", flush=True)
 
@@ -66,7 +75,7 @@ def run_search(providers, search_str, concurrency, workers):
         pros = len(providers)
         pro_done = 1
         for provider in providers:
-            if provider == "LPCLOUD": # <-- remove me, im only here for testing!!!
+            if provider == "POCLOUD": # <-- remove me, im only here for testing!!!
                 print("[ " + str(pro_done) + " / " + str(pros) + " ] searching " + provider + " files for \'"
                       + search_string + "\'")
                 file.write(f'Provider: {provider}\n')
