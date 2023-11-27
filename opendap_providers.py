@@ -21,6 +21,7 @@ def main():
                                                  "accessible using OPeNDAP.")
 
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true", default=False)
+    parser.add_argument("-y", "--very_verbose", help="increase output verbosity", action="store_true", default=False)
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
 
@@ -91,7 +92,8 @@ def main():
 
         if args.search:
             print("\nsearch string: " + args.search)
-            string_search.run_search(entries, args.search, args.concurrency, args.workers)
+            string_search.run_search(entries, args.search, args.concurrency, args.workers,
+                                     args.verbose, args.very_verbose)
         else:
             if args.xml:
                 # Save the XML
