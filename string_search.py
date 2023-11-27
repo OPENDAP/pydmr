@@ -96,37 +96,38 @@ def run_search(providers, search_str, concurrency, workers, ver, very):
         pros = len(providers)
         pro_done = 1
         for provider in providers:
-            if provider == "ORNL_CLOUD":  # <-- remove me, im only here for testing!!!
-                print("[ " + str(pro_done) + " / " + str(pros) + " ] searching " + provider + " files for \'"
-                      + search_string + "\'")
-                file.write(f'{divider}\nProvider: {provider}\n\n')
-                collections = get_provider_collections(provider)
-                global todo, done
-                todo = len(collections.items())
-                done = 0
-                results = dict()
-                if concurrency:
-                    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
-                        result_list = executor.map(search, collections.keys(), collections.values())
-                    for result in result_list:
-                        try:
-                            results = cmr.merge_dict(results, result)
-                        except Exception as exc:
-                            print(f'Exception: {exc}')
-                else:
-                    for ccid, title in collections.items():
-                        found = search(ccid, title)
-                        results = cmr.merge_dict(results, found)
+            # if provider == "ORNL_CLOUD":  # Add me to test single provider, make sure to TAB all line below
+            print("[ " + str(pro_done) + " / " + str(pros) + " ] searching " + provider + " files for \'"
+                  + search_string + "\'")
+            file.write(f'{divider}\nProvider: {provider}\n\n')
+            collections = get_provider_collections(provider)
+            global todo, done
+            todo = len(collections.items())
+            done = 0
+            results = dict()
+            if concurrency:
+                with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
+                    result_list = executor.map(search, collections.keys(), collections.values())
+                for result in result_list:
+                    try:
+                        results = cmr.merge_dict(results, result)
+                    except Exception as exc:
+                        print(f'Exception: {exc}')
+            else:
+                for ccid, title in collections.items():
+                    found = search(ccid, title)
+                    results = cmr.merge_dict(results, found)
 
-                print('\n')
-                for ccid, result in results.items():
-                    # print(ccid + "\nresults: " + str(len(result)))
-                    for rTuple in result:
-                        # print("tuple: " + rTuple[0] + " : " + str(rTuple[1]))
-                        if rTuple != "error":
-                            print("\t" + rTuple[1] + "\n\t\t" + ccid + "\n\t\t" + rTuple[0]) if verbose else ''
-                            if rTuple[1] is True:
-                                file.write(f'\t {ccid}: {rTuple[0]}\n\n')
+            print('\n')
+            for ccid, result in results.items():
+                # print(ccid + "\nresults: " + str(len(result)))
+                for rTuple in result:
+                    # print("tuple: " + rTuple[0] + " : " + str(rTuple[1]))
+                    if rTuple != "error":
+                        print("\t" + rTuple[1] + "\n\t\t" + ccid + "\n\t\t" + rTuple[0]) if verbose else ''
+                        if rTuple[1] is True:
+                            file.write(f'\t {ccid}: {rTuple[0]}\n\n')
+            # end "if provider == ..." /!\ DO NOT TAB SHIFT PASS THIS LINE /!\
             pro_done += 1
 
 
