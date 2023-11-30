@@ -12,6 +12,7 @@ import subprocess
 import os
 
 import cmr
+import string_search
 
 
 def main():
@@ -20,6 +21,7 @@ def main():
                                                  "accessible using OPeNDAP.")
 
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true", default=False)
+    parser.add_argument("-y", "--very_verbose", help="increase output verbosity", action="store_true", default=False)
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
 
@@ -32,6 +34,13 @@ def main():
                         default="1")
     parser.add_argument("-T", "--tests", help="run the regression tests on the provider's collections",
                         action="store_true", default=False)
+    parser.add_argument("-s", "--search", help="search for the provided string in all "
+                                               "collections and write out collection names.")
+    parser.add_argument("-w", "--workers", help="if concurrent (the default), set the number of workers (default: 5)",
+                        default=5, type=int)
+    # Use --no-concurrency to run the tests serially.
+    parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
+    parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
 
     group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-e", "--environment", help="an environment, a placeholder for now. This only works for PROD.")
@@ -81,32 +90,37 @@ def main():
                 prov.setAttribute('name', provider + time.strftime("-%m.%d.%Y-") + args.version)
                 environment.appendChild(prov)
 
-        if args.xml:
-            # Save the XML
-            xml_str = root.toprettyxml(indent="\t")
-            directory = "Exports/" + time.strftime("%m.%d.%y") + "/"
-            isExist = os.path.exists(directory)
-            if not isExist:
-                os.makedirs(directory)
+        if args.search:
+            print("\nsearch string: " + args.search)
+            string_search.run_search(entries, args.search, args.concurrency, args.workers,
+                                     args.verbose, args.very_verbose)
+        else:
+            if args.xml:
+                # Save the XML
+                xml_str = root.toprettyxml(indent="\t")
+                directory = "Exports/" + time.strftime("%m.%d.%y") + "/"
+                isExist = os.path.exists(directory)
+                if not isExist:
+                    os.makedirs(directory)
 
-            save_path_file = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
-            with open(save_path_file, "w") as f:
-                f.write(xml_str)
+                save_path_file = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
+                with open(save_path_file, "w") as f:
+                    f.write(xml_str)
 
-        if args.tests:
-            # once we have the list of providers, call regression_tests.py for each one
-            save_dir_name = "logs"
-            for provider in entries:
-                print(f"Running tests on {provider}'s collections...")
-                if args.verbose:
-                    result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v",
-                                             f"--save={save_dir_name}"])
-                else:
-                    result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",
-                                             f"--save={save_dir_name}"])
+            if args.tests:
+                # once we have the list of providers, call regression_tests.py for each one
+                save_dir_name = "logs"
+                for provider in entries:
+                    print(f"Running tests on {provider}'s collections...")
+                    if args.verbose:
+                        result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v",
+                                                 f"--save={save_dir_name}"])
+                    else:
+                        result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",
+                                                 f"--save={save_dir_name}"])
 
-                if result.returncode != 0:
-                    print(f"Error running regression_tests.py {result.args}")
+                    if result.returncode != 0:
+                        print(f"Error running regression_tests.py {result.args}")
 
     except cmr.CMRException as e:
         print(e)
