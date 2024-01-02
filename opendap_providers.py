@@ -36,6 +36,7 @@ def main():
                         action="store_true", default=False)
     parser.add_argument("-s", "--search", help="search for the provided string in all "
                                                "collections and write out collection names.")
+    parser.add_argument("-f", "--find", help="find urls in all collections and write to file.")
     parser.add_argument("-w", "--workers", help="if concurrent (the default), set the number of workers (default: 5)",
                         default=5, type=int)
     # Use --no-concurrency to run the tests serially.
@@ -93,6 +94,9 @@ def main():
         if args.search:
             print("\nsearch string: " + args.search)
             string_search.run_search(entries, args.search, args.concurrency, args.workers,
+                                     args.verbose, args.very_verbose)
+        elif args.find:
+            string_search.run_url_finder(entries, args.concurrency, args.workers,
                                      args.verbose, args.very_verbose)
         else:
             if args.xml:
