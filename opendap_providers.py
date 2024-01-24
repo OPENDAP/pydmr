@@ -103,8 +103,8 @@ def main():
                 # Save the XML
                 xml_str = root.toprettyxml(indent="\t")
                 directory = "Exports/" + time.strftime("%m.%d.%y") + "/"
-                isExist = os.path.exists(directory)
-                if not isExist:
+                exists = os.path.exists(directory)
+                if not exists:
                     os.makedirs(directory)
 
                 save_path_file = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"

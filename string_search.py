@@ -138,20 +138,19 @@ def run_url_finder(providers, concurrency, workers, ver, very):
     pros = len(providers)
     pro_done = 1
     for provider in providers:
-        if provider == "POCLOUD":
-            print("[ " + str(pro_done) + " / " + str(pros) + " ] searching " + provider + " for urls")
-            collections = get_provider_collections(provider)
-            global todo, done
-            todo = len(collections.items())
-            done = 0
-            if concurrency:
-                with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
-                    executor.map(find, collections.keys(), collections.values())
-            else:
-                for ccid, title in collections.items():
-                    find(ccid, title)
+        print("[ " + str(pro_done) + " / " + str(pros) + " ] searching " + provider + " for urls")
+        collections = get_provider_collections(provider)
+        global todo, done
+        todo = len(collections.items())
+        done = 0
+        if concurrency:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
+                executor.map(find, collections.keys(), collections.values())
+        else:
+            for ccid, title in collections.items():
+                find(ccid, title)
 
-            print('\n')
+        print('\n')
         pro_done += 1
 
 
@@ -167,13 +166,8 @@ def find(ccid, title):
         return
 
     for gid, granule_tuple in first_last_dict.items():
-
-        entries = cmr.get_related_urls(ccid, granule_tuple[0], pretty=True)
-        for url in entries:
-            print("entries.url: " + entries[url]) if vVerbose else ''
-            if re.search('https', entries[url]):
-                if re.search('https://opendap.earthdata.nasa.gov/collections/', entries[url]):
-                    write_to_file(entries[url])
+        if re.search('https://opendap.earthdata.nasa.gov/collections/', granule_tuple[1]):
+            write_to_file(granule_tuple[1])
 
 
 def update_progress():

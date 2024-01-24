@@ -8,6 +8,7 @@ CMR Web API.
 import typing
 import requests
 import threading
+import time
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
@@ -379,9 +380,13 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
                 break
 
     except requests.exceptions.ConnectionError:
-        print("\nC-err\n", end="", flush=True)
+        err = "/////////////////////////////////////////////////////\n"
+        err += "ConnectionErrorUrl : " + cmr_query_url + "\n"
+        output_errlog(err)
     except requests.exceptions.JSONDecodeError:
-        print("\nJ-err\n", end="", flush=True)
+        err = "/////////////////////////////////////////////////////\n"
+        err += "JSONDecodeErrorUrl : " + cmr_query_url + "\n"
+        output_errlog(err)
 
     if len(entries_dict) > 0:
         return entries_dict
@@ -393,6 +398,13 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
 
 """ Used to ensure that each thread has its own session for the HTTP Requests package """
 thread_local = threading.local()
+
+
+def output_errlog(msg):
+    errlogfile = "logs/cmrError" + time.strftime("-%m.%d.%Y-") + ".log"
+    with open(errlogfile, "w+") as f:
+        f.write(msg)
+    f.close()
 
 
 def get_session() -> object:
