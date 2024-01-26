@@ -2,13 +2,11 @@
 Access information about data in NASA's EarthData Cloud system using the
 CMR Web API.
 """
-
+import errLog
 # from typing import Dict, Any, Set
 
-import typing
 import requests
 import threading
-import time
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
@@ -165,6 +163,7 @@ def provider_id(json_resp: dict) -> set:
             resp.add(item["meta"]["provider-id"])
 
     return resp
+
 
 def granule_data_url_dict(json_resp: dict) -> dict:
     """
@@ -382,11 +381,13 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
     except requests.exceptions.ConnectionError:
         err = "/////////////////////////////////////////////////////\n"
         err += "ConnectionErrorUrl : " + cmr_query_url + "\n"
-        output_errlog(err)
+        errLog.output_errlog(err)
+        # print("ConE\n")
     except requests.exceptions.JSONDecodeError:
         err = "/////////////////////////////////////////////////////\n"
         err += "JSONDecodeErrorUrl : " + cmr_query_url + "\n"
-        output_errlog(err)
+        errLog.output_errlog(err)
+        # print("JsonE\n")
 
     if len(entries_dict) > 0:
         return entries_dict
@@ -398,13 +399,6 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
 
 """ Used to ensure that each thread has its own session for the HTTP Requests package """
 thread_local = threading.local()
-
-
-def output_errlog(msg):
-    errlogfile = "logs/cmrError" + time.strftime("-%m.%d.%Y-") + ".log"
-    with open(errlogfile, "w+") as f:
-        f.write(msg)
-    f.close()
 
 
 def get_session() -> object:
@@ -459,7 +453,6 @@ def get_provider_collections(provider_id: str, opendap=False, pretty=False, serv
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
     :returns: The total number of entries
     """
-
     pretty = '&pretty=true' if pretty else ''
     opendap = '&has_opendap_url=true' if opendap else ''
     cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
