@@ -6,6 +6,8 @@ A collection of tests for OPeNDAP URLs packaged as functions.
 import requests
 from xml.dom.minidom import parseString
 
+import errLog
+
 """
 set 'quiet' in main(), etc., and it affects various functions
 
@@ -61,7 +63,9 @@ def dmr_tester(url_address):
     except requests.exceptions.InvalidSchema:
         pass
     except requests.exceptions.ConnectionError:
-        print("DmrE", end="", flush=True)
+        err = "/////////////////////////////////////////////////////\n"
+        err += "ConnectionError : opendap_tests.py::dmr_tester() - " + url_address + ext + "\n"
+        errLog.output_errlog(err)
     finally:
         return results
 

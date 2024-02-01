@@ -27,6 +27,9 @@ def get_provider_collections(provider):
         entries = cmr.get_provider_collections(provider, opendap=True, pretty=True)
 
     except cmr.CMRException as e:
+        err = "/////////////////////////////////////////////////////\n"
+        err += "CMRException : string_search.py::get_provider_collections() - " + e.message + "\n"
+        errLog.output_errlog(err)
         print(e)
     except Exception as e:
         print(e)
@@ -86,7 +89,7 @@ def search(ccid, title):
                         pass
                     except requests.exceptions.ConnectionError:
                         err = "/////////////////////////////////////////////////////\n"
-                        err += "ConnectionErrorUrl : " + url_address + ext + "\n"
+                        err += "ConnectionError : string_search.py::search() - " + url_address + ext + "\n"
                         errLog.output_errlog(err)
 
     return {ccid: results}

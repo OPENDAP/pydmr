@@ -380,14 +380,12 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
 
     except requests.exceptions.ConnectionError:
         err = "/////////////////////////////////////////////////////\n"
-        err += "ConnectionErrorUrl : " + cmr_query_url + "\n"
+        err += "ConnectionError : cmr.py::process_request() - " + cmr_query_url + "\n"
         errLog.output_errlog(err)
-        # print("ConE\n")
     except requests.exceptions.JSONDecodeError:
         err = "/////////////////////////////////////////////////////\n"
-        err += "JSONDecodeErrorUrl : " + cmr_query_url + "\n"
+        err += "JSONDecodeError : cmr.py::process_request() - " + cmr_query_url + "\n"
         errLog.output_errlog(err)
-        # print("JsonE\n")
 
     if len(entries_dict) > 0:
         return entries_dict

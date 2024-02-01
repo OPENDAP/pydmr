@@ -21,6 +21,7 @@ import itertools
 import requests.exceptions
 
 import cmr
+import errLog
 import opendap_tests
 
 """
@@ -284,7 +285,9 @@ def run_provider_tests(args):
     except cmr.CMRException as e:
         print(e)
     except requests.exceptions.ConnectionError:
-        print("\n/!\\ \tCaught HttpConnection Error /!\\ \n")
+        err = "/////////////////////////////////////////////////////\n"
+        err += "ConnectionError : regression_tests.py::run_provider_tests()\n"
+        errLog.output_errlog(err)
     except Exception as e:
         print(e)
 

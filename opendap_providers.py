@@ -12,6 +12,7 @@ import subprocess
 import os
 
 import cmr
+import errLog
 import string_search
 
 
@@ -127,6 +128,9 @@ def main():
                         print(f"Error running regression_tests.py {result.args}")
 
     except cmr.CMRException as e:
+        err = "/////////////////////////////////////////////////////\n"
+        err += "CMRException : opendap_providers.py::main() - " + e.message + "\n"
+        errLog.output_errlog(err)
         print(e)
 
 
