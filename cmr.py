@@ -2,10 +2,9 @@
 Access information about data in NASA's EarthData Cloud system using the
 CMR Web API.
 """
-
+import errLog
 # from typing import Dict, Any, Set
 
-import typing
 import requests
 import threading
 
@@ -164,6 +163,7 @@ def provider_id(json_resp: dict) -> set:
             resp.add(item["meta"]["provider-id"])
 
     return resp
+
 
 def granule_data_url_dict(json_resp: dict) -> dict:
     """
@@ -379,9 +379,13 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
                 break
 
     except requests.exceptions.ConnectionError:
-        print("\nC-err\n", end="", flush=True)
+        err = "/////////////////////////////////////////////////////\n"
+        err += "ConnectionError : cmr.py::process_request() - " + cmr_query_url + "\n"
+        errLog.output_errlog(err)
     except requests.exceptions.JSONDecodeError:
-        print("\nJ-err\n", end="", flush=True)
+        err = "/////////////////////////////////////////////////////\n"
+        err += "JSONDecodeError : cmr.py::process_request() - " + cmr_query_url + "\n"
+        errLog.output_errlog(err)
 
     if len(entries_dict) > 0:
         return entries_dict
@@ -447,7 +451,6 @@ def get_provider_collections(provider_id: str, opendap=False, pretty=False, serv
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
     :returns: The total number of entries
     """
-
     pretty = '&pretty=true' if pretty else ''
     opendap = '&has_opendap_url=true' if opendap else ''
     cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'

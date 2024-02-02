@@ -12,6 +12,7 @@ import subprocess
 import os
 
 import cmr
+import errLog
 import string_search
 
 
@@ -36,6 +37,7 @@ def main():
                         action="store_true", default=False)
     parser.add_argument("-s", "--search", help="search for the provided string in all "
                                                "collections and write out collection names.")
+    parser.add_argument("-f", "--find", help="find urls in all collections and write to file.")
     parser.add_argument("-w", "--workers", help="if concurrent (the default), set the number of workers (default: 5)",
                         default=5, type=int)
     # Use --no-concurrency to run the tests serially.
@@ -94,13 +96,16 @@ def main():
             print("\nsearch string: " + args.search)
             string_search.run_search(entries, args.search, args.concurrency, args.workers,
                                      args.verbose, args.very_verbose)
+        elif args.find:
+            string_search.run_url_finder(entries, args.concurrency, args.workers,
+                                     args.verbose, args.very_verbose)
         else:
             if args.xml:
                 # Save the XML
                 xml_str = root.toprettyxml(indent="\t")
                 directory = "Exports/" + time.strftime("%m.%d.%y") + "/"
-                isExist = os.path.exists(directory)
-                if not isExist:
+                exists = os.path.exists(directory)
+                if not exists:
                     os.makedirs(directory)
 
                 save_path_file = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
@@ -123,6 +128,9 @@ def main():
                         print(f"Error running regression_tests.py {result.args}")
 
     except cmr.CMRException as e:
+        err = "/////////////////////////////////////////////////////\n"
+        err += "CMRException : opendap_providers.py::main() - " + e.message + "\n"
+        errLog.output_errlog(err)
         print(e)
 
 

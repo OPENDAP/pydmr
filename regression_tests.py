@@ -21,6 +21,7 @@ import itertools
 import requests.exceptions
 
 import cmr
+import errLog
 import opendap_tests
 
 """
@@ -220,6 +221,16 @@ def write_xml_document(provider, version, results):
 
 
 def create_attribute(root, name, url, result):
+    """
+    Sub-function for write_xml_document(...)
+    Creates a Xml attribute for xml document
+
+    :param root:    Root of the xml document
+    :param name:    test result type ('dmr', 'dap', 'dap_vars', 'message')
+    :param url:     url of the file that was tested
+    :param result:  result of the test
+    :return:
+    """
     test = root.createElement('Test')
     test.setAttribute('name', name)
     test.setAttribute('url', url)
@@ -229,6 +240,14 @@ def create_attribute(root, name, url, result):
 
 
 def run_provider_tests(args):
+    """
+    Retrieves all collections for given provider
+        then runs test_one_collection on each collection in list
+        once all results are in, writes all results to a xml document
+
+    :param args: all args used when calling 'main'
+    :return:
+    """
     try:
         start = time.time()
 
@@ -266,12 +285,20 @@ def run_provider_tests(args):
     except cmr.CMRException as e:
         print(e)
     except requests.exceptions.ConnectionError:
-        print("\n/!\\ \tCaught HttpConnection Error /!\\ \n")
+        err = "/////////////////////////////////////////////////////\n"
+        err += "ConnectionError : regression_tests.py::run_provider_tests()\n"
+        errLog.output_errlog(err)
     except Exception as e:
         print(e)
 
 
 def run_collection_test(args):
+    """
+    Takes the ccid of a collection and runs the test on it
+
+    :param args:
+    :return:
+    """
     try:
         start = time.time()
 

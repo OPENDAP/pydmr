@@ -11,6 +11,7 @@ It will also return all the granules for a given collection and
 
 import time
 import cmr
+import errLog
 
 
 def main():
@@ -82,6 +83,9 @@ def main():
         print(f'Request time: {duration:.1f}s') if args.time else ''
 
     except cmr.CMRException as e:
+        err = "/////////////////////////////////////////////////////\n"
+        err += "CMRException : ask_cmr.py::main() - " + e.message + "\n"
+        errLog.output_errlog(err)
         print(e)
 
 

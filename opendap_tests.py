@@ -6,6 +6,8 @@ A collection of tests for OPeNDAP URLs packaged as functions.
 import requests
 from xml.dom.minidom import parseString
 
+import errLog
+
 """
 set 'quiet' in main(), etc., and it affects various functions
 
@@ -61,7 +63,9 @@ def dmr_tester(url_address):
     except requests.exceptions.InvalidSchema:
         pass
     except requests.exceptions.ConnectionError:
-        print("DmrE", end="", flush=True)
+        err = "/////////////////////////////////////////////////////\n"
+        err += "ConnectionError : opendap_tests.py::dmr_tester() - " + url_address + ext + "\n"
+        errLog.output_errlog(err)
     finally:
         return results
 
@@ -148,6 +152,16 @@ def var_tester(url_address, save_passes=False):
 
 
 def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
+    """
+    sub-function for var_tester(...)
+    :param url_address:
+    :param variables:
+    :param results:
+    :param ext:
+    :param dmr_r:
+    :param save_passes:
+    :return:
+    """
     for v in variables:
         print("-", end="", flush=True) if not quiet else False
         t = build_leaf_path(v)
@@ -174,12 +188,23 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
 
 
 def pydmr_headers():
+    """
+    global function for setting request headers
+    :return:
+    """
     headers = requests.utils.default_headers()
     headers.update({'User-Agent': 'pydmr/1.0.0', })
     return headers
 
 
 def save_response(url_address, ext, r):
+    """
+    Saves request response to a file for debugging
+    :param url_address:
+    :param ext:
+    :param r:
+    :return:
+    """
     base_name = url_address.split('/')[-1]
     if save:
         base_name = save + '/' + base_name
@@ -196,6 +221,13 @@ def save_response(url_address, ext, r):
 
 
 def write_error_file(url_address, ext, r):
+    """
+    Writes error files, used for debugging
+    :param url_address:
+    :param ext:
+    :param r:
+    :return:
+    """
     base_name = url_address.split('/')[-1]
     base_name = save + '/' + base_name
     with open(base_name + ext + '.fail.txt', 'w') as file:
@@ -207,6 +239,11 @@ def write_error_file(url_address, ext, r):
 
 
 def parse_variables(dmr_xml):
+    """
+    breaks all dmr vars into a list of variables
+    :param dmr_xml:
+    :return:
+    """
     dmr_doc = parseString(dmr_xml)
     # get elements by types ( Byte, Int8[16,32,64], UInt8[16,32,64], Float32[64], String ) to find nodes
     variables = dmr_doc.getElementsByTagName("Byte")
@@ -230,6 +267,11 @@ def parse_variables(dmr_xml):
 
 
 def build_leaf_path(var):
+    """
+    builds the path from a leaf back to the root
+    :param var:
+    :return:
+    """
     path = var.getAttribute("name")
     # print(path)
     if var.parentNode.nodeName != "Dataset":
@@ -271,6 +313,12 @@ def url_test_runner(url, dmr=True, dap=True, dap_vars=True, nc4=False):
 
 
 def print_results(results):
+    """
+    Takes results and outputs it to the terminal
+    used for debugging
+    :param results:
+    :return:
+    """
     print()
     print("----- Results -----")
     dmr_results = results["dmr"]
