@@ -23,11 +23,13 @@ import requests.exceptions
 import cmr
 import errLog
 import opendap_tests
+import testing_results as tr
 
 """
 Global variables. These ease getting values into functions that will be
 run using a ThreadExecutor.
 """
+provider = ""
 verbose: bool = False  # Verbose output here and in cmr.py
 pretty: bool = False  # Ask CMR for formatted JSON responses
 dmr: bool = True  # Three types of tests follow
@@ -99,16 +101,26 @@ def test_one_collection(ccid, title):
 
     # unit_tests for cloud URLs here - throw but make it a warning? jhrg 1/25/23
     except cmr.CMRException as e:
-        return {ccid: (title, {"error": e.message})}
+        err_tr = tr.Result("cmr", "error", 500)
+        global provider
+        err_tr.addprovider(provider, ccid, title)
+        err_tr.payload = e.message
+        return err_tr
 
     # Test for cloud URLs and return an 'info' response if they are not present.
     # What if there is one on-premises and one cloud URL?  For now, all the URLs
     # must be cloud URLs if 'cloud_only' is true. jhrg 1/25/23
     if cloud_only and not has_only_cloud_opendap_urls(first_last_dict):
-        return {ccid: (title, {"info": f'Testing only data in the cloud but found one or more URLs '
-                                       f'to data not in the cloud: {formatted_urls(first_last_dict)}'})}
+        err_tr = tr.Result("cloud", "info", 500)
+        global provider
+        err_tr.addprovider(provider, ccid, title)
+        err_tr.payload = (f'Testing only data in the cloud but found one or more URLs to data not in the cloud: '
+                          f'{formatted_urls(first_last_dict)}')
+        return err_tr
 
-    collected_results = dict()
+    collected_results = []
+    global provider
+
     # future_to_gid = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         # future_to_gid is a dictionary where the key is a future that will return
@@ -125,12 +137,19 @@ def test_one_collection(ccid, title):
             else:
                 print(f'{gid}: {test_results}') if verbose else ''
                 # first_last_dict[gid][1] is the URL we tested
-                collected_results[gid] = (first_last_dict[gid][1], test_results)
+                for r in test_results:
+                    r.gid = gid
+                    r.addprovider(provider, ccid, title)
+                    collected_results.append(r)
 
-    if collected_results.items() is None:
-        return {}
+    if not collected_results:
+        err_tr = tr.Result("empty", "error", 500)
+        err_tr.addprovider(provider, ccid, title)
+        err_tr.payload = "No results collected"
+        collected_results.append(err_tr)
+        return collected_results
     else:
-        return {ccid: (title, collected_results)}
+        return collected_results
 
 
 def write_xml_document(provider, version, results):
@@ -252,7 +271,7 @@ def run_provider_tests(args):
         start = time.time()
 
         # Get the collections for a given provider - this provides the CCID and title
-        entries = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
+        entries = cmr.get_provider_collections(provider, opendap=True, pretty=args.pretty)
 
         # Truncate the entries if --limit is used
         # NB: itertools.islice(sequence, start, stop, step) or itertools.islice(sequence, stop)
@@ -280,7 +299,7 @@ def run_provider_tests(args):
         print(f'\nTotal collections tested: {len(entries)}') if len(entries) > 1 else ''
         print(f'Request time: {duration:.1f}s') if args.time else ''
 
-        write_xml_document(args.provider, args.version, results)
+        write_xml_document(provider, args.version, results)
 
     except cmr.CMRException as e:
         print(e)
@@ -358,7 +377,7 @@ def main():
                         type=int, default=0)
 
     parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
-    parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true")
+    parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true", default=True)
     parser.add_argument("--no-dap", dest="dap", help="Test getting the DAP response", action="store_false")
     parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
 
@@ -380,6 +399,8 @@ def main():
 
     # These are here mostly to get the values of verbose and pretty into test_one_collection()
     # which is run below using a ThreadPoolExecutor and map()
+    global provider
+    provider = args.provider
     global verbose
     verbose = args.verbose
     global pretty

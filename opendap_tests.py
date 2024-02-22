@@ -7,6 +7,7 @@ import requests
 from xml.dom.minidom import parseString
 
 import errLog
+import testing_results as tr
 
 """
 set 'quiet' in main(), etc., and it affects various functions
@@ -21,13 +22,6 @@ save: str = ''
 s = requests.session()
 
 
-class TestResult:
-    def __init__(self, result, status):
-        self.result = result
-        self.status = status
-        self.payload = ''
-
-
 def dmr_tester(url_address):
     """
     Take an url and unit_tests whether the server can return its DMR response
@@ -37,16 +31,16 @@ def dmr_tester(url_address):
     """
 
     ext = '.dmr'
-    tr = TestResult("fail", 500)
-    results = {"dmr_test": tr}
+    dmr_tr = tr.Result("dmr", "fail", 500)
+    dmr_tr.url = url_address
     try:
         print(".", end="", flush=True) if not quiet else False
 
         r = requests.get(url_address + ext)
         if r.status_code == 200:
 
-            results["dmr_test"].result = "pass"
-            results["dmr_test"].status = r.status_code
+            dmr_tr.status = "pass"
+            dmr_tr.code = r.status_code
 
             # Save the response?
             if save_all:
@@ -54,7 +48,7 @@ def dmr_tester(url_address):
         else:
             print("F", end="", flush=True) if not quiet else False
 
-            results["dmr_test"].status = r.status_code
+            dmr_tr.code = r.status_code
 
             if save:
                 write_error_file(url_address, ext, r)
@@ -67,7 +61,7 @@ def dmr_tester(url_address):
         err += "ConnectionError : opendap_tests.py::dmr_tester() - " + url_address + ext + "\n"
         errLog.output_errlog(err)
     finally:
-        return results
+        return dmr_tr
 
 
 def dap_tester(url_address):
@@ -79,17 +73,16 @@ def dap_tester(url_address):
     """
     ext = '.dap'
     print("|", end="", flush=True) if not quiet else False
-    tr = TestResult("fail", 500)
-    results = {"dap_test": tr}
+    dap_tr = tr.Result("dap", "fail", 500)
+    dap_tr.url = url_address
     try:
         print(".", end="", flush=True) if not quiet else False
 
         r = requests.get(url_address + ext)
         if r.status_code == 200:
 
-            results["dap_test"].result = "pass"
-            results["dap_test"].status = r.status_code
-            results["dap_test"].payload = "100%"
+            dap_tr.status = "pass"
+            dap_tr.code = r.status_code
 
             # Save the response?
             if save_all:
@@ -97,7 +90,7 @@ def dap_tester(url_address):
         else:
             print("F", end="", flush=True) if not quiet else False
 
-            results["dap_test"].status = r.status_code
+            dap_tr.code = r.status_code
 
             if save:
                 write_error_file(url_address, ext, r)
@@ -108,7 +101,7 @@ def dap_tester(url_address):
     except requests.exceptions.ConnectionError:
         print("DapE", end="", flush=True)
     finally:
-        return results
+        return dap_tr
 
 
 def var_tester(url_address, save_passes=False):
@@ -117,7 +110,7 @@ def var_tester(url_address, save_passes=False):
     def dap_tester(url_address, ext='.dap'):
     """
     ext = '.dap'
-    results = {}
+    results = []
     var_length = 0
     try:
         r = requests.get(url_address + ".dmr")
@@ -130,8 +123,9 @@ def var_tester(url_address, save_passes=False):
         else:
             print("F", end="", flush=True) if not quiet else False
 
-            tr = TestResult("fail", r.status_code)
-            results[url_address] = tr
+            dmr_tr = tr.Result("dap_var", "fail", r.status_code)
+            dmr_tr.url = url_address
+            results.append(dmr_tr)
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
@@ -146,7 +140,7 @@ def var_tester(url_address, save_passes=False):
     else:
         fail_length = len(results)
         percent = str(round(fail_length / var_length * 100, 2)) + "%"
-    results["percent"] = percent
+    #  results["percent"] = percent
 
     return results
 
@@ -171,8 +165,9 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
         if dap_r.status_code == 200:
 
             if save_passes:
-                tr = TestResult("pass", dap_r.status_code)
-                results[dap_url] = tr
+                var_tr = tr.Result("dap_var", "pass", dap_r.status_code)
+                var_tr.url = dap_url
+                results.append(var_tr)
 
             # Save the response?
             if save_all:
@@ -180,8 +175,9 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
         else:
             print("F", end="", flush=True) if not quiet else False
 
-            tr = TestResult("fail", dap_r.status_code)
-            results[dap_url] = tr
+            var_tr = tr.Result("dap_var", "fail", dap_r.status_code)
+            var_tr.url = dap_url
+            results.append(var_tr)
 
             if save:
                 write_error_file(url_address, ext, dmr_r)
@@ -291,25 +287,19 @@ def url_test_runner(url, dmr=True, dap=True, dap_vars=True, nc4=False):
     """
 
     s.headers = pydmr_headers()
+    results = []
     if dmr:
         dmr_results = dmr_tester(url)
-        if dap and dmr_results["dmr_test"].result == "pass":
+        results.append(dmr_results)
+        if dap and dmr_results.status == "pass":
             dap_results = dap_tester(url)
-            if dap_vars and dap_results["dap_test"].result == "fail":
+            results.append(dap_results)
+            if dap_vars and dap_results.status == "fail":
                 var_results = var_tester(url)
-                dap_results["dap_test"].payload == var_results["percent"]
-            else:
-                dap_vars = False
-        else:
-            dap = False
-            dap_vars = False
+                for r in var_results:
+                    results.append(r)
 
-    test_results = {"dmr": dmr_results if dmr else "NA",
-                    "dap": dap_results if dap else "NA",
-                    "dap_vars": var_results if dap_vars else "NA",
-                    "netcdf4": dmr_tester(url) if nc4 else "NA"}
-
-    return test_results
+    return results
 
 
 def print_results(results):
