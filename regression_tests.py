@@ -24,12 +24,12 @@ import cmr
 import errLog
 import opendap_tests
 import testing_results as tr
+import xml_utils as xu
 
 """
 Global variables. These ease getting values into functions that will be
 run using a ThreadExecutor.
 """
-provider = ""
 verbose: bool = False  # Verbose output here and in cmr.py
 pretty: bool = False  # Ask CMR for formatted JSON responses
 dmr: bool = True  # Three types of tests follow
@@ -92,6 +92,7 @@ def test_one_collection(ccid, title):
     """
     # For each collection...
     print(f'{ccid}: {title}') if verbose else ''
+    collected_results = []
 
     try:
         if umm_json:
@@ -101,25 +102,22 @@ def test_one_collection(ccid, title):
 
     # unit_tests for cloud URLs here - throw but make it a warning? jhrg 1/25/23
     except cmr.CMRException as e:
-        err_tr = tr.Result("cmr", "error", 500)
-        global provider
-        err_tr.addprovider(provider, ccid, title)
+        err_tr = tr.Result("Error", "error", 500)
+        err_tr.addcollection(ccid, title)
         err_tr.payload = e.message
-        return err_tr
+        collected_results.append(err_tr)
+        return collected_results
 
     # Test for cloud URLs and return an 'info' response if they are not present.
     # What if there is one on-premises and one cloud URL?  For now, all the URLs
     # must be cloud URLs if 'cloud_only' is true. jhrg 1/25/23
     if cloud_only and not has_only_cloud_opendap_urls(first_last_dict):
-        err_tr = tr.Result("cloud", "info", 500)
-        global provider
-        err_tr.addprovider(provider, ccid, title)
+        err_tr = tr.Result("Info", "info", 500)
+        err_tr.addcollection(ccid, title)
         err_tr.payload = (f'Testing only data in the cloud but found one or more URLs to data not in the cloud: '
                           f'{formatted_urls(first_last_dict)}')
-        return err_tr
-
-    collected_results = []
-    global provider
+        collected_results.append(err_tr)
+        return collected_results
 
     # future_to_gid = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
@@ -139,12 +137,12 @@ def test_one_collection(ccid, title):
                 # first_last_dict[gid][1] is the URL we tested
                 for r in test_results:
                     r.gid = gid
-                    r.addprovider(provider, ccid, title)
+                    r.addcollection(ccid, title)
                     collected_results.append(r)
 
     if not collected_results:
-        err_tr = tr.Result("empty", "error", 500)
-        err_tr.addprovider(provider, ccid, title)
+        err_tr = tr.Result("Error", "empty", 500)
+        err_tr.addcollection(ccid, title)
         err_tr.payload = "No results collected"
         collected_results.append(err_tr)
         return collected_results
@@ -271,7 +269,7 @@ def run_provider_tests(args):
         start = time.time()
 
         # Get the collections for a given provider - this provides the CCID and title
-        entries = cmr.get_provider_collections(provider, opendap=True, pretty=args.pretty)
+        entries = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
 
         # Truncate the entries if --limit is used
         # NB: itertools.islice(sequence, start, stop, step) or itertools.islice(sequence, stop)
@@ -279,27 +277,32 @@ def run_provider_tests(args):
             entries = dict(itertools.islice(entries.items(), args.limit))
 
         # For each collection...
-        results = dict()
+        #  results = dict()
+        results = tr.TestResults(args.provider)
         if args.concurrency:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
                 result_list = executor.map(test_one_collection, entries.keys(), entries.values())
                 for result in result_list:
                     try:
                         print(f'Result from unit_tests: {result}') if args.verbose else ''
-                        results = cmr.merge_dict(results, result)
+                        #  results = cmr.merge_dict(results, result)
+                        results.sort(result)
                     except Exception as exc:
                         print(f'Exception: {exc}')
         else:
             for ccid, title in entries.items():
                 r = test_one_collection(ccid, title)
-                results = cmr.merge_dict(results, r)
+                results.sort(r)
+                #  results = cmr.merge_dict(results, r)
 
         duration = time.time() - start
 
         print(f'\nTotal collections tested: {len(entries)}') if len(entries) > 1 else ''
         print(f'Request time: {duration:.1f}s') if args.time else ''
 
-        write_xml_document(provider, args.version, results)
+        #  TODO add call to xml_utils here
+        xu.write_xml_documents(args.environment, args.path, args.version, results)
+        #  write_xml_document(provider, args.version, results)
 
     except cmr.CMRException as e:
         print(e)
@@ -322,7 +325,9 @@ def run_collection_test(args):
         start = time.time()
 
         ccid = args.ccid
-        results = test_one_collection(ccid, "Single Collection Test")
+        results = tr.TestResults(args.providers)
+        r = test_one_collection(ccid, "Single Collection Test")
+        results.sort(r)
         try:
             print(f'Result from unit_tests: {results}') if args.verbose else ''
         except Exception as exc:
@@ -387,20 +392,17 @@ def main():
     # Use --no-concurrency to run the tests serially.
     parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
     parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
-    # Requires Python 3.10.x which has its own set of issues
-    # parser.add_argument("-c", "--concurrency", help="run the tests concurrently", default=True,
-    #                     action=argparse.BooleanOptionalAction)
+    parser.add_argument("-x", "--path", help="path to the summary page")
+    parser.add_argument("e", "--environment", help="the environment id")
 
     group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
-    group.add_argument("-e", "--ccid", help="a collection id (ccid), by itself, print the single collection")
+    group.add_argument("-i", "--ccid", help="a collection id (ccid), by itself, print the single collection")
 
     args = parser.parse_args()
 
     # These are here mostly to get the values of verbose and pretty into test_one_collection()
     # which is run below using a ThreadPoolExecutor and map()
-    global provider
-    provider = args.provider
     global verbose
     verbose = args.verbose
     global pretty

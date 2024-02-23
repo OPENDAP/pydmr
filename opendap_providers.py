@@ -59,7 +59,7 @@ def main():
         if args.xml:
             root = minidom.Document()
             xsl_element = root.createProcessingInstruction("xml-stylesheet",
-                                                           "type='text/xsl' href='/NGAP-PROD-tests/home.xsl'")
+                                                           "type='text/xsl' href='/NGAP-PROD-tests/home.v2.xsl'")
             root.appendChild(xsl_element)
 
             environment = root.createElement('Environment')
@@ -89,7 +89,8 @@ def main():
                 # TODO The names here, below in the 'if args.xml' block and in regression-tests.py
                 #  are coupled in a very fragile way. Fix this so the name is made once and passed
                 #  into regression_tests.py, etc. jhrg 12/05/22
-                prov.setAttribute('name', provider + time.strftime("-%m.%d.%Y-") + args.version)
+                prov.setAttribute('name', provider)
+                prov.setAttribute('url', provider + time.strftime("-%m.%d.%Y-") + args.version)
                 environment.appendChild(prov)
 
         if args.search:
@@ -100,6 +101,7 @@ def main():
             string_search.run_url_finder(entries, args.concurrency, args.workers,
                                      args.verbose, args.very_verbose)
         else:
+            save_path_file = ""
             if args.xml:
                 # Save the XML
                 xml_str = root.toprettyxml(indent="\t")
@@ -119,10 +121,12 @@ def main():
                     print(f"Running tests on {provider}'s collections...")
                     if args.verbose:
                         result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v",
-                                                 f"--save={save_dir_name}"])
+                                                 f"--save={save_dir_name}", f"--path={save_path_file}",
+                                                 f"--environment={args.environment}"])
                     else:
                         result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",
-                                                 f"--save={save_dir_name}"])
+                                                 f"--save={save_dir_name}", f"--path={save_path_file}",
+                                                 f"--environment={args.environment}"])
 
                     if result.returncode != 0:
                         print(f"Error running regression_tests.py {result.args}")

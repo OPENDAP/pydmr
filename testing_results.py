@@ -1,32 +1,39 @@
 
 class TestResults:
+    provider = ""
+
+    misc_path = ""
     misc_results = []
     misc_total = 0
     error_count = 0
     info_count = 0
 
+    dmr_path = ""
     dmr_results = []
     dmr_total = 0
     dmr_pass = 0
     dmr_fail = 0
 
+    dap_path = ""
     dap_results = []
     dap_total = 0
     dap_pass = 0
     dap_fail = 0
 
+    dap_var_path = ""
     dap_var_results = []
     dap_var_total = 0
     dap_var_pass = 0
     dap_var_fail = 0
 
+    netcdf_path = ""
     netcdf_results = []
     netcdf_total = 0
     netcdf_pass = 0
     netcdf_fail = 0
 
-    def __init__(self):
-        self.misc_results = []
+    def __init__(self, provider):
+        self.provider = provider
 
     def add_misc(self, result):
         self.misc_results.append(result)
@@ -68,10 +75,22 @@ class TestResults:
         if result.status == "fail":
             self.netcdf_fail += 1
 
+    def sort(self, results):
+        for result in results:
+            if result.type == "error" or result.type == "info":
+                self.add_misc(result)
+            elif result.type == "dmr":
+                self.add_dmr(result)
+            elif result.type == "dap":
+                self.add_dap(result)
+            elif result.type == "dap_var":
+                self.add_dap_var(result)
+            elif result.type == "netcdf":
+                self.add_netcdf(result)
+
 
 class Result:
-    #  provider level
-    provider = ""
+    #  collection level
     ccid = ""
     title = ""
 
@@ -89,8 +108,12 @@ class Result:
         self.type = typ
         self.status = status
         self.code = code
+        self.gid = "N/A"
+        self.url = "N/A"
+        self.ccid = "N/A"
+        self.title = "N/A"
+        self.payload = "N/A"
 
-    def addprovider(self, pro, ccid, title):
-        self.provider = pro
+    def addcollection(self, ccid, title):
         self.ccid = ccid
         self.title = title
