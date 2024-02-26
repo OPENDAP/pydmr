@@ -201,9 +201,10 @@ def update_summary(environment, path, provider, version, results):
     pros = root.getElementsByTagName('Provider')
     pro = None
     for p in pros:
-        if p.getAttribute('name') == provider:
-            pro = p
-            break
+        for attr in p:
+            if attr.getAttribute('name') == provider:
+                pro = p
+                break
 
     if results.misc_results:
         misc = root.createElement('Error')
