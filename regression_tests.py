@@ -33,8 +33,8 @@ run using a ThreadExecutor.
 verbose: bool = False  # Verbose output here and in cmr.py
 pretty: bool = False  # Ask CMR for formatted JSON responses
 dmr: bool = True  # Three types of tests follow
-dap: bool = True
-dap_var: bool = True
+dap: bool = False
+dap_var: bool = False
 netcdf4: bool = False
 umm_json: bool = True  # Use the newer (correct) technique to get granule information
 cloud_only: bool = True  # By default, only unit_tests URLs for the cloud. If False, unit_tests all the OPeNDAP URLs
@@ -270,6 +270,7 @@ def run_provider_tests(args):
 
         # Get the collections for a given provider - this provides the CCID and title
         entries = cmr.get_provider_collections(args.provider, opendap=True, pretty=args.pretty)
+        total = len(entries)
 
         # Truncate the entries if --limit is used
         # NB: itertools.islice(sequence, start, stop, step) or itertools.islice(sequence, stop)
@@ -279,19 +280,23 @@ def run_provider_tests(args):
         # For each collection...
         #  results = dict()
         results = tr.TestResults(args.provider)
+        done = 0
         if args.concurrency:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
                 result_list = executor.map(test_one_collection, entries.keys(), entries.values())
                 for result in result_list:
                     try:
                         print(f'Result from unit_tests: {result}') if args.verbose else ''
-                        #  results = cmr.merge_dict(results, result)
+                        done += 1
+                        print_progress(done, total)
                         results.sort(result)
                     except Exception as exc:
                         print(f'Exception: {exc}')
         else:
             for ccid, title in entries.items():
                 r = test_one_collection(ccid, title)
+                done += 1
+                print_progress(done, total)
                 results.sort(r)
                 #  results = cmr.merge_dict(results, r)
 
@@ -312,6 +317,18 @@ def run_provider_tests(args):
         errLog.output_errlog(err)
     except Exception as e:
         print(e)
+
+
+def print_progress(amount, total):
+    """
+    outputs the progress bar to the terminal
+    :param amount:
+    :param total:
+    :return:
+    """
+    percent = amount * 100 / total
+    msg = "\t" + str(round(percent, 2)) + "% [ " + str(amount) + " / " + str(total) + " ]                    "
+    print(msg, end="\r", flush=True)
 
 
 def run_collection_test(args):
@@ -381,8 +398,8 @@ def main():
                                               "By default, run all the tests.",
                         type=int, default=0)
 
-    parser.add_argument("-d", "--dmr", help="Test getting the DMR response", action="store_true", default=True)
-    parser.add_argument("-D", "--dap", help="Test getting the DAP response", action="store_true", default=True)
+    parser.add_argument("-d", "--dap", help="Test getting the DAP response", action="store_true", default=False)
+    parser.add_argument("-D", "--dap_var", help="Test getting the DAP_var response", action="store_false", default=False)
     parser.add_argument("--no-dap", dest="dap", help="Test getting the DAP response", action="store_false")
     parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
 
@@ -393,7 +410,7 @@ def main():
     parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
     parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
     parser.add_argument("-x", "--path", help="path to the summary page")
-    parser.add_argument("e", "--environment", help="the environment id")
+    parser.add_argument("-e", "--environment", help="the environment id")
 
     group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
@@ -407,8 +424,6 @@ def main():
     verbose = args.verbose
     global pretty
     pretty = args.pretty
-    global dmr
-    dmr = args.dmr
     global dap
     dap = args.dap
     global dap_var

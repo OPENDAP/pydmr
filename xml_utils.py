@@ -9,6 +9,7 @@ summary_xsl = "/NGAP-PROD-tests/home.v2.xsl"
 
 
 def write_xml_documents(environment, path, version, results):
+    print("write_xml_documents start")
 
     if results.misc_results:
         path = write_misc_doc(results.provider, version, results.misc_results)
@@ -34,6 +35,7 @@ def write_xml_documents(environment, path, version, results):
 
 
 def write_misc_doc(provider, version, misc_list):
+    print("write_misc start")
     # make the response document
     root = minidom.Document()
 
@@ -48,7 +50,7 @@ def write_misc_doc(provider, version, misc_list):
 
     for item in misc_list:
         test = create_attribute(root, item.type, item)
-        root.appendChild(test)
+        prov.appendChild(test)
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
@@ -65,6 +67,7 @@ def write_misc_doc(provider, version, misc_list):
 
 
 def write_dmr_doc(provider, version, dmr_list):
+    print("write_dmr start")
     # make the response document
     root = minidom.Document()
 
@@ -79,7 +82,7 @@ def write_dmr_doc(provider, version, dmr_list):
 
     for item in dmr_list:
         test = create_attribute(root, "Test", item)
-        root.appendChild(test)
+        prov.appendChild(test)
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
@@ -96,6 +99,7 @@ def write_dmr_doc(provider, version, dmr_list):
 
 
 def write_dap_doc(provider, version, dap_list):
+    print("write_dap start")
     # make the response document
     root = minidom.Document()
 
@@ -110,7 +114,7 @@ def write_dap_doc(provider, version, dap_list):
 
     for item in dap_list:
         test = create_attribute(root, "Test", item)
-        root.appendChild(test)
+        prov.appendChild(test)
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
@@ -127,6 +131,7 @@ def write_dap_doc(provider, version, dap_list):
 
 
 def write_var_doc(provider, version, var_list):
+    print("write_var start")
     # make the response document
     root = minidom.Document()
 
@@ -141,7 +146,7 @@ def write_var_doc(provider, version, var_list):
 
     for item in var_list:
         test = create_attribute(root, "Test", item)
-        root.appendChild(test)
+        prov.appendChild(test)
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
@@ -158,6 +163,7 @@ def write_var_doc(provider, version, var_list):
 
 
 def write_netcdf_doc(provider, version, netcdf_list):
+    print("write_netcdf start")
     # make the response document
     root = minidom.Document()
 
@@ -172,7 +178,7 @@ def write_netcdf_doc(provider, version, netcdf_list):
 
     for item in netcdf_list:
         test = create_attribute(root, "Test", item)
-        root.appendChild(test)
+        prov.appendChild(test)
 
     # Save the XML
     xml_str = root.toprettyxml(indent="\t")
@@ -189,15 +195,15 @@ def write_netcdf_doc(provider, version, netcdf_list):
 
 
 def update_summary(environment, path, provider, version, results):
+    print("update start")
     # make the response document
     root = minidom.parse(path)
-    envir = root.getElementByTagName(environment)
-    pro = ''
-    for element in envir:
-        for attr in element:
-            if attr.getAttribute('name') == provider:
-                pro = element
-                break
+    pros = root.getElementsByTagName('Provider')
+    pro = None
+    for p in pros:
+        if p.getAttribute('name') == provider:
+            pro = p
+            break
 
     if results.misc_results:
         misc = root.createElement('Error')

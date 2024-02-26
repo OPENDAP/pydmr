@@ -44,6 +44,9 @@ def main():
     parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
     parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
 
+    parser.add_argument('-d', '--dap', help="run the dap tests", action='store_true', default=False)
+    parser.add_argument('-D', '--dap_var', help="run the dap_var tests", action='store_true', default=False)
+
     group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-e", "--environment", help="an environment, a placeholder for now. This only works for PROD.")
 
@@ -119,14 +122,18 @@ def main():
                 save_dir_name = "logs"
                 for provider in entries:
                     print(f"Running tests on {provider}'s collections...")
+
+                    cmd = ["./regression_tests.py", f"--provider={provider}", "-t",
+                           f"--save={save_dir_name}", f"--path={save_path_file}",
+                           f"--environment={args.environment}"]
                     if args.verbose:
-                        result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v",
-                                                 f"--save={save_dir_name}", f"--path={save_path_file}",
-                                                 f"--environment={args.environment}"])
-                    else:
-                        result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",
-                                                 f"--save={save_dir_name}", f"--path={save_path_file}",
-                                                 f"--environment={args.environment}"])
+                        cmd.append("-v")
+                    if args.dap:
+                        cmd.append(f"--dap={args.dap}")
+                    if args.dap_var:
+                        cmd.append(f"--dap_var={args.dap_var}")
+
+                    result = subprocess.run(cmd)
 
                     if result.returncode != 0:
                         print(f"Error running regression_tests.py {result.args}")

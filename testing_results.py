@@ -77,7 +77,7 @@ class TestResults:
 
     def sort(self, results):
         for result in results:
-            if result.type == "error" or result.type == "info":
+            if result.type == "Error" or result.type == "Info":
                 self.add_misc(result)
             elif result.type == "dmr":
                 self.add_dmr(result)

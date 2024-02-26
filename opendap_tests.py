@@ -34,7 +34,7 @@ def dmr_tester(url_address):
     dmr_tr = tr.Result("dmr", "fail", 500)
     dmr_tr.url = url_address
     try:
-        print(".", end="", flush=True) if not quiet else False
+        #  print(".", end="", flush=True) if not quiet else False
 
         r = requests.get(url_address + ext)
         if r.status_code == 200:
@@ -46,7 +46,7 @@ def dmr_tester(url_address):
             if save_all:
                 save_response(url_address, ext, r)
         else:
-            print("F", end="", flush=True) if not quiet else False
+            #  print("F", end="", flush=True) if not quiet else False
 
             dmr_tr.code = r.status_code
 
@@ -72,11 +72,11 @@ def dap_tester(url_address):
     :return: A pass/fail of whether the url passes
     """
     ext = '.dap'
-    print("|", end="", flush=True) if not quiet else False
+    #  print("|", end="", flush=True) if not quiet else False
     dap_tr = tr.Result("dap", "fail", 500)
     dap_tr.url = url_address
     try:
-        print(".", end="", flush=True) if not quiet else False
+        #  print(".", end="", flush=True) if not quiet else False
 
         r = requests.get(url_address + ext)
         if r.status_code == 200:
@@ -88,7 +88,7 @@ def dap_tester(url_address):
             if save_all:
                 save_response(url_address, ext, r)
         else:
-            print("F", end="", flush=True) if not quiet else False
+            #  print("F", end="", flush=True) if not quiet else False
 
             dap_tr.code = r.status_code
 
@@ -121,7 +121,7 @@ def var_tester(url_address, save_passes=False):
             # print("length of variables: " + str(var_length))
             var_tester_helper(url_address, variables, results, ext, r, save_passes)
         else:
-            print("F", end="", flush=True) if not quiet else False
+            #  print("F", end="", flush=True) if not quiet else False
 
             dmr_tr = tr.Result("dap_var", "fail", r.status_code)
             dmr_tr.url = url_address
@@ -157,7 +157,7 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
     :return:
     """
     for v in variables:
-        print("-", end="", flush=True) if not quiet else False
+        #  print("-", end="", flush=True) if not quiet else False
         t = build_leaf_path(v)
         dap_url = url_address + '.dap?dap4.ce=/' + t
         #  print(dap_url)
@@ -173,7 +173,7 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
             if save_all:
                 save_response(url_address, ext, dap_r)
         else:
-            print("F", end="", flush=True) if not quiet else False
+            #  print("F", end="", flush=True) if not quiet else False
 
             var_tr = tr.Result("dap_var", "fail", dap_r.status_code)
             var_tr.url = dap_url
