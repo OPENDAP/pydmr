@@ -302,11 +302,11 @@ def run_provider_tests(args):
 
         duration = time.time() - start
 
-        print(f'\nTotal collections tested: {len(entries)}') if len(entries) > 1 else ''
-        print(f'Request time: {duration:.1f}s') if args.time else ''
+        print(f'\n\tTotal collections tested: {len(entries)}') if len(entries) > 1 else ''
+        print(f'\tRequest time: {duration:.1f}s') if args.time else ''
 
         #  TODO add call to xml_utils here
-        xu.write_xml_documents(args.environment, args.path, args.version, results)
+        xu.write_xml_documents(args.path, args.version, results)
         #  write_xml_document(provider, args.version, results)
 
     except cmr.CMRException as e:
@@ -410,7 +410,6 @@ def main():
     parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
     parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
     parser.add_argument("-x", "--path", help="path to the summary page")
-    parser.add_argument("-e", "--environment", help="the environment id")
 
     group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")

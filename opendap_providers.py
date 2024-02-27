@@ -93,7 +93,6 @@ def main():
                 #  are coupled in a very fragile way. Fix this so the name is made once and passed
                 #  into regression_tests.py, etc. jhrg 12/05/22
                 prov.setAttribute('name', provider)
-                prov.setAttribute('url', provider + time.strftime("-%m.%d.%Y-") + args.version)
                 environment.appendChild(prov)
 
         if args.search:
@@ -120,12 +119,14 @@ def main():
             if args.tests:
                 # once we have the list of providers, call regression_tests.py for each one
                 save_dir_name = "logs"
+                cur = 1
+                total = len(entries)
                 for provider in entries:
-                    print(f"Running tests on {provider}'s collections...")
+                    print(f"[ {cur} / {total} ] Running tests on {provider}'s collections...")
 
                     cmd = ["./regression_tests.py", f"--provider={provider}", "-t",
-                           f"--save={save_dir_name}", f"--path={save_path_file}",
-                           f"--environment={args.environment}"]
+                           f"--save={save_dir_name}", f"--path={save_path_file}"]
+
                     if args.verbose:
                         cmd.append("-v")
                     if args.dap:
@@ -134,6 +135,7 @@ def main():
                         cmd.append(f"--dap_var={args.dap_var}")
 
                     result = subprocess.run(cmd)
+                    cur += 1
 
                     if result.returncode != 0:
                         print(f"Error running regression_tests.py {result.args}")
