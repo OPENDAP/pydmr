@@ -25,6 +25,7 @@ def main():
     parser.add_argument("-y", "--very_verbose", help="increase output verbosity", action="store_true", default=False)
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
+    parser.add_argument("-a", "--all", help="save all responses", action="store_true")
 
     parser.add_argument('-x', '--xml', default=True, action='store_true')
     parser.add_argument('--no-xml', dest='xml', action='store_false')
@@ -103,7 +104,7 @@ def main():
             string_search.run_url_finder(entries, args.concurrency, args.workers,
                                      args.verbose, args.very_verbose)
         else:
-            save_path_file = ""
+            save_file_path = ""
             if args.xml:
                 # Save the XML
                 xml_str = root.toprettyxml(indent="\t")
@@ -112,8 +113,8 @@ def main():
                 if not exists:
                     os.makedirs(directory)
 
-                save_path_file = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
-                with open(save_path_file, "w") as f:
+                save_file_path = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
+                with open(save_file_path, "w") as f:
                     f.write(xml_str)
 
             if args.tests:
@@ -122,17 +123,24 @@ def main():
                 cur = 1
                 total = len(entries)
                 for provider in entries:
-                    print(f"[ {cur} / {total} ] Running tests on {provider}'s collections...")
+                    print(f"\n[ {cur} / {total} ] Running tests on {provider}'s collections...")
 
                     cmd = ["./regression_tests.py", f"--provider={provider}", "-t",
-                           f"--save={save_dir_name}", f"--path={save_path_file}"]
+                           f"--save={save_dir_name}", f"--path={save_file_path}"]
 
                     if args.verbose:
                         cmd.append("-v")
                     if args.dap:
-                        cmd.append(f"--dap={args.dap}")
+                        cmd.append(f"-d")
                     if args.dap_var:
-                        cmd.append(f"--dap_var={args.dap_var}")
+                        cmd.append(f"-D")
+                    if args.all:
+                        cmd.append(f"-a")
+
+                    command = ""
+                    for c in cmd:
+                        command += " " + c
+                    print("\tCommand: 'python3 " + command + "'")
 
                     result = subprocess.run(cmd)
                     cur += 1

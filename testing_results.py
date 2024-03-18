@@ -97,6 +97,7 @@ class Result:
     #  collection level
     gid = ""
     url = ""
+    murl = ""
 
     #  test level
     type = ""  # dmr, dap, dap_var

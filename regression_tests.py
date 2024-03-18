@@ -131,9 +131,9 @@ def test_one_collection(ccid, title):
             try:
                 test_results = future.result()
             except Exception as exc:
-                print('%r generated an exception: %s' % (gid, exc))
+                print('%r generated an exception: %s\n' % (gid, exc))
             else:
-                print(f'{gid}: {test_results}') if verbose else ''
+                print(f'{gid}: {test_results}\n') if verbose else ''
                 # first_last_dict[gid][1] is the URL we tested
                 for r in test_results:
                     r.gid = gid
@@ -283,15 +283,17 @@ def run_provider_tests(args):
         done = 0
         if args.concurrency:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
-                result_list = executor.map(test_one_collection, entries.keys(), entries.values())
+                result_list = executor.map(test_one_collection, entries.keys(), entries.values(), timeout=300)
                 for result in result_list:
                     try:
                         print(f'Result from unit_tests: {result}') if args.verbose else ''
                         done += 1
                         print_progress(done, total)
                         results.sort(result)
+                    except concurrent.futures.TimeoutError:
+                        print("test_one_collection took to long...\n")  # It suspends infinitely.
                     except Exception as exc:
-                        print(f'Exception: {exc}')
+                        print(f'Exception: {exc}\n')
         else:
             for ccid, title in entries.items():
                 r = test_one_collection(ccid, title)
@@ -305,9 +307,7 @@ def run_provider_tests(args):
         print(f'\n\tTotal collections tested: {len(entries)}') if len(entries) > 1 else ''
         print(f'\tRequest time: {duration:.1f}s') if args.time else ''
 
-        #  TODO add call to xml_utils here
         xu.write_xml_documents(args.path, args.version, results)
-        #  write_xml_document(provider, args.version, results)
 
     except cmr.CMRException as e:
         print(e)
@@ -399,7 +399,7 @@ def main():
                         type=int, default=0)
 
     parser.add_argument("-d", "--dap", help="Test getting the DAP response", action="store_true", default=False)
-    parser.add_argument("-D", "--dap_var", help="Test getting the DAP_var response", action="store_false", default=False)
+    parser.add_argument("-D", "--dap_var", help="Test getting the DAP_var response", action="store_true", default=False)
     parser.add_argument("--no-dap", dest="dap", help="Test getting the DAP response", action="store_false")
     parser.add_argument("-n", "--netcdf4", help="Test getting the NetCDF4 file response", action="store_true")
 
@@ -426,7 +426,7 @@ def main():
     global dap
     dap = args.dap
     global dap_var
-    dap_var = True
+    dap_var = args.dap_var
     global netcdf4
     netcdf4 = args.netcdf4
     global umm_json

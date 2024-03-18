@@ -28,12 +28,32 @@
             </body>
         </html>
     </xsl:template>
-    
+
     <xsl:template match="Provider">
         <tr>
-            <td><a href="{@name}.xml"><xsl:value-of select="@name"/></a></td>
+            <td colspan="5"><xsl:value-of select="@name"/></td>
         </tr>
-        <xsl:apply-templates/>     
+        <xsl:apply-templates/>
+    </xsl:template>
+
+    <xsl:template match="Error">
+        <tr>
+            <td>-</td>
+            <td><a href="{@url}">Errors</a></td>
+            <td>Total: <xsl:value-of select="@total"/></td>
+            <td>Error: <xsl:value-of select="@error"/></td>
+            <td>Info: <xsl:value-of select="@info"/></td>
+        </tr>
+    </xsl:template>
+
+    <xsl:template match="Test">
+        <tr>
+            <td>-</td>
+            <td><a href="{@url}"><xsl:value-of select="@name"/></a></td>
+            <td>Total: <xsl:value-of select="@total"/></td>
+            <td>Pass: <xsl:value-of select="@pass"/></td>
+            <td>Fail: <xsl:value-of select="@fail"/></td>
+        </tr>
     </xsl:template>
     
 </xsl:stylesheet>

@@ -144,7 +144,7 @@ def run_search(providers, search_str, concurrency, workers, ver, very):
                 with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
                     try:
                         result_list = executor.map(search, collections.keys(), collections.values(), timeout=300)
-                    except concurrent.futures._base.TimeoutError:
+                    except concurrent.futures.TimeoutError:
                         print("This took to long...") # It suspends infinitely.
                     except Exception as exc:
                         print(f'Exception: {exc}')

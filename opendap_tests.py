@@ -32,7 +32,8 @@ def dmr_tester(url_address):
 
     ext = '.dmr'
     dmr_tr = tr.Result("dmr", "fail", 500)
-    dmr_tr.url = url_address
+    dmr_tr.url = url_address + ext
+    dmr_tr.murl = url_address + ext
     try:
         #  print(".", end="", flush=True) if not quiet else False
 
@@ -74,26 +75,35 @@ def dap_tester(url_address):
     ext = '.dap'
     #  print("|", end="", flush=True) if not quiet else False
     dap_tr = tr.Result("dap", "fail", 500)
-    dap_tr.url = url_address
+    dap_tr.url = url_address + ".dmr"
     try:
-        #  print(".", end="", flush=True) if not quiet else False
-
-        r = requests.get(url_address + ext)
+        # makes the dmr request so we can parse out the first variable
+        r = requests.get(url_address + ".dmr")
         if r.status_code == 200:
+            dmr_xml = r.text
+            variables = parse_variables(dmr_xml)
+            var = variables[0]
+            postfix = build_subset_postfix(var)
+            url = url_address + postfix
+            dap_tr.murl = url
 
-            dap_tr.status = "pass"
-            dap_tr.code = r.status_code
+            # making the dap request with the first variable to cut down on response time
+            r = requests.get(url)
+            if r.status_code == 200:
 
-            # Save the response?
-            if save_all:
-                save_response(url_address, ext, r)
-        else:
-            #  print("F", end="", flush=True) if not quiet else False
+                dap_tr.status = "pass"
+                dap_tr.code = r.status_code
 
-            dap_tr.code = r.status_code
+                # Save the response?
+                if save_all:
+                    save_response(url_address, ext, r)
+            else:
+                #  print("F", end="", flush=True) if not quiet else False
 
-            if save:
-                write_error_file(url_address, ext, r)
+                dap_tr.code = r.status_code
+
+                if save:
+                    write_error_file(url_address, ext, r)
 
     # Ignore exception, the url_tester will return 'fail'
     except requests.exceptions.InvalidSchema:
@@ -111,14 +121,11 @@ def var_tester(url_address, save_passes=False):
     """
     ext = '.dap'
     results = []
-    var_length = 0
     try:
         r = requests.get(url_address + ".dmr")
         if r.status_code == 200:
             dmr_xml = r.text
             variables = parse_variables(dmr_xml)
-            var_length = len(variables)
-            # print("length of variables: " + str(var_length))
             var_tester_helper(url_address, variables, results, ext, r, save_passes)
         else:
             #  print("F", end="", flush=True) if not quiet else False
@@ -132,15 +139,6 @@ def var_tester(url_address, save_passes=False):
         pass
     except requests.exceptions.ConnectionError:
         print("VarE", end="", flush=True)
-
-    if var_length == 0:
-        percent = "0.0%"
-    elif var_length == len(results) and not save_passes:
-        percent = "0.0%"
-    else:
-        fail_length = len(results)
-        percent = str(round(fail_length / var_length * 100, 2)) + "%"
-    #  results["percent"] = percent
 
     return results
 
@@ -158,15 +156,16 @@ def var_tester_helper(url_address, variables, results, ext, dmr_r, save_passes):
     """
     for v in variables:
         #  print("-", end="", flush=True) if not quiet else False
-        t = build_leaf_path(v)
-        dap_url = url_address + '.dap?dap4.ce=/' + t
+        t = build_subset_postfix(v)
+        dap_url = url_address + t
         #  print(dap_url)
         dap_r = requests.get(dap_url)
         if dap_r.status_code == 200:
 
             if save_passes:
                 var_tr = tr.Result("dap_var", "pass", dap_r.status_code)
-                var_tr.url = dap_url
+                var_tr.url = url_address + ".dmr"
+                var_tr.murl = dap_url
                 results.append(var_tr)
 
             # Save the response?
@@ -260,6 +259,16 @@ def parse_variables(dmr_xml):
     variables += dmr_doc.getElementsByTagName("String")
 
     return variables
+
+
+def build_subset_postfix(var):
+    var_path = build_leaf_path(var)
+    postfix = '.dap?dap4.ce=/' + var_path
+    dims = var.getElementsByTagName("Dim")
+    for d in dims:
+        postfix += "[0]"
+
+    return postfix
 
 
 def build_leaf_path(var):
