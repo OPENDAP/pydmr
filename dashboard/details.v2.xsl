@@ -59,8 +59,8 @@
                                 <th>Message</th>
                             </xsl:when>
                             <xsl:otherwise>
-                                <th>CCID</th>
-                                <th>GID</th>
+                                <th>CCID (Request Form Link)</th>
+                                <th>GID (Data URL Link)</th>
                                 <th>Test Type</th>
                                 <th>Status : Code</th>
                             </xsl:otherwise>
@@ -75,7 +75,7 @@
     <xsl:template match="Test">
         <tr title="{@title}" class="result-{@status}">
             <td><a href="{@url}"><xsl:value-of select="@ccid"/></a></td>
-            <td><xsl:value-of select="@gid"/></td>
+            <td><a href="{@murl}"><xsl:value-of select="@gid"/></a></td>
             <td><xsl:value-of select="@type"/></td>
             <td><xsl:value-of select="@status"/> : <xsl:value-of select="@code"/></td>
         </tr>
