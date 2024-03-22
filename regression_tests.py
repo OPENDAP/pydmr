@@ -126,7 +126,7 @@ def test_one_collection(ccid, title):
         future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, dap_var, netcdf4): gid
                          for gid, granule_tuple in first_last_dict.items()}
 
-        for future in concurrent.futures.as_completed(future_to_gid):
+        for future in concurrent.futures.as_completed(future_to_gid, timeout=60):
             gid = future_to_gid[future]
             try:
                 test_results = future.result()
@@ -283,7 +283,7 @@ def run_provider_tests(args):
         done = 0
         if args.concurrency:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
-                result_list = executor.map(test_one_collection, entries.keys(), entries.values(), timeout=300)
+                result_list = executor.map(test_one_collection, entries.keys(), entries.values(), timeout=60)
                 for result in result_list:
                     try:
                         print(f'Result from unit_tests: {result}') if args.verbose else ''
@@ -292,6 +292,7 @@ def run_provider_tests(args):
                         results.sort(result)
                     except concurrent.futures.TimeoutError:
                         print("test_one_collection took to long...\n")  # It suspends infinitely.
+                        continue
                     except Exception as exc:
                         print(f'Exception: {exc}\n')
         else:
@@ -327,7 +328,7 @@ def print_progress(amount, total):
     :return:
     """
     percent = amount * 100 / total
-    msg = "\t" + str(round(percent, 2)) + "% [ " + str(amount) + " / " + str(total) + " ]                    "
+    msg = "\t" + str(round(percent, 2)) + "% [ " + str(amount) + " / " + str(total) + " ] "
     print(msg, end="\r", flush=True)
 
 
