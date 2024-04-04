@@ -1,12 +1,16 @@
 
 class TestResults:
     provider = ""
+    total = 0
+    run = 0
+    time = ""
 
     misc_path = ""
     misc_results = []
     misc_total = 0
     error_count = 0
     info_count = 0
+    timeout_count = 0
 
     dmr_path = ""
     dmr_results = []
@@ -35,6 +39,11 @@ class TestResults:
     def __init__(self, provider):
         self.provider = provider
 
+    def set_runs(self, run, total, time):
+        self.total = total
+        self.run = run
+        self.time = time
+
     def add_misc(self, result):
         self.misc_results.append(result)
         self.misc_total += 1
@@ -42,6 +51,8 @@ class TestResults:
             self.error_count += 1
         if result.status == "info":
             self.info_count += 1
+        if result.status == "timeout":
+            self.timeout_count += 1
 
     def add_dmr(self, result):
         self.dmr_results.append(result)

@@ -29,6 +29,9 @@
                     .result-error {
                     background-color: #ffdab3
                     }
+                    .result-timeout {
+                    background-color: #ffccbb
+                    }
                     .result-info {
                     background-color: #b3daff
                     }
@@ -42,7 +45,8 @@
                     <xsl:choose>
                         <xsl:when test="@err_count">
                             Error: <xsl:value-of select="@err_count"/><br/>
-                            Info: <xsl:value-of select="@info_count"/>
+                            Info: <xsl:value-of select="@info_count"/><br/>
+                            Timeout: <xsl:value-of select="@time_count"/>
                         </xsl:when>
                         <xsl:otherwise>
                             Pass: <xsl:value-of select="@pass_count"/><br/>
@@ -82,7 +86,7 @@
     </xsl:template>
 
     <xsl:template match="Error">
-        <tr title="{@title}" class="result-error">
+        <tr title="{@title}" class="result-{@status}">
             <td><xsl:value-of select="@ccid"/></td>
             <td><xsl:value-of select="@type"/> : <xsl:value-of select="@code"/></td>
             <td><xsl:value-of select="@payload"/></td>

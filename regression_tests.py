@@ -11,7 +11,7 @@ at once.
 The output of this unit_tests driver is an XML document that can be used as a document
 in its own right or rendered as an HTML web page.
 """
-
+import math
 import xml.dom.minidom as minidom
 import time
 import concurrent.futures
@@ -38,6 +38,8 @@ dap_var: bool = False
 netcdf4: bool = False
 umm_json: bool = True  # Use the newer (correct) technique to get granule information
 cloud_only: bool = True  # By default, only unit_tests URLs for the cloud. If False, unit_tests all the OPeNDAP URLs
+
+request_timeout: int = 60
 
 
 def is_opendap_cloud_url(url) -> bool:
@@ -121,24 +123,32 @@ def test_one_collection(ccid, title):
 
     # future_to_gid = dict()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-        # future_to_gid is a dictionary where the key is a future that will return
-        # the results of running tests on a granule and the value is the granule's concept ID
-        future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, dap_var, netcdf4): gid
-                         for gid, granule_tuple in first_last_dict.items()}
+        try:
+            # future_to_gid is a dictionary where the key is a future that will return
+            # the results of running tests on a granule and the value is the granule's concept ID
+            future_to_gid = {executor.submit(opendap_tests.url_test_runner, granule_tuple[1], dmr, dap, dap_var, netcdf4): gid
+                             for gid, granule_tuple in first_last_dict.items()}
 
-        for future in concurrent.futures.as_completed(future_to_gid, timeout=60):
-            gid = future_to_gid[future]
-            try:
-                test_results = future.result()
-            except Exception as exc:
-                print('%r generated an exception: %s\n' % (gid, exc))
-            else:
-                print(f'{gid}: {test_results}\n') if verbose else ''
-                # first_last_dict[gid][1] is the URL we tested
-                for r in test_results:
-                    r.gid = gid
-                    r.addcollection(ccid, title)
-                    collected_results.append(r)
+            for future in concurrent.futures.as_completed(future_to_gid, timeout=request_timeout):
+                    gid = future_to_gid[future]
+                    try:
+                        test_results = future.result()
+                    except Exception as exc:
+                        print('\n%r generated an exception: %s\n' % (gid, exc))
+                    else:
+                        print(f'{gid}: {test_results}\n') if verbose else ''
+                        # first_last_dict[gid][1] is the URL we tested
+                        for r in test_results:
+                            r.gid = gid
+                            r.addcollection(ccid, title)
+                            collected_results.append(r)
+
+        except concurrent.futures.TimeoutError as exc:
+            # print(f"\nOpendap_tests took to long... {exc}")  # It suspends infinitely.
+            err_tr = tr.Result("Error", "timeout", 408)
+            err_tr.addcollection(ccid, title)
+            err_tr.payload = f"Request timed out after {request_timeout} seconds."
+            collected_results.append(err_tr)
 
     if not collected_results:
         err_tr = tr.Result("Error", "empty", 500)
@@ -148,112 +158,6 @@ def test_one_collection(ccid, title):
         return collected_results
     else:
         return collected_results
-
-
-def write_xml_document(provider, version, results):
-    """
-    Write the collected results in an XML document.
-
-    The format of 'results' is:
-    {CCID: (<title>,
-            {G2224035357-POCLOUD: (URL, {'dmr': 'pass', 'dap': 'NA', 'netcdf4': 'NA'}),
-            ... }
-           ),
-    ... }
-    But, it might contain an error, like this:
-    {'C1371013470-GES_DISC': ('SRB/GEWEX evapotranspiration (Penman-Monteith) L4 3 hour 0.5 degree x 0.5 degree V1 (WC_PM_ET_050) at GES DISC',
-                              {'error': 'Expected one response item from CMR, got 0 while asking about C1371013470-GES_DISC'}
-                              )
-    }
-
-    :param: provider: The name of the Provider as it appears in CMR.
-    :param: version: The version number to use when naming the XML document.
-    :param: results: a mess of dicts and tuples.
-    """
-    # make the response document
-    root = minidom.Document()
-
-    xsl_element = root.createProcessingInstruction("xml-stylesheet",
-                                                   "type='text/xsl' href='/NGAP-PROD-tests/details.xsl'")
-    root.appendChild(xsl_element)
-
-    prov = root.createElement('Provider')
-    prov.setAttribute('name', provider)
-    prov.setAttribute('date', time.asctime())
-    root.appendChild(prov)
-
-    for ccid in results.keys():
-        title = results[ccid][0];
-        # XML element for the collection
-        collection = root.createElement('Collection')
-        collection.setAttribute('ccid', ccid)
-        collection.setAttribute('long_name', title)
-        prov.appendChild(collection)
-
-        # Add XML for all the tests we ran
-        granule_results = results[ccid][1];
-        # {G2224035357-POCLOUD: (URL, {'dmr': 'pass', 'dap': 'NA', 'netcdf4': 'NA'}), ...}
-        # ..G2599786095-POCLOUD: {'dmr': {'dmr_test': <opendap_tests.TestResult object at 0x7f06591abc88>},
-        #                         'dap': 'NA',
-        #                         'netcdf4': 'NA'}
-
-        # for gid, tests in granule_results.items():
-        for gid, tests in granule_results.items():
-            if gid == "error":
-                test = root.createElement('Error')
-                test.setAttribute('message', tests)
-                collection.appendChild(test)
-            elif gid == "info":
-                test = root.createElement('Info')
-                test.setAttribute('message', tests)
-                collection.appendChild(test)
-            else:
-                url = tests[0]
-                for name, result in tests[1].items():
-                    print(result) if verbose else ''
-                    if result != "NA":
-                        if name == "dmr":
-                            test_result = result.get("dmr_test")
-                            test = create_attribute(root, name, url, test_result)
-                            collection.appendChild(test)
-                        elif name == "dap":
-                            test_result = result.get("dap_test")
-                            test = create_attribute(root, name, url, test_result)
-                            collection.appendChild(test)
-                        elif name == "dap_vars":
-                            for key, tr in result.items():
-                                test = create_attribute(root, name, key, tr)
-                                collection.appendChild(test)
-
-    # Save the XML
-    xml_str = root.toprettyxml(indent="\t")
-    directory = "Exports/" + time.strftime("%m.%d.%y") + "/"
-    isExist = os.path.exists(directory)
-    if not isExist:
-        os.makedirs(directory)
-
-    save_path_file = directory + provider + time.strftime("-%m.%d.%Y-") + version + ".xml"
-    with open(save_path_file, "w") as f:
-        f.write(xml_str)
-
-
-def create_attribute(root, name, url, result):
-    """
-    Sub-function for write_xml_document(...)
-    Creates a Xml attribute for xml document
-
-    :param root:    Root of the xml document
-    :param name:    test result type ('dmr', 'dap', 'dap_vars', 'message')
-    :param url:     url of the file that was tested
-    :param result:  result of the test
-    :return:
-    """
-    test = root.createElement('Test')
-    test.setAttribute('name', name)
-    test.setAttribute('url', url)
-    test.setAttribute('result', result.result)
-    test.setAttribute('status', str(result.status))
-    return test
 
 
 def run_provider_tests(args):
@@ -281,20 +185,25 @@ def run_provider_tests(args):
         #  results = dict()
         results = tr.TestResults(args.provider)
         done = 0
+        # timeout = len(entries) * request_timeout
+        # min = math.trunc(timeout / 60)
+        # sec = timeout % 60
+        # print(f"\tProvider timeout: {min}m {sec}s @ {request_timeout} seconds per")
         if args.concurrency:
             with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
-                result_list = executor.map(test_one_collection, entries.keys(), entries.values(), timeout=60)
-                for result in result_list:
-                    try:
-                        print(f'Result from unit_tests: {result}') if args.verbose else ''
-                        done += 1
-                        print_progress(done, total)
-                        results.sort(result)
-                    except concurrent.futures.TimeoutError:
-                        print("test_one_collection took to long...\n")  # It suspends infinitely.
-                        continue
-                    except Exception as exc:
-                        print(f'Exception: {exc}\n')
+                try:
+                    result_list = executor.map(test_one_collection, entries.keys(), entries.values(), timeout=600)
+                    for result in result_list:
+                        try:
+                            print(f'Result from unit_tests: {result}') if args.verbose else ''
+                            done += 1
+                            print_progress(done, total)
+                            results.sort(result)
+                        except Exception as exc:
+                            print(f'Exception: {exc}\n')
+                except concurrent.futures.TimeoutError as exc:
+                    print(f"\ntest_one_collection took to long... {exc}")  # It suspends infinitely.
+
         else:
             for ccid, title in entries.items():
                 r = test_one_collection(ccid, title)
@@ -305,8 +214,10 @@ def run_provider_tests(args):
 
         duration = time.time() - start
 
-        print(f'\n\tTotal collections tested: {len(entries)}') if len(entries) > 1 else ''
+        print(f'\n\tTotal collections tested: {done}') if done > 1 else ''
         print(f'\tRequest time: {duration:.1f}s') if args.time else ''
+
+        results.set_runs(done, len(entries), str(round(duration, 1)))
 
         xu.write_xml_documents(args.path, args.version, results)
 
@@ -358,7 +269,7 @@ def run_collection_test(args):
         index = ccid.index("-") + 1
         provider = ccid[index:]
         print(f'Provider: {provider}') if args.verbose else ''
-        write_xml_document(provider, args.version, results)
+        xu.write_xml_documents(provider, args.version, results)
 
     except cmr.CMRException as e:
         print(e)

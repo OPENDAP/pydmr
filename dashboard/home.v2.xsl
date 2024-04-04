@@ -3,26 +3,26 @@
     <xsl:template match="Environment">
         <html>
             <head>
-            <style>
-                table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-                }
-		th, td {
-		padding-top: 2px;
-		padding-bottom: 2px;
-		padding-left: 5px;
-		padding-right: 5px;
-		}
-            </style>
+                <style>
+                    table, th, td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                    }
+                    th, td {
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    }
+                </style>
             </head>
             <body>
                 <h1>OPeNDAP Tested Providers for <xsl:value-of select="@name"/></h1>
                 <xsl:value-of select="@date"/>
                 <table>
                     <tr bgcolor="#9acd32">
-                        <th>Providers</th>
-		    </tr>
+                        <th colspan="5">Providers</th>
+                    </tr>
                     <xsl:apply-templates/>
                 </table>
             </body>
@@ -31,9 +31,15 @@
 
     <xsl:template match="Provider">
         <tr>
-            <td colspan="5"><xsl:value-of select="@name"/></td>
+            <td colspan="2"><xsl:value-of select="@name"/></td>
+            <td colspan="3">
+                Collections: <xsl:value-of select="@run"/>
+                / <xsl:value-of select="@total"/>
+                in <xsl:value-of select="@time"/>s
+            </td>
         </tr>
         <xsl:apply-templates/>
+        <tr bgcolor="#9acd32"><td colspan="5"/></tr>
     </xsl:template>
 
     <xsl:template match="Error">
@@ -55,5 +61,5 @@
             <td>Fail: <xsl:value-of select="@fail"/></td>
         </tr>
     </xsl:template>
-    
+
 </xsl:stylesheet>

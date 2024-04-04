@@ -11,7 +11,8 @@ def write_xml_documents(path, version, results):
 
     if results.misc_results:
         results.misc_path = write_misc_doc(results.provider, version, results.misc_results,
-                                           str(results.misc_total), str(results.error_count), str(results.info_count))
+                                           str(results.misc_total), str(results.error_count),
+                                           str(results.info_count), str(results.timeout_count))
 
     if results.dmr_results:
         results.dmr_path = write_dmr_doc(results.provider, version, results.dmr_results,
@@ -34,7 +35,7 @@ def write_xml_documents(path, version, results):
     update_summary(path, results.provider, results)
 
 
-def write_misc_doc(provider, version, misc_list, total, err, info):
+def write_misc_doc(provider, version, misc_list, total, err, info, timeout):
     # make the response document
     root = minidom.Document()
 
@@ -48,6 +49,7 @@ def write_misc_doc(provider, version, misc_list, total, err, info):
     prov.setAttribute('total', total)
     prov.setAttribute('err_count', err)
     prov.setAttribute('info_count', info)
+    prov.setAttribute('time_count', timeout)
     root.appendChild(prov)
 
     for item in misc_list:
@@ -216,6 +218,9 @@ def update_summary(path, provider, results):
     pro = None
     for p in pros:
         if p.getAttribute('name') == provider:
+            p.setAttribute('run', str(results.run))
+            p.setAttribute('total', str(results.total))
+            p.setAttribute('time', str(results.time))
             pro = p
             break
 
@@ -225,6 +230,7 @@ def update_summary(path, provider, results):
         misc.setAttribute('total', str(results.misc_total))
         misc.setAttribute('error', str(results.error_count))
         misc.setAttribute('info', str(results.info_count))
+        misc.setAttribute('time', str(results.timeout_count))
         pro.appendChild(misc)
 
     if results.dmr_results:
