@@ -27,7 +27,7 @@ def build_rest_urls(ccid: str, granules: dict, hic='opendap.sit.earthdata.nasa.g
     Returns:
         Alist of URLs that will each return one DMR++ document
     """
-    return [f"https://{hic}/build_dmrpp/collections/{ccid}/granules{granule}" for granule in granules.values()]
+    return [f"https://{hic}/build_dmrpp/collections/{ccid}/granules/{granule}" for granule in granules.values()]
 
 
 def main():
@@ -56,12 +56,12 @@ def main():
 
         print(f'Requesting {urls[0]}:')
 
-        with open(args.token, "r") as file:
-            token = file.read()
+        with open(args.token, "rt") as file:
+            token = file.readline().strip()
 
-        headers = {'Authorization': f'Bearer {token}'}
+        headers = {'Authorization': f'Bearer {token}', 'Accepts': 'deflate', 'User-Agent': 'James-pydmr'}
 
-        r = requests.get(urls[0], headers)
+        r = requests.get(urls[0], headers=headers)
         if r.status_code == 200:
             print(r.text)
         else:
