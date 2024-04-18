@@ -6,10 +6,13 @@ Build DMR++ documents for granules from a collection
 
 import requests
 import time
+
+from pip._internal.utils import urls
+
 import cmr
 
 
-def build_rest_urls(ccid: str, granules: dict, hic='opendap.earthdata.nasa.gov') -> list:
+def build_rest_urls(ccid: str, granules: dict, hic='opendap.sit.earthdata.nasa.gov') -> list:
     """
     Extract each granule from the granules dictionary and build
     a list of OPeNDAP RESTified URLs that will get a DMR++ from the
@@ -37,6 +40,7 @@ def main():
     parser.add_argument("-D", "--date-range",
                         help="for a granule request, limit the responses to a range of date/times."
                              "The format is ISO-8601,ISO-8601 (e.g., 2000-01-01T10:00:00Z,2010-03-10T12:00:00Z)")
+    parser.add_argument("-T", "--token", help="EDL authentication token")
 
     parser.add_argument("ccid", help="Build DMR++ documents for granules in this collection")
 
@@ -52,7 +56,12 @@ def main():
 
         print(f'Requesting {urls[0]}:')
 
-        r = requests.get(urls[0])
+        with open(args.token, "r") as file:
+            token = file.read()
+
+        headers = {'Authorization': f'Bearer {token}'}
+
+        r = requests.get(urls[0], headers)
         if r.status_code == 200:
             print(r.text)
         else:
