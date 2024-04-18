@@ -503,6 +503,24 @@ def get_collection_granules(ccid: str, pretty=False, service='cmr.earthdata.nasa
     return process_request(cmr_query_url, collection_granules_dict, get_session(), page_size=500)
 
 
+def get_collection_granules_temporal(ccid: str, time_range: str, pretty=False, service='cmr.earthdata.nasa.gov', descending=False) -> dict:
+    """
+    Get granules that fall within a time range for a collection
+
+    :param ccid: The string Collection (Concept) Id
+    :param time_range: date range to limit granule query e.g., '2000-01-01T10:00:00Z,2010-03-10T12:00:00Z'
+    :param pretty: request a 'pretty' version of the response from the service. default False
+    :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
+    :param descending: If true, get the granules in newest first order, else oldest granule is first
+    :returns: The collection JSON object
+    """
+    temporal = f'&temporal={time_range}'
+    pretty = '&pretty=true' if pretty else ''
+    sort_key = '&sort_key=-start_date' if descending else ''
+    cmr_query_url = f'https://{service}/search/granules.json?collection_concept_id={ccid}{pretty}{sort_key}{temporal}'
+    return process_request(cmr_query_url, collection_granules_dict, get_session(), page_size=500)
+
+
 def decompose_resty_url(url: str, pretty=False) -> dict:
     """
     Extract the collection concept id and granule ur. Use this information to
