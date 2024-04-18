@@ -499,7 +499,7 @@ def get_collection_granules(ccid: str, pretty=False, service='cmr.earthdata.nasa
     """
     pretty = '&pretty=true' if pretty else ''
     sort_key = '&sort_key=-start_date' if descending else ''
-    cmr_query_url = f'https://{service}/search/granules.json?collection_concept_id={ccid}{pretty}{sort_key}
+    cmr_query_url = f'https://{service}/search/granules.json?collection_concept_id={ccid}{pretty}{sort_key}'
     return process_request(cmr_query_url, collection_granules_dict, get_session(), page_size=500)
 
 
