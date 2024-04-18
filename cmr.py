@@ -503,7 +503,8 @@ def get_collection_granules(ccid: str, pretty=False, service='cmr.earthdata.nasa
     return process_request(cmr_query_url, collection_granules_dict, get_session(), page_size=500)
 
 
-def get_collection_granules_temporal(ccid: str, time_range: str, pretty=False, service='cmr.earthdata.nasa.gov', descending=False) -> dict:
+def get_collection_granules_temporal(ccid: str, time_range: str, pretty=False, service='cmr.earthdata.nasa.gov',
+                                     descending=False) -> dict:
     """
     Get granules that fall within a time range for a collection
 
