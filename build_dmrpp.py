@@ -4,6 +4,7 @@
 Build DMR++ documents for granules from a collection
 """
 
+import sys
 import time
 from typing import Callable
 from concurrent.futures import ThreadPoolExecutor
@@ -42,10 +43,13 @@ def build_save_dmrpp(url: str, filename: str, directory: str, headers: dict[str,
             file.writelines(r.text)
         if verbose:
             print(f'Saved to {filename}')
+        else:
+            print(".", end="")
+            sys.stdout.flush()
     else:
         print(f'Error: {r.text} ({url})')
 
-    return (r.status_code, url)
+    return r.status_code, url
 
 
 def parallel_processing(dmrpp_builder: Callable[[str,str],tuple[int,str]], urls: list[str], names: list[str]):
@@ -63,25 +67,13 @@ def parallel_processing(dmrpp_builder: Callable[[str,str],tuple[int,str]], urls:
         print(result)  # Replace with your desired result handling
 
 
-def mkdir_p(path: str) -> bool:
-    # Create a Path object for the directory
-    directory_path = Path(path)
-
-    # Create the directory and any missing parent directories (if Python 3.5+)
-    try:
-        directory_path.mkdir(parents=True)
-        return True
-    except FileExistsError as error:
-        print(f"Directory already exists: {error}")
-        return False
-
-
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Query CMR and get information about Collections and Granules, "
                                                  "especially as that information relates to OPeNDAP. EDC "
                                                  "authentication using an EDL token is needed.")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
+    parser.add_argument("-V", "--very-verbose", help="really increase output verbosity", action="store_true")
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
     parser.add_argument("-D", "--date-range",
                         help="for a granule request, limit the responses to a range of date/times."
@@ -92,9 +84,9 @@ def main():
 
     args = parser.parse_args()
 
-    try:
-        start = time.time()
+    start = time.time()
 
+    try:
         path = Path(args.ccid)
         if not path.is_dir():
             path.mkdir(parents=True)
@@ -110,17 +102,20 @@ def main():
             token = file.readline().strip()
         headers = {'Authorization': f'Bearer {token}', 'Accepts': 'deflate', 'User-Agent': 'James-pydmr'}
 
+    except Exception as e:
+        print(f'Initialization failure: {e}')
+
+    try:
         # since build_save_dmrpp() takes two constant args, curry the function binding values to the constant
         # value parameters so the result can be used with concurrent ThreadPool map(). jhrg 4/19/24
-        curried_build_save_dmrpp = partial(build_save_dmrpp, directory=args.ccid, headers=headers, verbose=args.verbose)
+        curried_build_save_dmrpp = partial(build_save_dmrpp, directory=args.ccid, headers=headers, verbose=args.very_verbose)
         parallel_processing(curried_build_save_dmrpp, urls, granule_names)
-
-        duration = time.time() - start
-
-        print(f'Processing {len(urls)} granules, response time: {duration:.1f}s') if args.time else ''
-
     except Exception as e:
-        print(e)
+        print(f'DMR++ Build failure: {e}')
+
+    duration = time.time() - start
+
+    print(f'Processing {len(urls)} granules, response time: {duration:.1f}s') if args.time else ''
 
 
 if __name__ == "__main__":
