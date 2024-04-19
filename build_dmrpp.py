@@ -29,27 +29,32 @@ def make_s3_client(key_id: str, secret_access_key: str, region_name='us-west-2')
     Returns:
         An S3 client object
     """
+    print(f"Using {region_name} region")
+    print(f"Using {key_id} key")
+    print(f"Using {secret_access_key} secret")
     return boto3.client('s3',
-                        aws_access_key_id=key_id,
-                        aws_secret_access_key=secret_access_key,
-                        region_name=region_name)
+                         aws_access_key_id=key_id,
+                         aws_secret_access_key=secret_access_key,
+                         region_name=region_name)
 
 
-def upload_to_s3(s3_client: object, bucket_name: str, object_key: str, data: str, verbose=False) -> bool:
+def upload_to_s3(s3_client: object, bucket_name: str, object_key: str, data_string: str, verbose=False) -> bool:
     """
     Upload a file to an S3 bucket
     Args:
         s3_client: An S3 client object
         bucket_name:
         object_key:
-        data: For this code, a DMR++ document.
+        data_string: For this code, a DMR++ document.
         verbose: True prints more info, including on success
 
     Returns:
         True on success, False otherwise
     """
     try:
-        s3_client.put_object(Body=data, Bucket=bucket_name, Key=object_key)
+        data_bytes = data_string.encode('utf-8')
+        # Body=data_bytes, Bucket=bucket_name, Key=object_key
+        s3_client.put_object(Body=data_bytes, Bucket=bucket_name, Key=object_key)
         if verbose:
             print(f"Data uploaded successfully to s3://{bucket_name}/{object_key}")
         return True
@@ -129,7 +134,12 @@ def build_save_to_s3_dmrpp(url: str, object_key: str, bucket: str, s3_client: ob
     r = requests.get(url, headers=headers)
     dmrpp_key = f"{ccid}/{object_key}.dmrpp"
     if r.status_code == 200:
-        upload_to_s3(s3_client, bucket, dmrpp_key, r.text, verbose=verbose)
+        status = upload_to_s3(s3_client, bucket, dmrpp_key, r.text, verbose=verbose)
+        if not status:
+            msg = f"Error uploading DMR++ document to S3: {url}"
+            if verbose:
+                print(msg)
+            return -1, msg
 
         if verbose:
             print(f'Saved to {object_key}')
@@ -206,19 +216,20 @@ def main():
             # Get the value of an environment variable
             key_id = os.environ.get('AWS_ACCESS_KEY_ID')
             secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
-            region = os.environ.get('REGION_NAME')
+            region = os.environ.get('AWS_DEFAULT_REGION')
             if not region:
                 region = 'us-west-2'
 
-            s3_client = make_s3_client(key_id, secret_access_key, region_name=region)
+            s3 = make_s3_client(key_id, secret_access_key, region_name=region)
 
-            dmrpp_builder_function = partial(build_save_to_s3_dmrpp, bucket='dmrpp-sit-poc', s3_client=s3_client,
+            dmrpp_builder_function = partial(build_save_to_s3_dmrpp, bucket=args.s3_bucket, s3_client=s3,
                                              ccid=args.ccid, headers=headers, verbose=args.very_verbose)
 
         else:
             # since build_save_dmrpp() takes two constant args, curry the function binding values to the constant
             # value parameters so the result can be used with concurrent ThreadPool map(). jhrg 4/19/24
-            dmrpp_builder_function = partial(build_save_dmrpp, directory=args.ccid, headers=headers, verbose=args.very_verbose)
+            dmrpp_builder_function = partial(build_save_dmrpp, directory=args.ccid, headers=headers,
+                                             verbose=args.very_verbose)
 
         parallel_processing(dmrpp_builder_function, urls, granule_names)
 
