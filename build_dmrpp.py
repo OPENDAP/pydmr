@@ -4,6 +4,7 @@
 Build DMR++ documents for granules from a collection
 """
 
+import os
 import sys
 import time
 from typing import Callable
@@ -12,8 +13,49 @@ from functools import partial
 from pathlib import Path
 
 import requests
+import boto3
 
 import cmr
+
+
+def make_s3_client(key_id: str, secret_access_key: str, region_name='us-west-2'):
+    """
+    Make an S3 client
+    Args:
+        key_id:
+        secret_access_key:
+        region_name: us-west-2 by default
+
+    Returns:
+        An S3 client object
+    """
+    return boto3.client('s3',
+                        aws_access_key_id=key_id,
+                        aws_secret_access_key=secret_access_key,
+                        region_name=region_name)
+
+
+def upload_to_s3(s3_client: object, bucket_name: str, object_key: str, data: str, verbose=False) -> bool:
+    """
+    Upload a file to an S3 bucket
+    Args:
+        s3_client: An S3 client object
+        bucket_name:
+        object_key:
+        data: For this code, a DMR++ document.
+        verbose: True prints more info, including on success
+
+    Returns:
+        True on success, False otherwise
+    """
+    try:
+        s3_client.put_object(Body=data, Bucket=bucket_name, Key=object_key)
+        if verbose:
+            print(f"Data uploaded successfully to s3://{bucket_name}/{object_key}")
+        return True
+    except Exception as e:
+        print(f"Error uploading data: {e}")
+        return False
 
 
 def build_rest_urls(ccid: str, granules: dict, hic='opendap.earthdata.nasa.gov') -> list:
@@ -35,6 +77,18 @@ def build_rest_urls(ccid: str, granules: dict, hic='opendap.earthdata.nasa.gov')
 
 
 def build_save_dmrpp(url: str, filename: str, directory: str, headers: dict[str,str], verbose=False) -> tuple[int,str]:
+    """
+    Build a DMR++ document. Save it to a local file
+    Args:
+        url: RESTified URL to DMR++ Builder
+        filename: Save to this file
+        directory: Save into this directory
+        headers: Used these headers when running the DMR++ Builder
+        verbose: Chatty output?
+
+    Returns:
+        A tuple of HTTP status code and URL.
+    """
     if verbose:
         print(f'Requesting {url}')
     r = requests.get(url, headers=headers)
@@ -47,7 +101,46 @@ def build_save_dmrpp(url: str, filename: str, directory: str, headers: dict[str,
             print(".", end="")
             sys.stdout.flush()
     else:
-        print(f'Error: {r.text} ({url})')
+        with open(f'./{directory}/{filename}.error', "wt") as file:
+            file.writelines(r.text)
+        if verbose:
+            print(f'Error: {r.text} ({url})')
+
+    return r.status_code, url
+
+
+def build_save_to_s3_dmrpp(url: str, object_key: str, bucket: str, s3_client: object, ccid: str, headers: dict[str,str], verbose=False) -> tuple[int,str]:
+    """
+    Build a DMR++ document. Save it to an S3 Bucket
+    Args:
+        url: RESTified URL to DMR++ Builder
+        object_key: Save to this key. The actual key is the ccid/granule name
+        bucket: S3 Bucket name
+        s3_client: Use this S3 client to upload the file
+        ccid: Collection Concept ID. Combined with the granule name to make the object key
+        headers: Used these headers when running the DMR++ Builder
+        verbose: Chatty output?
+
+    Returns:
+        A tuple of HTTP status code and URL.
+    """
+    if verbose:
+        print(f'Requesting {url}')
+    r = requests.get(url, headers=headers)
+    dmrpp_key = f"{ccid}/{object_key}.dmrpp"
+    if r.status_code == 200:
+        upload_to_s3(s3_client, bucket, dmrpp_key, r.text, verbose=verbose)
+
+        if verbose:
+            print(f'Saved to {object_key}')
+        else:
+            print(".", end="")
+            sys.stdout.flush()
+    else:
+        error_key = f"{ccid}/{object_key}.error"
+        upload_to_s3(s3_client, bucket, error_key, r.text, verbose=verbose)
+        if verbose:
+            print(f'Error: {r.text} ({url})')
 
     return r.status_code, url
 
@@ -64,7 +157,8 @@ def parallel_processing(dmrpp_builder: Callable[[str,str],tuple[int,str]], urls:
 
     # Process or display the results
     for result in results:
-        print(result)  # Replace with your desired result handling
+        if result[0] != 200:
+            print(f'Error: {result[0]}: {result[1]}')
 
 
 def main():
@@ -78,6 +172,7 @@ def main():
     parser.add_argument("-D", "--date-range",
                         help="for a granule request, limit the responses to a range of date/times."
                              "The format is ISO-8601,ISO-8601 (e.g., 2000-01-01T10:00:00Z,2010-03-10T12:00:00Z)")
+    parser.add_argument("-S", "--s3-bucket", help="Upload built DMR++ documents to this S3 bucket")
     parser.add_argument("-T", "--token", help="EDL authentication token")
 
     parser.add_argument("ccid", help="Build DMR++ documents for granules in this collection")
@@ -104,12 +199,29 @@ def main():
 
     except Exception as e:
         print(f'Initialization failure: {e}')
+        exit(1)
 
     try:
-        # since build_save_dmrpp() takes two constant args, curry the function binding values to the constant
-        # value parameters so the result can be used with concurrent ThreadPool map(). jhrg 4/19/24
-        curried_build_save_dmrpp = partial(build_save_dmrpp, directory=args.ccid, headers=headers, verbose=args.very_verbose)
-        parallel_processing(curried_build_save_dmrpp, urls, granule_names)
+        if args.s3_bucket:
+            # Get the value of an environment variable
+            key_id = os.environ.get('AWS_ACCESS_KEY_ID')
+            secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+            region = os.environ.get('REGION_NAME')
+            if not region:
+                region = 'us-west-2'
+
+            s3_client = make_s3_client(key_id, secret_access_key, region_name=region)
+
+            dmrpp_builder_function = partial(build_save_to_s3_dmrpp, bucket='dmrpp-sit-poc', s3_client=s3_client,
+                                             ccid=args.ccid, headers=headers, verbose=args.very_verbose)
+
+        else:
+            # since build_save_dmrpp() takes two constant args, curry the function binding values to the constant
+            # value parameters so the result can be used with concurrent ThreadPool map(). jhrg 4/19/24
+            dmrpp_builder_function = partial(build_save_dmrpp, directory=args.ccid, headers=headers, verbose=args.very_verbose)
+
+        parallel_processing(dmrpp_builder_function, urls, granule_names)
+
     except Exception as e:
         print(f'DMR++ Build failure: {e}')
 
