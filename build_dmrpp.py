@@ -4,11 +4,13 @@
 Build DMR++ documents for granules from a collection
 """
 
-import requests
 import time
 from typing import Callable
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
+from pathlib import Path
+
+import requests
 
 import cmr
 
@@ -61,6 +63,19 @@ def parallel_processing(dmrpp_builder: Callable[[str,str],tuple[int,str]], urls:
         print(result)  # Replace with your desired result handling
 
 
+def mkdir_p(path: str) -> bool:
+    # Create a Path object for the directory
+    directory_path = Path(path)
+
+    # Create the directory and any missing parent directories (if Python 3.5+)
+    try:
+        directory_path.mkdir(parents=True)
+        return True
+    except FileExistsError as error:
+        print(f"Directory already exists: {error}")
+        return False
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Query CMR and get information about Collections and Granules, "
@@ -79,6 +94,10 @@ def main():
 
     try:
         start = time.time()
+
+        path = Path(args.ccid)
+        if not path.is_dir():
+            path.mkdir(parents=True)
 
         entries = cmr.get_collection_granules_temporal(args.ccid, args.date_range)
         urls = build_rest_urls(args.ccid, granules=entries, hic='opendap.sit.earthdata.nasa.gov')
