@@ -7,12 +7,10 @@ Build DMR++ documents for granules from a collection
 import requests
 import time
 
-from pip._internal.utils import urls
-
 import cmr
 
 
-def build_rest_urls(ccid: str, granules: dict, hic='opendap.sit.earthdata.nasa.gov') -> list:
+def build_rest_urls(ccid: str, granules: dict, hic='opendap.earthdata.nasa.gov') -> list:
     """
     Extract each granule from the granules dictionary and build
     a list of OPeNDAP RESTified URLs that will get a DMR++ from the
@@ -28,6 +26,21 @@ def build_rest_urls(ccid: str, granules: dict, hic='opendap.sit.earthdata.nasa.g
         Alist of URLs that will each return one DMR++ document
     """
     return [f"https://{hic}/build_dmrpp/collections/{ccid}/granules/{granule}" for granule in granules.values()]
+
+
+def save_a_dmrpp(url: str, headers: dict[str,str], filename: str, verbose=False) -> bool:
+    if verbose:
+        print(f'Requesting {url}')
+    r = requests.get(url, headers=headers)
+    if r.status_code == 200:
+        with open(f'{filename}.dmrpp', "wt") as file:
+            file.writelines(r.text)
+        if verbose:
+            print(f'Saved to {filename}')
+        return True
+    else:
+        print(f'Error: {r.text} ({url})')
+        return False
 
 
 def main():
@@ -51,21 +64,15 @@ def main():
 
         entries = cmr.get_collection_granules_temporal(args.ccid, args.date_range)
         urls = build_rest_urls(args.ccid, granules=entries)
-
-        duration = time.time() - start
-
-        print(f'Requesting {urls[0]}:')
+        granule_names = [granule for granule in entries.values()]
 
         with open(args.token, "rt") as file:
             token = file.readline().strip()
-
         headers = {'Authorization': f'Bearer {token}', 'Accepts': 'deflate', 'User-Agent': 'James-pydmr'}
 
-        r = requests.get(urls[0], headers=headers)
-        if r.status_code == 200:
-            print(r.text)
-        else:
-            print(f'Error: {r.text}')
+        save_a_dmrpp(urls[0], headers, granule_names[0], verbose=True)
+
+        duration = time.time() - start
 
         print(f'Request time: {duration:.1f}s') if args.time else ''
 
