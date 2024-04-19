@@ -6,6 +6,9 @@ Build DMR++ documents for granules from a collection
 
 import requests
 import time
+from typing import Callable
+from concurrent.futures import ThreadPoolExecutor
+from functools import partial
 
 import cmr
 
@@ -28,19 +31,34 @@ def build_rest_urls(ccid: str, granules: dict, hic='opendap.earthdata.nasa.gov')
     return [f"https://{hic}/build_dmrpp/collections/{ccid}/granules/{granule}" for granule in granules.values()]
 
 
-def save_a_dmrpp(url: str, headers: dict[str,str], filename: str, verbose=False) -> bool:
+def build_save_dmrpp(url: str, filename: str, directory: str, headers: dict[str,str], verbose=False) -> tuple[int,str]:
     if verbose:
         print(f'Requesting {url}')
     r = requests.get(url, headers=headers)
     if r.status_code == 200:
-        with open(f'{filename}.dmrpp', "wt") as file:
+        with open(f'./{directory}/{filename}.dmrpp', "wt") as file:
             file.writelines(r.text)
         if verbose:
             print(f'Saved to {filename}')
-        return True
     else:
         print(f'Error: {r.text} ({url})')
-        return False
+
+    return (r.status_code, url)
+
+
+def parallel_processing(dmrpp_builder: Callable[[str,str],tuple[int,str]], urls: list[str], names: list[str]):
+    # Ensure lists have the same size
+    if len(urls) != len(names):
+        raise ValueError("URL and name lists must have the same size")
+
+    # Use ThreadPoolExecutor with 10 worker threads
+    with ThreadPoolExecutor(max_workers=16) as executor:
+        # Submit tasks (URL/name pairs) to the executor
+        results = executor.map(dmrpp_builder, urls, names)
+
+    # Process or display the results
+    for result in results:
+        print(result)  # Replace with your desired result handling
 
 
 def main():
@@ -63,18 +81,24 @@ def main():
         start = time.time()
 
         entries = cmr.get_collection_granules_temporal(args.ccid, args.date_range)
-        urls = build_rest_urls(args.ccid, granules=entries)
+        urls = build_rest_urls(args.ccid, granules=entries, hic='opendap.sit.earthdata.nasa.gov')
         granule_names = [granule for granule in entries.values()]
+
+        if args.verbose:
+            print(f'Processing {len(urls)} granules')
 
         with open(args.token, "rt") as file:
             token = file.readline().strip()
         headers = {'Authorization': f'Bearer {token}', 'Accepts': 'deflate', 'User-Agent': 'James-pydmr'}
 
-        save_a_dmrpp(urls[0], headers, granule_names[0], verbose=True)
+        # since build_save_dmrpp() takes two constant args, curry the function binding values to the constant
+        # value parameters so the result can be used with concurrent ThreadPool map(). jhrg 4/19/24
+        curried_build_save_dmrpp = partial(build_save_dmrpp, directory=args.ccid, headers=headers, verbose=args.verbose)
+        parallel_processing(curried_build_save_dmrpp, urls, granule_names)
 
         duration = time.time() - start
 
-        print(f'Request time: {duration:.1f}s') if args.time else ''
+        print(f'Processing {len(urls)} granules, response time: {duration:.1f}s') if args.time else ''
 
     except Exception as e:
         print(e)
@@ -82,3 +106,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
