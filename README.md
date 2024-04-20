@@ -22,9 +22,23 @@ for more info.
 
 ./opendap_providers.py 
 
-Query CMR to find all of the providers that have collections with the _has\_opendap\_url_
+Query CMR to find all the providers that have collections with the _has\_opendap\_url_
 property
 
+### Building DMR++ Documents
+The command line utility ```build_dmrpp``` can be used to build DMR++ documents
+for a whole collection or a range of granules in a collection selected using
+ISO8601 dates. The DMR++ documents are either saved to local files in a directory
+named using collection concept ID or to an S3 bucket using the CCID as an object
+name prefix.
+
+The command has help.
+
+Here is an example for one collection:
+```
+./build_dmrpp.py -v -t -T prod-token.txt \
+    -D "2018-08-01T00:00:00Z,2018-08-02T23:59:59Z" C2036877806-POCLOUD
+```
 
 ### DMR++ Caching
 This repository holds a set of functions that ask CMR various questions that
@@ -71,6 +85,6 @@ Building the invariant:
 * `mk_invariant_dmrpp -l 19980101120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1.nc.dmrpp`: Print the 
     builder version, but in a form that is easier to parse
 
-NB: THis: ./ask_cmr.py -t -R "G2100400959-POCLOUD:cyg.ddmi.s20210228-003000-e20210228-233000.l3.grid-wind-cdr.a10.d10" 
+NB: This: ./ask_cmr.py -t -R "G2100400959-POCLOUD:cyg.ddmi.s20210228-003000-e20210228-233000.l3.grid-wind-cdr.a10.d10" 
 should return a URL to data but does not.
 

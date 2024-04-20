@@ -32,10 +32,8 @@ def make_s3_client(key_id: str, secret_access_key: str, region_name='us-west-2')
     print(f"Using {region_name} region")
     print(f"Using {key_id} key")
     print(f"Using {secret_access_key} secret")
-    return boto3.client('s3',
-                         aws_access_key_id=key_id,
-                         aws_secret_access_key=secret_access_key,
-                         region_name=region_name)
+    return boto3.client('s3', aws_access_key_id=key_id, aws_secret_access_key=secret_access_key,
+                        region_name=region_name)
 
 
 def upload_to_s3(s3_client: object, bucket_name: str, object_key: str, data_string: str, verbose=False) -> bool:
@@ -155,7 +153,22 @@ def build_save_to_s3_dmrpp(url: str, object_key: str, bucket: str, s3_client: ob
     return r.status_code, url
 
 
-def parallel_processing(dmrpp_builder: Callable[[str,str],tuple[int,str]], urls: list[str], names: list[str]):
+def parallel_processing(dmrpp_builder: partial, urls: list[str], names: list[str]):
+    """
+    Use the dmrpp_builder function to build DMR++ documents for the given URLs
+
+    Args:
+        dmrpp_builder: A curried function with all but two arguments already
+        bound to values
+        urls: A list of RESTified URLs to granules in NGAP/EDC Build a DMR++
+        for each one
+        names: The granule name used to make each of the URLs. This is used to
+        name the file/S3-object that will hold the DMR++ document once it is
+        returned by the builder. This is included so that output of the document
+        can take place in parallel along with the build process.
+    Returns:
+        Nothing. It could return a list of granules that had problems...
+    """
     # Ensure lists have the same size
     if len(urls) != len(names):
         raise ValueError("URL and name lists must have the same size")
@@ -191,13 +204,17 @@ def main():
 
     start = time.time()
 
+    urls = []
+    granule_names = []
+    headers = []
+
     try:
         path = Path(args.ccid)
         if not path.is_dir():
             path.mkdir(parents=True)
 
         entries = cmr.get_collection_granules_temporal(args.ccid, args.date_range)
-        urls = build_rest_urls(args.ccid, granules=entries, hic='opendap.sit.earthdata.nasa.gov')
+        urls = build_rest_urls(args.ccid, granules=entries) # Use the PROD service by default, hic='opendap.sit.earthdata.nasa.gov')
         granule_names = [granule for granule in entries.values()]
 
         if args.verbose:
