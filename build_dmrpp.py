@@ -153,7 +153,7 @@ def build_save_to_s3_dmrpp(url: str, object_key: str, bucket: str, s3_client: ob
     return r.status_code, url
 
 
-def parallel_processing(dmrpp_builder: partial, urls: list[str], names: list[str]):
+def parallel_processing(dmrpp_builder: partial, urls: list[str], names: list[str], workers=64):
     """
     Use the dmrpp_builder function to build DMR++ documents for the given URLs
 
@@ -174,7 +174,7 @@ def parallel_processing(dmrpp_builder: partial, urls: list[str], names: list[str
         raise ValueError("URL and name lists must have the same size")
 
     # Use ThreadPoolExecutor with 10 worker threads
-    with ThreadPoolExecutor(max_workers=64) as executor:
+    with ThreadPoolExecutor(max_workers=workers) as executor:
         # Submit tasks (URL/name pairs) to the executor
         results = executor.map(dmrpp_builder, urls, names)
 
@@ -197,6 +197,7 @@ def main():
                              "The format is ISO-8601,ISO-8601 (e.g., 2000-01-01T10:00:00Z,2010-03-10T12:00:00Z)")
     parser.add_argument("-S", "--s3-bucket", help="Upload built DMR++ documents to this S3 bucket")
     parser.add_argument("-T", "--token", help="EDL authentication token")
+    parser.add_argument("-w", "--workers", help="number of worker threads")
 
     parser.add_argument("ccid", help="Build DMR++ documents for granules in this collection")
 
@@ -248,7 +249,7 @@ def main():
             dmrpp_builder_function = partial(build_save_dmrpp, directory=args.ccid, headers=headers,
                                              verbose=args.very_verbose)
 
-        parallel_processing(dmrpp_builder_function, urls, granule_names)
+        parallel_processing(dmrpp_builder_function, urls, granule_names, args.workers)
 
     except Exception as e:
         print(f'DMR++ Build failure: {e}')
