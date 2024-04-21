@@ -13,15 +13,15 @@ are stale. The code is mixed together since some parts are shared by both system
 WIP
 
 #### Using the commands
-
+```
 ./regression_tests.py -p POCLOUD -t -v
-
+```
 Run tests on all the collections from POCLOUD that have OPeNDAP URLs. Show verbose
 output and basic timing stats. The results are written to an XML file. See --help
 for more info.
-
-./opendap_providers.py 
-
+```
+./opendap_providers.py
+```
 Query CMR to find all the providers that have collections with the _has\_opendap\_url_
 property
 
