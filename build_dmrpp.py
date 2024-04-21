@@ -29,9 +29,9 @@ def make_s3_client(key_id: str, secret_access_key: str, region_name='us-west-2')
     Returns:
         An S3 client object
     """
-    print(f"Using {region_name} region")
-    print(f"Using {key_id} key")
-    print(f"Using {secret_access_key} secret")
+    # print(f"Using {region_name} region")
+    # print(f"Using {key_id} key")
+    # print(f"Using {secret_access_key} secret")
     return boto3.client('s3', aws_access_key_id=key_id, aws_secret_access_key=secret_access_key,
                         region_name=region_name)
 
@@ -174,7 +174,7 @@ def parallel_processing(dmrpp_builder: partial, urls: list[str], names: list[str
         raise ValueError("URL and name lists must have the same size")
 
     # Use ThreadPoolExecutor with 10 worker threads
-    with ThreadPoolExecutor(max_workers=16) as executor:
+    with ThreadPoolExecutor(max_workers=64) as executor:
         # Submit tasks (URL/name pairs) to the executor
         results = executor.map(dmrpp_builder, urls, names)
 
