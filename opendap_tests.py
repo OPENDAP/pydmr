@@ -265,8 +265,9 @@ def build_subset_postfix(var):
     var_path = build_leaf_path(var)
     postfix = '.dap?dap4.ce=/' + var_path
     dims = var.getElementsByTagName("Dim")
+    # So, ‘[’ is %5B and ‘]’ is %5D in this scheme. If you take
     for d in dims:
-        postfix += "[0]"
+        postfix += "%5B0%5D"
 
     return postfix
 
