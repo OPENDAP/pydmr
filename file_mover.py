@@ -190,12 +190,13 @@ def update_html():
 
 
 def move_logs():
-    shutil.copytree(log_dir, os.path.join(recent, "logs"))
-    log_list = scan_dir(log_dir, ".*\.fail\.txt", True)
-    for path in log_list:
-        # print("\tpath: " + path)
-        os.remove(os.path.join(log_dir, path))
-        # os.remove(path)
+    if recent:
+        shutil.copytree(log_dir, os.path.join(recent, "logs"))
+        log_list = scan_dir(log_dir, ".*\.fail\.txt", True)
+        for path in log_list:
+            # print("\tpath: " + path)
+            os.remove(os.path.join(log_dir, path))
+            # os.remove(path)
 
 
 def main():
