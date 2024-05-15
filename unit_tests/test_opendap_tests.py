@@ -6,6 +6,17 @@ from xml.dom.minidom import parseString
 import opendap_tests
 
 
+def var_tester_success_percent(dmr_vars, r, url, var_len):
+    results = []
+    opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
+    fail_len = len(results)
+    if var_len == fail_len:
+        percent = "0.0%"
+    else:
+        percent = str(round(fail_len / var_len * 100, 2)) + "%"
+    return percent
+
+
 class MyTestCase(unittest.TestCase):
 
     def test_dmr_tester_pass(self):
@@ -62,13 +73,7 @@ class MyTestCase(unittest.TestCase):
                 name += "z"
                 dmr_vars[1].setAttribute("name", name)
 
-                results = []
-                opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
-                fail_len = len(results)
-                if var_len == fail_len:
-                    percent = "0.0%"
-                else:
-                    percent = str(round(fail_len / var_len * 100, 2)) + "%"
+                percent = var_tester_success_percent(dmr_vars, r, url, var_len)
 
                 self.assertEqual("20.0%", percent)
             else:
@@ -94,13 +99,7 @@ class MyTestCase(unittest.TestCase):
                 name += "z"
                 dmr_vars[2].setAttribute("name", name)
 
-                results = []
-                opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
-                fail_len = len(results)
-                if var_len == fail_len:
-                    percent = "0.0%"
-                else:
-                    percent = str(round(fail_len / var_len * 100, 2)) + "%"
+                percent = var_tester_success_percent(dmr_vars, r, url, var_len)
 
                 self.assertEqual("40.0%", percent)
             else:
@@ -122,13 +121,7 @@ class MyTestCase(unittest.TestCase):
                 name += "z"
                 dmr_vars[0].setAttribute("name", name)
 
-                results = []
-                opendap_tests.var_tester_helper(url, dmr_vars, results, ".dap", r, False)
-                fail_len = len(results)
-                if var_len == fail_len:
-                    percent = "0.0%"
-                else:
-                    percent = str(round(fail_len / var_len * 100, 2)) + "%"
+                percent = var_tester_success_percent(dmr_vars, r, url, var_len)
 
                 self.assertEqual("0.0%", percent)
             else:
