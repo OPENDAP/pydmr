@@ -25,6 +25,7 @@ def main():
     parser.add_argument("-y", "--very_verbose", help="increase output verbosity", action="store_true", default=False)
     parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true", default=False)
     parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
+    parser.add_argument("-a", "--all", help="save all responses", action="store_true")
 
     parser.add_argument('-x', '--xml', default=True, action='store_true')
     parser.add_argument('--no-xml', dest='xml', action='store_false')
@@ -44,6 +45,9 @@ def main():
     parser.add_argument('-c', '--concurrency', help="run the tests concurrently", default=True, action='store_true')
     parser.add_argument('--no-concurrency', dest='concurrency', action='store_false')
 
+    parser.add_argument('-d', '--dap', help="run the dap tests", action='store_true', default=False)
+    parser.add_argument('-D', '--dap_var', help="run the dap_var tests", action='store_true', default=False)
+
     group = parser.add_mutually_exclusive_group(required=True)  # only one option in 'group' is allowed at a time
     group.add_argument("-e", "--environment", help="an environment, a placeholder for now. This only works for PROD.")
 
@@ -59,7 +63,7 @@ def main():
         if args.xml:
             root = minidom.Document()
             xsl_element = root.createProcessingInstruction("xml-stylesheet",
-                                                           "type='text/xsl' href='/NGAP-PROD-tests/home.xsl'")
+                                                           "type='text/xsl' href='/NGAP-PROD-tests/home.v2.xsl'")
             root.appendChild(xsl_element)
 
             environment = root.createElement('Environment')
@@ -89,7 +93,7 @@ def main():
                 # TODO The names here, below in the 'if args.xml' block and in regression-tests.py
                 #  are coupled in a very fragile way. Fix this so the name is made once and passed
                 #  into regression_tests.py, etc. jhrg 12/05/22
-                prov.setAttribute('name', provider + time.strftime("-%m.%d.%Y-") + args.version)
+                prov.setAttribute('name', provider)
                 environment.appendChild(prov)
 
         if args.search:
@@ -100,6 +104,7 @@ def main():
             string_search.run_url_finder(entries, args.concurrency, args.workers,
                                      args.verbose, args.very_verbose)
         else:
+            save_file_path = ""
             if args.xml:
                 # Save the XML
                 xml_str = root.toprettyxml(indent="\t")
@@ -108,21 +113,37 @@ def main():
                 if not exists:
                     os.makedirs(directory)
 
-                save_path_file = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
-                with open(save_path_file, "w") as f:
+                save_file_path = directory + args.environment + time.strftime("-%m.%d.%Y-") + args.version + ".xml"
+                with open(save_file_path, "w") as f:
                     f.write(xml_str)
 
             if args.tests:
                 # once we have the list of providers, call regression_tests.py for each one
                 save_dir_name = "logs"
+                cur = 1
+                total = len(entries)
                 for provider in entries:
-                    print(f"Running tests on {provider}'s collections...")
+                    print(f"\n[ {cur} / {total} ] Running tests on {provider}'s collections...")
+
+                    cmd = ["./regression_tests.py", f"--provider={provider}", "-t",
+                           f"--save={save_dir_name}", f"--path={save_file_path}"]
+
                     if args.verbose:
-                        result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",  "-v",
-                                                 f"--save={save_dir_name}"])
-                    else:
-                        result = subprocess.run(["./regression_tests.py", f"--provider={provider}", "-t",
-                                                 f"--save={save_dir_name}"])
+                        cmd.append("-v")
+                    if args.dap:
+                        cmd.append(f"-d")
+                    if args.dap_var:
+                        cmd.append(f"-D")
+                    if args.all:
+                        cmd.append(f"-a")
+
+                    command = ""
+                    for c in cmd:
+                        command += " " + c
+                    print("\tCommand: 'python3 " + command + "'")
+
+                    result = subprocess.run(cmd)
+                    cur += 1
 
                     if result.returncode != 0:
                         print(f"Error running regression_tests.py {result.args}")
