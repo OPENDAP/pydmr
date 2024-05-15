@@ -106,7 +106,7 @@ class MyTestCase(unittest.TestCase):
             else:
                 self.fail("Could not reach unit_tests file")
         except requests.exceptions.RequestException:
-            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
+            self.fail("exception thrown in unit_tests: test_var_tester_helper_2")
 
     def test_var_tester_helper_3(self):
         opendap_tests.quiet = True
@@ -134,7 +134,7 @@ class MyTestCase(unittest.TestCase):
             else:
                 self.fail("Could not reach unit_tests file")
         except requests.exceptions.RequestException:
-            self.fail("exception thrown in unit_tests: test_build_leaf_path_groups")
+            self.fail("exception thrown in unit_tests: test_var_tester_helper_3")
 
     def test_build_leaf_path_group(self):
         opendap_tests.quiet = True
