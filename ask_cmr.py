@@ -36,6 +36,8 @@ def main():
     parser.add_argument("-C", "--count", help="for a collection, get the granule count", action="store_true")
     parser.add_argument("-d", "--descending", help="for a list of granules, get the newest first (the 'last' granule)."
                                                     "By default, the granules are listed in ascending order (oldest first)", action="store_true")
+    parser.add_argument("-D", "--date-range", help="for a granule request, limit the responses to a range of date/times."
+                        "The format is ISO-8601,ISO-8601 (e.g., 2000-01-01T10:00:00Z,2010-03-10T12:00:00Z)")
 
     parser.add_argument("-T", "--unit-tests-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
     parser.add_argument("-f", "--firstlast", help="get the first and last granule of a collection", action="store_true")
@@ -53,7 +55,11 @@ def main():
     try:
         start = time.time()
         if args.collection and granules:
-            entries = cmr.get_collection_granules(args.collection, pretty=pretty, descending=args.descending)
+            if args.date_range:
+                entries = cmr.get_collection_granules_temporal(args.collection, args.date_range, pretty=pretty,
+                                                               descending=args.descending)
+            else:
+                entries = cmr.get_collection_granules(args.collection, pretty=pretty, descending=args.descending)
         elif args.collection and firstlast:
             entries = cmr.get_collection_granules_umm_first_last(args.collection, pretty=pretty)
             #entries = cmr.get_collection_granules_first_last(args.collection, pretty=pretty)
