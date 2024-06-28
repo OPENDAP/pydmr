@@ -39,6 +39,8 @@ def main():
     parser.add_argument("-D", "--date-range", help="for a granule request, limit the responses to a range of date/times."
                         "The format is ISO-8601,ISO-8601 (e.g., 2000-01-01T10:00:00Z,2010-03-10T12:00:00Z)")
 
+    parser.add_argument("-j", "--umm-g-json", help="Get the UMM-G JSON info for a collection:granule",
+                        action="store_true")
     parser.add_argument("-T", "--unit-tests-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
     parser.add_argument("-f", "--firstlast", help="get the first and last granule of a collection", action="store_true")
     parser.add_argument("-u", "--url-unit-tests", help="find out which urls from a collection have a valid dmr")
@@ -51,6 +53,7 @@ def main():
     opendap = True if args.opendap else False
     granules = True if args.granules else False
     firstlast = True if args.firstlast else False
+    umm_g_json = True if args.umm_g_json else False
 
     try:
         start = time.time()
@@ -62,15 +65,16 @@ def main():
                 entries = cmr.get_collection_granules(args.collection, pretty=pretty, descending=args.descending)
         elif args.collection and firstlast:
             entries = cmr.get_collection_granules_umm_first_last(args.collection, pretty=pretty)
-            #entries = cmr.get_collection_granules_first_last(args.collection, pretty=pretty)
-            # entries = cmr.get_collection_granules(args.collection, pretty=pretty)
         elif args.collection:
             entries = cmr.get_collection_entry(args.collection, pretty=pretty, count=args.count)
         elif args.resty_path:
             entries = cmr.decompose_resty_url(args.resty_path, pretty=pretty)
         elif args.collection_and_title:
             collection, title = args.collection_and_title.split(':')
-            entries = cmr.get_related_urls(collection, title, pretty=pretty)
+            if args.umm_g_json:
+                entries = cmr.get_cmr_json(collection, title, pretty=pretty)
+            else:
+                entries = cmr.get_related_urls(collection, title, pretty=pretty)
         elif args.url_unit_tests:
             collection, title = args.url_test.split(':')
             entries = cmr.url_test_array(collection, title, pretty=pretty)

@@ -204,6 +204,14 @@ def granule_data_url_dict(json_resp: dict) -> dict:
     return dict_resp
 
 
+def granule_json(json_resp: dict) -> dict:
+    """
+    This is an identify response for a granules.umm_json request.
+    :return: The granule JSON from CMR JSON UMM response.
+    """
+    return json_resp
+
+
 def granule_ur_dict(json_resp: dict) -> dict:
     """
     Extract Related URLs from CMR JSON UMM.
@@ -485,6 +493,19 @@ def get_related_urls(ccid: str, granule_ur: str, pretty=False, service='cmr.eart
     pretty = '&pretty=true' if pretty else ''
     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
     return process_request(cmr_query_url, granule_data_url_dict, get_session(), page_num=1)
+
+def get_cmr_json(ccid: str, granule_ur: str, pretty=False, service='cmr.earthdata.nasa.gov') -> dict:
+    """
+    Ask for the CMR JSON object for the given 'restified' path.
+    :param ccid: The string Collection (Concept) Id
+    :para: granule_ur The granule name
+    :param pretty: request a 'pretty' version of the response from the service. default False
+    :param service: The URL of the service to query. default cmr.earthdata.nasa.gov
+    :returns: The CMR JSON object
+    """
+    pretty = '&pretty=true' if pretty else ''
+    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
+    return process_request(cmr_query_url, granule_json, get_session(), page_num=1)
 
 
 def get_collection_granules(ccid: str, pretty=False, service='cmr.earthdata.nasa.gov', descending=False) -> dict:
