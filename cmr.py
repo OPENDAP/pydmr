@@ -469,7 +469,7 @@ def get_collection_entry(ccid: str, pretty=False, count=False, service='cmr.eart
     """
     pretty = '&pretty=true' if pretty else ''
     collection_count = '&include_granule_counts=true' if count else ''
-    cmr_query_url = f'https://{service}/search/collections.json?collection_concept_id={ccid}{collection_count}{pretty}'
+    cmr_query_url = f'https://{service}/search/collections.json?concept_id={ccid}{collection_count}{pretty}'
     return process_request(cmr_query_url, provider_collections_dict, get_session(), page_num=1)
 
 
