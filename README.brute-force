@@ -1,0 +1,11 @@
+
+for c in $(cut -d: -f1 podacc-collections.txt)
+do
+./ask_cmr.py -c $c -f
+done
+
+Given
+
+./ask_cmr.py -p POCLOUD > podacc-collections.txt
+
+WIP
