@@ -32,6 +32,8 @@ def main():
                                                             "C2205105895-POCLOUD:20220902120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1")
 
     parser.add_argument("-o", "--opendap", help="for a provider, show only collections with OPeNDAP URLS", action="store_true")
+    parser.add_argument("-B", "--opendap-brutishly", help="for a provider, show only collections with OPeNDAP URLS, "
+                        "Uses a brute-force search of the first URL for all collection.", action="store_true")
     parser.add_argument("-g", "--granules", help="for a collection, get info about all the granules", action="store_true")
     parser.add_argument("-C", "--count", help="for a collection, get the granule count", action="store_true")
     parser.add_argument("-d", "--descending", help="for a list of granules, get the newest first (the 'last' granule)."
@@ -82,6 +84,8 @@ def main():
             entries = cmr.full_url_test(args.provider, opendap, pretty=pretty)
         elif args.unit_tests_format and args.provider:
             entries = cmr.get_provider_collection_granules(args.provider, opendap, pretty=pretty)
+        elif args.provider and args.opendap_brutishly:
+            entries = cmr.get_provider_opendap_collections_brutishly(args.provider)
         else:
             entries = cmr.get_provider_collections(args.provider, opendap, pretty=pretty)
         duration = time.time() - start
