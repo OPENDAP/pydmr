@@ -1,5 +1,0 @@
-OPeNDAP on-premises URLs
-C1996546500-GHRC_DAAC: https://ghrc.nsstc.nasa.gov/opendap/ssmis/f16/daily/data/2003/f16_ssmis_20031026v7.nc
-C1996546695-GHRC_DAAC: https://ghrc.nsstc.nasa.gov/opendap/ssmis/f17/daily/2006/f17_ssmis_20061214v7.nc
-C1996547004-GHRC_DAAC: https://ghrc.nsstc.nasa.gov/opendap/ssmis/f16/weekly/2003/f16_ssmis_20031101v7_wk.nc
-C1996547038-GHRC_DAAC: https://ghrc.nsstc.nasa.gov/opendap/ssmis/f17/weekly/2006/f17_ssmis_20061216v7_wk.nc

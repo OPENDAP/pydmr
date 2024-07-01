@@ -1,4 +1,0 @@
-OPeNDAP Cloud URLs
-C1276812882-GES_DISC: https://opendap.earthdata.nasa.gov/collections/C1276812882-GES_DISC/granules/M2I3NVAER.5.12.4%3AMERRA2_100.inst3_3d_aer_Nv.19800101.nc4
-C1276812879-GES_DISC: https://opendap.earthdata.nasa.gov/collections/C1276812879-GES_DISC/granules/M2I3NPASM.5.12.4%3AMERRA2_100.inst3_3d_asm_Np.19800101.nc4
-C1276812863-GES_DISC: https://opendap.earthdata.nasa.gov/collections/C1276812863-GES_DISC/granules/M2T1NXSLV.5.12.4%3AMERRA2_100.tavg1_2d_slv_Nx.19800101.nc4

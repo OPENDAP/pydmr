@@ -36,7 +36,7 @@ def main():
                                              " have an OPeNDAP URL that points to an on-premises (on-site) server. When given, the CCID"
                                              " and URL will be stored to a file named <provider>-site.txt.",
                         action="store_true")
-    parser.add_argument("--stats", help="write the information printed to stdout also to a"
+    parser.add_argument("-S", "--stats", help="write the information printed to stdout also to a"
                                         " file named <stats>.csv that can be easily used by a spreadsheet, pandas,"
                                         "et cetera.",
                         type=str, default=None)
