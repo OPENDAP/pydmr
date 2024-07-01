@@ -465,11 +465,16 @@ def get_provider_collections(provider_id: str, opendap=False, pretty=False, serv
     return process_request(cmr_query_url, provider_collections_dict, get_session(), page_size=500)
 
 
-def collection_has_opendap(ccid: str, json_processor=granule_ur_dict_2, service='cmr.earthdata.nasa.gov') -> tuple:
+def collection_has_opendap(ccid: str, cloud_prefix="https://opendap.earthdata.nasa.gov/",
+                           json_processor=granule_ur_dict_2, service='cmr.earthdata.nasa.gov') -> tuple:
     """
-    For a CCID, check that the first granule has an OPeNDAP URL.
+    For a CCID, check that the first granule has an OPeNDAP URL. This returns a tuple
+    of the CCID, true/false if the URL is in the cloud, and it also returns the URL.
+    The URL _may_ be to granule for an on-prem server which is a useful check to see
+    that this code, and the contents of CMR are truthful.
 
     :param ccid The collection concept ID
+    :param cloud_prefix Is this a URL to a collection in the cloud?
     :param json_processor Use this function to process the returned JSON
     :param service Use this endpoint for CMR
 
@@ -480,9 +485,14 @@ def collection_has_opendap(ccid: str, json_processor=granule_ur_dict_2, service=
     oldest_dict = process_request(cmr_query_url, json_processor, get_session(), page_size=1, page_num=1)
 
     if len(oldest_dict) != 1:
-        return ccid, False
+        return ccid, False, ""    # Empty URL if there is none.
     else:
-        return ccid, True
+        first_key = next(iter(oldest_dict.keys()))
+        url = oldest_dict[first_key][1]  # The value is a tuple, the second element of which is the URL
+        if url.startswith(cloud_prefix):
+            return ccid, True, url
+        else:
+            return ccid, False, url
 
 
 def get_provider_opendap_collections_brutishly(provider_id: str, workers=64, service='cmr.earthdata.nasa.gov') -> dict:
@@ -509,11 +519,14 @@ def get_provider_opendap_collections_brutishly(provider_id: str, workers=64, ser
         # Use 'partial' to curry collection_has_opendap() if using optional parameters. jhrg 6/30/24
         results = executor.map(collection_has_opendap, ccids)
 
-    ccids_opendap = dict(results)
+    # ccids_opendap = dict(results)
+    ccids_opendap = {key: (value2, value3) for key, value2, value3 in results}
 
-    true_values = [value for value in ccids_opendap.values() if value is True]
-    print(f"Number of OPeNDAP-enable collections found: {len(true_values)}, out of {len(ccids_opendap.keys())}")
+    true_values = [value[1] for value in ccids_opendap.values() if value[0] is True]
+    print(f"Number of {provider_id} OPeNDAP-enabled cloud collections found: {len(true_values)}, out of {len(ccids_opendap.keys())}")
 
+    false_with_url_values = [value[1] for value in ccids_opendap.values() if value[0] is False and len(value[1]) != 0]
+    print(f"Number of {provider_id} OPeNDAP-enabled non-cloud collections found: {len(false_with_url_values)}")
     return ccids_opendap
 
 
