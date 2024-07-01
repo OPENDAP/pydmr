@@ -8,4 +8,25 @@ Given
 
 ./ask_cmr.py -p POCLOUD > podacc-collections.txt
 
+Providers:
+SCIOPS
+POCLOUD
+ORNL_CLOUD
+OB_DAAC
+OB_CLOUD
+LPDAAC_ECS
+LPCLOUD
+LARC_ASDC
+LARC
+LAADS
+GHRC_DAAC
+GES_DISC
+
+Could modify program to iterate over more than on provider
+
+Could write out cloud/site URLs to files (provider-date). These would be easy to sort/diff
+
+write stats to stdout/other file.
+
+
 WIP

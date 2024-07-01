@@ -522,11 +522,12 @@ def get_provider_opendap_collections_brutishly(provider_id: str, workers=64, ser
     # ccids_opendap = dict(results)
     ccids_opendap = {key: (value2, value3) for key, value2, value3 in results}
 
-    true_values = [value[1] for value in ccids_opendap.values() if value[0] is True]
-    print(f"Number of {provider_id} OPeNDAP-enabled cloud collections found: {len(true_values)}, out of {len(ccids_opendap.keys())}")
-
-    false_with_url_values = [value[1] for value in ccids_opendap.values() if value[0] is False and len(value[1]) != 0]
-    print(f"Number of {provider_id} OPeNDAP-enabled non-cloud collections found: {len(false_with_url_values)}")
+    # moved to find_collections.py
+    # true_values = [value[1] for value in ccids_opendap.values() if value[0] is True]
+    # print(f"Number of {provider_id} OPeNDAP-enabled cloud collections found: {len(true_values)}, out of {len(ccids_opendap.keys())}")
+    #
+    # false_with_url_values = [value[1] for value in ccids_opendap.values() if value[0] is False and len(value[1]) != 0]
+    # print(f"Number of {provider_id} OPeNDAP-enabled non-cloud collections found: {len(false_with_url_values)}")
     return ccids_opendap
 
 
@@ -559,14 +560,15 @@ def get_related_urls(ccid: str, granule_ur: str, pretty=False, service='cmr.eart
     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
     return process_request(cmr_query_url, granule_data_url_dict, get_session(), page_num=1)
 
+
 def get_cmr_json(ccid: str, granule_ur: str, pretty=False, service='cmr.earthdata.nasa.gov') -> dict:
     """
     Ask for the CMR JSON object for the given 'restified' path.
     :param ccid: The string Collection (Concept) Id
-    :para: granule_ur The granule name
+    :param granule_ur: The granule name
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param service: The URL of the service to query. default cmr.earthdata.nasa.gov
-    :returns: The CMR JSON object
+    :returns The CMR JSON object
     """
     pretty = '&pretty=true' if pretty else ''
     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
