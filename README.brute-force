@@ -1,32 +1,12 @@
 
-for c in $(cut -d: -f1 podacc-collections.txt)
-do
-./ask_cmr.py -c $c -f
-done
+# How to use find_collections.py
 
-Given
+./find_collections.py -t -B -c -s $(cat providers.txt)
 
-./ask_cmr.py -p POCLOUD > podacc-collections.txt
+The result of this is 22 files (cloud and site URLs for each provider in providers.txt).
 
-Providers:
-SCIOPS
-POCLOUD
-ORNL_CLOUD
-OB_DAAC
-OB_CLOUD
-LPDAAC_ECS
-LPCLOUD
-LARC_ASDC
-LARC
-LAADS
-GHRC_DAAC
-GES_DISC
+Copy/paste the output into a file and store all that in a directory named with the date
+the command was run.
 
-Could modify program to iterate over more than on provider
+Runtime of the command is about 120 seconds.
 
-Could write out cloud/site URLs to files (provider-date). These would be easy to sort/diff
-
-write stats to stdout/other file.
-
-
-WIP
