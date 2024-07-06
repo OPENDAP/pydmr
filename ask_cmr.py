@@ -77,6 +77,7 @@ def main():
                 entries = cmr.get_cmr_json(collection, title, pretty=pretty)
             else:
                 entries = cmr.get_related_urls(collection, title, pretty=pretty)
+        # FIXME Remove the next three lines and associated options. jhrg 7/5/24
         elif args.url_unit_tests:
             collection, title = args.url_test.split(':')
             entries = cmr.url_test_array(collection, title, pretty=pretty)
