@@ -150,6 +150,7 @@ def provider_id(json_resp: dict) -> set:
     The JSON passed to this function is an Array of 'items' each of which holds
     a dictionary with a single key 'meta'. The value of the 'meta' key is itself
     a dictionary that holds lots of info, including the provider-id key-value pair.
+
     :param json_resp: CMR JSON response
     :returns: The provider ids in a set
     :rtype: set
@@ -172,7 +173,7 @@ def granule_data_url_dict(json_resp: dict) -> dict:
     This function processes the return information from a granules.umm_json request.
     Do not use it for a granules.json request.
 
-    Only http URLs that are NOT marks with Subtype 'OPENDAP DATA' are returned. This
+    Only http URLs that are NOT marked with Subtype 'OPENDAP DATA' are returned. This
     has been added (jhrg 5/4/23) so that the ask_cmr.py -r option will work, returning
     the underlying URL to the data. Access to the data using that URL will nominally
     require auth using TEA or S3 signing.
@@ -331,6 +332,8 @@ def convert(a: list) -> dict:
     return res_dct
 
 
+# TODO Make a 'returns a set' version of this to avoid the 'function with two
+#  return types' confusion. jhrg 7/6/24
 def process_request(cmr_query_url: str, response_processor: callable(dict), session: object, page_size=10,
                     page_num=0) -> dict:
     """
@@ -377,7 +380,6 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
 
             if entries_num > 0:
                 entries_page = response_processor(json_resp)  # The response_processor() is passed in
-
                 if type(entries_page) is dict:
                     entries_dict = merge_dict(entries_dict, entries_page)  # merge is smart if entries is empty
                 elif type(entries_page) is set:
