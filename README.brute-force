@@ -1,0 +1,12 @@
+
+# How to use find_collections.py
+
+./find_collections.py -t -B -c -s $(cat providers.txt)
+
+The result of this is 22 files (cloud and site URLs for each provider in providers.txt).
+
+Copy/paste the output into a file and store all that in a directory named with the date
+the command was run.
+
+Runtime of the command is about 120 seconds.
+

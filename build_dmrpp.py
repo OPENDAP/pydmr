@@ -84,7 +84,7 @@ def build_save_dmrpp(url: str, filename: str, directory: str, headers: dict[str,
     """
     Build a DMR++ document. Save it to a local file
     Args:
-        url: RESTified URL to DMR++ Builder
+        url: REST URL to DMR++ Builder
         filename: Save to this file
         directory: Save into this directory
         headers: Used these headers when running the DMR++ Builder
@@ -117,7 +117,7 @@ def build_save_to_s3_dmrpp(url: str, object_key: str, bucket: str, s3_client: ob
     """
     Build a DMR++ document. Save it to an S3 Bucket
     Args:
-        url: RESTified URL to DMR++ Builder
+        url: REST URL to DMR++ Builder
         object_key: Save to this key. The actual key is the ccid/granule name
         bucket: S3 Bucket name
         s3_client: Use this S3 client to upload the file
@@ -154,14 +154,14 @@ def build_save_to_s3_dmrpp(url: str, object_key: str, bucket: str, s3_client: ob
     return r.status_code, url
 
 
-def parallel_processing(dmrpp_builder: partial, urls: list[str], names: list[str], workers):
+def parallel_processing(dmrpp_builder: partial, urls: list[str], names: list[str], workers: int):
     """
     Use the dmrpp_builder function to build DMR++ documents for the given URLs
 
     Args:
         dmrpp_builder: A curried function with all but two arguments already
         bound to values
-        urls: A list of RESTified URLs to granules in NGAP/EDC Build a DMR++
+        urls: A list of REST URLs to granules in NGAP/EDC Build a DMR++
         for each one
         names: The granule name used to make each of the URLs. This is used to
         name the file/S3-object that will hold the DMR++ document once it is

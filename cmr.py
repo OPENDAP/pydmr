@@ -7,6 +7,8 @@ import errLog
 
 import requests
 import threading
+from concurrent.futures import ThreadPoolExecutor
+
 
 """
 set 'verbose'' in main(), etc., and it affects various functions
@@ -356,7 +358,6 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
         while True:
             # By default, requests uses cookies, supports OAuth2 and reads username and password
             # from a ~/.netrc file.
-            # print("\t" + cmr_query_url)
             r = session.get(f'{cmr_query_url}&page_num={page}&page_size={page_size}')
             page += 1  # if page_num was explicitly set, this is not needed
 
@@ -364,7 +365,6 @@ def process_request(cmr_query_url: str, response_processor: callable(dict), sess
             if verbose > 0:
                 print(f'CMR Query URL: {cmr_query_url}')
                 print(f'Status code: {r.status_code}')
-                # print(f'text: {r.text}')
 
             if r.status_code != 200:
                 # JSON returned on error: {'errors': ['Collection-concept-id [ECCO Ocean ...']}
@@ -467,6 +467,72 @@ def get_provider_collections(provider_id: str, opendap=False, pretty=False, serv
     return process_request(cmr_query_url, provider_collections_dict, get_session(), page_size=500)
 
 
+def collection_has_opendap(ccid: str, cloud_prefix="https://opendap.earthdata.nasa.gov/",
+                           json_processor=granule_ur_dict_2, service='cmr.earthdata.nasa.gov') -> tuple:
+    """
+    For a CCID, check that the first granule has an OPeNDAP URL. This returns a tuple
+    of the CCID, true/false if the URL is in the cloud, and it also returns the URL.
+    The URL _may_ be to granule for an on-prem server which is a useful check to see
+    that this code, and the contents of CMR are truthful.
+
+    :param ccid: The collection concept ID
+    :param cloud_prefix: Is this a URL to a collection in the cloud?
+    :param json_processor: Use this function to process the returned JSON
+    :param service: Use this endpoint for CMR
+
+    :return: A tuple of (ccid, True|False) - True if an OPeNDAP is present
+    """
+    # by default, CMR returns results with "sort_key = +start_date" returning the oldest granule
+    cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}'
+    oldest_dict = process_request(cmr_query_url, json_processor, get_session(), page_size=1, page_num=1)
+
+    if len(oldest_dict) != 1:
+        return ccid, False, ""    # Empty URL if there is none.
+    else:
+        first_key = next(iter(oldest_dict.keys()))
+        url = oldest_dict[first_key][1]  # The value is a tuple, the second element of which is the URL
+        if url.startswith(cloud_prefix):
+            return ccid, True, url
+        else:
+            return ccid, False, url
+
+
+def get_provider_opendap_collections_brutishly(provider: str, workers=64, service='cmr.earthdata.nasa.gov') -> dict:
+    """
+    Get all the collections for a given provider that have OPeNDAP URLs.
+
+    This function does not use the UMM-S record but instead performs a
+    brute-force (in parallel) search of all the collections of a provider
+    and returns the CCID of all of those where the first granule has an
+    OPeNDAP URL. We don't include the test for the last URL since there
+    might be a collection with only one URL.
+
+    :param provider: The string ID for a given EDC provider (e.g., ORNL_CLOUD)
+    :param workers: Use this many threads when asking CMR about granules. I set this at 64 by trial and error.
+    :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
+    :returns: The total number of entries
+    """
+    cmr_query_url = f'https://{service}/search/collections.json?provider={provider}'
+    all_collections = process_request(cmr_query_url, provider_collections_dict, get_session(), page_size=500)
+
+    ccids = list(all_collections.keys())
+
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        # Use 'partial' to curry collection_has_opendap() if using optional parameters. jhrg 6/30/24
+        results = executor.map(collection_has_opendap, ccids)
+
+    # ccids_opendap = dict(results)
+    ccids_opendap = {key: (value2, value3) for key, value2, value3 in results}
+
+    # moved to find_collections.py
+    # true_values = [value[1] for value in ccids_opendap.values() if value[0] is True]
+    # print(f"Number of {provider_id} OPeNDAP-enabled cloud collections found: {len(true_values)}, out of {len(ccids_opendap.keys())}")
+    #
+    # false_with_url_values = [value[1] for value in ccids_opendap.values() if value[0] is False and len(value[1]) != 0]
+    # print(f"Number of {provider_id} OPeNDAP-enabled non-cloud collections found: {len(false_with_url_values)}")
+    return ccids_opendap
+
+
 def get_collection_entry(ccid: str, pretty=False, count=False, service='cmr.earthdata.nasa.gov') -> dict:
     """
     Get the collection entry given a concept id.
@@ -479,7 +545,7 @@ def get_collection_entry(ccid: str, pretty=False, count=False, service='cmr.eart
     """
     pretty = '&pretty=true' if pretty else ''
     collection_count = '&include_granule_counts=true' if count else ''
-    cmr_query_url = f'https://{service}/search/collections.json?collection_concept_id={ccid}{collection_count}{pretty}'
+    cmr_query_url = f'https://{service}/search/collections.json?concept_id={ccid}{collection_count}{pretty}'
     return process_request(cmr_query_url, provider_collections_dict, get_session(), page_num=1)
 
 
@@ -496,11 +562,12 @@ def get_related_urls(ccid: str, granule_ur: str, pretty=False, service='cmr.eart
     cmr_query_url = f'https://{service}/search/granules.umm_json_v1_4?collection_concept_id={ccid}&granule_ur={granule_ur}{pretty}'
     return process_request(cmr_query_url, granule_data_url_dict, get_session(), page_num=1)
 
+
 def get_cmr_json(ccid: str, granule_ur: str, pretty=False, service='cmr.earthdata.nasa.gov') -> dict:
     """
     Ask for the CMR JSON object for the given 'restified' path.
     :param ccid: The string Collection (Concept) Id
-    :para: granule_ur The granule name
+    :param granule_ur: The granule name
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param service: The URL of the service to query. default cmr.earthdata.nasa.gov
     :returns: The CMR JSON object
