@@ -5,8 +5,7 @@ import cmr
 
 
 # Assuming process_request and get_session are defined elsewhere
-# TODO Is this the correct behavior when INVALID_CCID is used as
-#  the ccid? I think
+# TODO Is this the correct behavior when INVALID_CCID is used as the ccid?
 def mock_process_request(url, data_processor, session, page_size, page_num):
     # Simulate successful retrieval of granule data
     if url == 'https://cmr.earthdata.nasa.gov/search/granules.umm_json_v1_4?collection_concept_id=TEST_CCID':
