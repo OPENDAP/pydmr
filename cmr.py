@@ -451,11 +451,11 @@ def get_collection_granules_umm_first_last(ccid: str, json_processor=granule_ur_
     return merge_dict(oldest_dict, newest_dict)
 
 
-def get_provider_collections(provider_id: str, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov') -> dict:
+def get_provider_collections(provider: str, opendap=False, pretty=False, service='cmr.earthdata.nasa.gov') -> dict:
     """
     Get all the collections for a given provider.
 
-    :param provider_id: The string ID for a given EDC provider (e.g., ORNL_CLOUD)
+    :param provider: The string ID for a given EDC provider (e.g., ORNL_CLOUD)
     :param opendap: If true, return only the collections with OPeNDAP URLS
     :param pretty: request a 'pretty' version of the response from the service. default False
     :param service: The URL of the service to query (default cmr.earthdata.nasa.gov)
@@ -463,7 +463,7 @@ def get_provider_collections(provider_id: str, opendap=False, pretty=False, serv
     """
     pretty = '&pretty=true' if pretty else ''
     opendap = '&has_opendap_url=true' if opendap else ''
-    cmr_query_url = f'https://{service}/search/collections.json?provider={provider_id}{opendap}{pretty}'
+    cmr_query_url = f'https://{service}/search/collections.json?provider={provider}{opendap}{pretty}'
     return process_request(cmr_query_url, provider_collections_dict, get_session(), page_size=500)
 
 
@@ -521,15 +521,8 @@ def get_provider_opendap_collections_brutishly(provider: str, workers=64, servic
         # Use 'partial' to curry collection_has_opendap() if using optional parameters. jhrg 6/30/24
         results = executor.map(collection_has_opendap, ccids)
 
-    # ccids_opendap = dict(results)
     ccids_opendap = {key: (value2, value3) for key, value2, value3 in results}
 
-    # moved to find_collections.py
-    # true_values = [value[1] for value in ccids_opendap.values() if value[0] is True]
-    # print(f"Number of {provider_id} OPeNDAP-enabled cloud collections found: {len(true_values)}, out of {len(ccids_opendap.keys())}")
-    #
-    # false_with_url_values = [value[1] for value in ccids_opendap.values() if value[0] is False and len(value[1]) != 0]
-    # print(f"Number of {provider_id} OPeNDAP-enabled non-cloud collections found: {len(false_with_url_values)}")
     return ccids_opendap
 
 

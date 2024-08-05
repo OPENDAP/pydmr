@@ -6,7 +6,9 @@ results to stdout. This command knows how to find all the collections
 for a given provider (and it will optionally limit them to only those with
 OPeNDAP URLs).
 
-It will also return all the granules for a given collection and
+TODO: This needs a way to work with CMR in UAT. Currently requests for
+ collections/granules in UAT do not work even though the internal logic
+ exists in the cmr.py package.
 """
 
 import time
@@ -19,34 +21,36 @@ def main():
     parser = argparse.ArgumentParser(description="Query CMR and get information about Collections and Granules, "
                                                  "especially as that information relates to OPeNDAP. EDC credentials "
                                                  "stored in ~/.netrc are needed. See the requests package for details.")
-    parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
-    parser.add_argument("-P", "--pretty", help="request pretty responses from CMR", action="store_true")
-    parser.add_argument("-t", "--time", help="time responses from CMR", action="store_true")
+    parser.add_argument("-v", "--verbose", help="Increase output verbosity.", action="store_true")
+    parser.add_argument("-P", "--pretty", help="Request pretty responses from CMR.", action="store_true")
+    parser.add_argument("-t", "--time", help="Time responses from CMR.", action="store_true")
 
     group = parser.add_mutually_exclusive_group() # only one option in 'group' is allowed at a time
-    group.add_argument("-p", "--provider", help="a provider id, by itself, print all the providers collections")
-    group.add_argument("-c", "--collection", help="a collection id, by itself, print some info")
-    group.add_argument("-r", "--resty-path", help="get the data URL for an OPeNDAP EDC REST URL")
-    group.add_argument("-R", "--collection-and-title", help="get the data URL for a CMR collection concept id and granule title."
-                                                            "The format for this is 'CCID:title,' for example:"
-                                                            "C2205105895-POCLOUD:20220902120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1")
+    group.add_argument("-p", "--provider", help="Given a provider id, by itself, print all the providers collections.")
+    group.add_argument("-c", "--collection", help="Given a collection id, by itself, print some info.")
+    group.add_argument("-r", "--resty-path", help="Get the data URL for an OPeNDAP EDC REST URL")
+    group.add_argument("-R", "--collection-and-title",
+                       help="Get the data URL for a CMR collection concept id and granule title."
+                       " The format for this is 'CCID:title,' for example:"
+                       " C2205105895-POCLOUD:20220902120000-REMSS-L4_GHRSST-SSTfnd-MW_OI-GLOB-v02.0-fv05.1")
 
-    parser.add_argument("-o", "--opendap", help="for a provider, show only collections with OPeNDAP URLS", action="store_true")
-    parser.add_argument("-B", "--opendap-brutishly", help="for a provider, show only collections with OPeNDAP URLS, "
-                        "Uses a brute-force search of the first URL for all collection.", action="store_true")
-    parser.add_argument("-g", "--granules", help="for a collection, get info about all the granules", action="store_true")
-    parser.add_argument("-C", "--count", help="for a collection, get the granule count", action="store_true")
-    parser.add_argument("-d", "--descending", help="for a list of granules, get the newest first (the 'last' granule)."
-                                                    "By default, the granules are listed in ascending order (oldest first)", action="store_true")
-    parser.add_argument("-D", "--date-range", help="for a granule request, limit the responses to a range of date/times."
-                        "The format is ISO-8601,ISO-8601 (e.g., 2000-01-01T10:00:00Z,2010-03-10T12:00:00Z)")
+    parser.add_argument("-o", "--opendap", help="For a provider, show only collections with OPeNDAP URLS.",
+                        action="store_true")
+    parser.add_argument("-B", "--opendap-brutishly", help="For a provider, show only collections with OPeNDAP URLS."
+                        " Uses a brute-force search of the first URL for all collection.", action="store_true")
+    parser.add_argument("-g", "--granules", help="for a collection, get info about all the granules",
+                        action="store_true")
+    parser.add_argument("-C", "--count", help="For a collection, get the granule count.", action="store_true")
+    parser.add_argument("-d", "--descending", help="For a list of granules, get the newest first (the 'last' granule)."
+                        " By default, the granules are listed in ascending order (oldest first)", action="store_true")
+    parser.add_argument("-D", "--date-range",
+                        help="For a granule request, limit the responses to a range of date/times."
+                        " The format is ISO-8601,ISO-8601 (e.g., 2000-01-01T10:00:00Z,2010-03-10T12:00:00Z)")
 
     parser.add_argument("-j", "--umm-g-json", help="Get the UMM-G JSON info for a collection:granule",
                         action="store_true")
-    parser.add_argument("-T", "--unit-tests-format", help="get data for testing in the format of 'Provider, Collection, Granule'", action="store_true")
-    parser.add_argument("-f", "--firstlast", help="get the first and last granule of a collection", action="store_true")
-    parser.add_argument("-u", "--url-unit-tests", help="find out which urls from a collection have a valid dmr")
-    parser.add_argument("-U", "--full-unit-tests", help="Given a provider, run the tests on the first and last granule of each collection", action="store_true")
+    parser.add_argument("-f", "--first-last", help="Get the first and last granule of a collection.",
+                        action="store_true")
 
     args = parser.parse_args()
 
@@ -54,8 +58,7 @@ def main():
     pretty = True if args.pretty else False
     opendap = True if args.opendap else False
     granules = True if args.granules else False
-    firstlast = True if args.firstlast else False
-    umm_g_json = True if args.umm_g_json else False
+    first_last = True if args.first_last else False
 
     try:
         start = time.time()
@@ -65,7 +68,7 @@ def main():
                                                                descending=args.descending)
             else:
                 entries = cmr.get_collection_granules(args.collection, pretty=pretty, descending=args.descending)
-        elif args.collection and firstlast:
+        elif args.collection and first_last:
             entries = cmr.get_collection_granules_umm_first_last(args.collection, pretty=pretty)
         elif args.collection:
             entries = cmr.get_collection_entry(args.collection, pretty=pretty, count=args.count)
@@ -73,18 +76,7 @@ def main():
             entries = cmr.decompose_resty_url(args.resty_path, pretty=pretty)
         elif args.collection_and_title:
             collection, title = args.collection_and_title.split(':')
-            if args.umm_g_json:
-                entries = cmr.get_cmr_json(collection, title, pretty=pretty)
-            else:
-                entries = cmr.get_related_urls(collection, title, pretty=pretty)
-        # FIXME Remove the next three lines and associated options. jhrg 7/5/24
-        elif args.url_unit_tests:
-            collection, title = args.url_test.split(':')
-            entries = cmr.url_test_array(collection, title, pretty=pretty)
-        elif args.full_unit_tests:
-            entries = cmr.full_url_test(args.provider, opendap, pretty=pretty)
-        elif args.unit_tests_format and args.provider:
-            entries = cmr.get_provider_collection_granules(args.provider, opendap, pretty=pretty)
+            entries = cmr.get_related_urls(collection, title, pretty=pretty)
         elif args.provider and args.opendap_brutishly:
             entries = cmr.get_provider_opendap_collections_brutishly(args.provider)
         else:
